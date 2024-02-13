@@ -37,4 +37,37 @@ public static class OSHelper
 
         return true;
     }
+
+    public static void OpenFileInShell(string fileOrUrl, string? arguments = null)
+    {
+        Guard.IsNotNullOrWhiteSpace(fileOrUrl);
+
+        try
+        {
+            var startInfo = new ProcessStartInfo(fileOrUrl, arguments!);
+            startInfo.UseShellExecute = true;
+            Process.Start(startInfo);
+        }
+        catch
+        {
+            // hack because of this: https://github.com/dotnet/corefx/issues/10361
+            if (OperatingSystem.IsWindows())
+            {
+                fileOrUrl = fileOrUrl.Replace("&", "^&");
+                Process.Start(new ProcessStartInfo(fileOrUrl, arguments!) { UseShellExecute = true });
+            }
+            else if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
+            {
+                Process.Start("xdg-open", new[] { fileOrUrl, arguments! });
+            }
+            else if (OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst())
+            {
+                Process.Start("open", new[] { fileOrUrl, arguments! });
+            }
+            else
+            {
+                throw;
+            }
+        }
+    }
 }

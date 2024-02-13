@@ -88,6 +88,15 @@ namespace DevToys.Localization.Strings.ToolGroupPage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open in a new window.
+        /// </summary>
+        public static string OpenInNewWindow {
+            get {
+                return ResourceManager.GetString("OpenInNewWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to.
         /// </summary>
         public static string WelcomeTo {

@@ -5,6 +5,7 @@ using DevToys.Blazor.BuiltInTools;
 using DevToys.Blazor.BuiltInTools.ExtensionsManager;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
+using DevToys.Business.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
 using DevToys.Core.Logging;
@@ -193,6 +194,9 @@ public partial class MainWindow : MicaWindowWithOverlay
     {
         // Start the Taskbar Jump List service after the web view loaded.
         _mefComposer.Provider.Import<TaskbarJumpListService>();
+
+        // Treat command line arguments.
+        _mefComposer.Provider.Import<CommandLineLauncherService>().HandleCommandLineArguments();
     }
 
     private void SetPositionAndSize()
