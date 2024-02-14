@@ -336,8 +336,15 @@ class Build : NukeBuild
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            // TODO
-            throw new NotSupportedException();
+            project = LinuxSolution!.GetAllProjects(publishProject).Single();
+            foreach (string targetFramework in project.GetTargetFrameworks())
+            {
+                yield return new DotnetParameters(project.Path, "linux-arm", targetFramework, portable: false, platform: "arm");
+                yield return new DotnetParameters(project.Path, "linux-x64", targetFramework, portable: false, platform: "x64");
+
+                yield return new DotnetParameters(project.Path, "linux-arm", targetFramework, portable: true, platform: "arm");
+                yield return new DotnetParameters(project.Path, "linux-x64", targetFramework, portable: true, platform: "x64");
+            }
         }
     }
 
