@@ -10,6 +10,14 @@ namespace DevToys.Blazor.Pages;
 
 public partial class Index : MefComponentBase
 {
+    /// <summary>
+    /// Whether the main window should be maximized.
+    /// </summary>
+    private static readonly SettingDefinition<NavBarSidebarStates> UserPreferredNavBarState
+        = new(
+            name: nameof(UserPreferredNavBarState),
+            defaultValue: NavBarSidebarStates.Expanded);
+
     private const int TitleBarMarginLeftWhenCompactOverlayMode = 0;
     private const int TitleBarMarginLeftWhenNavBarHidden = 90;
     private const int TitleBarMarginLeftWhenNavBarNotHidden = 47;
@@ -27,6 +35,9 @@ public partial class Index : MefComponentBase
 
     [Import]
     internal IThemeListener ThemeListener { get; set; } = default!;
+
+    [Import]
+    internal ISettingsProvider SettingsProvider { get; set; } = default!;
 
     [Inject]
     internal ContextMenuService ContextMenuService { get; set; } = default!;
@@ -54,6 +65,7 @@ public partial class Index : MefComponentBase
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
         WindowService.WindowActivated += WindowService_WindowActivated;
         WindowService.WindowDeactivated += WindowService_WindowDeactivated;
+        WindowService.WindowClosing += WindowService_WindowClosing;
         TitleBarInfoProvider.PropertyChanged += TitleBarMarginProvider_PropertyChanged;
 
         TitleBarInfoProvider.TitleBarMarginRight = 40;
@@ -100,6 +112,11 @@ public partial class Index : MefComponentBase
     {
         WindowHasFocus = false;
         StateHasChanged();
+    }
+
+    private void WindowService_WindowClosing(object? sender, EventArgs e)
+    {
+        SettingsProvider.SetSetting(UserPreferredNavBarState, _navBar.UserPreferredState);
     }
 
     private void OnBackButtonClicked()
@@ -157,6 +174,8 @@ public partial class Index : MefComponentBase
     {
         if (firstRender)
         {
+            _navBar.UserPreferredState = SettingsProvider.GetSetting(UserPreferredNavBarState);
+
             // Focus on the Search Box.
             _navBar.TryFocusSearchBoxAsync();
 

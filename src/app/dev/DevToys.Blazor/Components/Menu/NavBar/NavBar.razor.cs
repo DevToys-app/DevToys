@@ -111,6 +111,15 @@ public partial class NavBar<TElement, TSearchElement>
     /// </summary>
     public bool IsHiddenMode => _sidebarState.IsHidden;
 
+    /// <summary>
+    /// Gets or sets the user preferred side bar state.
+    /// </summary>
+    internal NavBarSidebarStates UserPreferredState
+    {
+        get => _sidebarState.UserPreferredState;
+        set => _sidebarState.UserPreferredState = value;
+    }
+
     [Inject]
     internal IWindowService WindowService { get; set; } = default!;
 
