@@ -54,19 +54,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
     {
         _logger = this.Log();
         _settingsProvider = settingsProvider;
-
-        if (_settingsProvider.GetSetting(caseSensitive))
-        {
-            _diffListInputAInterB.InlineView();
-            _diffListInputAOnly.InlineView();
-            _diffListInputBOnly.InlineView();
-        }
-        else
-        {
-            _diffListInputAInterB.SplitView();
-            _diffListInputAOnly.SplitView();
-            _diffListInputBOnly.SplitView();
-        }
     }
 
     // For unit tests.

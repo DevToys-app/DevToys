@@ -15,7 +15,6 @@ internal static partial class ListCompareHelper
     {
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
         ResultInfo<string> compareResult;
-        List<string> listCompared;
         List<string> listA = new List<string>(firstList.Split(Environment.NewLine));
         List<string> listB = new List<string>(secondList.Split(Environment.NewLine));
         StringComparer stringComparer = StringComparer.CurrentCultureIgnoreCase;
@@ -25,22 +24,14 @@ internal static partial class ListCompareHelper
             stringComparer = StringComparer.CurrentCulture;
         }
 
-        switch (comparisonMode)
+        List<string> listCompared = comparisonMode switch
         {
-            case ListComparisonMode.AInterB:
-                listCompared = GetAInterB(listA, listB, stringComparer);
-                break;
-            case ListComparisonMode.AOnly:
-                listCompared = GetAOnly(listA, listB, stringComparer);
-                break;
-            case ListComparisonMode.BOnly:
-                listCompared = GetBOnly(listA, listB, stringComparer);
-                break;
-            default:
-                throw new NotSupportedException();
-        }
-
-        compareResult = new(string.Join('\n', listCompared), true);
+            ListComparisonMode.AInterB => GetAInterB(listA, listB, stringComparer),
+            ListComparisonMode.AOnly => GetAOnly(listA, listB, stringComparer),
+            ListComparisonMode.BOnly => GetBOnly(listA, listB, stringComparer),
+            _ => throw new NotSupportedException(),
+        };
+        compareResult = new(string.Join(Environment.NewLine, listCompared), true);
         try
         {
             return compareResult;
