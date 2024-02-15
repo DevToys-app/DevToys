@@ -1,0 +1,113 @@
+﻿using DevToys.Tools.Helpers;
+using DevToys.Tools.Models;
+using Microsoft.Extensions.Logging;
+using OneOf;
+
+namespace DevToys.Tools.Tools.Text.ListCompare;
+
+[Export(typeof(ICommandLineTool))]
+[Name("ListCompare")]
+[CommandName(
+    Name = "listcompare",
+    Alias = "lcompare",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Text.ListCompare.ListCompare",
+    DescriptionResourceName = nameof(ListCompare.Description))]
+internal sealed class ListCompareCommandLineTool : ICommandLineTool
+{
+#pragma warning disable IDE0044 // Add readonly modifier
+    [Import]
+    private IFileStorage _fileStorage = null!;
+#pragma warning restore IDE0044 // Add readonly modifier
+
+    [CommandLineOption(
+        Name = "filea",
+        Alias = "a",
+        IsRequired = true,
+        DescriptionResourceName = nameof(ListCompare.PathListA))]
+    private OneOf<FileInfo, string>? FileA { get; set; }
+
+    [CommandLineOption(
+        Name = "fileb",
+        Alias = "b",
+        IsRequired = true,
+        DescriptionResourceName = nameof(ListCompare.PathListB))]
+    private OneOf<FileInfo, string>? FileB { get; set; }
+
+    [CommandLineOption(
+        Name = "casesensitive",
+        Alias = "cs",
+        IsRequired = true,
+        DescriptionResourceName = nameof(ListCompare.TextCaseSensitiveComparison))]
+    private bool IsCaseSensitive { get; set; }
+
+    [CommandLineOption(
+        Name = "outputFile",
+        Alias = "o",
+        IsRequired = true,
+        DescriptionResourceName = nameof(ListCompare.OutputFileOptionDescription))]
+    internal FileInfo? OutputFile { get; set; }
+
+    [CommandLineOption(
+        Name = "comparisonmode",
+        Alias = "cm",
+        IsRequired = true,
+        DescriptionResourceName = nameof(ListCompare.ComparisonOptionDescription))]
+    private ListComparisonMode ComparisonMode { get; set; }
+
+    public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
+    {
+        ResultInfo<string> fileAContent;
+        ResultInfo<string> fileBContent;
+        if (!FileA.HasValue)
+        {
+            Console.Error.WriteLine(string.Concat("listA :", ListCompare.InvalidInputOrFileCommand));
+            return -1;
+        }
+
+        if (!FileB.HasValue)
+        {
+            Console.Error.WriteLine(string.Concat("listB :", ListCompare.InvalidInputOrFileCommand));
+            return -1;
+        }
+
+
+        fileAContent = await FileA.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+        fileBContent = await FileB.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+
+        if (!fileAContent.HasSucceeded)
+        {
+            Console.Error.WriteLine(String.Concat("File A: ", ListCompare.InputFileNotFound));
+            return -1;
+        }
+
+        if (!fileBContent.HasSucceeded)
+        {
+            Console.Error.WriteLine(String.Concat("File B: ", ListCompare.InputFileNotFound));
+            return -1;
+        }
+
+        Guard.IsNotNull(fileAContent.Data);
+        Guard.IsNotNull(fileBContent.Data);
+
+        ResultInfo<string> output = ComparisonMode switch
+        {
+            ListComparisonMode.AInterB => await ListCompareHelper.CompareAsync(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.AInterB, logger, cancellationToken),
+            ListComparisonMode.AOnly => await ListCompareHelper.CompareAsync(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.AOnly, logger, cancellationToken),
+            ListComparisonMode.BOnly => await ListCompareHelper.CompareAsync(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.BOnly, logger, cancellationToken),
+            _ => throw new NotSupportedException(),
+        };
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        if (output.HasSucceeded)
+        {
+            await FileHelper.WriteOutputAsync(output.Data, OutputFile, cancellationToken);
+            return 0;
+        }
+        else
+        {
+            Console.Error.WriteLine(output.Data);
+            return -1;
+        }
+    }
+}
