@@ -66,7 +66,10 @@ public partial class ContextMenu : StyledComponentBase
         if (IsActuallyEnabled)
         {
             // This may update the item list.
-            await OnContextMenuOpening.InvokeAsync();
+            if (OnContextMenuOpening.HasDelegate)
+            {
+                await OnContextMenuOpening.InvokeAsync();
+            }
 
             if (Items?.Count == 0)
             {
@@ -83,7 +86,10 @@ public partial class ContextMenu : StyledComponentBase
                 _isOpen = true;
                 StateHasChanged();
 
-                await OnContextMenuOpened.InvokeAsync();
+                if (OnContextMenuOpened.HasDelegate)
+                {
+                    await OnContextMenuOpened.InvokeAsync();
+                }
             }
         }
     }
@@ -95,7 +101,10 @@ public partial class ContextMenu : StyledComponentBase
         _isOpen = false;
         StateHasChanged();
 
-        await OnContextMenuClosed.InvokeAsync();
+        if (OnContextMenuClosed.HasDelegate)
+        {
+            await OnContextMenuClosed.InvokeAsync();
+        }
     }
 
     private async Task OnEscapeKeyPressedAsync()
@@ -119,7 +128,10 @@ public partial class ContextMenu : StyledComponentBase
         if (_listBox is not null && _listBox.SelectedItem is not null && _listBox.SelectedItem.IsEnabled)
         {
             CloseMenuAsync(null).Forget();
-            _listBox.SelectedItem.OnClick.InvokeAsync(_listBox.SelectedItem).Forget();
+            if (_listBox.SelectedItem.OnClick.HasDelegate)
+            {
+                _listBox.SelectedItem.OnClick.InvokeAsync(_listBox.SelectedItem).Forget();
+            }
         }
     }
 }

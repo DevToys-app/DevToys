@@ -3,6 +3,8 @@ using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Blazor.Components;
 using System.Reflection;
+using DevToys.Business.Services;
+using DevToys.Core;
 
 namespace DevToys.Blazor.Pages.SubPages;
 
@@ -26,6 +28,9 @@ public partial class ToolGroup : MefComponentBase
 
     [Import]
     internal ToolGroupPageViewModel ViewModel { get; set; } = default!;
+
+    [Import]
+    internal CommandLineLauncherService CommandLineLauncherService { get; set; } = default!;
 
     [Parameter]
     public GroupViewItem? GroupViewItem { get; set; }
@@ -62,11 +67,11 @@ public partial class ToolGroup : MefComponentBase
 
     private void OnOpenInNewWindow(GuiToolInstance item)
     {
-        // TODO
+        CommandLineLauncherService.LaunchTool(item.InternalComponentName);
     }
 
     private void OnSuggestToolIdeaClick()
     {
-        Shell.OpenFileInShell("https://github.com/veler/DevToys/issues/new/choose");
+        OSHelper.OpenFileInShell("https://github.com/veler/DevToys/issues/new/choose");
     }
 }
