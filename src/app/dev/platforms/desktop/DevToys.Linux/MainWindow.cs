@@ -58,7 +58,7 @@ internal class MainWindow
 
         // Create and open main window.
         _window = Gtk.ApplicationWindow.New(application);
-        _window.Title = _titleBarInfoProvider.Title ?? string.Empty;
+        _window.Title = _titleBarInfoProvider.TitleWithToolName ?? string.Empty;
         _window.SetDefaultSize(1280, 800);
         _window.SetChild(_blazorGtkWebView);
 
@@ -88,9 +88,9 @@ internal class MainWindow
 
     private void TitleBarInfoProvider_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(TitleBarInfoProvider.Title))
+        if (e.PropertyName == nameof(TitleBarInfoProvider.TitleWithToolName))
         {
-            _window.Title = _titleBarInfoProvider.Title ?? string.Empty;
+            _window.Title = _titleBarInfoProvider.TitleWithToolName ?? string.Empty;
         }
     }
 
