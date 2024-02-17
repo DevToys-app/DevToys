@@ -14,7 +14,7 @@
     Closing="MainWindow_Closing"
     MinWidth="600"
     MinHeight="400"
-    Title="{Binding Title}"
+    Title="{Binding TitleWithToolName}"
     TitleBarMarginLeft="{Binding TitleBarMarginLeft}"
     TitleBarMarginRight="{Binding TitleBarMarginRight}"
     TitleBarWindowStateButtonsWidth="{Binding TitleBarWindowStateButtonsWidth, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}">

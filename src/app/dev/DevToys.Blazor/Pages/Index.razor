@@ -48,23 +48,37 @@
             @onmouseup="@OnMouseUp">
         <!-- Header -->
         <HeaderLeft>
-            @if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem && WindowService.IsCompactOverlayMode)
-            {
-                TitleBarInfoProvider.Title = string.Format(MainWindow.WindowTitleWithToolName, guiToolViewItem.ToolInstance.LongOrShortDisplayTitle);
-                if (OperatingSystem.IsWindows())
+            @{
+                string toolDisplayName = string.Empty;
+                if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
                 {
-                    <TextBlock Text="@TitleBarInfoProvider.Title"
-                               Style="margin-left: 16px;"
-                               IsEnabled="@WindowHasFocus"/>
+                    toolDisplayName = guiToolViewItem.ToolInstance.LongOrShortDisplayTitle;
                 }
-            }
-            else
-            {
-                TitleBarInfoProvider.Title = MainWindow.WindowTitle;
-                if (OperatingSystem.IsWindows())
+                else if (ViewModel.SelectedMenuItem is GroupViewItem groupViewItem)
                 {
-                    <TextBlock Text="@TitleBarInfoProvider.Title"
-                               IsEnabled="@WindowHasFocus" />
+                    toolDisplayName = groupViewItem.DisplayTitle;
+                }
+
+                TitleBarInfoProvider.TitleWithToolName = string.Format(MainWindow.WindowTitleWithToolName, toolDisplayName);
+
+                @if (WindowService.IsCompactOverlayMode)
+                {
+                    TitleBarInfoProvider.Title = string.Format(MainWindow.WindowTitleWithToolName, toolDisplayName);
+                    if (OperatingSystem.IsWindows())
+                    {
+                        <TextBlock Text="@TitleBarInfoProvider.Title"
+                                   Style="margin-left: 16px;"
+                                   IsEnabled="@WindowHasFocus" />
+                    }
+                }
+                else
+                {
+                    TitleBarInfoProvider.Title = MainWindow.WindowTitle;
+                    if (OperatingSystem.IsWindows())
+                    {
+                        <TextBlock Text="@TitleBarInfoProvider.Title"
+                                   IsEnabled="@WindowHasFocus" />
+                    }
                 }
             }
         </HeaderLeft>
