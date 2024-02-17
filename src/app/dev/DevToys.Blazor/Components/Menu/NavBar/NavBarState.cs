@@ -2,7 +2,6 @@
 
 internal sealed class NavBarState
 {
-    // TODO: Save state in settings and restore it, along with window size and location.
     private NavBarSidebarStates _widthBasedState = NavBarSidebarStates.Expanded;
     private NavBarSidebarStates _userPreferredState = NavBarSidebarStates.Expanded;
     private int _width;
@@ -14,6 +13,8 @@ internal sealed class NavBarState
     internal bool IsHidden { get; private set; }
 
     internal bool IsCollapsed { get; private set; }
+
+    internal NavBarSidebarStates UserPreferredState { get; set; }
 
     internal event EventHandler? IsHiddenChanged;
 
@@ -45,11 +46,11 @@ internal sealed class NavBarState
         }
 
         // When resizing the window, let's automatically hide the expanded overlay, if opened.
-        if ((_userPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay)
+        if ((UserPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay)
         {
             stateChanged = true;
             useTransition = false;
-            _userPreferredState &= ~NavBarSidebarStates.ExpandedOverlay;
+            UserPreferredState &= ~NavBarSidebarStates.ExpandedOverlay;
         }
 
         UpdateCssToApply(useTransition);
@@ -58,32 +59,32 @@ internal sealed class NavBarState
 
     internal void ToggleSidebar()
     {
-        Guard.IsNotEqualTo((int)_userPreferredState, (int)NavBarSidebarStates.Hidden);
+        Guard.IsNotEqualTo((int)UserPreferredState, (int)NavBarSidebarStates.Hidden);
 
         bool useTransition = true;
-        bool userCurrentlyPreferExpanded = (_userPreferredState & NavBarSidebarStates.Expanded) == NavBarSidebarStates.Expanded;
+        bool userCurrentlyPreferExpanded = (UserPreferredState & NavBarSidebarStates.Expanded) == NavBarSidebarStates.Expanded;
         switch (_widthBasedState)
         {
             // Based on the control's width, the default / automatic mode of the sidebar should be either collapsed or hidden.
             case NavBarSidebarStates.Hidden:
             case NavBarSidebarStates.Collapsed:
-                if ((_userPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay)
+                if ((UserPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay)
                 {
                     // It looks like the sidebar is currently expanded overlay.
                     // User clicked on the toggle button, so let's collapse the sidebar.
-                    _userPreferredState = NavBarSidebarStates.Collapsed;
+                    UserPreferredState = NavBarSidebarStates.Collapsed;
                     useTransition = false;
                 }
                 else if (userCurrentlyPreferExpanded)
                 {
                     // User preferred sidebar mode is expanded. Currently, it's collapsed
                     // or hidden due to the small width of the control. Let's expand overlay the sidebar.
-                    _userPreferredState |= NavBarSidebarStates.ExpandedOverlay;
+                    UserPreferredState |= NavBarSidebarStates.ExpandedOverlay;
                 }
                 else
                 {
                     // User preferred sidebar mode is collapsed. Let's switch it to expanded, and let's show the overlay.
-                    _userPreferredState = NavBarSidebarStates.Expanded | NavBarSidebarStates.ExpandedOverlay;
+                    UserPreferredState = NavBarSidebarStates.Expanded | NavBarSidebarStates.ExpandedOverlay;
                 }
                 break;
 
@@ -93,12 +94,12 @@ internal sealed class NavBarState
                 {
                     // Currently, user's preferred mode is expanded. But user just clicked on the
                     // toggle button, so let's switch to collapsed mode.
-                    _userPreferredState = NavBarSidebarStates.Collapsed;
+                    UserPreferredState = NavBarSidebarStates.Collapsed;
                 }
                 else
                 {
                     // Opposite scenario.
-                    _userPreferredState = NavBarSidebarStates.Expanded;
+                    UserPreferredState = NavBarSidebarStates.Expanded;
                 }
                 break;
 
@@ -112,16 +113,16 @@ internal sealed class NavBarState
 
     internal void CloseExpandedOverlay()
     {
-        if ((_userPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay)
+        if ((UserPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay)
         {
-            _userPreferredState &= ~NavBarSidebarStates.ExpandedOverlay;
+            UserPreferredState &= ~NavBarSidebarStates.ExpandedOverlay;
             UpdateCssToApply(useTransition: false);
         }
     }
 
     internal void ForceExpand()
     {
-        if (_userPreferredState == NavBarSidebarStates.Collapsed
+        if (UserPreferredState == NavBarSidebarStates.Collapsed
             || _widthBasedState == NavBarSidebarStates.Collapsed
             || _widthBasedState == NavBarSidebarStates.Hidden)
         {
@@ -131,7 +132,7 @@ internal sealed class NavBarState
 
     private void UpdateCssToApply(bool useTransition = false)
     {
-        bool userRequestExpandOverlay = (_userPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay;
+        bool userRequestExpandOverlay = (UserPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay;
         bool isCollapsed = !userRequestExpandOverlay;
         var cssBuilder = new CssBuilder();
 
@@ -150,8 +151,8 @@ internal sealed class NavBarState
                 break;
 
             case NavBarSidebarStates.Expanded:
-                cssBuilder.AddClass("collapsed", when: _userPreferredState == NavBarSidebarStates.Collapsed);
-                isCollapsed = _userPreferredState == NavBarSidebarStates.Collapsed;
+                cssBuilder.AddClass("collapsed", when: UserPreferredState == NavBarSidebarStates.Collapsed);
+                isCollapsed = UserPreferredState == NavBarSidebarStates.Collapsed;
                 break;
 
             default:
