@@ -1,9 +1,12 @@
 ﻿using System.Collections.Concurrent;
+using Microsoft.Extensions.Logging;
 
 namespace DevToys.Core;
 
 public static class FileHelper
 {
+    private static readonly ILogger logger = typeof(FileHelper).Log();
+
     private static readonly ConcurrentBag<FileInfo> tempFiles = new();
 
     public static FileInfo CreateTempFile(string baseFolder, string? desiredFileExtension)
@@ -28,6 +31,8 @@ public static class FileHelper
 
     public static void ClearTempFiles(string baseFolder)
     {
+        DateTime startTime = DateTime.UtcNow;
+
         FileInfo[] files = tempFiles.ToArray();
         foreach (FileInfo tempFile in files)
         {
@@ -65,5 +70,8 @@ public static class FileHelper
                 }
             }
         }
+
+        double elapsedMilliseconds = (DateTime.UtcNow - startTime).TotalMilliseconds;
+        logger.LogInformation("Cleared temp files in {elapsedMilliseconds}ms", elapsedMilliseconds);
     }
 }

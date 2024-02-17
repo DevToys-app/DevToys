@@ -47,6 +47,9 @@ public partial class NavBar<TElement, TSearchElement>
     public EventCallback<TElement> SelectedItemChanged { get; set; }
 
     [Parameter]
+    public EventCallback<ListBoxItemBuildingContextMenuEventArgs> OnBuildingContextMenu { get; set; }
+
+    [Parameter]
     public bool CanGoBack { get; set; }
 
     [Parameter]
@@ -211,6 +214,12 @@ public partial class NavBar<TElement, TSearchElement>
     {
         SelectedItem = item;
         return SelectedItemChanged.InvokeAsync(item);
+    }
+
+    private Task OnBuildingContextMenuAsync(ListBoxItemBuildingContextMenuEventArgs args)
+    {
+        Guard.IsAssignableToType<TElement>(args.ItemValue);
+        return OnBuildingContextMenu.InvokeAsync(args);
     }
 
     private void SidebarState_IsHiddenChanged(object? sender, EventArgs e)

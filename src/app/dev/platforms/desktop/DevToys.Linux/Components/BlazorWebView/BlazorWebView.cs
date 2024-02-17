@@ -27,6 +27,14 @@ internal sealed class BlazorWebView : WebView
                 serviceProvider,
                 options,
                 contentRootDir,
-                hostPageRelativePath);
+                hostPageRelativePath,
+                OnBlazorInitialized);
+    }
+
+    internal event EventHandler? BlazorWebViewInitialized;
+
+    private void OnBlazorInitialized()
+    {
+        BlazorWebViewInitialized?.Invoke(this, EventArgs.Empty);
     }
 }

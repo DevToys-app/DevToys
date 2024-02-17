@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.Extensions.FileProviders;
 using WebKit;
+using Action = System.Action;
 
 namespace DevToys.Linux.Components;
 
@@ -22,7 +23,8 @@ internal sealed class BlazorWebViewBridge : WebViewManager
         IServiceProvider serviceProvider,
         BlazorWebViewOptions options,
         string contentRootRelativeToAppRoot,
-        string hostPageRelativePath)
+        string hostPageRelativePath,
+        Action onBlazorInitialized)
         : base(
             serviceProvider,
             Dispatcher.CreateDefault(),
@@ -61,11 +63,11 @@ internal sealed class BlazorWebViewBridge : WebViewManager
             source:
             """
                 window.__receiveMessageCallbacks = [];
-
+            
                 window.__dispatchMessageCallback = function(message) {
                     window.__receiveMessageCallbacks.forEach(function(callback) { callback(message); });
                 };
-
+            
                 window.external = {
                     sendMessage: function(message) {
                         window.webkit.messageHandlers.webview.postMessage(message);
@@ -91,6 +93,12 @@ internal sealed class BlazorWebViewBridge : WebViewManager
         }
 
         Navigate("/");
+
+        System.Threading.Tasks.Task.Run(async () =>
+        {
+            await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+            onBlazorInitialized.Invoke();
+        });
     }
 
     protected override void NavigateCore(Uri absoluteUri)
@@ -121,12 +129,12 @@ internal sealed class BlazorWebViewBridge : WebViewManager
         bool allowFallbackOnHostPage = IsUriBaseOfPage(AppOriginUri, uri);
 
         if (TryGetResponseContent(
-            uri,
-            allowFallbackOnHostPage,
-            out int statusCode,
-            out string? statusMessage,
-            out Stream? content,
-            out IDictionary<string, string>? headers))
+                uri,
+                allowFallbackOnHostPage,
+                out int statusCode,
+                out string? statusMessage,
+                out Stream? content,
+                out IDictionary<string, string>? headers))
         {
             using var ms = new MemoryStream();
             content.CopyTo(ms);

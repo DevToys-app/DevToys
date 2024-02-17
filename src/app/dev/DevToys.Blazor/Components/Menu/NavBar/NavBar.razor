@@ -131,7 +131,8 @@
                                             TitleTemplate="NavBarItemTitleTemplate"
                                             IconTemplate="NavBarItemIconTemplate"
                                             Children="item is IGroup itemGroup ? itemGroup.ChildrenItems : null"
-                                            OnSelected="OnItemSelectedAsync" />
+                                            OnSelected="OnItemSelectedAsync"
+                                            OnBuildingContextMenu="OnBuildingContextMenuAsync" />
                             }
                         }
                     </ul>
@@ -153,7 +154,8 @@
                                         TitleTemplate="NavBarItemTitleTemplate"
                                         IconTemplate="NavBarItemIconTemplate"
                                         Children="item is IGroup itemGroup ? itemGroup.ChildrenItems : null"
-                                        OnSelected="OnItemSelectedAsync" />
+                                        OnSelected="OnItemSelectedAsync"
+                                        OnBuildingContextMenu="OnBuildingContextMenuAsync" />
                         }
                     }
                 </ul>

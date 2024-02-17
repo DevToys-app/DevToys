@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using DevToys.Blazor.Core.Languages;
+using DevToys.Core;
 using DevToys.Core.Settings;
 
 namespace DevToys.Blazor.BuiltInTools.Settings;
@@ -224,7 +225,7 @@ internal sealed class SettingsGuiTool : IGuiTool
 
     private void OnHelpTranslatingButtonClick()
     {
-        Shell.OpenFileInShell("https://crowdin.com/project/devtoys");
+        OSHelper.OpenFileInShell("https://crowdin.com/project/devtoys");
     }
 
     private void OnLanguageSelected(IUIDropDownListItem? selectedItem)

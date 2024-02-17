@@ -1,9 +1,11 @@
 ﻿using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
+using DevToys.Business.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
+using DevToys.Localization.Strings.ToolGroupPage;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Pages;
@@ -38,6 +40,9 @@ public partial class Index : MefComponentBase
 
     [Import]
     internal ISettingsProvider SettingsProvider { get; set; } = default!;
+
+    [Import]
+    internal CommandLineLauncherService CommandLineLauncherService { get; set; } = default!;
 
     [Inject]
     internal ContextMenuService ContextMenuService { get; set; } = default!;
@@ -157,6 +162,34 @@ public partial class Index : MefComponentBase
     {
         ViewModel.SearchBoxQuerySubmittedCommand.Execute(selectedItem);
         // TODO: If succeeded, move the focus to the ToolPage.
+    }
+
+    private Task OnBuildingContextMenuAsync(ListBoxItemBuildingContextMenuEventArgs args)
+    {
+        Guard.IsNotNull(args.ItemValue);
+
+        // Create the context menu for the items in the NavBar.
+        if (args.ContextMenuItems.Count == 0)
+        {
+            // Open in new window
+            if (args.ItemValue is GuiToolViewItem item)
+            {
+                args.ContextMenuItems.Add(
+                new ContextMenuItem
+                {
+                    IconGlyph = '\uEE7A',
+                    Text = ToolGroupPage.OpenInNewWindow,
+                    OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnOpenInNewWindowContextMenuItemClick)
+                });
+
+                void OnOpenInNewWindowContextMenuItemClick()
+                {
+                    CommandLineLauncherService.LaunchTool(item.ToolInstance.InternalComponentName);
+                }
+            }
+        }
+
+        return Task.CompletedTask;
     }
 
     private void OnMouseUp(MouseEventArgs ev)

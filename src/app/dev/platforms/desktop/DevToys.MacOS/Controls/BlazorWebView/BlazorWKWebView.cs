@@ -92,6 +92,8 @@ internal sealed partial class BlazorWkWebView : IDisposable
     /// </summary>
     internal event EventHandler<UrlLoadingEventArgs>? UrlLoading;
 
+    internal event EventHandler? BlazorWebViewInitialized;
+
     public void Dispose()
     {
         if (_webViewManager is not null)
@@ -247,6 +249,12 @@ internal sealed partial class BlazorWkWebView : IDisposable
 
         LogStartingInitialNavigation(StartPath);
         _webViewManager.Navigate(StartPath);
+
+        Task.Run(async () =>
+        {
+            await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+            BlazorWebViewInitialized?.Invoke(this, EventArgs.Empty);
+        });
     }
 
     private static IFileProvider CreateFileProvider(string contentRootDir)
