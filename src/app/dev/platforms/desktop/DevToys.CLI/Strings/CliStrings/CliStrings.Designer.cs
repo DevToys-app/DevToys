@@ -61,7 +61,52 @@ namespace DevToys.CLI.Strings.CliStrings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please type a relative or absolute file path to write in:.
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; doesn&apos;t exist..
+        /// </summary>
+        internal static string FileNotFound {
+            get {
+                return ResourceManager.GetString("FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid file path. The file should have one of the following extensions: {0}.
+        /// </summary>
+        internal static string InvalidFileType {
+            get {
+                return ResourceManager.GetString("InvalidFileType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please type a relative or absolute file path to read (or press Enter to cancel):.
+        /// </summary>
+        internal static string PromptOpenFile {
+            get {
+                return ResourceManager.GetString("PromptOpenFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):.
+        /// </summary>
+        internal static string PromptOpenFiles {
+            get {
+                return ResourceManager.GetString("PromptOpenFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please type a relative or absolute folder path (or press Enter to cancel):.
+        /// </summary>
+        internal static string PromptOpenFolder {
+            get {
+                return ResourceManager.GetString("PromptOpenFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please type a relative or absolute file path to write in (or press Enter to cancel):.
         /// </summary>
         internal static string PromptSaveFile {
             get {
