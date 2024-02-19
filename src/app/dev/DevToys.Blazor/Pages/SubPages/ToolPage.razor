@@ -2,7 +2,8 @@
 @using DevToys.Blazor.Components.UIElements
 @inherits MefComponentBase
 
-<ScrollViewer Class="entrance-theme-transition tool-page-content"
+<ScrollViewer @ref=_scrollViewer
+              Class="entrance-theme-transition tool-page-content"
               IsScrollable="@(!IsInFullScreenMode && ViewModel.ToolView.IsScrollable)">
     @RenderToolWithHeader(true)
 </ScrollViewer>

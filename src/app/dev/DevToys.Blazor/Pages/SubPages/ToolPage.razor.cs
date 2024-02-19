@@ -6,8 +6,10 @@ using DevToys.Core.Tools.ViewItems;
 
 namespace DevToys.Blazor.Pages.SubPages;
 
-public partial class ToolPage : MefComponentBase, IDisposable
+public partial class ToolPage : MefComponentBase, IDisposable, IFocusable
 {
+    private ScrollViewer _scrollViewer;
+
     [Inject]
     internal IWindowService WindowService { get; set; } = default!;
 
@@ -63,6 +65,11 @@ public partial class ToolPage : MefComponentBase, IDisposable
             ViewModel.ToolView.CurrentOpenedDialogChanged -= ToolView_CurrentOpenedDialogChanged;
         }
         GC.SuppressFinalize(this);
+    }
+
+    public async ValueTask<bool> FocusAsync()
+    {
+        return await JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", _scrollViewer.Element);
     }
 
     private void ToolView_PropertyChanged(object? sender, PropertyChangedEventArgs e)
