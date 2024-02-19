@@ -26,8 +26,7 @@ public partial class Index : MefComponentBase
     private const int TitleBarMarginLeftWhenNavBarNotHidden = 47;
 
     private NavBar<INotifyPropertyChanged, GuiToolViewItem> _navBar = default!;
-    private ToolPage? _toolPage;
-    private bool _shouldFocusToolPage;
+    private IFocusable? _contentPage;
 
     [Import]
     internal MainWindowViewModel ViewModel { get; set; } = default!;
@@ -163,7 +162,6 @@ public partial class Index : MefComponentBase
 
     private void OnSearchQuerySubmitted(GuiToolViewItem? selectedItem)
     {
-        _shouldFocusToolPage = true;
         ViewModel.SearchBoxQuerySubmittedCommand.Execute(selectedItem);
     }
 
@@ -225,9 +223,9 @@ public partial class Index : MefComponentBase
             IsTransitioning = false;
             StateHasChanged();
 
-            if (_shouldFocusToolPage && _toolPage is not null)
+            if (_contentPage is not null && !firstRender)
             {
-                _toolPage.FocusAsync().Forget();
+                _contentPage.FocusAsync().Forget();
             }
         }
 

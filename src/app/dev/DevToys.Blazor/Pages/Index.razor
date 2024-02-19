@@ -156,11 +156,11 @@
             {
                 if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
                 {
-                    <ToolPage @ref=_toolPage GuiToolViewItem="@guiToolViewItem"/>
+                    <ToolPage @ref=_contentPage GuiToolViewItem="@guiToolViewItem" />
                 }
                 else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
                 {
-                    <ToolGroup GroupViewItem="@groupToolViewItem" />
+                    <ToolGroup @ref=_contentPage GroupViewItem="@groupToolViewItem" />
                 }
             }
         </Content>

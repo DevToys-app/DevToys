@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Blazor.Components;
 
-public partial class GridView<TKey, TElement> : JSStyledComponentBase
+public partial class GridView<TKey, TElement> : JSStyledComponentBase, IFocusable
 {
     private ScrollViewer? _scrollViewer = default!;
 
@@ -58,6 +58,12 @@ public partial class GridView<TKey, TElement> : JSStyledComponentBase
                 }
             }
         }
+    }
+
+    public ValueTask<bool> FocusAsync()
+    {
+        Guard.IsNotNull(_scrollViewer);
+        return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", _scrollViewer.Element);
     }
 
     internal Task OnItemClickAsync(TElement item)

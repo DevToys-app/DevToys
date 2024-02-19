@@ -8,7 +8,7 @@ namespace DevToys.Blazor.Pages.SubPages;
 
 public partial class ToolPage : MefComponentBase, IDisposable, IFocusable
 {
-    private ScrollViewer _scrollViewer;
+    private ScrollViewer? _scrollViewer;
 
     [Inject]
     internal IWindowService WindowService { get; set; } = default!;
@@ -67,9 +67,10 @@ public partial class ToolPage : MefComponentBase, IDisposable, IFocusable
         GC.SuppressFinalize(this);
     }
 
-    public async ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
     {
-        return await JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", _scrollViewer.Element);
+        Guard.IsNotNull(_scrollViewer);
+        return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", _scrollViewer.Element);
     }
 
     private void ToolView_PropertyChanged(object? sender, PropertyChangedEventArgs e)
