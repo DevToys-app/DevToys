@@ -32,6 +32,7 @@
                 checked="@IsOn"
                 disabled="@(!IsActuallyEnabled)"
                 @onclick:preventDefault="@(!IsActuallyEnabled)"
+                @onkeydown:stopPropagation="@IsActuallyEnabled"
                 @onchange="OnChange"
                 @attributes="AdditionalAttributes" />
         </label>

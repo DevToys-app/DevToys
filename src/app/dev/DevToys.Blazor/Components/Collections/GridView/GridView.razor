@@ -52,7 +52,11 @@
                                 {
                                     <li class="grid-view-item"
                                         style="min-width: @ItemMinWidth.ToPx()">
-                                        <div class="grid-view-item-hover-filter" @onclick="() => OnItemClickAsync(item)">
+                                        <div class="grid-view-item-hover-filter"
+                                             tabindex="0"
+                                             @onclick="() => OnItemClickAsync(item)"
+                                             @onkeydown="(KeyboardEventArgs ev) => OnKeyDownAsync(ev, item)"
+                                             @onkeydown:stopPropagation="@IsActuallyEnabled">
                                             @ItemTemplate(item)
                                         </div>
                                     </li>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
 
@@ -55,5 +56,14 @@ public partial class ListBoxItem : StyledComponentBase
     private Task OnContextMenuOpeningAsync()
     {
         return OnBuildingContextMenu.InvokeAsync(new ListBoxItemBuildingContextMenuEventArgs(Item, _contextMenuItems));
+    }
+
+    private async Task OnKeyDownAsync(KeyboardEventArgs ev)
+    {
+        if (string.Equals(ev.Code, "Enter", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(ev.Code, "Space", StringComparison.OrdinalIgnoreCase))
+        {
+            await OnClickAsync();
+        }
     }
 }

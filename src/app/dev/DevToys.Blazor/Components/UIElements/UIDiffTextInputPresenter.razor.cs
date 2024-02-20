@@ -18,6 +18,7 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase
 
     private string _originalModelName = string.Empty;
     private string _modifiedModelName = string.Empty;
+    private Button? _toggleFullScreenButton;
 
     protected override void OnInitialized()
     {
@@ -131,7 +132,8 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase
     private async Task OnToggleFullScreenButtonClickAsync()
     {
         Guard.IsNotNull(FullScreenContainer);
-        _isInFullScreenMode = await FullScreenContainer.ToggleFullScreenModeAsync(ExtendedId);
+        Guard.IsNotNull(_toggleFullScreenButton);
+        _isInFullScreenMode = await FullScreenContainer.ToggleFullScreenModeAsync(ExtendedId, _toggleFullScreenButton);
         StateHasChanged();
     }
 

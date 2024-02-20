@@ -29,6 +29,7 @@
                    disabled="@(!IsActuallyEnabled)"
                    name="@Group"
                    @onclick:preventDefault="@(!IsActuallyEnabled)"
+                   @onkeydown:stopPropagation="@IsActuallyEnabled"
                    @onchange="OnChange"
                    @attributes="AdditionalAttributes" />
             <TextBlock Text="@Text" />

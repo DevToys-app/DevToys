@@ -3,7 +3,7 @@
 @import 'macos/dark';
 @import 'macos/light';
 
-html, body {
+* {
     /* Font Families */
     --font-family-fallback:
         -apple-system, /* San Francisco in Safari (on Mac OS X and iOS); Neue Helvetica and Lucida Grande on older versions of Mac OS X. */
@@ -26,13 +26,18 @@ html, body {
     --font-size-title-large: 40px;
     --font-size-display: 68px;
 
-    /* Focus Stroke */
-    --focus-stroke:
-        0 0 0 1px var(--focus-stroke-inner),
-        0 0 0 3px var(--focus-stroke-outer);
-
     /* Monaco Editor diff view vertical splitter width */
     --vscode-sash-size: 16px;
+
+    /* Focus Stroke */
+    --focus-stroke:
+        inset 0 0 0 1px var(--focus-stroke-inner),
+        0 0 0 2px var(--focus-stroke-outer);
+
+    &:focus-visible {
+        box-shadow: var(--focus-stroke);
+        outline: none;
+    }
 }
 
 /* Themes */

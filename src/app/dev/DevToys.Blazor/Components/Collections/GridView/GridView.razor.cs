@@ -1,4 +1,6 @@
-﻿namespace DevToys.Blazor.Components;
+﻿using Microsoft.AspNetCore.Components.Web;
+
+namespace DevToys.Blazor.Components;
 
 public partial class GridView<TKey, TElement> : JSStyledComponentBase, IFocusable
 {
@@ -66,8 +68,17 @@ public partial class GridView<TKey, TElement> : JSStyledComponentBase, IFocusabl
         return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", _scrollViewer.Element);
     }
 
-    internal Task OnItemClickAsync(TElement item)
+    private Task OnItemClickAsync(TElement item)
     {
         return OnItemClick.InvokeAsync(item);
+    }
+
+    private async Task OnKeyDownAsync(KeyboardEventArgs ev, TElement item)
+    {
+        if (string.Equals(ev.Code, "Enter", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(ev.Code, "Space", StringComparison.OrdinalIgnoreCase))
+        {
+            await OnItemClickAsync(item);
+        }
     }
 }
