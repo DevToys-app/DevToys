@@ -214,15 +214,6 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XML Formatter.
-        /// </summary>
-        internal static string SearchDisplayName {
-            get {
-                return ResourceManager.GetString("SearchDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to XML.
         /// </summary>
         internal static string ShortDisplayTitle {

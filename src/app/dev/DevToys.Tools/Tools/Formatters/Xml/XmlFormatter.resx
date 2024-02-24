@@ -168,9 +168,6 @@
   <data name="OutputFileOptionDescription" xml:space="preserve">
     <value>Path to the output file</value>
   </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Formatter</value>
-  </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>XML</value>
   </data>

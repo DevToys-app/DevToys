@@ -8,7 +8,7 @@ using DevToys.Core;
 
 namespace DevToys.Blazor.Pages.SubPages;
 
-public partial class ToolGroup : MefComponentBase
+public partial class ToolGroup : MefComponentBase, IFocusable
 {
     private GridView<string, GuiToolInstance>? _gridView = default!;
 
@@ -57,6 +57,12 @@ public partial class ToolGroup : MefComponentBase
         {
             ViewModel.Load(GroupViewItem);
         }
+    }
+
+    public ValueTask<bool> FocusAsync()
+    {
+        Guard.IsNotNull(_gridView);
+        return _gridView.FocusAsync();
     }
 
     private void OnToolSelected(object item)

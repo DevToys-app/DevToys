@@ -4,6 +4,7 @@ public partial class UIDataGridPresenter : StyledComponentBase, IDisposable
 {
     private int _selectedIndex = -1;
     private bool _isInFullScreenMode;
+    private Button? _toggleFullScreenButton;
 
     [Parameter]
     public IUIDataGrid UIDataGrid { get; set; } = default!;
@@ -74,7 +75,8 @@ public partial class UIDataGridPresenter : StyledComponentBase, IDisposable
     private async Task OnToggleFullScreenButtonClickAsync()
     {
         Guard.IsNotNull(FullScreenContainer);
-        _isInFullScreenMode = await FullScreenContainer.ToggleFullScreenModeAsync(ExtendedId);
+        Guard.IsNotNull(_toggleFullScreenButton);
+        _isInFullScreenMode = await FullScreenContainer.ToggleFullScreenModeAsync(ExtendedId, _toggleFullScreenButton);
         StateHasChanged();
     }
 }

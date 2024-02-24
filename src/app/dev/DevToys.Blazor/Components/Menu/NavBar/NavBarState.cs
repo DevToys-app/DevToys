@@ -3,7 +3,6 @@
 internal sealed class NavBarState
 {
     private NavBarSidebarStates _widthBasedState = NavBarSidebarStates.Expanded;
-    private NavBarSidebarStates _userPreferredState = NavBarSidebarStates.Expanded;
     private int _width;
 
     internal string NavBarClassNames { get; private set; } = string.Empty;
@@ -14,7 +13,7 @@ internal sealed class NavBarState
 
     internal bool IsCollapsed { get; private set; }
 
-    internal NavBarSidebarStates UserPreferredState { get; set; }
+    internal NavBarSidebarStates UserPreferredState { get; set; } = NavBarSidebarStates.Expanded;
 
     internal event EventHandler? IsHiddenChanged;
 

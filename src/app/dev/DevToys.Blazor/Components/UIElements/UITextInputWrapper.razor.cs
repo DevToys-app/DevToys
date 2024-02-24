@@ -39,6 +39,7 @@ public partial class UITextInputWrapper : MefComponentBase
     private bool _isToolBarShrink;
     private bool _hideNonEssentialToolBar;
     private bool _isInFullScreenMode;
+    private Button? _toggleFullScreenButton;
 
     protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/UIElements/UITextInputWrapper.razor.js";
 
@@ -330,7 +331,8 @@ public partial class UITextInputWrapper : MefComponentBase
     private async Task OnToggleFullScreenButtonClickAsync()
     {
         Guard.IsNotNull(FullScreenContainer);
-        _isInFullScreenMode = await FullScreenContainer.ToggleFullScreenModeAsync(ExtendedId);
+        Guard.IsNotNull(_toggleFullScreenButton);
+        _isInFullScreenMode = await FullScreenContainer.ToggleFullScreenModeAsync(ExtendedId, _toggleFullScreenButton);
         StateHasChanged();
     }
 

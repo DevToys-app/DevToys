@@ -27,10 +27,6 @@
         background-color: var(--radio-button-check-glyph-fill);
     }
 
-    &:focus-visible {
-        box-shadow: var(--focus-stroke-outer);
-    }
-
     &:hover {
         border-color: var(--radio-button-outer-ellipse-stroke-pointer-over);
         background-color: var(--radio-button-outer-ellipse-fill-pointer-over);

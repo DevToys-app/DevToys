@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Blazor.Components;
 
-public partial class Dialog : StyledComponentBase
+public partial class Dialog : JSStyledComponentBase, IFocusable
 {
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.
@@ -25,6 +25,24 @@ public partial class Dialog : StyledComponentBase
     /// </summary>
     [Parameter]
     public EventCallback OnDismissed { get; set; }
+
+    public ValueTask<bool> FocusAsync()
+    {
+        return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", Element);
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (IsOpen)
+            {
+                FocusAsync();
+            }
+        }
+
+        return base.OnAfterRenderAsync(firstRender);
+    }
 
     private void OnDismiss()
     {
