@@ -118,13 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON Formatter tool</value>
+    <value>SQL Formatter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
   </data>
+  <data name="Db2" xml:space="preserve">
+    <value>Db2</value>
+  </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent or minify JSON data</value>
+    <value>Format SQL data</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 spaces</value>
@@ -142,16 +145,22 @@
     <value>Input file selected doesn't exist.</value>
   </data>
   <data name="InputOptionDescription" xml:space="preserve">
-    <value>Text or path to a file containing the JSON to format</value>
+    <value>Text or path to a file containing the sql to format</value>
   </data>
   <data name="InvalidInputOrFileCommand" xml:space="preserve">
     <value>Please specify an input text or an input file</value>
   </data>
   <data name="LongDisplayTitle" xml:space="preserve">
-    <value>JSON Formatter</value>
+    <value>SQL Formatter</value>
   </data>
-  <data name="Minified" xml:space="preserve">
-    <value>Minified</value>
+  <data name="MariaDb" xml:space="preserve">
+    <value>MariaDB</value>
+  </data>
+  <data name="MySql" xml:space="preserve">
+    <value>MySQL</value>
+  </data>
+  <data name="N1ql" xml:space="preserve">
+    <value>N1QL</value>
   </data>
   <data name="OneTab" xml:space="preserve">
     <value>1 tab</value>
@@ -162,17 +171,35 @@
   <data name="OutputFileOptionDescription" xml:space="preserve">
     <value>Path to the output file</value>
   </data>
+  <data name="PlSql" xml:space="preserve">
+    <value>PL/SQL</value>
+  </data>
+  <data name="PostgreSql" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="RedShift" xml:space="preserve">
+    <value>Amazon Redshift</value>
+  </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON Formatter</value>
+    <value>SQL Formatter</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>JSON</value>
+    <value>SQL</value>
   </data>
-  <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON Properties alphabetically</value>
+  <data name="SparkSql" xml:space="preserve">
+    <value>Spark SQL</value>
   </data>
-  <data name="SortPropertiesOptionDescription" xml:space="preserve">
-    <value>Whether properties within the JSON should be sorted alphabetically</value>
+  <data name="SqlLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SqlLanguageDescription" xml:space="preserve">
+    <value>Which SQL language to use</value>
+  </data>
+  <data name="StandardSql" xml:space="preserve">
+    <value>Standard SQL</value>
+  </data>
+  <data name="TransactSql" xml:space="preserve">
+    <value>Transact-SQL</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>2 spaces</value>

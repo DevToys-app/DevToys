@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Tools.Formatters.Xml {
+namespace DevToys.Tools.Tools.Formatters.Sql {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class XmlFormatter {
+    internal class SqlFormatter {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal XmlFormatter() {
+        internal SqlFormatter() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Formatters.Xml.XmlFormatter", typeof(XmlFormatter).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Formatters.Sql.SqlFormatter", typeof(SqlFormatter).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XML Formatter tool.
+        ///   Looks up a localized string similar to SQL Formatter tool.
         /// </summary>
         internal static string AccessibleName {
             get {
@@ -79,7 +79,16 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indent or minify XML data.
+        ///   Looks up a localized string similar to Db2.
+        /// </summary>
+        internal static string Db2 {
+            get {
+                return ResourceManager.GetString("Db2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format SQL data.
         /// </summary>
         internal static string Description {
             get {
@@ -133,7 +142,7 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text or path to a file containing the xml to format.
+        ///   Looks up a localized string similar to Text or path to a file containing the sql to format.
         /// </summary>
         internal static string InputOptionDescription {
             get {
@@ -151,7 +160,7 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XML Formatter.
+        ///   Looks up a localized string similar to SQL Formatter.
         /// </summary>
         internal static string LongDisplayTitle {
             get {
@@ -160,29 +169,29 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minified.
+        ///   Looks up a localized string similar to MariaDB.
         /// </summary>
-        internal static string Minified {
+        internal static string MariaDb {
             get {
-                return ResourceManager.GetString("Minified", resourceCulture);
+                return ResourceManager.GetString("MariaDb", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Put attributes on a new line.
+        ///   Looks up a localized string similar to MySQL.
         /// </summary>
-        internal static string NewLineOnAttributes {
+        internal static string MySql {
             get {
-                return ResourceManager.GetString("NewLineOnAttributes", resourceCulture);
+                return ResourceManager.GetString("MySql", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Whether to put attributes on a new line.
+        ///   Looks up a localized string similar to N1QL.
         /// </summary>
-        internal static string NewLineOnAttributesDescription {
+        internal static string N1ql {
             get {
-                return ResourceManager.GetString("NewLineOnAttributesDescription", resourceCulture);
+                return ResourceManager.GetString("N1ql", resourceCulture);
             }
         }
         
@@ -214,7 +223,34 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XML Formatter.
+        ///   Looks up a localized string similar to PL/SQL.
+        /// </summary>
+        internal static string PlSql {
+            get {
+                return ResourceManager.GetString("PlSql", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PostgreSQL.
+        /// </summary>
+        internal static string PostgreSql {
+            get {
+                return ResourceManager.GetString("PostgreSql", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amazon Redshift.
+        /// </summary>
+        internal static string RedShift {
+            get {
+                return ResourceManager.GetString("RedShift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQL Formatter.
         /// </summary>
         internal static string SearchDisplayName {
             get {
@@ -223,11 +259,56 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XML.
+        ///   Looks up a localized string similar to SQL.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {
                 return ResourceManager.GetString("ShortDisplayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spark SQL.
+        /// </summary>
+        internal static string SparkSql {
+            get {
+                return ResourceManager.GetString("SparkSql", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string SqlLanguage {
+            get {
+                return ResourceManager.GetString("SqlLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which SQL language to use.
+        /// </summary>
+        internal static string SqlLanguageDescription {
+            get {
+                return ResourceManager.GetString("SqlLanguageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard SQL.
+        /// </summary>
+        internal static string StandardSql {
+            get {
+                return ResourceManager.GetString("StandardSql", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transact-SQL.
+        /// </summary>
+        internal static string TransactSql {
+            get {
+                return ResourceManager.GetString("TransactSql", resourceCulture);
             }
         }
         

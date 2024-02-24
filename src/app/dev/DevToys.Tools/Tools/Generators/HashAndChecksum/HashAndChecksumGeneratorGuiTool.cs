@@ -353,7 +353,7 @@ internal sealed class HashAndChecksumGeneratorGuiTool : IGuiTool, IDisposable
         }
     }
 
-    private async Task<string> ComputeHashFromStreamAsync(
+    private static async Task<string> ComputeHashFromStreamAsync(
         Stream inputStream,
         HashAlgorithmType hashAlgorithm,
         bool uppercase,

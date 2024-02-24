@@ -154,7 +154,7 @@
     <value>Minified</value>
   </data>
   <data name="NewLineOnAttributes" xml:space="preserve">
-    <value>New Line on Attributes</value>
+    <value>Put attributes on a new line</value>
   </data>
   <data name="NewLineOnAttributesDescription" xml:space="preserve">
     <value>Whether to put attributes on a new line</value>

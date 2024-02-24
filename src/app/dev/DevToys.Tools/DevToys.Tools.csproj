@@ -43,6 +43,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Tools\Formatters\Sql\SqlFormatter.Designer.cs">
+      <DependentUpon>SqlFormatter.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Tools\Formatters\Xml\XmlFormatter.Designer.cs">
       <DependentUpon>XmlFormatter.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -205,6 +210,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Formatters\Json\JsonFormatter.resx">
       <LastGenOutput>JsonFormatter.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Formatters\Sql\SqlFormatter.resx">
+      <LastGenOutput>SqlFormatter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Formatters\Xml\XmlFormatter.resx">

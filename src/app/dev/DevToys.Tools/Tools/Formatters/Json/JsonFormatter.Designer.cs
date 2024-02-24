@@ -214,7 +214,7 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sort Properties.
+        ///   Looks up a localized string similar to Sort JSON Properties alphabetically.
         /// </summary>
         internal static string SortProperties {
             get {
