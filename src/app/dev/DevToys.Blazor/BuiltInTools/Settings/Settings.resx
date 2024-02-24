@@ -180,6 +180,10 @@
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>Higlight the current line</value>
   </data>
+  <data name="IconDesigner" xml:space="preserve">
+    <value>App icon designed by {0}</value>
+    <comment>{0} will be replaced by a name</comment>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
