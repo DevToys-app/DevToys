@@ -42,7 +42,7 @@ internal sealed class MainWindow : NSWindow
         _titleBarInfoProvider = AppDelegate.MefComposer.Provider.Import<TitleBarInfoProvider>();
         _titleBarInfoProvider.PropertyChanged += TitleBarInfoProvider_PropertyChanged;
 
-        Title = _titleBarInfoProvider.Title ?? string.Empty;
+        Title = _titleBarInfoProvider.TitleWithToolName ?? string.Empty;
 
         WillClose += OnWillClose;
     }
@@ -184,9 +184,9 @@ internal sealed class MainWindow : NSWindow
 
     private void TitleBarInfoProvider_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(TitleBarInfoProvider.Title))
+        if (e.PropertyName == nameof(TitleBarInfoProvider.TitleWithToolName))
         {
-            Title = _titleBarInfoProvider.Title ?? string.Empty;
+            Title = _titleBarInfoProvider.TitleWithToolName ?? string.Empty;
         }
     }
 
