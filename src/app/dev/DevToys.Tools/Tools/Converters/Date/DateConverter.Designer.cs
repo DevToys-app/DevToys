@@ -241,15 +241,6 @@ namespace DevToys.Tools.Tools.Converters.Date {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date.
-        /// </summary>
-        internal static string MenuDisplayName {
-            get {
-                return ResourceManager.GetString("MenuDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Milliseconds.
         /// </summary>
         internal static string Milliseconds {
@@ -309,15 +300,6 @@ namespace DevToys.Tools.Tools.Converters.Date {
         internal static string OffsetTitle {
             get {
                 return ResourceManager.GetString("OffsetTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date Converter.
-        /// </summary>
-        internal static string SearchDisplayName {
-            get {
-                return ResourceManager.GetString("SearchDisplayName", resourceCulture);
             }
         }
         

@@ -196,15 +196,6 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON Formatter.
-        /// </summary>
-        internal static string SearchDisplayName {
-            get {
-                return ResourceManager.GetString("SearchDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to JSON.
         /// </summary>
         internal static string ShortDisplayTitle {
