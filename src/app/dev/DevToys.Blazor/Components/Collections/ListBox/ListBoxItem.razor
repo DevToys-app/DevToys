@@ -8,9 +8,12 @@
         <li class="list-box-item @(FinalCssClasses)"
             style="@(Style)"
             role="listitem"
+            tabindex="0"
             @ref=Element
             @attributes="AdditionalAttributes"
-            @onclick="OnClickAsync">
+            @onclick="OnClickAsync"
+            @onkeydown="@OnKeyDownAsync"
+            @onkeydown:stopPropagation="@IsActuallyEnabled">
             @ChildContent
         </li>
     </ContextMenu>

@@ -32,7 +32,6 @@ public partial class Container : StyledComponentBase
             styleBuilder.AddStyle(Style);
         }
 
-        styleBuilder.AddImportantStyle("overflow", "hidden");
         styleBuilder.AddImportantStyle("display", () => IsVisible ? "flex" : "none");
         styleBuilder.AddImportantStyle("flex-direction", "row");
         styleBuilder.AddImportantStyle("flex-wrap", "nowrap");

@@ -39,8 +39,8 @@
     --text-on-accent-selected: rgb(255, 255, 255);
 
     /* Focus Stroke */
-    --focus-stroke-outer: rgb(255, 255, 255);
-    --focus-stroke-inner: rgba(0, 0, 0, 0.7);
+    --focus-stroke-outer: rgba(0, 0, 0, 1);
+    --focus-stroke-inner: rgb(255, 255, 255);
 
     /* Text */
     --text-fill-color-primary: rgba(0, 0, 0, 0.894);

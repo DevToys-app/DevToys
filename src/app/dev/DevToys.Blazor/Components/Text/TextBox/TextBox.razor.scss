@@ -16,6 +16,10 @@
     background-color: transparent;
     pointer-events: auto;
 
+    &:focus-visible {
+        box-shadow: none;
+    }
+
     &::placeholder {
         @include typography-body;
         user-select: none;

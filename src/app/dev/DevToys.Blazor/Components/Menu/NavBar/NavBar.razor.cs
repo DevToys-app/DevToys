@@ -11,6 +11,7 @@ public partial class NavBar<TElement, TSearchElement>
 {
     private readonly NavBarState _sidebarState = new();
     private AutoSuggestBox<TSearchElement> _autoSuggestBox = default!;
+    private TElement? _selectedItem;
 
     public string NavId { get; } = NewId();
 
@@ -153,6 +154,19 @@ public partial class NavBar<TElement, TSearchElement>
                 await (await JSModule).InvokeVoidWithErrorHandlingAsync("registerKeyboardShortcut", Id, Reference);
             }
         }
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (_selectedItem != SelectedItem)
+        {
+            // When the selected item changed,
+            // we need to close the expanded overlay, if it's opened.
+            _selectedItem = SelectedItem;
+            _sidebarState.CloseExpandedOverlay();
+        }
+
+        base.OnParametersSet();
     }
 
     public override ValueTask DisposeAsync()

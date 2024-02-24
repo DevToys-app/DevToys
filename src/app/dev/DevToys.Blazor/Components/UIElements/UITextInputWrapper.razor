@@ -103,7 +103,8 @@
                 @if (IsExtendableToFullScreen)
                 {
                     <div class="ui-text-input-wrapper-separator"></div>
-                    <Button ToolTip="@(_isInFullScreenMode ? DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ShrinkButtonToolTip : DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ExtendButtonToolTip)"
+                    <Button @ref=_toggleFullScreenButton
+                            ToolTip="@(_isInFullScreenMode ? DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ShrinkButtonToolTip : DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ExtendButtonToolTip)"
                             @onclick="@OnToggleFullScreenButtonClickAsync">
                         <FontIcon Glyph="@(_isInFullScreenMode ? '\uF165' : '\uF15F')" />
                     </Button>

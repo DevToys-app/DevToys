@@ -2,7 +2,8 @@
 @using DevToys.Blazor.Components.UIElements
 @inherits MefComponentBase
 
-<ScrollViewer Class="entrance-theme-transition tool-page-content"
+<ScrollViewer @ref=_scrollViewer
+              Class="entrance-theme-transition tool-page-content"
               IsScrollable="@(!IsInFullScreenMode && ViewModel.ToolView.IsScrollable)">
     @RenderToolWithHeader(true)
 </ScrollViewer>
@@ -65,7 +66,8 @@
                 </GridCell>
 
                 <GridCell Row="1" ColumnSpan="2">
-                    <FullScreenContainer IsInFullScreenModeChanged="@OnIsInFullScreenModeChanged">
+                    <FullScreenContainer @ref=_fullScreenContainer
+                                         IsInFullScreenModeChanged="@OnIsInFullScreenModeChanged">
                         @if (ViewModel.ToolView is not null && ViewModel.ToolView.RootElement is not null)
                         {
                             <UIElementPresenter UIElement="@ViewModel.ToolView.RootElement" />

@@ -25,7 +25,8 @@
                 title="@ToolTip"
                 @ref=Element
                 @attributes="AdditionalAttributes"
-                @onclick:stopPropagation="@IsActuallyEnabled">
+                @onclick:stopPropagation="@IsActuallyEnabled"
+                @onkeydown:stopPropagation="@IsActuallyEnabled">
             @ChildContent
         </button>
     </Container>

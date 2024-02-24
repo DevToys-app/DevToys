@@ -77,7 +77,10 @@ public partial class ComboBox<TElement> : SelectBase<TElement> where TElement : 
         _isOpen = false;
         StateHasChanged();
 
-        _ = JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", _button);
+        if (_button is not null)
+        {
+            _ = JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", _button.Element);
+        }
     }
 
     private void OnEscapeKeyPressed()

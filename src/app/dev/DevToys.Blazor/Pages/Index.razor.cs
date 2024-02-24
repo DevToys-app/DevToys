@@ -1,5 +1,6 @@
 ﻿using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
+using DevToys.Blazor.Pages.SubPages;
 using DevToys.Business.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
@@ -25,6 +26,7 @@ public partial class Index : MefComponentBase
     private const int TitleBarMarginLeftWhenNavBarNotHidden = 47;
 
     private NavBar<INotifyPropertyChanged, GuiToolViewItem> _navBar = default!;
+    private IFocusable? _contentPage;
 
     [Import]
     internal MainWindowViewModel ViewModel { get; set; } = default!;
@@ -161,7 +163,6 @@ public partial class Index : MefComponentBase
     private void OnSearchQuerySubmitted(GuiToolViewItem? selectedItem)
     {
         ViewModel.SearchBoxQuerySubmittedCommand.Execute(selectedItem);
-        // TODO: If succeeded, move the focus to the ToolPage.
     }
 
     private Task OnBuildingContextMenuAsync(ListBoxItemBuildingContextMenuEventArgs args)
@@ -221,6 +222,11 @@ public partial class Index : MefComponentBase
             // This will force the page content to re-populate.
             IsTransitioning = false;
             StateHasChanged();
+
+            if (_contentPage is not null && !firstRender)
+            {
+                _contentPage.FocusAsync().Forget();
+            }
         }
 
         base.OnAfterRender(firstRender);
