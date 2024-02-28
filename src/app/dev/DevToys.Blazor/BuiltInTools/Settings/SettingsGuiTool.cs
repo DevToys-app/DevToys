@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using DevToys.Blazor.Core.Languages;
+using DevToys.Core;
 using DevToys.Core.Settings;
 
 namespace DevToys.Blazor.BuiltInTools.Settings;
@@ -209,14 +210,25 @@ internal sealed class SettingsGuiTool : IGuiTool
                     .WithChildren(
 
                         Label().Text(Settings.About),
-                        Setting("about-settings")
+                        SettingGroup("about-settings")
                             .Icon("FluentSystemIcons", '\uF4A2')
                             .Title("DevToys")
                             .Description(GetAppVersionDescription())
                             .InteractiveElement(
                                 Button("copy-about-settings")
                                     .Icon("FluentSystemIcons", '\uF32B')
-                                    .OnClick(OnCopyVersionNumberButtonClickAsync)))));
+                                    .OnClick(OnCopyVersionNumberButtonClickAsync))
+                            .WithChildren(
+
+                                Stack()
+                                    .Vertical()
+                                    .WithChildren(
+
+                                        Button("logo-designer")
+                                            .HyperlinkAppearance()
+                                            .AlignHorizontally(UIHorizontalAlignment.Left)
+                                            .Text(string.Format(Settings.IconDesigner, "Zee-Al-Eid Ahmad"))
+                                            .OnClick(OnLogoDesignerButtonClick))))));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
@@ -224,7 +236,7 @@ internal sealed class SettingsGuiTool : IGuiTool
 
     private void OnHelpTranslatingButtonClick()
     {
-        Shell.OpenFileInShell("https://crowdin.com/project/devtoys");
+        OSHelper.OpenFileInShell("https://crowdin.com/project/devtoys");
     }
 
     private void OnLanguageSelected(IUIDropDownListItem? selectedItem)
@@ -331,5 +343,10 @@ internal sealed class SettingsGuiTool : IGuiTool
     {
         var assemblyInformationalVersion = (AssemblyInformationalVersionAttribute)Assembly.GetExecutingAssembly().GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute))!;
         return string.Format(Settings.Version, assemblyInformationalVersion.InformationalVersion);
+    }
+
+    private void OnLogoDesignerButtonClick()
+    {
+        OSHelper.OpenFileInShell("https://twitter.com/zeealeid");
     }
 }

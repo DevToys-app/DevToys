@@ -1,8 +1,10 @@
-﻿namespace DevToys.Blazor.Core.Extensions;
+﻿using Microsoft.Extensions.Logging;
+
+namespace DevToys.Blazor.Core.Extensions;
 
 internal static class IJSRuntimeExtensions
 {
-    // TODO: Log JS errors.
+    private static readonly ILogger logger = typeof(IJSRuntimeExtensions).Log();
 
     /// <summary>
     /// Invokes the specified JavaScript function asynchronously and catches <see cref="JSException"/>,
@@ -23,9 +25,7 @@ internal static class IJSRuntimeExtensions
         }
         catch (JSException ex)
         {
-#if DEBUG
-            Debug.WriteLine(GetExceptionString(ex));
-#endif
+            logger.LogError(ex, GetExceptionString(ex));
             return false;
         }
         // catch pre-rending errors since there is no browser at this point.
@@ -39,6 +39,12 @@ internal static class IJSRuntimeExtensions
         }
         catch (TaskCanceledException)
         {
+            return false;
+        }
+        catch (Exception ex)
+        {
+            // Do not log args as they can contain user personal information such as the text to set to a Monaco Editor instance.
+            logger.LogError(ex, $"Unexpected exception while invoking a JavaScript function: '{identifier}'");
             return false;
         }
     }
@@ -62,9 +68,7 @@ internal static class IJSRuntimeExtensions
         }
         catch (JSException ex)
         {
-#if DEBUG
-            Debug.WriteLine(GetExceptionString(ex));
-#endif
+            logger.LogError(ex, GetExceptionString(ex));
             return false;
         }
         // catch pre-rending errors since there is no browser at this point.
@@ -78,6 +82,12 @@ internal static class IJSRuntimeExtensions
         }
         catch (TaskCanceledException)
         {
+            return false;
+        }
+        catch (Exception ex)
+        {
+            // Do not log args as they can contain user personal information such as the text to set to a Monaco Editor instance.
+            logger.LogError(ex, $"Unexpected exception while invoking a JavaScript function: '{identifier}'");
             return false;
         }
     }

@@ -250,6 +250,15 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App icon designed by {0}.
+        /// </summary>
+        internal static string IconDesigner {
+            get {
+                return ResourceManager.GetString("IconDesigner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string Language {

@@ -19,10 +19,6 @@ button {
     min-width: fit-content;
     pointer-events: auto;
 
-    &:focus-visible {
-        box-shadow: var(--focus-stroke);
-    }
-
     &.type- {
         &neutral {
             border: var(--button-border-thickness);

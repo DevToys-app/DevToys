@@ -126,6 +126,9 @@
   <data name="NotFindingToolSuggestIdea" xml:space="preserve">
     <value>Suggest an idea</value>
   </data>
+  <data name="OpenInNewWindow" xml:space="preserve">
+    <value>Open in a new window</value>
+  </data>
   <data name="WelcomeTo" xml:space="preserve">
     <value>Welcome to</value>
   </data>

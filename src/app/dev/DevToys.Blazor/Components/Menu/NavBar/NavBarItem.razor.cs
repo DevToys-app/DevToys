@@ -28,6 +28,9 @@ public partial class NavBarItem<TElement, TSearchElement>
     [Parameter]
     public EventCallback<TElement> OnSelected { get; set; }
 
+    [Parameter]
+    public EventCallback<ListBoxItemBuildingContextMenuEventArgs> OnBuildingContextMenu { get; set; }
+
     public bool IsExpanded
     {
         get
@@ -80,6 +83,15 @@ public partial class NavBarItem<TElement, TSearchElement>
         Guard.IsAssignableToType<TElement>(item);
         var strongItem = (TElement)item;
         return OnSelected.InvokeAsync(strongItem);
+    }
+
+    private Task OnBuildingContextMenuAsync(ListBoxItemBuildingContextMenuEventArgs args)
+    {
+        if (args.ItemValue is not null)
+        {
+            Guard.IsAssignableToType<TElement>(args.ItemValue);
+        }
+        return OnBuildingContextMenu.InvokeAsync(args);
     }
 
     private void OnToggleExpandClick()

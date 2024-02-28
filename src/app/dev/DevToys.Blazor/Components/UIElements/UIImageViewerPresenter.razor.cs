@@ -1,4 +1,5 @@
 ﻿// TODO: Add logs.
+using DevToys.Core;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
 
@@ -66,7 +67,7 @@ public partial class UIImageViewerPresenter : MefComponentBase
         return UIImageViewer.ImageSource.Value.Match(
             (FileInfo imageFileInfo) =>
             {
-                Shell.OpenFileInShell(imageFileInfo.FullName);
+                OSHelper.OpenFileInShell(imageFileInfo.FullName);
                 return Task.CompletedTask;
             },
             async (Image image) =>
@@ -74,7 +75,7 @@ public partial class UIImageViewerPresenter : MefComponentBase
                 string? fileExtension = image.Metadata.DecodedImageFormat?.FileExtensions.FirstOrDefault() ?? "png";
                 FileInfo tempFile = _fileStorage.CreateSelfDestroyingTempFile(fileExtension);
                 await image.SaveAsync(tempFile.FullName);
-                Shell.OpenFileInShell(tempFile.FullName);
+                OSHelper.OpenFileInShell(tempFile.FullName);
             },
             async (SandboxedFileReader imagePickedFile) =>
             {
@@ -83,7 +84,7 @@ public partial class UIImageViewerPresenter : MefComponentBase
                 {
                     await imagePickedFile.CopyFileContentToAsync(tempFileStream, CancellationToken.None);
                 }
-                Shell.OpenFileInShell(tempFile.FullName);
+                OSHelper.OpenFileInShell(tempFile.FullName);
             });
     }
 

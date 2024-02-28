@@ -4,10 +4,6 @@
     pointer-events: auto;
 
     .card {
-        &:focus-visible {
-            box-shadow: var(--focus-stroke);
-        }
-
         &[data-expanded='true'] {
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
@@ -52,6 +48,14 @@
                     color: var(--text-fill-color-primary);
                 }
             }
+
+            &:focus-visible {
+                box-shadow: none;
+
+                .expander-expand-button {
+                    box-shadow: var(--focus-stroke);
+                }
+            }
         }
     }
 
@@ -85,6 +89,12 @@
             .expander-content {
                 transform: none;
                 @include transition(250ms cubic-bezier(0, 0, 0, 1) transform);
+            }
+        }
+
+        &[aria-expanded='false'] {
+            .expander-content {
+                display: none;
             }
         }
     }

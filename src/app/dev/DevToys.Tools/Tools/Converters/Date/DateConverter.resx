@@ -144,9 +144,6 @@
   <data name="LocalDateTime" xml:space="preserve">
     <value>Local Date and Time</value>
   </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>Date</value>
-  </data>
   <data name="MinutesTitle" xml:space="preserve">
     <value>Minutes</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="OffsetTitle" xml:space="preserve">
     <value>Offset</value>
-  </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>Date Converter</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Time Date Timezone Epoch Timestamp Ticks</value>

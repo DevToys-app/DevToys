@@ -11,6 +11,7 @@ public partial class NavBar<TElement, TSearchElement>
 {
     private readonly NavBarState _sidebarState = new();
     private AutoSuggestBox<TSearchElement> _autoSuggestBox = default!;
+    private TElement? _selectedItem;
 
     public string NavId { get; } = NewId();
 
@@ -45,6 +46,9 @@ public partial class NavBar<TElement, TSearchElement>
 
     [Parameter]
     public EventCallback<TElement> SelectedItemChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<ListBoxItemBuildingContextMenuEventArgs> OnBuildingContextMenu { get; set; }
 
     [Parameter]
     public bool CanGoBack { get; set; }
@@ -111,6 +115,15 @@ public partial class NavBar<TElement, TSearchElement>
     /// </summary>
     public bool IsHiddenMode => _sidebarState.IsHidden;
 
+    /// <summary>
+    /// Gets or sets the user preferred side bar state.
+    /// </summary>
+    internal NavBarSidebarStates UserPreferredState
+    {
+        get => _sidebarState.UserPreferredState;
+        set => _sidebarState.UserPreferredState = value;
+    }
+
     [Inject]
     internal IWindowService WindowService { get; set; } = default!;
 
@@ -141,6 +154,19 @@ public partial class NavBar<TElement, TSearchElement>
                 await (await JSModule).InvokeVoidWithErrorHandlingAsync("registerKeyboardShortcut", Id, Reference);
             }
         }
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (_selectedItem != SelectedItem)
+        {
+            // When the selected item changed,
+            // we need to close the expanded overlay, if it's opened.
+            _selectedItem = SelectedItem;
+            _sidebarState.CloseExpandedOverlay();
+        }
+
+        base.OnParametersSet();
     }
 
     public override ValueTask DisposeAsync()
@@ -202,6 +228,12 @@ public partial class NavBar<TElement, TSearchElement>
     {
         SelectedItem = item;
         return SelectedItemChanged.InvokeAsync(item);
+    }
+
+    private Task OnBuildingContextMenuAsync(ListBoxItemBuildingContextMenuEventArgs args)
+    {
+        Guard.IsAssignableToType<TElement>(args.ItemValue);
+        return OnBuildingContextMenu.InvokeAsync(args);
     }
 
     private void SidebarState_IsHiddenChanged(object? sender, EventArgs e)

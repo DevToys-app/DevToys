@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using DevToys.Blazor.BuiltInTools.Settings;
+using DevToys.Core;
 using NuGet.Packaging;
 using NuGet.Packaging.Core;
 
@@ -131,13 +132,13 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
     private void OnFindMoreExtensionsOnlineButtonClick()
     {
         // TODO: Open documentation online
-        Shell.OpenFileInShell("http://url");
+        OSHelper.OpenFileInShell("http://url");
     }
 
     private void OnLearnDevelopExtensionButtonClick()
     {
         // TODO: Open documentation online
-        Shell.OpenFileInShell("http://url");
+        OSHelper.OpenFileInShell("http://url");
     }
 
     private async ValueTask OnInstallExtensionButtonClickAsync()
@@ -275,7 +276,7 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
 
         static void NavigateToUrl(string url)
         {
-            Shell.OpenFileInShell(url);
+            OSHelper.OpenFileInShell(url);
         }
     }
 
@@ -318,7 +319,7 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
         void OnTermsConditionsDialogButtonClick()
         {
             // TODO: Open the terms and conditions page.
-            Shell.OpenFileInShell("https://url");
+            OSHelper.OpenFileInShell("https://url");
         }
 
         void OnIUnderstandDialogButtonClick()

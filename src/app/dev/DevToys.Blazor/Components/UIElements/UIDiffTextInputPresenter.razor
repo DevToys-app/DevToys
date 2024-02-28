@@ -40,8 +40,9 @@
         <StackPanel Wrap="false">
             @if (@UIDiffTextInput.IsExtendableToFullScreen)
             {
-                <Button ToolTip="@(_isInFullScreenMode ? DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ShrinkButtonToolTip : DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ExtendButtonToolTip)"
-                    @onclick="@OnToggleFullScreenButtonClickAsync">
+                <Button @ref=_toggleFullScreenButton
+                        ToolTip="@(_isInFullScreenMode ? DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ShrinkButtonToolTip : DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ExtendButtonToolTip)"
+                        @onclick="@OnToggleFullScreenButtonClickAsync">
                     <FontIcon Glyph="@(_isInFullScreenMode ? '\uF165' : '\uF15F')" />
                 </Button>
             }

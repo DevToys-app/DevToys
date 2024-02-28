@@ -2,12 +2,19 @@
 @inherits StyledComponentBase
 
 <CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
-    <li class="list-box-item @(FinalCssClasses)"
-        style="@(Style)"
-        role="listitem"
-        @ref=Element
-        @attributes="AdditionalAttributes"
-        @onclick="OnClickAsync">
-        @ChildContent
-    </li>
+    <ContextMenu IsEnabled="IsActuallyEnabled"
+                 Items="_contextMenuItems"
+                 OnContextMenuOpening=@OnContextMenuOpeningAsync>
+        <li class="list-box-item @(FinalCssClasses)"
+            style="@(Style)"
+            role="listitem"
+            tabindex="0"
+            @ref=Element
+            @attributes="AdditionalAttributes"
+            @onclick="OnClickAsync"
+            @onkeydown="@OnKeyDownAsync"
+            @onkeydown:stopPropagation="@IsActuallyEnabled">
+            @ChildContent
+        </li>
+    </ContextMenu>
 </CascadingValue>

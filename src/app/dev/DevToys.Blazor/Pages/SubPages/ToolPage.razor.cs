@@ -6,8 +6,11 @@ using DevToys.Core.Tools.ViewItems;
 
 namespace DevToys.Blazor.Pages.SubPages;
 
-public partial class ToolPage : MefComponentBase, IDisposable
+public partial class ToolPage : MefComponentBase, IFocusable
 {
+    private ScrollViewer? _scrollViewer;
+    private FullScreenContainer? _fullScreenContainer;
+
     [Inject]
     internal IWindowService WindowService { get; set; } = default!;
 
@@ -53,16 +56,31 @@ public partial class ToolPage : MefComponentBase, IDisposable
         }
     }
 
-    public void Dispose()
+    public override async ValueTask DisposeAsync()
     {
+        if (_fullScreenContainer is not null && _fullScreenContainer.IsInFullScreenMode)
+        {
+            // If we're switching to another tool or group and that the current tool is in full
+            // screen mode, we need to force quit the full screen mode to avoid ending up in a bad state.
+            await _fullScreenContainer.ForceQuitFullScreenModeAsync();
+        }
+
         HotReloadService.HotReloadRequestUpdateApplication -= OnHotReloadRequestUpdateApplication;
         DialogService.CloseDialogRequested -= DialogService_CloseDialogRequested;
+
         if (ViewModel.ToolView is not null)
         {
             ViewModel.ToolView.PropertyChanged -= ToolView_PropertyChanged;
             ViewModel.ToolView.CurrentOpenedDialogChanged -= ToolView_CurrentOpenedDialogChanged;
         }
-        GC.SuppressFinalize(this);
+
+        await base.DisposeAsync();
+    }
+
+    public ValueTask<bool> FocusAsync()
+    {
+        Guard.IsNotNull(_scrollViewer);
+        return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", _scrollViewer.Element);
     }
 
     private void ToolView_PropertyChanged(object? sender, PropertyChangedEventArgs e)

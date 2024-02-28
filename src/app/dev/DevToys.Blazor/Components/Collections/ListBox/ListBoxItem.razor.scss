@@ -37,10 +37,6 @@
         opacity: 1;
     }
 
-    &:focus-visible {
-        box-shadow: var(--focus-stroke);
-    }
-
     &:hover {
         background-color: var(--list-box-item-background-pointer-over);
     }

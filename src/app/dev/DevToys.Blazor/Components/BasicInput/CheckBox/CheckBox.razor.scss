@@ -16,10 +16,6 @@
     block-size: 20px;
     pointer-events: auto;
 
-    &:focus-visible {
-        box-shadow: var(--focus-stroke);
-    }
-
     &:hover {
         background-color: var(--check-box-check-background-fill-unchecked-pointer-over);
         border-color: var(--check-box-check-background-stroke-unchecked-pointer-over);

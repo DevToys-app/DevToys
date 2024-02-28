@@ -162,9 +162,6 @@
   <data name="OutputFileOptionDescription" xml:space="preserve">
     <value>Path to the output file</value>
   </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON Formatter</value>
-  </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>JSON</value>
   </data>

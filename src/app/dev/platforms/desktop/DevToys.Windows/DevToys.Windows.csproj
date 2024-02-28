@@ -9,6 +9,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationIcon>$(RepoRoot)\assets\logo\Icon-Windows.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(_IsPublishing) == ''">

@@ -1,20 +1,32 @@
 ﻿using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
+using DevToys.Blazor.Pages.SubPages;
+using DevToys.Business.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
+using DevToys.Localization.Strings.ToolGroupPage;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Pages;
 
 public partial class Index : MefComponentBase
 {
+    /// <summary>
+    /// Whether the main window should be maximized.
+    /// </summary>
+    private static readonly SettingDefinition<NavBarSidebarStates> UserPreferredNavBarState
+        = new(
+            name: nameof(UserPreferredNavBarState),
+            defaultValue: NavBarSidebarStates.Expanded);
+
     private const int TitleBarMarginLeftWhenCompactOverlayMode = 0;
     private const int TitleBarMarginLeftWhenNavBarHidden = 90;
     private const int TitleBarMarginLeftWhenNavBarNotHidden = 47;
 
     private NavBar<INotifyPropertyChanged, GuiToolViewItem> _navBar = default!;
+    private IFocusable? _contentPage;
 
     [Import]
     internal MainWindowViewModel ViewModel { get; set; } = default!;
@@ -27,6 +39,12 @@ public partial class Index : MefComponentBase
 
     [Import]
     internal IThemeListener ThemeListener { get; set; } = default!;
+
+    [Import]
+    internal ISettingsProvider SettingsProvider { get; set; } = default!;
+
+    [Import]
+    internal CommandLineLauncherService CommandLineLauncherService { get; set; } = default!;
 
     [Inject]
     internal ContextMenuService ContextMenuService { get; set; } = default!;
@@ -54,6 +72,7 @@ public partial class Index : MefComponentBase
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
         WindowService.WindowActivated += WindowService_WindowActivated;
         WindowService.WindowDeactivated += WindowService_WindowDeactivated;
+        WindowService.WindowClosing += WindowService_WindowClosing;
         TitleBarInfoProvider.PropertyChanged += TitleBarMarginProvider_PropertyChanged;
 
         TitleBarInfoProvider.TitleBarMarginRight = 40;
@@ -102,6 +121,11 @@ public partial class Index : MefComponentBase
         StateHasChanged();
     }
 
+    private void WindowService_WindowClosing(object? sender, EventArgs e)
+    {
+        SettingsProvider.SetSetting(UserPreferredNavBarState, _navBar.UserPreferredState);
+    }
+
     private void OnBackButtonClicked()
     {
         ViewModel.GoBack();
@@ -139,7 +163,34 @@ public partial class Index : MefComponentBase
     private void OnSearchQuerySubmitted(GuiToolViewItem? selectedItem)
     {
         ViewModel.SearchBoxQuerySubmittedCommand.Execute(selectedItem);
-        // TODO: If succeeded, move the focus to the ToolPage.
+    }
+
+    private Task OnBuildingContextMenuAsync(ListBoxItemBuildingContextMenuEventArgs args)
+    {
+        Guard.IsNotNull(args.ItemValue);
+
+        // Create the context menu for the items in the NavBar.
+        if (args.ContextMenuItems.Count == 0)
+        {
+            // Open in new window
+            if (args.ItemValue is GuiToolViewItem item)
+            {
+                args.ContextMenuItems.Add(
+                new ContextMenuItem
+                {
+                    IconGlyph = '\uEE7A',
+                    Text = ToolGroupPage.OpenInNewWindow,
+                    OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnOpenInNewWindowContextMenuItemClick)
+                });
+
+                void OnOpenInNewWindowContextMenuItemClick()
+                {
+                    CommandLineLauncherService.LaunchTool(item.ToolInstance.InternalComponentName);
+                }
+            }
+        }
+
+        return Task.CompletedTask;
     }
 
     private void OnMouseUp(MouseEventArgs ev)
@@ -157,6 +208,8 @@ public partial class Index : MefComponentBase
     {
         if (firstRender)
         {
+            _navBar.UserPreferredState = SettingsProvider.GetSetting(UserPreferredNavBarState);
+
             // Focus on the Search Box.
             _navBar.TryFocusSearchBoxAsync();
 
@@ -169,6 +222,11 @@ public partial class Index : MefComponentBase
             // This will force the page content to re-populate.
             IsTransitioning = false;
             StateHasChanged();
+
+            if (_contentPage is not null && !firstRender)
+            {
+                _contentPage.FocusAsync().Forget();
+            }
         }
 
         base.OnAfterRender(firstRender);
