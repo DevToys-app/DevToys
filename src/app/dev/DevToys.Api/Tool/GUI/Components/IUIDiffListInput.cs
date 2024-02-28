@@ -16,11 +16,6 @@ public interface IUIDiffListInput : IUIMultiLineTextInput
     ListComparisonMode ComparaisonMode { get; }
 
     /// <summary>
-    /// Raised when a list is changed.
-    /// </summary>
-    event EventHandler? ListChanged;
-
-    /// <summary>
     /// Raised when <see cref="IsCaseSensitiveComparisonMode"/> is changed.
     /// </summary>
     event EventHandler? CaseSensitiveModeChanged;
@@ -48,7 +43,6 @@ internal class UIDiffListInput : UIMultilineTextInput, IUIDiffListInput
         internal set => _comparaisonMode = value;
     }
 
-    public event EventHandler? ListChanged;
     public event EventHandler? CaseSensitiveModeChanged;
 }
 

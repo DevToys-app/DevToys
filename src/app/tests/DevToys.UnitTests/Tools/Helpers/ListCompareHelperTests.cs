@@ -6,7 +6,7 @@ namespace DevToys.UnitTests.Tools.Helpers;
 public class ListCompareHelperTests
 {
     [Theory]
-    [InlineData("A\nBa\nC\nBa", "BA\nC\nD","Ba\nC")]
+    [InlineData("A\nBa\nC\nBa", "BA\nC\nD", "Ba\nC")]
     [InlineData("A\nb\nC", "B\nC\nD", "b\nC")]
     [InlineData("A\nB\nC", "D\nE\nF", "")]
     [InlineData("A\nB\nC", "", "")]
@@ -52,7 +52,6 @@ public class ListCompareHelperTests
 
         compareResult.Data.Should().Be(expectedResult);
     }
-
 
     [Theory]
     [InlineData("A\nBa\nC\nc", "Ba\nC\nD", "A")]
@@ -101,7 +100,6 @@ public class ListCompareHelperTests
 
         compareResult.Data.Should().Be(expectedResult);
     }
-
 
     [Theory]
     [InlineData("A\nBa\nC\nc", "Ba\nC\nD", "D")]
