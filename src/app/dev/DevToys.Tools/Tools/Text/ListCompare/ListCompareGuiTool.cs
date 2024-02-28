@@ -97,7 +97,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
                             .Horizontal()
                             .TopPaneLength(new UIGridLength(1, UIGridUnitType.Fraction))
                             .BottomPaneLength(new UIGridLength(2, UIGridUnitType.Fraction))
-
                             .WithTopPaneChild(
                                 SplitGrid()
                                     .Vertical()
@@ -111,7 +110,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
                                         MultilineTextInput()
                                             .Title(ListCompare.ListB)
                                             .OnTextChanged(OnListBChanged)))
-
                             .WithBottomPaneChild(
                                 SplitGrid()
                                     .Vertical()
