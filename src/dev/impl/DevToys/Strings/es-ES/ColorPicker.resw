@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Herramienta de Selección de Color y Relación de Contraste</value>
+    <value>Selector de color y herramienta de contraste</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Selector de Color y Contraste</value>
@@ -151,13 +151,13 @@
     <value>Color seleccionado</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Color del fondo</value>
+    <value>Color de fondo</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
     <value>Relación de contraste</value>
   </data>
   <data name="Fail" xml:space="preserve">
-    <value>Fallo</value>
+    <value>No superado</value>
   </data>
   <data name="LargeText" xml:space="preserve">
     <value>Texto grande</value>
