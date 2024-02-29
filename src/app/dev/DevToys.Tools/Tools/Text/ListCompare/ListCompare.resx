@@ -154,7 +154,7 @@
     <value>List Comparer</value>
   </data>
   <data name="OutputFileOptionDescription" xml:space="preserve">
-    <value>Text or path to a file to get compared list</value>
+    <value>Path to a file to get compared list (display if empty)</value>
   </data>
   <data name="PathListA" xml:space="preserve">
     <value>Path of the first list to compare</value>

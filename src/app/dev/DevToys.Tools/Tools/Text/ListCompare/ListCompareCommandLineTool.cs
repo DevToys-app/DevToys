@@ -9,7 +9,7 @@ namespace DevToys.Tools.Tools.Text.ListCompare;
 [Name("ListCompare")]
 [CommandName(
     Name = "listcompare",
-    Alias = "lcompare",
+    Alias = "lc",
     ResourceManagerBaseName = "DevToys.Tools.Tools.Text.ListCompare.ListCompare",
     DescriptionResourceName = nameof(ListCompare.Description))]
 internal sealed class ListCompareCommandLineTool : ICommandLineTool
@@ -34,23 +34,20 @@ internal sealed class ListCompareCommandLineTool : ICommandLineTool
     private OneOf<FileInfo, string>? FileB { get; set; }
 
     [CommandLineOption(
-        Name = "casesensitive",
-        Alias = "cs",
-        IsRequired = true,
-        DescriptionResourceName = nameof(ListCompare.TextCaseSensitiveComparison))]
-    private bool IsCaseSensitive { get; set; }
-
-    [CommandLineOption(
         Name = "outputFile",
         Alias = "o",
-        IsRequired = true,
         DescriptionResourceName = nameof(ListCompare.OutputFileOptionDescription))]
     internal FileInfo? OutputFile { get; set; }
 
     [CommandLineOption(
+        Name = "casesensitive",
+        Alias = "cs",
+        DescriptionResourceName = nameof(ListCompare.TextCaseSensitiveComparison))]
+    private bool IsCaseSensitive { get; set; }
+
+    [CommandLineOption(
         Name = "comparisonmode",
         Alias = "cm",
-        IsRequired = true,
         DescriptionResourceName = nameof(ListCompare.ComparisonOptionDescription))]
     private ListComparisonMode ComparisonMode { get; set; }
 

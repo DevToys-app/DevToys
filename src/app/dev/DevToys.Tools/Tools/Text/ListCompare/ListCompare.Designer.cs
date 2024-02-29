@@ -123,8 +123,6 @@ namespace DevToys.Tools.Tools.Text.ListCompare {
             }
         }
         
-      
-        
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Input file selected doesn&apos;t exist.
         /// </summary>
@@ -169,11 +167,9 @@ namespace DevToys.Tools.Tools.Text.ListCompare {
                 return ResourceManager.GetString("LongDisplayTitle", resourceCulture);
             }
         }
-
-       
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Text or path to a file to get compared list.
+        ///   Recherche une chaîne localisée semblable à Path to a file to get compared list (display if empty).
         /// </summary>
         internal static string OutputFileOptionDescription {
             get {
@@ -196,15 +192,6 @@ namespace DevToys.Tools.Tools.Text.ListCompare {
         internal static string PathListB {
             get {
                 return ResourceManager.GetString("PathListB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Diff.
-        /// </summary>
-        internal static string SearchKeywords {
-            get {
-                return ResourceManager.GetString("SearchKeywords", resourceCulture);
             }
         }
         

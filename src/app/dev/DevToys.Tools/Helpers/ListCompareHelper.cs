@@ -24,7 +24,7 @@ internal static partial class ListCompareHelper
             stringComparer = StringComparer.CurrentCulture;
         }
 
-        List<string> listCompared = comparisonMode switch
+        IEnumerable<string> listCompared = comparisonMode switch
         {
             ListComparisonMode.AInterB => GetAInterB(listA, listB, stringComparer),
             ListComparisonMode.AOnly => GetAOnly(listA, listB, stringComparer),
@@ -44,19 +44,19 @@ internal static partial class ListCompareHelper
         }
     }
 
-    private static List<string> GetAInterB(List<string> listA, List<string> listB, StringComparer stringComparer)
+    private static IEnumerable<string> GetAInterB(List<string> listA, List<string> listB, StringComparer stringComparer)
     {
-        return listA.Intersect(listB, stringComparer).ToList();
+        return listA.Intersect(listB, stringComparer);
     }
 
-    private static List<string> GetAOnly(List<string> listA, List<string> listB, StringComparer stringComparer)
+    private static IEnumerable<string> GetAOnly(List<string> listA, List<string> listB, StringComparer stringComparer)
     {
-        return listA.Except(listB, stringComparer).ToList();
+        return listA.Except(listB, stringComparer);
     }
 
-    private static List<string> GetBOnly(List<string> listA, List<string> listB, StringComparer stringComparer)
+    private static IEnumerable<string> GetBOnly(List<string> listA, List<string> listB, StringComparer stringComparer)
     {
-        return listB.Except(listA, stringComparer).ToList();
+        return listB.Except(listA, stringComparer);
     }
 
 }
