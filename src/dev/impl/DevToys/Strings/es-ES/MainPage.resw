@@ -130,29 +130,29 @@
     <value>Califícanos ahora...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>Estás disfrutando DevToys? Considera calificarnos!</value>
+    <value>¿Estás disfrutando DevToys? ¡Considera calificarnos!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Mmm... hola! 😅</value>
+    <value>Mmm... ¡hola! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
     <value>Leer más...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>Acabamos de actualizar! Que hay de nuevo en la versión {0}? 🚀</value>
+    <value>¡Acabamos de actualizar! ¿Qué hay de nuevo en la versión {0}? 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
     <value>Actualizar ahora...</value>
   </data>
   <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
-    <value>Hay una actualización disponible! 🚀</value>
+    <value>¡Hay una actualización disponible! 🚀</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
     <value>Abrir en una nueva ventana</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Agregar herramienta al menú de Inicio</value>
+    <value>Anclar herramienta a Inicio</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
     <value>No se ha podido agregar a la herramienta al menú de Inicio. Para mas información, consulte el log.</value>
