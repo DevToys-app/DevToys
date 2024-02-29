@@ -31,6 +31,29 @@ public class ListCompareHelperTests
 
     [Theory]
     [InlineData("A\nBa\nC\nC", "Ba\nC\nD", "Ba\nC")]
+    [InlineData("A\rBa\rC\rC", "Ba\rC\rD", "Ba\nC")]
+    [InlineData("A\r\nBa\r\nC\r\nC", "Ba\r\nC\r\nD", "Ba\nC")]
+    [InlineData("A\r\nBa\nC\nC", "Ba\nC\r\nD", "Ba\nC")]
+    internal void CompareWithMultipleSeparators(string listA, string listB, string expectedResult)
+    {
+        listA = listA.ReplaceLineEndings();
+        listB = listB.ReplaceLineEndings();
+        expectedResult = expectedResult.ReplaceLineEndings();
+
+        ResultInfo<string> compareResult = ListCompareHelper.CompareAsync(
+            listA,
+            listB,
+            true,
+            ListComparisonMode.AInterB,
+            new MockILogger(),
+            CancellationToken.None)
+            .Result;
+
+        compareResult.Data.Should().Be(expectedResult);
+    }
+
+    [Theory]
+    [InlineData("A\nBa\nC\nC", "Ba\nC\nD", "Ba\nC")]
     [InlineData("A\nb\nC", "B\nC\nD", "C")]
     [InlineData("A\nB\nC", "D\nE\nF", "")]
     [InlineData("A\nb\nC", "", "")]

@@ -13,10 +13,11 @@ internal static partial class ListCompareHelper
         ILogger logger,
         CancellationToken cancellationToken)
     {
+        string[] separators = { "\r\n", "\n", "\r" };
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
         ResultInfo<string> compareResult;
-        List<string> listA = new List<string>(firstList.Split(Environment.NewLine));
-        List<string> listB = new List<string>(secondList.Split(Environment.NewLine));
+        List<string> listA = new List<string>(firstList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+        List<string> listB = new List<string>(secondList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
         StringComparer stringComparer = StringComparer.CurrentCultureIgnoreCase;
 
         if (caseSensitive)
