@@ -304,22 +304,22 @@
     <value>Nombre(s) del usuario final. Tenga en cuenta que en algunas culturas, la gente puede tener varios nombres dados; todos pueden estar presentes y estar separados por caracteres de espacio.</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>Nombre(s) o Apellido(s) del Usuario Final. Tenga en cuenta que, en algunas culturas, las personas pueden tener varios apellidos o no tener ninguno; todos pueden estar también presentes, con los nombres separados por caracteres de espacio.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Segundo(s) nombre(s) del Usuario Final. Tenga en cuenta que, en algunas culturas, las personas pueden tener varios apellidos o no tener ninguno; todos pueden estar también presentes, con los nombres separados por caracteres de espacio.</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>Nombre informal del Usuario Final que puede coincidir o no con el nombre. Por ejemplo, un apodo de Mike podría ser devuelto junto con un valor de nombre_dado de Michael.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Nombre abreviado con el que el Usuario Final desea que se haga referencia a él en el RP, como janedoe o j.doe. Este valor PUEDE ser cualquier cadena JSON válida, incluidos caracteres especiales como @, / o espacios en blanco. El RP NO DEBE esperar que este valor sea único.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL de la página de perfil del Usuario Final. El contenido de esta página web DEBERÍA ser sobre el Usuario Final.</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>URL de la foto de perfil del Usuario Final. Esta URL DEBE hacer referencia a un archivo de imagen (por ejemplo, un archivo de imagen PNG, JPEG o GIF), en lugar de a una página web que contenga una imagen. Tenga en cuenta que esta URL DEBERÍA hacer referencia específicamente a una foto de perfil del Usuario Final adecuada para mostrar cuando se describe al Usuario Final, en lugar de a una foto arbitraria tomada por el Usuario Final.</value>
   </data>
   <data name="website" xml:space="preserve">
     <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
