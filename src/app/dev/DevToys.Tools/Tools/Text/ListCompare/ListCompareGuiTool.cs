@@ -1,6 +1,5 @@
 ﻿using DevToys.Tools.Helpers;
 using Microsoft.Extensions.Logging;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DevToys.Tools.Tools.Text.ListCompare;
 
@@ -43,6 +42,7 @@ internal sealed class ListCompareGuiTool : IGuiTool
     private string _listB = string.Empty;
 
     private readonly DisposableSemaphore _semaphore = new();
+    private readonly object _lock = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
     private readonly IUIDiffListInput _diffListInputAInterB = DiffListInput("text-compare-diff-list-input-AInterB");
@@ -104,8 +104,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
                                         MultilineTextInput()
                                             .Title(ListCompare.ListA)
                                             .OnTextChanged(OnListAChanged))
-
-
                                     .WithRightPaneChild(
                                         MultilineTextInput()
                                             .Title(ListCompare.ListB)
@@ -163,7 +161,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
         return ValueTask.CompletedTask;
     }
 
-
     private void StartCompare()
     {
         _cancellationTokenSource?.Cancel();
@@ -178,38 +175,59 @@ internal sealed class ListCompareGuiTool : IGuiTool
         using (await _semaphore.WaitAsync(cancellationToken))
         {
             await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
+            var compareTasks
+              = new List<Task<ResultInfo<string>>>
+              {
+                    CompareAsync(
+                        listA,
+                        listB,
+                        caseSensitive,
+                        ListComparisonMode.AInterB,
+                        cancellationToken),
 
-            ResultInfo<string> compareResultAInterB = await ListCompareHelper.CompareAsync(
-                listA,
-                listB,
-                caseSensitive,
-                ListComparisonMode.AInterB,
-                _logger,
-                cancellationToken);
+                   CompareAsync(
+                         listA,
+                        listB,
+                        caseSensitive,
+                        ListComparisonMode.AOnly,
+                        cancellationToken),
 
-            ResultInfo<string> compareResultAOnly = await ListCompareHelper.CompareAsync(
-                listA,
-                listB,
-                caseSensitive,
-                ListComparisonMode.AOnly,
-                _logger,
-                cancellationToken);
+                    CompareAsync(
+                        listA,
+                        listB,
+                        caseSensitive,
+                        ListComparisonMode.BOnly,
+                        cancellationToken),
 
+              };
 
-            ResultInfo<string> compareResultBOnly = await ListCompareHelper.CompareAsync(
-                listA,
-                listB,
-                caseSensitive,
-                ListComparisonMode.BOnly,
-                _logger,
-                cancellationToken);
+            await Task.WhenAll(compareTasks);
+            lock (_lock)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return;
+                }
 
-
-            cancellationToken.ThrowIfCancellationRequested();
-            _diffListInputAInterB.Text(compareResultAInterB.Data);
-            _diffListInputAOnly.Text(compareResultAOnly.Data);
-            _diffListInputBOnly.Text(compareResultBOnly.Data);
+                Guard.IsNotNull(compareTasks[0].Result);
+                Guard.IsNotNull(compareTasks[1].Result);
+                Guard.IsNotNull(compareTasks[2].Result);
+                _diffListInputAInterB.Text(compareTasks[0].Result.Data);
+                _diffListInputAOnly.Text(compareTasks[1].Result.Data);
+                _diffListInputBOnly.Text(compareTasks[2].Result.Data);
+            }
         }
     }
 
+    private async Task<ResultInfo<string>> CompareAsync(string listA, string listB, bool caseSensitive, ListComparisonMode listComparisonMode, CancellationToken cancellationToken)
+    {
+        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
+
+        return ListCompareHelper.Compare(
+                listA,
+                listB,
+                caseSensitive,
+                listComparisonMode,
+                _logger);
+    }
 }

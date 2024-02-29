@@ -17,14 +17,12 @@ public class ListCompareHelperTests
         listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
 
-        ResultInfo<string> compareResult = ListCompareHelper.CompareAsync(
+        ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
             false,
             ListComparisonMode.AInterB,
-            new MockILogger(),
-            CancellationToken.None)
-            .Result;
+            new MockILogger());
 
         compareResult.Data.Should().Be(expectedResult);
     }
@@ -40,14 +38,12 @@ public class ListCompareHelperTests
         listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
 
-        ResultInfo<string> compareResult = ListCompareHelper.CompareAsync(
+        ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
             true,
             ListComparisonMode.AInterB,
-            new MockILogger(),
-            CancellationToken.None)
-            .Result;
+            new MockILogger());
 
         compareResult.Data.Should().Be(expectedResult);
     }
@@ -64,14 +60,12 @@ public class ListCompareHelperTests
         listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
 
-        ResultInfo<string> compareResult = ListCompareHelper.CompareAsync(
+        ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
             true,
             ListComparisonMode.AInterB,
-            new MockILogger(),
-            CancellationToken.None)
-            .Result;
+            new MockILogger());
 
         compareResult.Data.Should().Be(expectedResult);
     }
@@ -88,14 +82,12 @@ public class ListCompareHelperTests
         listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
 
-        ResultInfo<string> compareResult = ListCompareHelper.CompareAsync(
+        ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
             false,
             ListComparisonMode.AOnly,
-            new MockILogger(),
-            CancellationToken.None)
-            .Result;
+            new MockILogger());
 
         compareResult.Data.Should().Be(expectedResult);
     }
@@ -112,14 +104,12 @@ public class ListCompareHelperTests
         listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
 
-        ResultInfo<string> compareResult = ListCompareHelper.CompareAsync(
+        ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
             true,
             ListComparisonMode.AOnly,
-            new MockILogger(),
-            CancellationToken.None)
-            .Result;
+            new MockILogger());
 
         compareResult.Data.Should().Be(expectedResult);
     }
@@ -136,14 +126,12 @@ public class ListCompareHelperTests
         listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
 
-        ResultInfo<string> compareResult = ListCompareHelper.CompareAsync(
+        ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
             false,
             ListComparisonMode.BOnly,
-            new MockILogger(),
-            CancellationToken.None)
-            .Result;
+            new MockILogger());
 
         compareResult.Data.Should().Be(expectedResult);
     }
@@ -160,14 +148,12 @@ public class ListCompareHelperTests
         listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
 
-        ResultInfo<string> compareResult = ListCompareHelper.CompareAsync(
+        ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
             true,
             ListComparisonMode.BOnly,
-            new MockILogger(),
-            CancellationToken.None)
-            .Result;
+            new MockILogger());
 
         compareResult.Data.Should().Be(expectedResult);
     }

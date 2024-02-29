@@ -1,5 +1,4 @@
 ﻿using DevToys.Tools.Helpers;
-using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 using OneOf;
 
@@ -67,7 +66,6 @@ internal sealed class ListCompareCommandLineTool : ICommandLineTool
             return -1;
         }
 
-
         fileAContent = await FileA.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
         fileBContent = await FileB.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
 
@@ -88,9 +86,9 @@ internal sealed class ListCompareCommandLineTool : ICommandLineTool
 
         ResultInfo<string> output = ComparisonMode switch
         {
-            ListComparisonMode.AInterB => await ListCompareHelper.CompareAsync(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.AInterB, logger, cancellationToken),
-            ListComparisonMode.AOnly => await ListCompareHelper.CompareAsync(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.AOnly, logger, cancellationToken),
-            ListComparisonMode.BOnly => await ListCompareHelper.CompareAsync(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.BOnly, logger, cancellationToken),
+            ListComparisonMode.AInterB => ListCompareHelper.Compare(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.AInterB, logger),
+            ListComparisonMode.AOnly => ListCompareHelper.Compare(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.AOnly, logger),
+            ListComparisonMode.BOnly => ListCompareHelper.Compare(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.BOnly, logger),
             _ => throw new NotSupportedException(),
         };
 

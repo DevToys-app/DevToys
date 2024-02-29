@@ -5,19 +5,17 @@ namespace DevToys.Tools.Helpers;
 
 internal static partial class ListCompareHelper
 {
-    public static async ValueTask<ResultInfo<string>> CompareAsync(
+    public static ResultInfo<string> Compare(
         string firstList,
         string secondList,
         bool caseSensitive,
         ListComparisonMode comparisonMode,
-        ILogger logger,
-        CancellationToken cancellationToken)
+        ILogger logger)
     {
         string[] separators = { "\r\n", "\n", "\r" };
-        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
         ResultInfo<string> compareResult;
-        List<string> listA = new List<string>(firstList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
-        List<string> listB = new List<string>(secondList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+        var listA = new List<string>(firstList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+        var listB = new List<string>(secondList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
         StringComparer stringComparer = StringComparer.CurrentCultureIgnoreCase;
 
         if (caseSensitive)
@@ -39,7 +37,6 @@ internal static partial class ListCompareHelper
         }
         catch (Exception ex)
         {
-            cancellationToken.ThrowIfCancellationRequested();
             logger.LogError(ex, "Unexpected error");
             return new(ex.Message, false);
         }
@@ -59,6 +56,5 @@ internal static partial class ListCompareHelper
     {
         return listB.Except(listA, stringComparer);
     }
-
 }
 
