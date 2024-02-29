@@ -187,6 +187,9 @@ public static partial class GUI
     /// <param name="settingDefinition">The definition of the setting to associate with this <see cref="IUISetting"/>.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changes.</param>
     /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
+    /// <remarks>
+    /// The binding with the setting is going in both directions. When the setting is set, the switch is updated. When the switch is toggled, the setting is updated.
+    /// </remarks>
     public static IUISetting Handle(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -212,6 +215,9 @@ public static partial class GUI
     /// <param name="settingDefinition">The definition of the setting to associate with this <see cref="IUISetting"/>.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changes.</param>
     /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
+    /// <remarks>
+    /// The binding with the setting is going in both directions. When the setting is set, the switch is updated. When the switch is toggled, the setting is updated.
+    /// </remarks>
     public static IUISetting Handle(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -243,6 +249,9 @@ public static partial class GUI
     /// <param name="stateDescriptionWhenOff">The <see cref="IUISetting.StateDescription"/> to use when the option is Off.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
     /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
+    /// <remarks>
+    /// The binding with the setting is going in both directions. When the setting is set, the switch is updated. When the switch is toggled, the setting is updated.
+    /// </remarks>
     public static IUISetting Handle(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -272,6 +281,9 @@ public static partial class GUI
     /// <param name="stateDescriptionWhenOff">The <see cref="IUISetting.StateDescription"/> to use when the option is Off.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
     /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
+    /// <remarks>
+    /// The binding with the setting is going in both directions. When the setting is set, the switch is updated. When the switch is toggled, the setting is updated.
+    /// </remarks>
     public static IUISetting Handle(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -304,6 +316,9 @@ public static partial class GUI
     /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
     /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
+    /// <remarks>
+    /// The binding with the setting is going in both directions. When the setting is changed, the drop down list is updated. When the drop down list is changed, the setting is updated.
+    /// </remarks>
     public static IUISetting Handle<T>(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -333,6 +348,9 @@ public static partial class GUI
     /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
     /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
+    /// <remarks>
+    /// The binding with the setting is going in both directions. When the setting is changed, the drop down list is updated. When the drop down list is changed, the setting is updated.
+    /// </remarks>
     public static IUISetting Handle<T>(
         this IUISetting element,
         ISettingsProvider settingsProvider,

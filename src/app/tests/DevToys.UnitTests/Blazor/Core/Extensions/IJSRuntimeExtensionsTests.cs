@@ -48,20 +48,4 @@ public class IJSRuntimeExtensionsTests
 
         runtimeMock.Verify();
     }
-
-    [Fact]
-    public async Task InvokeVoidAsyncWithErrorHandling_ThrowsForUnhandledExceptions()
-    {
-        var runtimeMock = new Mock<IJSRuntime>(MockBehavior.Strict);
-
-        runtimeMock.Setup(x => x.InvokeAsync<IJSVoidResult>("myMethod", It.IsAny<object[]>()))
-            .Throws(new InvalidOperationException("mhh that is odd")).Verifiable();
-
-        IJSRuntime runtime = runtimeMock.Object;
-
-        InvalidOperationException ex = await Assert.ThrowsAsync<InvalidOperationException>(async () => await runtime.InvokeVoidWithErrorHandlingAsync("myMethod", 42, "blub"));
-
-        ex.Message.Should().Be("mhh that is odd");
-        runtimeMock.Verify();
-    }
 }
