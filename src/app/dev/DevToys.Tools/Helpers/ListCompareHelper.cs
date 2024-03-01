@@ -13,27 +13,27 @@ internal static partial class ListCompareHelper
         ListComparisonMode comparisonMode,
         ILogger logger)
     {
-        string[] separators = { "\r\n", "\n", "\r" };
-        ResultInfo<string> compareResult;
-        var listA = new List<string>(firstList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
-        var listB = new List<string>(secondList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
-        StringComparer stringComparer = StringComparer.CurrentCultureIgnoreCase;
-
-        if (caseSensitive)
-        {
-            stringComparer = StringComparer.CurrentCulture;
-        }
-
-        IEnumerable<string> listCompared = comparisonMode switch
-        {
-            ListComparisonMode.AInterB => GetAInterB(listA, listB, stringComparer),
-            ListComparisonMode.AOnly => GetAOnly(listA, listB, stringComparer),
-            ListComparisonMode.BOnly => GetBOnly(listA, listB, stringComparer),
-            _ => throw new NotSupportedException(),
-        };
-        compareResult = new(string.Join(Environment.NewLine, listCompared), true);
         try
         {
+            string[] separators = { "\r\n", "\n", "\r" };
+            ResultInfo<string> compareResult;
+            var listA = new List<string>(firstList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+            var listB = new List<string>(secondList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+            StringComparer stringComparer = StringComparer.CurrentCultureIgnoreCase;
+
+            if (caseSensitive)
+            {
+                stringComparer = StringComparer.CurrentCulture;
+            }
+
+            IEnumerable<string> listCompared = comparisonMode switch
+            {
+                ListComparisonMode.AInterB => GetAInterB(listA, listB, stringComparer),
+                ListComparisonMode.AOnly => GetAOnly(listA, listB, stringComparer),
+                ListComparisonMode.BOnly => GetBOnly(listA, listB, stringComparer),
+                _ => throw new NotSupportedException(),
+            };
+            compareResult = new(string.Join(Environment.NewLine, listCompared), true);
             return compareResult;
         }
         catch (Exception ex)
