@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 
 namespace DevToys.UnitTests.Tools.Helpers;
@@ -14,10 +13,7 @@ public class ListCompareHelperTests
     [InlineData("", "A\nB\nC", "")]
     internal void CompareAInterBCaseInsensitive(string listA, string listB, string expectedResult)
     {
-        listA = listA.ReplaceLineEndings();
-        listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
-
         ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
@@ -35,10 +31,7 @@ public class ListCompareHelperTests
     [InlineData("A\r\nBa\nC\nC", "Ba\nC\r\nD", "Ba\nC")]
     internal void CompareWithMultipleSeparators(string listA, string listB, string expectedResult)
     {
-        listA = listA.ReplaceLineEndings();
-        listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
-
         ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
@@ -57,10 +50,7 @@ public class ListCompareHelperTests
     [InlineData("", "A\nb\nC", "")]
     internal void CompareAInterBCaseSensitive(string listA, string listB, string expectedResult)
     {
-        listA = listA.ReplaceLineEndings();
-        listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
-
         ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
@@ -79,10 +69,7 @@ public class ListCompareHelperTests
     [InlineData("", "A\nb\nC", "")]
     internal void CompareAOnlyCaseInSensitive(string listA, string listB, string expectedResult)
     {
-        listA = listA.ReplaceLineEndings();
-        listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
-
         ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
@@ -101,10 +88,7 @@ public class ListCompareHelperTests
     [InlineData("", "A\nb\nC", "")]
     internal void CompareAOnlyCaseSensitive(string listA, string listB, string expectedResult)
     {
-        listA = listA.ReplaceLineEndings();
-        listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
-
         ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
@@ -123,10 +107,7 @@ public class ListCompareHelperTests
     [InlineData("", "A\nb\nC", "A\nb\nC")]
     internal void CompareBOnlyCaseInSensitive(string listA, string listB, string expectedResult)
     {
-        listA = listA.ReplaceLineEndings();
-        listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
-
         ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,
@@ -145,10 +126,7 @@ public class ListCompareHelperTests
     [InlineData("", "A\nb\nC", "A\nb\nC")]
     internal void CompareBOnlyCaseSensitive(string listA, string listB, string expectedResult)
     {
-        listA = listA.ReplaceLineEndings();
-        listB = listB.ReplaceLineEndings();
         expectedResult = expectedResult.ReplaceLineEndings();
-
         ResultInfo<string> compareResult = ListCompareHelper.Compare(
             listA,
             listB,

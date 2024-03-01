@@ -15,24 +15,20 @@ internal static partial class ListCompareHelper
     {
         try
         {
-            string[] separators = { "\r\n", "\n", "\r" };
             ResultInfo<string> compareResult;
-            var listA = new List<string>(firstList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
-            var listB = new List<string>(secondList.Split(separators, StringSplitOptions.RemoveEmptyEntries));
-            StringComparer stringComparer = StringComparer.CurrentCultureIgnoreCase;
+            var comparer = new ReadOnlyMemoryEqualityComparer(caseSensitive);
 
-            if (caseSensitive)
-            {
-                stringComparer = StringComparer.CurrentCulture;
-            }
+            IEnumerable<ReadOnlyMemory<char>> listA = firstList.AsMemory().ToLines();
+            IEnumerable<ReadOnlyMemory<char>> listB = secondList.AsMemory().ToLines();
 
-            IEnumerable<string> listCompared = comparisonMode switch
+            IEnumerable<ReadOnlyMemory<char>> listCompared = comparisonMode switch
             {
-                ListComparisonMode.AInterB => GetAInterB(listA, listB, stringComparer),
-                ListComparisonMode.AOnly => GetAOnly(listA, listB, stringComparer),
-                ListComparisonMode.BOnly => GetBOnly(listA, listB, stringComparer),
+                ListComparisonMode.AInterB => GetAInterB(listA, listB, comparer),
+                ListComparisonMode.AOnly => GetAOnly(listA, listB, comparer),
+                ListComparisonMode.BOnly => GetBOnly(listA, listB, comparer),
                 _ => throw new NotSupportedException(),
             };
+
             compareResult = new(string.Join(Environment.NewLine, listCompared), true);
             return compareResult;
         }
@@ -43,19 +39,72 @@ internal static partial class ListCompareHelper
         }
     }
 
-    private static IEnumerable<string> GetAInterB(List<string> listA, List<string> listB, StringComparer stringComparer)
+    private static IEnumerable<ReadOnlyMemory<char>> GetAInterB(IEnumerable<ReadOnlyMemory<char>> listA, IEnumerable<ReadOnlyMemory<char>> listB, ReadOnlyMemoryEqualityComparer comparer)
     {
-        return listA.Intersect(listB, stringComparer);
+       var setB = new HashSet<ReadOnlyMemory<char>>(listB, comparer);
+        var uniqueElements = new HashSet<ReadOnlyMemory<char>>(comparer);
+        foreach (ReadOnlyMemory<char> item in listA)
+        {
+            if (setB.Contains(item, comparer))
+            {
+                if (uniqueElements.Add(item))
+                {
+                    yield return item;
+                }
+            }
+        }
     }
 
-    private static IEnumerable<string> GetAOnly(List<string> listA, List<string> listB, StringComparer stringComparer)
+    private static IEnumerable<ReadOnlyMemory<char>> GetAOnly(IEnumerable<ReadOnlyMemory<char>> listA, IEnumerable<ReadOnlyMemory<char>> listB, ReadOnlyMemoryEqualityComparer comparer)
     {
-        return listA.Except(listB, stringComparer);
+        var setB = new HashSet<ReadOnlyMemory<char>>(listB, comparer);
+        var uniqueElements = new HashSet<ReadOnlyMemory<char>>(comparer);
+        foreach (ReadOnlyMemory<char> item in listA)
+        {
+            if (!setB.Contains(item, comparer))
+            {
+                if (uniqueElements.Add(item))
+                {
+                    yield return item;
+                }
+            }
+        }
     }
 
-    private static IEnumerable<string> GetBOnly(List<string> listA, List<string> listB, StringComparer stringComparer)
+    private static IEnumerable<ReadOnlyMemory<char>> GetBOnly(IEnumerable<ReadOnlyMemory<char>> listA, IEnumerable<ReadOnlyMemory<char>> listB, ReadOnlyMemoryEqualityComparer comparer)
     {
-        return listB.Except(listA, stringComparer);
+        var setA = new HashSet<ReadOnlyMemory<char>>(listA, comparer);
+        var uniqueElements = new HashSet<ReadOnlyMemory<char>>(comparer);
+        foreach (ReadOnlyMemory<char> item in listB)
+        {
+            if (!setA.Contains(item, comparer))
+            {
+                if (uniqueElements.Add(item))
+                {
+                    yield return item;
+                }
+            }
+        }
     }
 }
 
+internal class ReadOnlyMemoryEqualityComparer : IEqualityComparer<ReadOnlyMemory<char>>
+{
+    private readonly StringComparison _comparisonType;
+
+    public ReadOnlyMemoryEqualityComparer(bool caseSensitive)
+    {
+        _comparisonType = caseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
+    }
+
+
+    public bool Equals(ReadOnlyMemory<char> x, ReadOnlyMemory<char> y)
+    {
+        return x.Span.Equals(y.Span, _comparisonType);
+    }
+
+    public int GetHashCode(ReadOnlyMemory<char> obj)
+    {
+        return obj.ToString().GetHashCode();
+    }
+}
