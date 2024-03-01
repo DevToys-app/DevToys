@@ -307,7 +307,7 @@
     <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Среднее имя (имена) конечного пользователя. Заметьте, что в некоторых культурах люди могут иметь несколько средних имен; все они могут присутствовать с разделением имен пробелами. Также обратите внимание, что в некоторых культурах средние имена не используются.</value>
   </data>
   <data name="nickname" xml:space="preserve">
     <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
@@ -316,7 +316,7 @@
     <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL страницы профиля конечного пользователя. Содержимое этой веб-страницы ДОЛЖНО быть о конечном пользователе.</value>
   </data>
   <data name="picture" xml:space="preserve">
     <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
