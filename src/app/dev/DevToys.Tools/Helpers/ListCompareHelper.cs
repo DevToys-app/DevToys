@@ -88,5 +88,3 @@ internal static partial class ListCompareHelper
         }
     }
 }
-
-    {
