@@ -1,9 +1,9 @@
-﻿namespace DevToys.Api;
+﻿namespace DevToys.Tools.Models;
 
 /// <summary>
 /// Defines the different list comparaison mode
 /// </summary>
-public enum ListComparisonMode
+internal enum ListComparisonMode
 {
     /// <summary>
     /// Get elements which are presents in List A and List B

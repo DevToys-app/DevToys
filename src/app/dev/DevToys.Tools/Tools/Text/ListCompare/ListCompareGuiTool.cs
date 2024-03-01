@@ -1,4 +1,5 @@
 ﻿using DevToys.Tools.Helpers;
+using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.Text.ListCompare;
@@ -45,9 +46,9 @@ internal sealed class ListCompareGuiTool : IGuiTool
     private readonly object _lock = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
-    private readonly IUIDiffListInput _diffListInputAInterB = DiffListInput("text-compare-diff-list-input-AInterB");
-    private readonly IUIDiffListInput _diffListInputAOnly = DiffListInput("text-compare-diff-list-input-AOnly");
-    private readonly IUIDiffListInput _diffListInputBOnly = DiffListInput("text-compare-diff-list-input-BOnly");
+    private readonly IUIMultiLineTextInput _diffListInputAInterB = MultilineTextInput("text-compare-diff-list-input-AInterB");
+    private readonly IUIMultiLineTextInput _diffListInputAOnly = MultilineTextInput("text-compare-diff-list-input-AOnly");
+    private readonly IUIMultiLineTextInput _diffListInputBOnly = MultilineTextInput("text-compare-diff-list-input-BOnly");
 
     [ImportingConstructor]
     public ListCompareGuiTool(ISettingsProvider settingsProvider)
@@ -115,7 +116,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
                                     .WithLeftPaneChild(
                                         _diffListInputAInterB
                                             .Title(ListCompare.AInterB)
-                                            .CompareModeAInterB()
                                             .ReadOnly()
                                             .Extendable())
                                     .WithRightPaneChild(
@@ -124,14 +124,12 @@ internal sealed class ListCompareGuiTool : IGuiTool
                                          .WithLeftPaneChild(
                                             _diffListInputAOnly
                                                 .Title(ListCompare.AOnly)
-                                                .CompareModeAOnly()
                                                 .ReadOnly()
                                                 .Extendable())
 
                                         .WithRightPaneChild(
                                             _diffListInputBOnly
                                             .Title(ListCompare.BOnly)
-                                            .CompareModeBOnly()
                                             .ReadOnly()
                                             .Extendable())
                                     )
