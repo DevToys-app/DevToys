@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using DevToys.Tools.Helpers;
+using DevToys.Tools.Models;
 
 namespace DevToys.UnitTests.Tools.Helpers;
 
