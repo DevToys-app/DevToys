@@ -178,21 +178,14 @@ internal sealed class ListCompareGuiTool : IGuiTool
         _cancellationTokenSource = new CancellationTokenSource();
 
         WorkTask = CompareAsync(_listA, _listB, _settingsProvider.GetSetting(caseSensitive), _settingsProvider.GetSetting(comparisonMode), _cancellationTokenSource.Token);
-
-        String selectedComparisonModeTitle;
-        switch (_settingsProvider.GetSetting(comparisonMode))
+        string selectedComparisonModeTitle = _settingsProvider.GetSetting(comparisonMode) switch
         {
-            case ListComparisonMode.AInterB:
-                selectedComparisonModeTitle = ListCompare.AInterB; break;
-            case ListComparisonMode.AUnionB:
-                selectedComparisonModeTitle = ListCompare.AUnionB; break;
-            case ListComparisonMode.AOnly:
-                selectedComparisonModeTitle = ListCompare.AOnly; break;
-            case ListComparisonMode.BOnly:
-                selectedComparisonModeTitle = ListCompare.BOnly; break;
-            default:
-                selectedComparisonModeTitle = string.Empty; break;
-        }
+            ListComparisonMode.AInterB => ListCompare.AInterB,
+            ListComparisonMode.AUnionB => ListCompare.AUnionB,
+            ListComparisonMode.AOnly => ListCompare.AOnly,
+            ListComparisonMode.BOnly => ListCompare.BOnly,
+            _ => string.Empty,
+        };
         _diffListResult.Title(selectedComparisonModeTitle);
     }
 
