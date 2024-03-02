@@ -104,7 +104,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
                                     Setting("list-compare-comparison-mode")
                                         .Icon("FluentSystemIcons", '\uF1EE')
                                         .Title(ListCompare.ComparisonOptionTitle)
-                                        .Description(ListCompare.ComparisonOptionDescription)
                                         .Handle(
                                             _settingsProvider,
                                             comparisonMode,
