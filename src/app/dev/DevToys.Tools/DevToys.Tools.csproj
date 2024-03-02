@@ -38,6 +38,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>GlobalStrings.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Converters\Cron\CronParser.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CronParser.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Certificate\CertificateDecoder.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -204,6 +209,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Converters\Cron\CronParser.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CronParser.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\Converters\JsonTable\JsonTableConverter.resx">
       <LastGenOutput>JsonTableConverter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -353,6 +362,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CronExpressionDescriptor" />
+    <PackageReference Include="Cronos" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="YamlDotNet" />
     <PackageReference Include="Markdig" />

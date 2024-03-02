@@ -11,6 +11,8 @@
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="$(CommunityToolkitVersion)" />
     <PackageVersion Include="CommunityToolkit.Maui" Version="5.2.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
+    <PackageVersion Include="CronExpressionDescriptor" Version="2.32.0" />
+    <PackageVersion Include="Cronos" Version="0.8.3" />
     <PackageVersion Include="FluentAssertions" Version="6.11.0" />
     <PackageVersion Include="FuzzySharp" Version="2.0.2" />
     <PackageVersion Include="GirCore.Adw-1" Version="$(GirCore)" />
