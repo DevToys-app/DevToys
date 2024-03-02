@@ -11,6 +11,11 @@ internal enum ListComparisonMode
     AInterB,
 
     /// <summary>
+    /// Get elements which are presents in List A or List B
+    /// </summary>
+    AUnionB,
+
+    /// <summary>
     /// Get elements which are presents in List A but not in List B
     /// /// </summary>
     AOnly,

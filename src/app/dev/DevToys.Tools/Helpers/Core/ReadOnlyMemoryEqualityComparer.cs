@@ -16,6 +16,6 @@ internal class ReadOnlyMemoryEqualityComparer : IEqualityComparer<ReadOnlyMemory
 
     public int GetHashCode(ReadOnlyMemory<char> obj)
     {
-        return obj.ToString().GetHashCode();
+        return obj.ToString().GetHashCode(_comparisonType);
     }
 }
