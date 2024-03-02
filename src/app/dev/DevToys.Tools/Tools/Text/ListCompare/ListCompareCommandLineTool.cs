@@ -85,14 +85,7 @@ internal sealed class ListCompareCommandLineTool : ICommandLineTool
         Guard.IsNotNull(fileAContent.Data);
         Guard.IsNotNull(fileBContent.Data);
 
-        ResultInfo<string> output = ComparisonMode switch
-        {
-            ListComparisonMode.AInterB => ListCompareHelper.Compare(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.AInterB, logger),
-            ListComparisonMode.AOnly => ListCompareHelper.Compare(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.AOnly, logger),
-            ListComparisonMode.BOnly => ListCompareHelper.Compare(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ListComparisonMode.BOnly, logger),
-            _ => throw new NotSupportedException(),
-        };
-
+        ResultInfo<string> output = ListCompareHelper.Compare(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ComparisonMode, logger);
         cancellationToken.ThrowIfCancellationRequested();
 
         if (output.HasSucceeded)
