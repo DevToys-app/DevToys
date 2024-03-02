@@ -1,5 +1,10 @@
-﻿using DevToys.Tools.Helpers;
+﻿using System.Security.Authentication;
+using System.Security.Cryptography;
+using DevToys.Api;
+using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
+using DevToys.Tools.Tools.EncodersDecoders.Base64Text;
+using DevToys.Tools.Tools.Generators.HashAndChecksum;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.Text.ListCompare;
@@ -28,6 +33,14 @@ internal sealed class ListCompareGuiTool : IGuiTool
 
     private CancellationTokenSource? _cancellationTokenSource;
 
+    /// <summary>
+    /// The comparison mode to use.
+    /// </summary>
+    private static readonly SettingDefinition<ListComparisonMode> comparisonMode
+        = new(
+            name: $"{nameof(ListCompareGuiTool)}.{nameof(comparisonMode)}",
+            defaultValue: ListComparisonMode.AInterB);
+
     private enum GridRows
     {
         Configuration,
@@ -46,9 +59,7 @@ internal sealed class ListCompareGuiTool : IGuiTool
     private readonly object _lock = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
-    private readonly IUIMultiLineTextInput _diffListInputAInterB = MultilineTextInput("text-compare-diff-list-input-AInterB");
-    private readonly IUIMultiLineTextInput _diffListInputAOnly = MultilineTextInput("text-compare-diff-list-input-AOnly");
-    private readonly IUIMultiLineTextInput _diffListInputBOnly = MultilineTextInput("text-compare-diff-list-input-BOnly");
+    private readonly IUIMultiLineTextInput _diffListResult = MultilineTextInput("text-compare-diff-list-result");
 
     [ImportingConstructor]
     public ListCompareGuiTool(ISettingsProvider settingsProvider)
@@ -85,10 +96,27 @@ internal sealed class ListCompareGuiTool : IGuiTool
                                 Label()
                                     .Text(ListCompare.Configuration),
 
-                                Setting("list-compare-case_insensitive_comparison")
-                                    .Icon("FluentSystemIcons", '\uEB59')
-                                    .Title(ListCompare.TextCaseSensitiveComparison)
-                                    .Handle(_settingsProvider, caseSensitive, OnCaseSensitiveChanged))),
+                                    Setting("list-compare-case_insensitive_comparison")
+                                        .Icon("FluentSystemIcons", '\uEB59')
+                                        .Title(ListCompare.TextCaseSensitiveComparison)
+                                        .Handle(_settingsProvider, caseSensitive, OnCaseSensitiveChanged),
+
+                                    Setting("list-compare-comparison-mode")
+                                        .Icon("FluentSystemIcons", '\uF1EE')
+                                        .Title(ListCompare.ComparisonOptionTitle)
+                                        .Description(ListCompare.ComparisonOptionDescription)
+                                        .Handle(
+                                            _settingsProvider,
+                                            comparisonMode,
+                                            onOptionSelected: OnComparisonModeChanged,
+                                            Item(ListCompare.AInterB, ListComparisonMode.AInterB),
+                                            Item(ListCompare.AUnionB, ListComparisonMode.AUnionB),
+                                            Item(ListCompare.AOnly, ListComparisonMode.AOnly),
+                                            Item(ListCompare.BOnly, ListComparisonMode.BOnly)
+                                )
+                            )
+                        ),
+
 
                     Cell(
                         GridRows.Text,
@@ -110,30 +138,10 @@ internal sealed class ListCompareGuiTool : IGuiTool
                                             .Title(ListCompare.ListB)
                                             .OnTextChanged(OnListBChanged)))
                             .WithBottomPaneChild(
-                                SplitGrid()
-                                    .Vertical()
-
-                                    .WithLeftPaneChild(
-                                        _diffListInputAInterB
-                                            .Title(ListCompare.AInterB)
-                                            .ReadOnly()
-                                            .Extendable())
-                                    .WithRightPaneChild(
-                                        SplitGrid()
-                                        .Vertical()
-                                         .WithLeftPaneChild(
-                                            _diffListInputAOnly
-                                                .Title(ListCompare.AOnly)
-                                                .ReadOnly()
-                                                .Extendable())
-
-                                        .WithRightPaneChild(
-                                            _diffListInputBOnly
-                                            .Title(ListCompare.BOnly)
-                                            .ReadOnly()
-                                            .Extendable())
-                                    )
-                            ))));
+                                _diffListResult
+                                    .ReadOnly()
+                                    .Extendable())
+                            )));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
@@ -159,47 +167,45 @@ internal sealed class ListCompareGuiTool : IGuiTool
         return ValueTask.CompletedTask;
     }
 
+    private void OnComparisonModeChanged(ListComparisonMode col)
+    {
+        StartCompare();
+    }
+
     private void StartCompare()
     {
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = CompareAsync(_listA, _listB, _settingsProvider.GetSetting(caseSensitive), _cancellationTokenSource.Token);
+        WorkTask = CompareAsync(_listA, _listB, _settingsProvider.GetSetting(caseSensitive), _settingsProvider.GetSetting(comparisonMode), _cancellationTokenSource.Token);
+
+        String selectedComparisonModeTitle = string.Empty;
+        switch (_settingsProvider.GetSetting(comparisonMode))
+        {
+            case ListComparisonMode.AInterB:
+                selectedComparisonModeTitle = ListCompare.AInterB; break;
+            case ListComparisonMode.AUnionB:
+                selectedComparisonModeTitle = ListCompare.AUnionB; break;
+            case ListComparisonMode.AOnly:
+                selectedComparisonModeTitle = ListCompare.AOnly; break;
+            case ListComparisonMode.BOnly:
+                selectedComparisonModeTitle = ListCompare.BOnly; break;
+        }
+        _diffListResult.Title(selectedComparisonModeTitle);
     }
 
-    private async Task CompareAsync(string listA, string listB, bool caseSensitive, CancellationToken cancellationToken)
+    private async Task CompareAsync(string listA, string listB, bool caseSensitive, ListComparisonMode listComparisonMode, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
-            await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
-            var compareTasks
-              = new List<Task<ResultInfo<string>>>
-              {
-                    CompareAsync(
-                        listA,
-                        listB,
-                        caseSensitive,
-                        ListComparisonMode.AInterB,
-                        cancellationToken),
+            ResultInfo<string> result = ListCompareHelper.Compare(
+                listA,
+                listB,
+                caseSensitive,
+                listComparisonMode,
+                _logger);
 
-                   CompareAsync(
-                         listA,
-                        listB,
-                        caseSensitive,
-                        ListComparisonMode.AOnly,
-                        cancellationToken),
-
-                    CompareAsync(
-                        listA,
-                        listB,
-                        caseSensitive,
-                        ListComparisonMode.BOnly,
-                        cancellationToken),
-
-              };
-
-            await Task.WhenAll(compareTasks);
             lock (_lock)
             {
                 if (cancellationToken.IsCancellationRequested)
@@ -207,25 +213,9 @@ internal sealed class ListCompareGuiTool : IGuiTool
                     return;
                 }
 
-                Guard.IsNotNull(compareTasks[0].Result);
-                Guard.IsNotNull(compareTasks[1].Result);
-                Guard.IsNotNull(compareTasks[2].Result);
-                _diffListInputAInterB.Text(compareTasks[0].Result.Data);
-                _diffListInputAOnly.Text(compareTasks[1].Result.Data);
-                _diffListInputBOnly.Text(compareTasks[2].Result.Data);
+                Guard.IsNotNull(result);
+                _diffListResult.Text(result.Data);
             }
         }
-    }
-
-    private async Task<ResultInfo<string>> CompareAsync(string listA, string listB, bool caseSensitive, ListComparisonMode listComparisonMode, CancellationToken cancellationToken)
-    {
-        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
-
-        return ListCompareHelper.Compare(
-                listA,
-                listB,
-                caseSensitive,
-                listComparisonMode,
-                _logger);
     }
 }

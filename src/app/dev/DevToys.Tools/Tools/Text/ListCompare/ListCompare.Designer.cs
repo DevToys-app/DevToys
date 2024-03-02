@@ -88,6 +88,15 @@ namespace DevToys.Tools.Tools.Text.ListCompare {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à A ∪ B.
+        /// </summary>
+        internal static string AUnionB {
+            get {
+                return ResourceManager.GetString("AUnionB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à B Only.
         /// </summary>
         internal static string BOnly {
@@ -97,11 +106,20 @@ namespace DevToys.Tools.Tools.Text.ListCompare {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Please specify comparison mode (AIntersectB, AOnly, BOnly).
+        ///   Recherche une chaîne localisée semblable à Please specify comparison mode (A ∩ B, A ∪ B, A Only, B Only).
         /// </summary>
         internal static string ComparisonOptionDescription {
             get {
                 return ResourceManager.GetString("ComparisonOptionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Comparison mode.
+        /// </summary>
+        internal static string ComparisonOptionTitle {
+            get {
+                return ResourceManager.GetString("ComparisonOptionTitle", resourceCulture);
             }
         }
         

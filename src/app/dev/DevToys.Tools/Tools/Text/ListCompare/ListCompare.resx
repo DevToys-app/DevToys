@@ -126,11 +126,17 @@
   <data name="AOnly" xml:space="preserve">
     <value>A Only</value>
   </data>
+  <data name="AUnionB" xml:space="preserve">
+    <value>A ∪ B</value>
+  </data>
   <data name="BOnly" xml:space="preserve">
     <value>B Only</value>
   </data>
   <data name="ComparisonOptionDescription" xml:space="preserve">
-    <value>Please specify comparison mode (AIntersectB, AOnly, BOnly)</value>
+    <value>Please specify comparison mode (A ∩ B, A ∪ B, A Only, B Only)</value>
+  </data>
+  <data name="ComparisonOptionTitle" xml:space="preserve">
+    <value>Comparison mode</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
