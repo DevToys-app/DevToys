@@ -39,7 +39,7 @@
         -webkit-appearance: none;
     }
 
-    &[type="number"] {
+    &[type=number] {
         -webkit-appearance: textfield;
         -moz-appearance: textfield;
         appearance: textfield;
@@ -47,6 +47,10 @@
 
     &[type=number]::-webkit-inner-spin-button,
     &[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+
+    &[type=search] {
         -webkit-appearance: none;
     }
 

@@ -18,8 +18,7 @@
         <ListBoxItem id="@Id"
                      Item="Item"
                      IsSelected="Item == OwnerNavBar.SelectedItem"
-                     Class="@FinalCssClasses"
-                     Style="margin: 3px 5px;"
+                     Class="@($"sidebar-item {FinalCssClasses}")"
                      OnBuildingContextMenu=@OnBuildingContextMenuAsync
                      OnSelected=@OnItemSelectedAsync>
             <div class="sidebar-item-icon">

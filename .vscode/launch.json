@@ -42,5 +42,12 @@
             "request": "launch",
             "projectPath": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.Windows/DevToys.Windows.csproj"
         },
+        {
+            "name": "DevToys Linux",
+            "preLaunchTask": "Build DevToys Linux",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.Linux/DevToys.Linux.csproj"
+        },
     ]
 }

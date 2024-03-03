@@ -20,7 +20,7 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
     &::before {
         content: "";
         position: absolute;
-        border-radius: 7px;
+        border-radius: var(--toggle-switch-knob-radius);
         background-color: var(--toggle-switch-knob-fill-off);
         transition: $control-fast-duration ease-in-out transform, $control-fast-duration $control-fast-out-slow-in-easing height, $control-fast-duration $control-fast-out-slow-in-easing width, $control-fast-duration $control-fast-out-slow-in-easing margin, $control-fast-duration linear background;
         inset-inline-start: var(--toggle-switch-knob-offset);
