@@ -1,4 +1,4 @@
-@mixin macos-dark {
+@mixin linux-dark {
   /* Roundness */
   --control-corner-radius: 6px;
   --overlay-corner-radius: 8px;
@@ -50,22 +50,22 @@
   --text-fill-color-inverse: rgba(0, 0, 0, 0.89);
 
   /* Control Fill */
-  --control-fill-color-default: rgba(255, 255, 255, 0.25);
-  --control-fill-color-secondary: rgba(255, 255, 255, 0.25);
-  --control-fill-color-tertiary: rgba(255, 255, 255, 0.35);
-  --control-fill-color-disabled: rgba(255, 255, 255, 0.125);
+  --control-fill-color-default: rgb(55, 55, 55);
+  --control-fill-color-secondary: rgb(60, 60, 60);
+  --control-fill-color-tertiary: rgb(21, 21, 21);
+  --control-fill-color-disabled: rgb(42, 42, 42);
   --control-fill-color-transparent: rgba(255, 255, 255, 0);
-  --control-fill-color-input-active: rgba(255, 255, 255, 0.15);
+  --control-fill-color-input-active: rgb(39, 39, 39);
 
   --control-alt-fill-color-transparent: rgba(255, 255, 255, 0);
-  --control-alt-fill-color-secondary: rgba(0, 0, 0, 0.09);
+  --control-alt-fill-color-secondary: rgb(74, 74, 74);
   --control-alt-fill-color-tertiary: rgba(255, 255, 255, 0.043);
   --control-alt-fill-color-quarternary: rgba(255, 255, 255, 0.071);
   --control-alt-fill-color-disabled: rgba(255, 255, 255, 0);
 
   /* Control Stroke */
-  --control-stroke-color-default: rgba(0, 0, 0, 0.06);
-  --control-stroke-color-secondary: rgba(0, 0, 0, 0.094);
+  --control-stroke-color-default: rgb(24, 24, 24);
+  --control-stroke-color-secondary: transparent;
   --control-stroke-on-accent-default: hsla(0, 0%, 100%, 8%);
   --control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 14%);
   --control-strong-stroke-default: rgba(255, 255, 255, 0.15);
@@ -74,35 +74,35 @@
 
   /* Subtle Fill */
   --subtle-fill-transparent: transparent;
-  --subtle-fill-secondary: rgba(255, 255, 255, 0.061);
-  --subtle-fill-tertiary: rgba(255, 255, 255, 0.042);
+  --subtle-fill-secondary: rgb(49, 49, 49);
+  --subtle-fill-tertiary: rgb(55, 55, 55);
   --subtle-fill-disabled: transparent;
 
   /* Background */
-  --background-color: transparent;
-  --layer-fill-color-default: rgb(38, 38, 38);
+  --background-color: rgb(39, 39, 39);
+  --layer-fill-color-default: rgb(44, 44, 44);
 
   /* Borders */
   --control-border-color-default:
-          var(--control-stroke-color-secondary)
+          var(--control-stroke-color-default)
           var(--control-stroke-color-default)
           var(--control-stroke-color-default)
           var(--control-stroke-color-default);
   --accent-control-border-color-default:
-          var(--control-stroke-on-accent-default)
+          var(--control-stroke-on-accent-secondary)
           var(--control-stroke-on-accent-secondary)
           var(--control-stroke-on-accent-secondary)
           var(--control-stroke-on-accent-secondary);
 
   /* Card */
-  --card-stroke-color-default: rgba(0, 0, 0, 0.1);
+  --card-stroke-color-default: rgba(0, 0, 0, 0.4);
   --card-border: var(--card-stroke-color-default);
   --card-border-thickness: 1px solid;
   --card-foreground: var(--text-fill-color-primary);
   --card-foreground-description: var(--text-fill-color-secondary);
-  --card-background-color: rgba(255, 255, 255, 0.05);
-  --card-background-color-secondary: rgba(255, 255, 255, 0.03);
-  --card-hover-background-color: rgba(255, 255, 255, 0.06);
+  --card-background-color: rgb(39, 39, 39);
+  --card-background-color-secondary: rgb(39, 39, 39);
+  --card-hover-background-color: rgb(49, 49, 49);
 
   /* Button */
   --button-background: var(--control-fill-color-default);
@@ -238,15 +238,15 @@
   --radio-button-check-glyph-stroke-checked-disabled: var(--control-stroke-color-default);
 
   /* ToggleSwitch */
-  --toggle-switch-width: 26px;
-  --toggle-switch-height: 15px;
+  --toggle-switch-width: 51px;
+  --toggle-switch-height: 26px;
   --toggle-switch-foreground: var(--text-fill-color-primary);
   --toggle-switch-foreground-disabled: var(--text-fill-color-disabled);
   --toggle-switch-on-stroke-thickness: 0px;
-  --toggle-switch-outer-border-stroke-thickness: 1px;
+  --toggle-switch-outer-border-stroke-thickness: 0px;
   --toggle-switch-fill-off: var(--control-alt-fill-color-secondary);
-  --toggle-switch-fill-off-pointer-over: var(--control-alt-fill-color-tertiary);
-  --toggle-switch-fill-off-pressed: var(--control-alt-fill-color-quarternary);
+  --toggle-switch-fill-off-pointer-over: var(--control-alt-fill-color-secondary);
+  --toggle-switch-fill-off-pressed: var(--control-alt-fill-color-secondary);
   --toggle-switch-fill-off-disabled: var(--control-alt-fill-color-disabled);
   --toggle-switch-stroke-off: var(--control-strong-stroke-default);
   --toggle-switch-stroke-off-pointer-over: var(--control-strong-stroke-default);
@@ -254,21 +254,21 @@
   --toggle-switch-stroke-off-disabled: var(--control-strong-stroke-disabled);
   --toggle-switch-fill-on: var(--accent-secondary);
   --toggle-switch-fill-on-pointer-over: var(--accent-secondary);
-  --toggle-switch-fill-on-pressed: var(--accent-tertiary);
+  --toggle-switch-fill-on-pressed: var(--accent-secondary);
   --toggle-switch-fill-on-disabled: var(--accent-disabled);
   --toggle-switch-stroke-on: var(--accent-secondary);
   --toggle-switch-stroke-on-pointer-over: var(--accent-secondary);
   --toggle-switch-stroke-on-pressed: var(--accent-tertiary);
   --toggle-switch-stroke-on-disabled: var(--accent-disabled);
 
-  --toggle-switch-knob-radius: 7px;
-  --toggle-switch-knob-width: 13px;
-  --toggle-switch-knob-height: 13px;
-  --toggle-switch-knob-offset: 0px;
+  --toggle-switch-knob-radius: 20px;
+  --toggle-switch-knob-width: 22px;
+  --toggle-switch-knob-height: 22px;
+  --toggle-switch-knob-offset: 2px;
   --toggle-switch-knob-zoom-pointer-over: 0px;
-  --toggle-switch-knob-active-translation: 12px;
-  --toggle-switch-knob-width-pointer-over: 13px;
-  --toggle-switch-knob-height-pointer-over: 13px;
+  --toggle-switch-knob-active-translation: 25px;
+  --toggle-switch-knob-width-pointer-over: 22px;
+  --toggle-switch-knob-height-pointer-over: 22px;
   --toggle-switch-knob-fill-off: var(--text-fill-color-secondary);
   --toggle-switch-knob-fill-off-pointer-over: var(--text-fill-color-secondary);
   --toggle-switch-knob-fill-off-pressed: var(--text-fill-color-secondary);
@@ -289,17 +289,17 @@
   --navigation-view-content-background: var(--layer-fill-color-default);
   --navigation-view-content-grid-border: var(--card-stroke-color-default);
   --navigation-view-content-grid-border-thickness: 1px solid;
-  --navigation-view-flyout-border-color: var(--control-stroke-color-secondary);
+  --navigation-view-flyout-border-color: var(--control-stroke-color-default);
   --navigation-view-flyout-background-color: rgba(32, 32, 32, 0.4);
   --navigation-view-flyout-backdrop-filter: blur(50px) saturate(125%);
   --navigation-view-separator-color: rgba(255, 255, 255, 0.0605);
-  --sidebar-item-margin: 3px 5px;
+  --sidebar-item-margin: 0px;
 
   /* List Box */
-  --list-box-item-radius: var(--control-corner-radius);
+  --list-box-item-radius: 0px;
   --list-box-item-background: var(--subtle-fill-transparent);
   --list-box-item-background-disabled: var(--subtle-fill-transparent);
-  --list-box-item-background-pointer-over: var(--subtle-fill-transparent);
+  --list-box-item-background-pointer-over: var(--subtle-fill-secondary);
   --list-box-item-background-selected: rgb(var(--accent-dark-1));
   --list-box-item-background-selected-disabled: var(--subtle-fill-transparent);
   --list-box-item-background-pressed: var(--subtle-fill-transparent);
@@ -310,9 +310,9 @@
   --list-box-item-selection-indicator: rgb(var(--accent-dark-1));
 
   /* Context Menu */
-  --menu-flyout-presenter-background: rgb(44, 44, 44); // Could be semi-transparent if we didn't have Mica: rgb(44, 44, 44, 0.8)
+  --menu-flyout-presenter-background: rgb(29, 29, 29);
   --menu-flyout-presenter-border: rgba(0, 0, 0, 0.2);
-  --menu-flyout-presenter-backdrop-filter: blur(50px) saturate(125%);
+  --menu-flyout-presenter-backdrop-filter: none;
   --menu-flyout-presenter-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
 
   /* Context Menu Item */
@@ -327,8 +327,8 @@
   --context-menu-item-key-accelerator-foreground-disabled: var(--text-fill-color-disabled);
 
   /* Text Box */
-  --text-box-background: rgba(255, 255, 255, 0.05);
-  --text-box-background-pointer-over: rgba(255, 255, 255, 0.05);
+  --text-box-background: var(--control-fill-color-input-active);
+  --text-box-background-pointer-over: var(--control-fill-color-input-active);
   --text-box-background-focused: var(--control-fill-color-input-active);
   --text-box-background-disabled: var(--control-fill-color-disabled);
   --text-box-border: var(--control-stroke-color-default);
@@ -404,7 +404,7 @@
 
   /* UISettingGroup */
   --ui-setting-group-presenter-inner-ui-setting-background-color: transparent;
-  --ui-setting-group-presenter-inner-ui-setting-border-color: var(--card-border);
+  --ui-setting-group-presenter-inner-ui-setting-border-color: transparent;
 
   /* UIFileSelector */
   --ui-file-selector-background-color: transparent;
