@@ -223,12 +223,21 @@ internal sealed class SettingsGuiTool : IGuiTool
                                 Stack()
                                     .Vertical()
                                     .WithChildren(
+                                        Label()
+                                            .Style(UILabelStyle.BodyStrong)
+                                            .Text(Settings.SpecialThanks),
 
                                         Button("logo-designer")
                                             .HyperlinkAppearance()
                                             .AlignHorizontally(UIHorizontalAlignment.Left)
                                             .Text(string.Format(Settings.IconDesigner, "Zee-Al-Eid Ahmad"))
-                                            .OnClick(OnLogoDesignerButtonClick))))));
+                                            .OnClick(OnLogoDesignerButtonClick),
+
+                                        Button("devtoysmac")
+                                            .HyperlinkAppearance()
+                                            .AlignHorizontally(UIHorizontalAlignment.Left)
+                                            .Text(string.Format(Settings.DevToysMac, "ObuchiYuki"))
+                                            .OnClick(OnDevToysMacAuthorButtonClick))))));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
@@ -348,5 +357,10 @@ internal sealed class SettingsGuiTool : IGuiTool
     private void OnLogoDesignerButtonClick()
     {
         OSHelper.OpenFileInShell("https://twitter.com/zeealeid");
+    }
+
+    private void OnDevToysMacAuthorButtonClick()
+    {
+        OSHelper.OpenFileInShell("https://twitter.com/obuchi_yuki");
     }
 }
