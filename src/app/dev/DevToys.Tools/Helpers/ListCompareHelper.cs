@@ -61,7 +61,7 @@ internal static partial class ListCompareHelper
         var uniqueElements = new HashSet<ReadOnlyMemory<char>>(comparer);
         foreach (ReadOnlyMemory<char> item in listA.Union(listB))
         {
-            if (!uniqueElements.Contains(item) && uniqueElements.Add(item))
+            if (uniqueElements.Add(item))
             {
                 yield return item;
             }
