@@ -1,6 +1,5 @@
 ﻿using DevToys.Tools.Helpers.Core;
 using DevToys.Tools.Models;
-using Markdig.Helpers;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Helpers;
@@ -19,8 +18,8 @@ internal static partial class ListCompareHelper
             ResultInfo<string> compareResult;
             var comparer = new ReadOnlyMemoryEqualityComparer(caseSensitive);
 
-            IEnumerable<ReadOnlyMemory<char>> listA = firstList.AsMemory().ToLines().Where(item => !item.IsEmpty);
-            IEnumerable<ReadOnlyMemory<char>> listB = secondList.AsMemory().ToLines().Where(item => !item.IsEmpty);
+            IEnumerable<ReadOnlyMemory<char>> listA = firstList.AsMemory().ToLines();
+            IEnumerable<ReadOnlyMemory<char>> listB = secondList.AsMemory().ToLines();
 
             IEnumerable<ReadOnlyMemory<char>> listCompared = comparisonMode switch
             {
@@ -72,15 +71,12 @@ internal static partial class ListCompareHelper
     private static IEnumerable<ReadOnlyMemory<char>> GetAOnly(IEnumerable<ReadOnlyMemory<char>> listA, IEnumerable<ReadOnlyMemory<char>> listB, ReadOnlyMemoryEqualityComparer comparer)
     {
         var setB = new HashSet<ReadOnlyMemory<char>>(listB, comparer);
-        var uniqueElements = new HashSet<ReadOnlyMemory<char>>(comparer);
+
         foreach (ReadOnlyMemory<char> item in listA)
         {
             if (!setB.Contains(item, comparer))
             {
-                if (uniqueElements.Add(item))
-                {
-                    yield return item;
-                }
+                yield return item;
             }
         }
     }

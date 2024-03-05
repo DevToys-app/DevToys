@@ -1,7 +1,6 @@
 ﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
-using OneOf;
 
 namespace DevToys.Tools.Tools.Text.ListCompare;
 
@@ -24,14 +23,14 @@ internal sealed class ListCompareCommandLineTool : ICommandLineTool
         Alias = "a",
         IsRequired = true,
         DescriptionResourceName = nameof(ListCompare.PathListA))]
-    private OneOf<FileInfo, string>? FileA { get; set; }
+    private FileInfo? FileA { get; set; }
 
     [CommandLineOption(
         Name = "fileb",
         Alias = "b",
         IsRequired = true,
         DescriptionResourceName = nameof(ListCompare.PathListB))]
-    private OneOf<FileInfo, string>? FileB { get; set; }
+    private FileInfo? FileB { get; set; }
 
     [CommandLineOption(
         Name = "outputFile",
@@ -53,39 +52,27 @@ internal sealed class ListCompareCommandLineTool : ICommandLineTool
 
     public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
-        ResultInfo<string> fileAContent;
-        ResultInfo<string> fileBContent;
-        if (!FileA.HasValue)
+        if (FileA == null || !FileA.Exists)
         {
-            Console.Error.WriteLine(string.Concat("listA :", ListCompare.InvalidInputOrFileCommand));
+            Console.Error.WriteLine(string.Concat("fileA :", ListCompare.InputFileNotFound));
             return -1;
         }
 
-        if (!FileB.HasValue)
+        if (FileB == null || !FileB.Exists)
         {
-            Console.Error.WriteLine(string.Concat("listB :", ListCompare.InvalidInputOrFileCommand));
+            Console.Error.WriteLine(string.Concat("fileB :", ListCompare.InputFileNotFound));
             return -1;
         }
 
-        fileAContent = await FileA.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
-        fileBContent = await FileB.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+        using Stream fileAStream = _fileStorage.OpenReadFile(FileA.FullName);
+        using var readerFileA = new StreamReader(fileAStream);
+        string fileAContent = await readerFileA.ReadToEndAsync(cancellationToken);
 
-        if (!fileAContent.HasSucceeded)
-        {
-            Console.Error.WriteLine(String.Concat("File A: ", ListCompare.InputFileNotFound));
-            return -1;
-        }
+        using Stream fileBStream = _fileStorage.OpenReadFile(FileA.FullName);
+        using var readerFileB = new StreamReader(fileBStream);
+        string fileBContent = await readerFileB.ReadToEndAsync(cancellationToken);
 
-        if (!fileBContent.HasSucceeded)
-        {
-            Console.Error.WriteLine(String.Concat("File B: ", ListCompare.InputFileNotFound));
-            return -1;
-        }
-
-        Guard.IsNotNull(fileAContent.Data);
-        Guard.IsNotNull(fileBContent.Data);
-
-        ResultInfo<string> output = ListCompareHelper.Compare(fileAContent.Data, fileBContent.Data, IsCaseSensitive, ComparisonMode, logger);
+        ResultInfo<string> output = ListCompareHelper.Compare(fileAContent, fileBContent, IsCaseSensitive, ComparisonMode, logger);
         cancellationToken.ThrowIfCancellationRequested();
 
         if (output.HasSucceeded)

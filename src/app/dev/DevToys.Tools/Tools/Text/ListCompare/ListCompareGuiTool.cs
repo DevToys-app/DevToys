@@ -1,10 +1,5 @@
-﻿using System.Security.Authentication;
-using System.Security.Cryptography;
-using DevToys.Api;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
-using DevToys.Tools.Tools.EncodersDecoders.Base64Text;
-using DevToys.Tools.Tools.Generators.HashAndChecksum;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.Text.ListCompare;
@@ -33,14 +28,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
 
     private CancellationTokenSource? _cancellationTokenSource;
 
-    /// <summary>
-    /// The comparison mode to use.
-    /// </summary>
-    private static readonly SettingDefinition<ListComparisonMode> comparisonMode
-        = new(
-            name: $"{nameof(ListCompareGuiTool)}.{nameof(comparisonMode)}",
-            defaultValue: ListComparisonMode.AInterB);
-
     private enum GridRows
     {
         Configuration,
@@ -56,10 +43,17 @@ internal sealed class ListCompareGuiTool : IGuiTool
     private string _listB = string.Empty;
 
     private readonly DisposableSemaphore _semaphore = new();
-    private readonly object _lock = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
     private readonly IUIMultiLineTextInput _diffListResult = MultilineTextInput("text-compare-diff-list-result");
+
+    /// <summary>
+    /// The comparison mode to use.
+    /// </summary>
+    private static readonly SettingDefinition<ListComparisonMode> comparisonMode
+        = new(
+            name: $"{nameof(ListCompareGuiTool)}.{nameof(comparisonMode)}",
+            defaultValue: ListComparisonMode.AInterB);
 
     [ImportingConstructor]
     public ListCompareGuiTool(ISettingsProvider settingsProvider)
@@ -71,19 +65,16 @@ internal sealed class ListCompareGuiTool : IGuiTool
     // For unit tests.
     internal Task? WorkTask { get; private set; }
 
+
     public UIToolView View
         => new(
             isScrollable: true,
             Grid()
-                .ColumnMediumSpacing()
-
                 .Rows(
                     (GridRows.Configuration, Auto),
                     (GridRows.Text, new UIGridLength(1, UIGridUnitType.Fraction)))
-
                 .Columns(
                     (GridColumns.Stretch, new UIGridLength(1, UIGridUnitType.Fraction)))
-
                 .Cells(
                     Cell(
                         GridRows.Configuration,
@@ -91,7 +82,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
 
                         Stack()
                             .Vertical()
-
                             .WithChildren(
                                 Label()
                                     .Text(ListCompare.Configuration),
@@ -115,8 +105,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
                                 )
                             )
                         ),
-
-
                     Cell(
                         GridRows.Text,
                         GridColumns.Stretch,
@@ -178,15 +166,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
         _cancellationTokenSource = new CancellationTokenSource();
 
         WorkTask = CompareAsync(_listA, _listB, _settingsProvider.GetSetting(caseSensitive), _settingsProvider.GetSetting(comparisonMode), _cancellationTokenSource.Token);
-        string selectedComparisonModeTitle = _settingsProvider.GetSetting(comparisonMode) switch
-        {
-            ListComparisonMode.AInterB => ListCompare.AInterB,
-            ListComparisonMode.AUnionB => ListCompare.AUnionB,
-            ListComparisonMode.AOnly => ListCompare.AOnly,
-            ListComparisonMode.BOnly => ListCompare.BOnly,
-            _ => string.Empty,
-        };
-        _diffListResult.Title(selectedComparisonModeTitle);
     }
 
     private async Task CompareAsync(string listA, string listB, bool caseSensitive, ListComparisonMode listComparisonMode, CancellationToken cancellationToken)
@@ -200,16 +179,22 @@ internal sealed class ListCompareGuiTool : IGuiTool
                 listComparisonMode,
                 _logger);
 
-            lock (_lock)
+            if (cancellationToken.IsCancellationRequested)
             {
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                Guard.IsNotNull(result);
-                _diffListResult.Text(result.Data);
+                return;
             }
+
+            Guard.IsNotNull(result);
+            string selectedComparisonModeTitle = _settingsProvider.GetSetting(comparisonMode) switch
+            {
+                ListComparisonMode.AInterB => ListCompare.AInterB,
+                ListComparisonMode.AUnionB => ListCompare.AUnionB,
+                ListComparisonMode.AOnly => ListCompare.AOnly,
+                ListComparisonMode.BOnly => ListCompare.BOnly,
+                _ => string.Empty,
+            };
+            _diffListResult.Title(selectedComparisonModeTitle);
+            _diffListResult.Text(result.Data);
         }
     }
 }

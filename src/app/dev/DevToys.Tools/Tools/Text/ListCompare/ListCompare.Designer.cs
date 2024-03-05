@@ -151,15 +151,6 @@ namespace DevToys.Tools.Tools.Text.ListCompare {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Please specify an input text or an input file.
-        /// </summary>
-        internal static string InvalidInputOrFileCommand {
-            get {
-                return ResourceManager.GetString("InvalidInputOrFileCommand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à A.
         /// </summary>
         internal static string ListA {

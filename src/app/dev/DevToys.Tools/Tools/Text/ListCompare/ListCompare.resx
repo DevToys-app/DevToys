@@ -147,9 +147,6 @@
   <data name="InputFileNotFound" xml:space="preserve">
     <value>Input file selected doesn't exist</value>
   </data>
-  <data name="InvalidInputOrFileCommand" xml:space="preserve">
-    <value>Please specify an input text or an input file</value>
-  </data>
   <data name="ListA" xml:space="preserve">
     <value>A</value>
   </data>

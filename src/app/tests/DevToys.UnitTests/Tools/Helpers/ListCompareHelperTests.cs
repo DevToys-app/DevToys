@@ -65,8 +65,8 @@ public class ListCompareHelperTests
     [InlineData("A\nBa\nC\nBa", "BA\nC\nD", "A\nBa\nC\nD")]
     [InlineData("A\nb\nC", "B\nC\nD", "A\nb\nC\nD")]
     [InlineData("A\nB\nC", "D\nE\nF", "A\nB\nC\nD\nE\nF")]
-    [InlineData("A\nB\nC", "", "A\nB\nC")]
-    [InlineData("", "A\nB\nC", "A\nB\nC")]
+    [InlineData("A\nB\nC", "", "A\nB\nC\n")]
+    [InlineData("", "A\nB\nC", "\nA\nB\nC")]
     internal void CompareAUnionBCaseInsensitive(string listA, string listB, string expectedResult)
     {
         expectedResult = expectedResult.ReplaceLineEndings();
@@ -84,8 +84,8 @@ public class ListCompareHelperTests
     [InlineData("A\nBa\nC\nBa", "BA\nC\nD", "A\nBa\nC\nBA\nD")]
     [InlineData("A\nb\nC", "B\nC\nD", "A\nb\nC\nB\nD")]
     [InlineData("A\nB\nC", "D\nE\nF", "A\nB\nC\nD\nE\nF")]
-    [InlineData("A\nB\nC", "", "A\nB\nC")]
-    [InlineData("", "A\nB\nC", "A\nB\nC")]
+    [InlineData("A\nB\nC", "", "A\nB\nC\n")]
+    [InlineData("", "A\nB\nC", "\nA\nB\nC")]
     internal void CompareAUnionBCaseSensitive(string listA, string listB, string expectedResult)
     {
         expectedResult = expectedResult.ReplaceLineEndings();
