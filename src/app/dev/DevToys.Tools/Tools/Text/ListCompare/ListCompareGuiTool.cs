@@ -26,7 +26,13 @@ internal sealed class ListCompareGuiTool : IGuiTool
             name: $"{nameof(ListCompareGuiTool)}.{nameof(caseSensitive)}",
             defaultValue: false);
 
-    private CancellationTokenSource? _cancellationTokenSource;
+    /// <summary>
+    /// The comparison mode to use.
+    /// </summary>
+    private static readonly SettingDefinition<ListComparisonMode> comparisonMode
+        = new(
+            name: $"{nameof(ListCompareGuiTool)}.{nameof(comparisonMode)}",
+            defaultValue: ListComparisonMode.AInterB);
 
     private enum GridRows
     {
@@ -46,14 +52,7 @@ internal sealed class ListCompareGuiTool : IGuiTool
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
     private readonly IUIMultiLineTextInput _diffListResult = MultilineTextInput("text-compare-diff-list-result");
-
-    /// <summary>
-    /// The comparison mode to use.
-    /// </summary>
-    private static readonly SettingDefinition<ListComparisonMode> comparisonMode
-        = new(
-            name: $"{nameof(ListCompareGuiTool)}.{nameof(comparisonMode)}",
-            defaultValue: ListComparisonMode.AInterB);
+    private CancellationTokenSource? _cancellationTokenSource;
 
     [ImportingConstructor]
     public ListCompareGuiTool(ISettingsProvider settingsProvider)
