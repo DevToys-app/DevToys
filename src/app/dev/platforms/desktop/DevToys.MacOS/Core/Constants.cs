@@ -1,10 +1,12 @@
+using DevToys.Core;
+
 namespace DevToys.MacOS.Core;
 
 internal static class Constants
 {
-    internal static readonly string AppCacheDirectory = Path.Combine(GetCacheDirectory(), "com.devtoys");
+    internal static readonly string AppCacheDirectory = Path.Combine(GetCacheDirectory(), GetAppFolderName());
 
-    internal static string PluginInstallationFolder => Path.Combine(GetLibraryDirectory(), "com.devtoys", "Plugins");
+    internal static string PluginInstallationFolder => Path.Combine(GetLibraryDirectory(), GetAppFolderName(), "Plugins");
 
     internal static string AppTempFolder => Path.Combine(AppCacheDirectory, "Temp");
 
@@ -20,5 +22,10 @@ internal static class Constants
         Guard.IsGreaterThan(dirs.Length, 0);
 
         return dirs[0];
+    }
+
+    private static string GetAppFolderName()
+    {
+        return AppHelper.IsPreviewVersion.Value ? "com.devtoys.preview" : "com.devtoys";
     }
 }

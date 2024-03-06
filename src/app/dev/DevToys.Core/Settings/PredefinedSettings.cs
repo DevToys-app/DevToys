@@ -38,6 +38,14 @@ public static class PredefinedSettings
         };
 
     /// <summary>
+    /// Indicates whether it is the first time the app starts or not.
+    /// </summary>
+    public static readonly SettingDefinition<bool> IsFirstStart
+        = new(
+            name: nameof(IsFirstStart),
+            defaultValue: true);
+
+    /// <summary>
     /// The language to use for the texts in the user interface.
     /// </summary>
     public static readonly SettingDefinition<string> Language

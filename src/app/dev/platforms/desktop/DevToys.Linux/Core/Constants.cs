@@ -1,4 +1,6 @@
-﻿namespace DevToys.Linux.Core;
+﻿using DevToys.Core;
+
+namespace DevToys.Linux.Core;
 
 internal static class Constants
 {
@@ -24,6 +26,6 @@ internal static class Constants
             applicationDataRootFolder = Path.Combine(userHomeFolderPath, ".local", "share");
         }
 
-        return Path.Combine(applicationDataRootFolder, "devtoys");
+        return Path.Combine(applicationDataRootFolder, AppHelper.IsPreviewVersion.Value ? "devtoys-preview" : "devtoys");
     }
 }

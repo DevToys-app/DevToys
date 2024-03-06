@@ -1,6 +1,8 @@
 ﻿@page "/"
 
+@using DevToys.Blazor.Pages.Dialogs
 @using DevToys.Blazor.Pages.SubPages
+@using DevToys.Core.Settings
 @using DevToys.Core.Tools.ViewItems;
 @using DevToys.Core.Tools;
 @using DevToys.Localization.Strings.MainWindow;
@@ -8,16 +10,21 @@
 @inherits MefComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    @if (DialogService.IsDialogOpened)
+    @if (SettingsProvider.GetSetting(PredefinedSettings.IsFirstStart))
     {
-        <Dialog IsOpen="@DialogService.IsDialogOpened"
-                Dismissible="@DialogService.IsDismissible"
-                OnDismissed="@(() => DialogService.OnCloseDialogRequested())">
+        <FirstStartDialog @ref=_firstStartDialog />
+    }
+
+    @if (UIDialogService.IsDialogOpened)
+    {
+        <Dialog IsOpen="@UIDialogService.IsDialogOpened"
+                Dismissible="@UIDialogService.IsDismissible"
+                OnDismissed="@(() => UIDialogService.OnCloseDialogRequested())">
             <Content>
-                @DialogService.DialogContent
+                @UIDialogService.DialogContent
             </Content>
             <Footer>
-                @DialogService.FooterContent
+                @UIDialogService.FooterContent
             </Footer>
         </Dialog>
     }

@@ -16,6 +16,11 @@
     <PackageReference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Strings\FirstStartDialog\FirstStartDialog.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FirstStartDialog.resx</DependentUpon>
+    </Compile>
     <Compile Update="Strings\InfoBar\InfoBar.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
