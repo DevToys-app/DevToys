@@ -93,13 +93,14 @@ internal static class NumberBaseHelper
         return true;
     }
 
-    internal static bool TryConvertNumberBase(
+    internal static bool TryConvertNumberBase<T>(
         string? inputNumber,
-        INumberBaseDefinition<long> inputNumberBase,
-        INumberBaseDefinition<long> outputNumberBase,
+        INumberBaseDefinition<T> inputNumberBase,
+        INumberBaseDefinition<T> outputNumberBase,
         bool format,
         out string result,
         out string error)
+        where T : struct
     {
         Guard.IsNotNull(inputNumberBase);
         Guard.IsNotNull(outputNumberBase);
@@ -112,36 +113,7 @@ internal static class NumberBaseHelper
             return true;
         }
 
-        if (!TryParseNumber(inputNumber, inputNumberBase, out long unsignedValue, out error))
-        {
-            return false;
-        }
-
-        // Convert the number to the other bases and format them if needed.
-        result = outputNumberBase.ToFormattedString(unsignedValue, format);
-        return true;
-    }
-
-    internal static bool TryConvertNumberBase(
-        string? inputNumber,
-        INumberBaseDefinition<ulong> inputNumberBase,
-        INumberBaseDefinition<ulong> outputNumberBase,
-        bool format,
-        out string result,
-        out string error)
-    {
-        Guard.IsNotNull(inputNumberBase);
-        Guard.IsNotNull(outputNumberBase);
-
-        result = string.Empty;
-        error = string.Empty;
-
-        if (string.IsNullOrWhiteSpace(inputNumber))
-        {
-            return true;
-        }
-
-        if (!TryParseNumber(inputNumber, inputNumberBase, out ulong unsignedValue, out error))
+        if (!TryParseNumber(inputNumber, inputNumberBase, out T unsignedValue, out error))
         {
             return false;
         }
