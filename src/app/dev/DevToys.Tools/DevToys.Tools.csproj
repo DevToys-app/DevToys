@@ -391,12 +391,17 @@
   <ItemGroup>
     <PackageReference Include="CronExpressionDescriptor" />
     <PackageReference Include="Cronos" />
-    <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="YamlDotNet" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Markdown.ColorCode" />
     <PackageReference Include="ZXing.Net" />
     <PackageReference Include="ZXing.Net.Bindings.ImageSharp.V3" />
+    <PackageReference Include="Newtonsoft.Json">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="SixLabors.ImageSharp">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <Target Name="IncludeAllFilesInTargetDir" BeforeTargets="_GetPackageFiles">
