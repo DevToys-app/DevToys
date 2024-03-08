@@ -142,7 +142,7 @@
     <value>Tema</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
-    <value>Elije el tema para la vista previa de Markdown</value>
+    <value>Elige el tema para el visualizador de Markdown</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Visualizar el documento de Markdown con un renderizador similar al de Github</value>

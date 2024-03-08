@@ -175,7 +175,7 @@
     <value>Mostrar los números de línea en el editor de texto</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Abrir logs</value>
+    <value>Abrir registro (logs)</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Política de privacidad </value>

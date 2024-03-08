@@ -304,22 +304,22 @@
     <value>Nombre(s) del usuario final. Tenga en cuenta que en algunas culturas, la gente puede tener varios nombres dados; todos pueden estar presentes y estar separados por caracteres de espacio.</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>Nombre(s) o Apellido(s) del Usuario Final. Tenga en cuenta que, en algunas culturas, las personas pueden tener varios apellidos o no tener ninguno; todos pueden estar también presentes, con los nombres separados por caracteres de espacio.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Segundo(s) nombre(s) del Usuario Final. Tenga en cuenta que, en algunas culturas, las personas pueden tener varios apellidos o no tener ninguno; todos pueden estar también presentes, con los nombres separados por caracteres de espacio.</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>Nombre informal del Usuario Final que puede coincidir o no con el nombre. Por ejemplo, un apodo de Mike podría ser devuelto junto con un valor de nombre_dado de Michael.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Nombre abreviado con el que el Usuario Final desea que se haga referencia a él en el RP, como janedoe o j.doe. Este valor PUEDE ser cualquier cadena JSON válida, incluidos caracteres especiales como @, / o espacios en blanco. El RP NO DEBE esperar que este valor sea único.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL de la página de perfil del Usuario Final. El contenido de esta página web DEBERÍA ser sobre el Usuario Final.</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>URL de la foto de perfil del Usuario Final. Esta URL DEBE hacer referencia a un archivo de imagen (por ejemplo, un archivo de imagen PNG, JPEG o GIF), en lugar de a una página web que contenga una imagen. Tenga en cuenta que esta URL DEBERÍA hacer referencia específicamente a una foto de perfil del Usuario Final adecuada para mostrar cuando se describe al Usuario Final, en lugar de a una foto arbitraria tomada por el Usuario Final.</value>
   </data>
   <data name="website" xml:space="preserve">
     <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
@@ -373,7 +373,7 @@
     <value>Authentication Context Class Reference. String specifying an Authentication Context Class Reference value that identifies the Authentication Context Class that the authentication performed satisfied. The value "0" indicates the End-User authentication did not meet the requirements of ISO/IEC 29115 level 1. Authentication using a long-lived browser cookie, for instance, is one example where the use of "level 0" is appropriate. Authentications with level 0 SHOULD NOT be used to authorize access to any resource of any monetary value. (This corresponds to the OpenID 2.0 PAPE nist_auth_level 0.) An absolute URI or an RFC 6711 registered name SHOULD be used as the acr value; registered names MUST NOT be used with a different meaning than that which is registered. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The acr value is a case sensitive string.</value>
   </data>
   <data name="amr" xml:space="preserve">
-    <value>Authentication Methods References. JSON array of strings that are identifiers for authentication methods used in the authentication. For instance, values might indicate that both password and OTP authentication methods were used. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The amr value is an array of case sensitive strings.</value>
+    <value>Referencias de Métodos de Autenticación. Array de cadenas JSON que son identificadores de los métodos de autenticación utilizados en la autenticación. Por ejemplo, los valores pueden indicar que se utilizaron los métodos de autenticación de contraseña y OTP. Las partes que utilicen esta solicitud deberán acordar el significado de los valores utilizados, que pueden ser específicos de cada contexto. El valor amr es una matriz de cadenas que distingue entre mayúsculas y minúsculas.</value>
   </data>
   <data name="sub_jwk" xml:space="preserve">
     <value>Clave pública utilizada para comprobar la firma de un token de identificación emitido por un proveedor de OpenID auto-emitido. La clave es una clave en bruto en formato JWK (no una valor de un certificado X.509). El valor sub_jwk es un objeto JSON. El uso de la reclamación sub_jwk NO es RECOMENDADO cuando el OP no es auto-emitido.</value>

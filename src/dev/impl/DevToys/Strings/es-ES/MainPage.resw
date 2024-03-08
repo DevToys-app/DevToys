@@ -121,7 +121,7 @@
     <value>Agregar a favoritos</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
-    <value>Mantener encima (Ctrl+Up)</value>
+    <value>Fijar en primer plano (Ctrl+Up)</value>
   </data>
   <data name="ExitCompactOverlayTooltip" xml:space="preserve">
     <value>Volver a la vista completa (Ctrl+Down)</value>
@@ -130,47 +130,47 @@
     <value>Califícanos ahora...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>Estás disfrutando DevToys? Considera calificarnos!</value>
+    <value>¿Estás disfrutando DevToys? ¡Considera calificarnos!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Mmm... hola! 😅</value>
+    <value>Mmm... ¡hola! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
-    <value>Leer más...</value>
+    <value>leer más...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>Acabamos de actualizar! Que hay de nuevo en la versión {0}? 🚀</value>
+    <value>¡Acabamos de actualizar! ¿Qué hay de nuevo en la versión {0}? 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
-    <value>Actualizar ahora...</value>
+    <value>actualizar ahora...</value>
   </data>
   <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
-    <value>Hay una actualización disponible! 🚀</value>
+    <value>¡Hay una actualización disponible! 🚀</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
     <value>Abrir en una nueva ventana</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Agregar herramienta al menú de Inicio</value>
+    <value>Anclar herramienta a Inicio</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>No se ha podido agregar a la herramienta al menú de Inicio. Para mas información, consulte el log.</value>
+    <value>No se ha podido agregar a la herramienta a Inicio. Para más información, consulte el registro.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>Eliminar de favoritos</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Escriba para buscar herramientas...</value>
+    <value>Escribe algo para buscar las herramientas...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>No se encontraron resultados</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>Nos encantaría conocer sobre su experiencia con DevToys para poder mejorarla.</value>
+    <value>Nos encantaría conocer su experiencia con DevToys para que podamos mejorarla.</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>¡Ha iniciado el desarrollo de DevToys 2.0! 🥳</value>
+    <value>¡Has iniciado el desarrollo de DevToys 2.0! 🥳</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
     <value>iniciar la encuesta...</value>
