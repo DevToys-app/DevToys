@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using DevToys.CLI;
 using DevToys.Tools.Models;
 using DevToys.Tools.Tools.Formatters.Xml;
-using DevToys.UnitTests.Mocks;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.UnitTests.Tools.Formatters;

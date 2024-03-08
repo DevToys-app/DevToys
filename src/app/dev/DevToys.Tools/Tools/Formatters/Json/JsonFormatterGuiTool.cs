@@ -92,9 +92,8 @@ internal sealed partial class JsonFormatterGuiTool : IGuiTool, IDisposable
                             Item(JsonFormatter.Minified, Indentation.Minified)
                         ),
                         Setting("json-text-sortProperties-setting")
-                        .Icon("FluentSystemIcons", '\uf7ed')
+                        .Icon("FluentSystemIcons", '\uf802')
                         .Title(JsonFormatter.SortProperties)
-                        .Description(JsonFormatter.SortPropertiesOptionDescription)
                         .Handle(
                             _settingsProvider,
                             sortProperties,

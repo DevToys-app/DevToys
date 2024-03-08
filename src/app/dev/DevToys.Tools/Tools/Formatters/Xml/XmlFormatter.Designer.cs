@@ -169,7 +169,7 @@ namespace DevToys.Tools.Tools.Formatters.Xml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Line on Attributes.
+        ///   Looks up a localized string similar to Put attributes on a new line.
         /// </summary>
         internal static string NewLineOnAttributes {
             get {

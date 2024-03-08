@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Tools.Formatters.Json {
+namespace DevToys.Tools.Tools.Formatters.Sql {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Tools.Tools.Formatters.Json {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class JsonFormatter {
+    internal class SqlFormatter {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal JsonFormatter() {
+        internal SqlFormatter() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Formatters.Json.JsonFormatter", typeof(JsonFormatter).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Formatters.Sql.SqlFormatter", typeof(SqlFormatter).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON Formatter tool.
+        ///   Looks up a localized string similar to SQL Formatter tool.
         /// </summary>
         internal static string AccessibleName {
             get {
@@ -79,7 +79,16 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indent or minify JSON data.
+        ///   Looks up a localized string similar to Db2.
+        /// </summary>
+        internal static string Db2 {
+            get {
+                return ResourceManager.GetString("Db2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format SQL data.
         /// </summary>
         internal static string Description {
             get {
@@ -133,7 +142,7 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text or path to a file containing the JSON to format.
+        ///   Looks up a localized string similar to Text or path to a file containing the sql to format.
         /// </summary>
         internal static string InputOptionDescription {
             get {
@@ -151,7 +160,7 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON Formatter.
+        ///   Looks up a localized string similar to SQL Formatter.
         /// </summary>
         internal static string LongDisplayTitle {
             get {
@@ -160,11 +169,29 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minified.
+        ///   Looks up a localized string similar to MariaDB.
         /// </summary>
-        internal static string Minified {
+        internal static string MariaDb {
             get {
-                return ResourceManager.GetString("Minified", resourceCulture);
+                return ResourceManager.GetString("MariaDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MySQL.
+        /// </summary>
+        internal static string MySql {
+            get {
+                return ResourceManager.GetString("MySql", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N1QL.
+        /// </summary>
+        internal static string N1ql {
+            get {
+                return ResourceManager.GetString("N1ql", resourceCulture);
             }
         }
         
@@ -196,7 +223,43 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON.
+        ///   Looks up a localized string similar to PL/SQL.
+        /// </summary>
+        internal static string PlSql {
+            get {
+                return ResourceManager.GetString("PlSql", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PostgreSQL.
+        /// </summary>
+        internal static string PostgreSql {
+            get {
+                return ResourceManager.GetString("PostgreSql", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amazon Redshift.
+        /// </summary>
+        internal static string RedShift {
+            get {
+                return ResourceManager.GetString("RedShift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQL Formatter.
+        /// </summary>
+        internal static string SearchDisplayName {
+            get {
+                return ResourceManager.GetString("SearchDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQL.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {
@@ -205,20 +268,47 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sort JSON Properties alphabetically.
+        ///   Looks up a localized string similar to Spark SQL.
         /// </summary>
-        internal static string SortProperties {
+        internal static string SparkSql {
             get {
-                return ResourceManager.GetString("SortProperties", resourceCulture);
+                return ResourceManager.GetString("SparkSql", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Whether properties within the JSON should be sorted alphabetically.
+        ///   Looks up a localized string similar to Language.
         /// </summary>
-        internal static string SortPropertiesOptionDescription {
+        internal static string SqlLanguage {
             get {
-                return ResourceManager.GetString("SortPropertiesOptionDescription", resourceCulture);
+                return ResourceManager.GetString("SqlLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which SQL language to use.
+        /// </summary>
+        internal static string SqlLanguageDescription {
+            get {
+                return ResourceManager.GetString("SqlLanguageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard SQL.
+        /// </summary>
+        internal static string StandardSql {
+            get {
+                return ResourceManager.GetString("StandardSql", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transact-SQL.
+        /// </summary>
+        internal static string TransactSql {
+            get {
+                return ResourceManager.GetString("TransactSql", resourceCulture);
             }
         }
         
