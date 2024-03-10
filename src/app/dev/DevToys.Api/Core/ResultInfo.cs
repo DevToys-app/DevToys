@@ -43,6 +43,7 @@ public record ResultInfo<T>
 /// Record to contain both whether the task was a success and the resulting data
 /// </summary>
 /// <typeparam name="T">Type of the result</typeparam>
+/// <typeparam name="ResultInfoSeverity">The severity of the result</typeparam>
 public record ResultInfo<T, ResultInfoSeverity>
 {
     public T? Data { get; }

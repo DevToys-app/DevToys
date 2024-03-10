@@ -2,7 +2,6 @@
 using System.Text.Json.Serialization;
 using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Components.Monaco.Editor;
-using NuGet.Common;
 
 ///-------------------------------------------------------------------------------------------------------------
 ///  C# translation of the https://github.com/microsoft/monaco-editor/blob/main/website/typedoc/monaco.d.ts file
