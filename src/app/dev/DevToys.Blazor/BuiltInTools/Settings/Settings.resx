@@ -150,6 +150,10 @@
   <data name="Description" xml:space="preserve">
     <value>Customize DevToys look &amp; feel</value>
   </data>
+  <data name="DevToysMac" xml:space="preserve">
+    <value>{0} for starting DevToysMac development</value>
+    <comment>{0} will be replaced by a name</comment>
+  </data>
   <data name="Editing" xml:space="preserve">
     <value>Editing</value>
   </data>
@@ -181,7 +185,7 @@
     <value>Higlight the current line</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>App icon designed by {0}</value>
+    <value>{0} for designing the app icon</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
@@ -228,6 +232,9 @@
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+  </data>
+  <data name="SpecialThanks" xml:space="preserve">
+    <value>Special thanks to</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>Text editor</value>

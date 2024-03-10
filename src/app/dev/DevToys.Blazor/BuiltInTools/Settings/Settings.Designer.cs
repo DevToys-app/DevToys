@@ -160,6 +160,15 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} for starting DevToysMac development.
+        /// </summary>
+        internal static string DevToysMac {
+            get {
+                return ResourceManager.GetString("DevToysMac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editing.
         /// </summary>
         internal static string Editing {
@@ -250,7 +259,7 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to App icon designed by {0}.
+        ///   Looks up a localized string similar to {0} for designing the app icon.
         /// </summary>
         internal static string IconDesigner {
             get {
@@ -390,6 +399,15 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         internal static string SmartDetectionPaste {
             get {
                 return ResourceManager.GetString("SmartDetectionPaste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special thanks to.
+        /// </summary>
+        internal static string SpecialThanks {
+            get {
+                return ResourceManager.GetString("SpecialThanks", resourceCulture);
             }
         }
         
