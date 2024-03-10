@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Helpers;
+﻿using System.Runtime.InteropServices;
+using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using DevToys.UnitTests.Mocks;
 
@@ -22,46 +23,138 @@ public class XmlHelperTests
     }
 
     [Theory]
-    [InlineData(null, "")]
-    [InlineData("", "")]
-    [InlineData(" ", "")]
-    [InlineData("<xml />", "<xml />")]
-    [InlineData("<root><xml /></root>", "<root>\r\n  <xml />\r\n</root>")]
-    [InlineData("<root><xml test=\"true\" /></root>", "<root>\r\n  <xml test=\"true\" />\r\n</root>", false)]
-    [InlineData("<root><xml test=\"true\" /></root>", "<root>\r\n  <xml\r\n    test=\"true\" />\r\n</root>", true)]
+    [MemberData(nameof(GetDataFormatTwoSpaces), parameters: 7)]
     public void FormatTwoSpaces(string input, string expectedResult, bool newLineOnAttributes = false)
     {
         ResultInfo<string> actual = XmlHelper.Format(input, Indentation.TwoSpaces, newLineOnAttributes, new MockILogger());
         actual.Data.Should().Be(expectedResult);
     }
 
+    public static IEnumerable<object[]> GetDataFormatTwoSpaces(int numTests)
+    {
+        var allData = new List<object[]>()
+        {
+            new object[] { null, "" },
+            new object[] { "","" },
+            new object[] { " ",""},
+            new object[] { "<xml />", "<xml />" },
+        };
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {"<root><xml /></root>", "<root>\r\n  <xml />\r\n</root>"},
+                    new object[] {"<root><xml test=\"true\" /></root>", "<root>\r\n  <xml test=\"true\" />\r\n</root>", false},
+                    new object[] {"<root><xml test=\"true\" /></root>", "<root>\r\n  <xml\r\n    test=\"true\" />\r\n</root>", true},
+                }
+            );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {"<root><xml /></root>", "<root>\n  <xml />\n</root>"},
+                    new object[] {"<root><xml test=\"true\" /></root>", "<root>\n  <xml test=\"true\" />\n</root>", false},
+                    new object[] {"<root><xml test=\"true\" /></root>", "<root>\n  <xml\n    test=\"true\" />\n</root>", true},
+                }
+            );
+        }
+
+        return allData.Take(numTests);
+    }
+
+
     [Theory]
-    [InlineData(null, "")]
-    [InlineData("", "")]
-    [InlineData(" ", "")]
-    [InlineData("<xml />", "<xml />")]
-    [InlineData("<root><xml /></root>", "<root>\r\n    <xml />\r\n</root>")]
-    [InlineData("<root><xml test=\"true\" /></root>", "<root>\r\n    <xml test=\"true\" />\r\n</root>", false)]
-    [InlineData("<root><xml test=\"true\" /></root>", "<root>\r\n    <xml\r\n        test=\"true\" />\r\n</root>", true)]
+    [MemberData(nameof(GetDataFormatFourSpaces), parameters: 7)]
     public void FormatFourSpaces(string input, string expectedResult, bool newLineOnAttributes = false)
     {
         ResultInfo<string> actual = XmlHelper.Format(input, Indentation.FourSpaces, newLineOnAttributes, new MockILogger());
         actual.Data.Should().Be(expectedResult);
     }
 
+    public static IEnumerable<object[]> GetDataFormatFourSpaces(int numTests)
+    {
+        var allData = new List<object[]>()
+        {
+            new object[] { null, "" },
+            new object[] { "","" },
+            new object[] { " ",""},
+            new object[] { "<xml />", "<xml />" },
+        };
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                    new List<object[]>
+                    {
+                        new object[] { "<root><xml /></root>", "<root>\r\n    <xml />\r\n</root>" },
+                        new object[] { "<root><xml test=\"true\" /></root>", "<root>\r\n    <xml test=\"true\" />\r\n</root>", false },
+                        new object[] { "<root><xml test=\"true\" /></root>", "<root>\r\n    <xml\r\n        test=\"true\" />\r\n</root>", true },
+                    }
+                );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] { "<root><xml /></root>", "<root>\n    <xml />\n</root>" },
+                    new object[] { "<root><xml test=\"true\" /></root>", "<root>\n    <xml test=\"true\" />\n</root>", false },
+                    new object[] { "<root><xml test=\"true\" /></root>", "<root>\n    <xml\n        test=\"true\" />\n</root>", true },
+                }
+            );
+        }
+
+        return allData.Take(numTests);
+    }
+
     [Theory]
-    [InlineData(null, "")]
-    [InlineData("", "")]
-    [InlineData(" ", "")]
-    [InlineData("<xml />", "<xml />")]
-    [InlineData("<root><xml /></root>", "<root>\r\n\t<xml />\r\n</root>")]
-    [InlineData("<root><xml test=\"true\" /></root>", "<root>\r\n\t<xml test=\"true\" />\r\n</root>", false)]
-    [InlineData("<root><xml test=\"true\" /></root>", "<root>\r\n\t<xml\r\n\t\ttest=\"true\" />\r\n</root>", true)]
+    [MemberData(nameof(GetDataFormatOneTab), parameters: 7)]
     public void FormatOneTab(string input, string expectedResult, bool newLineOnAttributes = false)
     {
         ResultInfo<string> actual = XmlHelper.Format(input, Indentation.OneTab, newLineOnAttributes, new MockILogger());
         actual.Data.Should().Be(expectedResult);
     }
+
+    public static IEnumerable<object[]> GetDataFormatOneTab(int numTests)
+    {
+        var allData = new List<object[]>()
+        {
+            new object[] { null, "" },
+            new object[] { "","" },
+            new object[] { " ",""},
+            new object[] { "<xml />", "<xml />" },
+        };
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {"<root><xml /></root>", "<root>\r\n\t<xml />\r\n</root>"},
+                    new object[] {"<root><xml test=\"true\" /></root>", "<root>\r\n\t<xml test=\"true\" />\r\n</root>", false},
+                    new object[] {"<root><xml test=\"true\" /></root>", "<root>\r\n\t<xml\r\n\t\ttest=\"true\" />\r\n</root>", true},
+                }
+            );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {"<root><xml /></root>", "<root>\n\t<xml />\n</root>"},
+                    new object[] {"<root><xml test=\"true\" /></root>", "<root>\n\t<xml test=\"true\" />\n</root>", false},
+                    new object[] {"<root><xml test=\"true\" /></root>", "<root>\n\t<xml\n\t\ttest=\"true\" />\n</root>", true},
+                }
+            );
+        }
+
+        return allData.Take(numTests);
+    }
+
 
     [Theory]
     [InlineData(null, "")]

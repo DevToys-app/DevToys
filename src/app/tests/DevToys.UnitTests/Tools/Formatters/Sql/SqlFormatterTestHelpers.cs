@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using DevToys.Tools.Helpers.SqlFormatter.Core;
 using DevToys.Tools.Helpers.SqlFormatter;
 using Indentation = DevToys.Tools.Models.Indentation;
@@ -266,8 +267,18 @@ FROM
         AssertFormat(formatter, input, expectedResult);
 
         // formats top-level and newline multi-word reserved words with inconsistent spacing
-        input = "SELECT * FROM foo LEFT \t   \r\n JOIN bar ORDER \r\n BY blah";
-        expectedResult = "SELECT\r\n  *\r\nFROM\r\n  foo\r\n  LEFT \t   \r\n JOIN bar\r\nORDER \r\n BY\r\n  blah";
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            input = "SELECT * FROM foo LEFT \t   \r\n JOIN bar ORDER \r\n BY blah";
+            expectedResult = "SELECT\r\n  *\r\nFROM\r\n  foo\r\n  LEFT \t   \r\n JOIN bar\r\nORDER \r\n BY\r\n  blah";
+        }
+        else
+        {
+            input = "SELECT * FROM foo LEFT \t   \n JOIN bar ORDER \n BY blah";
+            expectedResult = "SELECT\n  *\nFROM\n  foo\n  LEFT \t   \n JOIN bar\nORDER \n BY\n  blah";
+        }
+
         AssertFormat(formatter, input, expectedResult);
 
         // formats long double parenthized queries to multiple lines
@@ -294,14 +305,30 @@ FROM
         AssertFormat(formatter, @"foo IS NULL", @"foo IS NULL");
         AssertFormat(formatter, @"UNIQUE foo", @"UNIQUE foo");
 
-        // formats AND/OR operators
-        AssertFormat(formatter, "foo AND bar", "foo\r\nAND bar");
-        AssertFormat(formatter, "foo OR bar", "foo\r\nOR bar");
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            // formats AND/OR operators
+            AssertFormat(formatter, "foo AND bar", "foo\r\nAND bar");
+            AssertFormat(formatter, "foo OR bar", "foo\r\nOR bar");
 
-        // keeps separation between multiple statements
-        AssertFormat(formatter, "foo;bar;", "foo;\r\nbar;");
-        AssertFormat(formatter, "foo\r\n;bar;", "foo;\r\nbar;");
-        AssertFormat(formatter, "foo\n\n\n;bar;\n\n", "foo;\r\nbar;");
+            // keeps separation between multiple statements
+            AssertFormat(formatter, "foo;bar;", "foo;\r\nbar;");
+            AssertFormat(formatter, "foo\r\n;bar;", "foo;\r\nbar;");
+            AssertFormat(formatter, "foo\n\n\n;bar;\n\n", "foo;\r\nbar;");
+        }
+        else
+        {
+            // formats AND/OR operators
+            AssertFormat(formatter, "foo AND bar", "foo\nAND bar");
+            AssertFormat(formatter, "foo OR bar", "foo\nOR bar");
+
+            // keeps separation between multiple statements
+            AssertFormat(formatter, "foo;bar;", "foo;\nbar;");
+            AssertFormat(formatter, "foo\n;bar;", "foo;\nbar;");
+            AssertFormat(formatter, "foo\n\n\n;bar;\n\n", "foo;\nbar;");
+        }
+
+
         input =
 @"SELECT count(*),Column1 FROM Table1;
 SELECT count(*),Column1 FROM Table2;";
@@ -428,8 +455,17 @@ FROM
                 "NATURAL RIGHT OUTER JOIN"
             });
 
+        string input = string.Empty;
         // supports # comments
-        string input = "SELECT a # comment\r\nFROM b # comment";
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            input = "SELECT a # comment\r\nFROM b # comment";
+        }
+        else
+        {
+            input = "SELECT a # comment\nFROM b # comment";
+        }
+
         string expectedResult =
 @"SELECT
   a # comment
@@ -503,7 +539,14 @@ WHERE
         AssertFormat(formatter, input, expectedResult);
 
         // formats tricky line comments
-        input = "SELECT a--comment, here\r\nFROM b--comment";
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            input = "SELECT a--comment, here\r\nFROM b--comment";
+        }
+        else
+        {
+            input = "SELECT a--comment, here\nFROM b--comment";
+        }
 
         expectedResult =
 @"SELECT
@@ -539,7 +582,15 @@ SELECT a --comment
         AssertFormat(formatter, input, expectedResult);
 
         // formats line comments followed by close-paren
-        input = "SELECT ( a --comment\r\n )";
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            input = "SELECT ( a --comment\r\n )";
+        }
+        else
+        {
+            input = "SELECT ( a --comment\n )";
+        }
 
         expectedResult =
 @"SELECT
@@ -548,7 +599,15 @@ SELECT a --comment
         AssertFormat(formatter, input, expectedResult);
 
         // formats line comments followed by open-paren
-        input = "SELECT a --comment\r\n()";
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            input = "SELECT a --comment\r\n()";
+        }
+        else
+        {
+            input = "SELECT a --comment\n()";
+        }
+
 
         expectedResult =
 @"SELECT
@@ -557,8 +616,19 @@ SELECT a --comment
         AssertFormat(formatter, input, expectedResult);
 
         // recognizes line-comments with Windows line-endings (converts them to UNIX)
-        input = "SELECT * FROM\r\n-- line comment 1\r\nMyTable -- line comment 2\r\n";
-        expectedResult = "SELECT\r\n  *\r\nFROM\r\n  -- line comment 1\r\n  MyTable -- line comment 2";
+
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            input = "SELECT * FROM\r\n-- line comment 1\r\nMyTable -- line comment 2\r\n";
+            expectedResult = "SELECT\r\n  *\r\nFROM\r\n  -- line comment 1\r\n  MyTable -- line comment 2";
+        }
+        else
+        {
+            input = "SELECT * FROM\n-- line comment 1\nMyTable -- line comment 2\n";
+            expectedResult = "SELECT\n  *\nFROM\n  -- line comment 1\n  MyTable -- line comment 2";
+        }
+
         AssertFormat(formatter, input, expectedResult);
 
         // formats query that ends with open comment
@@ -873,7 +943,15 @@ MODIFY
             expectedResult = input;
             AssertFormat(formatter, input, expectedResult);
 
-            input = "$$foo \r\n bar$$";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                input = "$$foo \r\n bar$$";
+            }
+            else
+            {
+                input = "$$foo \n bar$$";
+            }
+
             expectedResult = input;
             AssertFormat(formatter, input, expectedResult);
         }

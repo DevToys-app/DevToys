@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Helpers.SqlFormatter.Languages;
+﻿using System.Runtime.InteropServices;
+using DevToys.Tools.Helpers.SqlFormatter.Languages;
 
 namespace DevToys.UnitTests.Tools.Formatters.Sql;
 
@@ -53,7 +54,17 @@ VALUES
 
         // recognizes @variables
         input = "SELECT @variable;";
-        expectedResult = "SELECT\r\n  @variable;";
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            expectedResult = "SELECT\r\n  @variable;";
+        }
+        else
+        {
+            expectedResult = "SELECT\n  @variable;";
+        }
+
+
         SqlFormatterTestHelpers.AssertFormat(formatter, input, expectedResult);
 
         // formats SELECT query with CROSS JOIN
@@ -121,7 +132,15 @@ WINDOW
 
         // formats window function and end as inline
         input = "SELECT window(time, \"1 hour\").start AS window_start, window(time, \"1 hour\").end AS window_end FROM tbl;";
-        expectedResult = "SELECT\r\n  window(time, \"1 hour\").start AS window_start,\r\n  window(time, \"1 hour\").end AS window_end\r\nFROM\r\n  tbl;";
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            expectedResult = "SELECT\r\n  window(time, \"1 hour\").start AS window_start,\r\n  window(time, \"1 hour\").end AS window_end\r\nFROM\r\n  tbl;";
+        }
+        else
+        {
+            expectedResult = "SELECT\n  window(time, \"1 hour\").start AS window_start,\n  window(time, \"1 hour\").end AS window_end\nFROM\n  tbl;";
+        }
+
         SqlFormatterTestHelpers.AssertFormat(formatter, input, expectedResult);
     }
 
@@ -290,7 +309,15 @@ FETCH FIRST
         SqlFormatterTestHelpers.AssertFormat(formatter, input, expectedResult);
 
         // formats only -- as a line comment
-        input = "SELECT col FROM\r\n-- This is a comment\r\nMyTable;\r\n";
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            input = "SELECT col FROM\r\n-- This is a comment\r\nMyTable;\r\n";
+        }
+        else
+        {
+            input = "SELECT col FROM\n-- This is a comment\nMyTable;\n";
+        }
+
         expectedResult =
 @"SELECT
   col
@@ -300,7 +327,15 @@ FROM
         SqlFormatterTestHelpers.AssertFormat(formatter, input, expectedResult);
 
         // recognizes _, $, #, . and @ as part of identifiers
-        input = "SELECT my_col$1#, col.2@ FROM tbl\r\n";
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            input = "SELECT my_col$1#, col.2@ FROM tbl\r\n";
+        }
+        else
+        {
+            input = "SELECT my_col$1#, col.2@ FROM tbl\n";
+        }
+
         expectedResult =
 @"SELECT
   my_col$1#,
@@ -600,7 +635,15 @@ SET
 
         // recognizes $variables
         input = "SELECT $variable;";
-        expectedResult = "SELECT\r\n  $variable;";
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            expectedResult = "SELECT\r\n  $variable;";
+        }
+        else
+        {
+            expectedResult = "SELECT\n  $variable;";
+        }
+
         SqlFormatterTestHelpers.AssertFormat(formatter, input, expectedResult);
     }
 

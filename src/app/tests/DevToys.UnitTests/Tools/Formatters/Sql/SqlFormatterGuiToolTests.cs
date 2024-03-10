@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Tools.Tools.Formatters.Sql;
@@ -78,6 +79,15 @@ FETCH FIRST
         indentationOptions.Select(2); // Select OneTab
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("SELECT\r\n\t*\r\nFETCH FIRST\r\n\t2 ROWS ONLY;");
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            _outputTextArea.Text.Should().Be("SELECT\r\n\t*\r\nFETCH FIRST\r\n\t2 ROWS ONLY;");
+        }
+        else
+        {
+            _outputTextArea.Text.Should().Be("SELECT\n\t*\nFETCH FIRST\n\t2 ROWS ONLY;");
+        }
+
+
     }
 }

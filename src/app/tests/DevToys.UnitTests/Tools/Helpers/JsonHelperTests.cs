@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
@@ -24,42 +25,127 @@ public class JsonHelperTests
     }
 
     [Theory]
-    [InlineData(null, "")]
-    [InlineData("", "")]
-    [InlineData(" ", "")]
-    [InlineData("   {  }  ", "{}")]
-    [InlineData("   [  ]  ", "[]")]
-    [InlineData("   { \"foo\": 123 }  ", "{\r\n  \"foo\": 123\r\n}")]
+    [MemberData(nameof(GetDataFormatTwoSpaces), parameters: 6)]
     public async Task FormatTwoSpaces(string input, string expectedResult)
     {
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.TwoSpaces, false, new MockILogger(), CancellationToken.None);
         result.Data.Should().Be(expectedResult);
     }
 
+
+    public static IEnumerable<object[]> GetDataFormatTwoSpaces(int numTests)
+    {
+        var allData = new List<object[]>()
+        {
+            new object[] { null, "" },
+            new object[] { "", "" },
+            new object[] { " ", "" },
+            new object[] { "   {  }  ", "{}" },
+            new object[] { "   [  ]  ", "[]" },
+        };
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] { "   { \"foo\": 123 }  ", "{\r\n  \"foo\": 123\r\n}" },
+                }
+            );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] { "   { \"foo\": 123 }  ", "{\n  \"foo\": 123\n}" },
+                }
+            );
+        }
+
+        return allData.Take(numTests);
+    }
+
     [Theory]
-    [InlineData(null, "")]
-    [InlineData("", "")]
-    [InlineData(" ", "")]
-    [InlineData("   {  }  ", "{}")]
-    [InlineData("   [  ]  ", "[]")]
-    [InlineData("   { \"foo\": 123 }  ", "{\r\n    \"foo\": 123\r\n}")]
+    [MemberData(nameof(GetDataFormatFourSpaces), parameters: 6)]
     public async Task FormatFourSpaces(string input, string expectedResult)
     {
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.FourSpaces, false, new MockILogger(), CancellationToken.None);
         result.Data.Should().Be(expectedResult);
     }
 
+    public static IEnumerable<object[]> GetDataFormatFourSpaces(int numTests)
+    {
+        var allData = new List<object[]>()
+        {
+            new object[] { null, "" },
+            new object[] { "", "" },
+            new object[] { " ", "" },
+            new object[] { "   {  }  ", "{}" },
+            new object[] { "   [  ]  ", "[]" },
+        };
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {"   { \"foo\": 123 }  ", "{\r\n    \"foo\": 123\r\n}" },
+                }
+            );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] { "   { \"foo\": 123 }  ", "{\n    \"foo\": 123\n}" },
+                }
+            );
+        }
+
+        return allData.Take(numTests);
+    }
+
     [Theory]
-    [InlineData(null, "")]
-    [InlineData("", "")]
-    [InlineData(" ", "")]
-    [InlineData("   {  }  ", "{}")]
-    [InlineData("   [  ]  ", "[]")]
-    [InlineData("   { \"foo\": 123 }  ", "{\r\n\t\"foo\": 123\r\n}")]
+    [MemberData(nameof(GetDataFormatOneTab), parameters: 6)]
     public async Task FormatOneTab(string input, string expectedResult)
     {
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.OneTab, false, new MockILogger(), CancellationToken.None);
         result.Data.Should().Be(expectedResult);
+    }
+
+    public static IEnumerable<object[]> GetDataFormatOneTab(int numTests)
+    {
+        var allData = new List<object[]>()
+        {
+            new object[] { null, "" },
+            new object[] { "", "" },
+            new object[] { " ", "" },
+            new object[] { "   {  }  ", "{}" },
+            new object[] { "   [  ]  ", "[]" },
+        };
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] { "   { \"foo\": 123 }  ", "{\r\n\t\"foo\": 123\r\n}" },
+                }
+            );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] { "   { \"foo\": 123 }  ", "{\n\t\"foo\": 123\n}" },
+                }
+            );
+        }
+
+        return allData.Take(numTests);
     }
 
     [Theory]
@@ -144,8 +230,7 @@ public class JsonHelperTests
     }
 
     [Theory]
-    [InlineData("   - key: value  ", "[\r\n  {\r\n    \"key\": \"value\"\r\n  }\r\n]")]
-    [InlineData("   - key: value\r\n     key2: 1", "[\r\n  {\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }\r\n]")]
+    [MemberData(nameof(GetDataConvertFromYamlWithTwoSpaces), parameters: 2)]
     public void ConvertFromYamlWithTwoSpaces(string input, string expectedResult)
     {
         ResultInfo<string> result = JsonHelper.ConvertFromYaml(
@@ -156,9 +241,36 @@ public class JsonHelperTests
         result.Data.Should().Be(expectedResult);
     }
 
+    public static IEnumerable<object[]> GetDataConvertFromYamlWithTwoSpaces(int numTests)
+    {
+        var allData = new List<object[]>();
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {"   - key: value  ", "[\r\n  {\r\n    \"key\": \"value\"\r\n  }\r\n]"},
+                    new object[] {"   - key: value\r\n     key2: 1", "[\r\n  {\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }\r\n]"},
+                }
+            );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {"   - key: value  ", "[\n  {\n    \"key\": \"value\"\n  }\n]"},
+                    new object[] {"   - key: value\r\n     key2: 1", "[\n  {\n    \"key\": \"value\",\n    \"key2\": 1\n  }\n]"},
+                }
+            );
+        }
+
+        return allData.Take(numTests);
+    }
+
     [Theory]
-    [InlineData("   - key: value  ", "[\r\n    {\r\n        \"key\": \"value\"\r\n    }\r\n]")]
-    [InlineData("   - key: value\r\n     key2: 1", "[\r\n    {\r\n        \"key\": \"value\",\r\n        \"key2\": 1\r\n    }\r\n]")]
+    [MemberData(nameof(GetDataConvertFromYamlWithFourSpaces), parameters: 2)]
     public void ConvertFromYamlWithFourSpaces(string input, string expectedResult)
     {
         ResultInfo<string> result = JsonHelper.ConvertFromYaml(
@@ -169,12 +281,67 @@ public class JsonHelperTests
         result.Data.Should().Be(expectedResult);
     }
 
+    public static IEnumerable<object[]> GetDataConvertFromYamlWithFourSpaces(int numTests)
+    {
+        var allData = new List<object[]>();
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {"   - key: value  ", "[\r\n    {\r\n        \"key\": \"value\"\r\n    }\r\n]"},
+                    new object[] {"   - key: value\r\n     key2: 1", "[\r\n    {\r\n        \"key\": \"value\",\r\n        \"key2\": 1\r\n    }\r\n]"},
+                }
+            );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {"   - key: value  ", "[\n    {\n        \"key\": \"value\"\n    }\n]"},
+                    new object[] {"   - key: value\n     key2: 1", "[\n    {\n        \"key\": \"value\",\n        \"key2\": 1\n    }\n]"},
+                }
+            );
+        }
+
+        return allData.Take(numTests);
+    }
+
     [Theory]
-    [InlineData(null, null, "")]
-    [InlineData("{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 42, \"array\": []}]}", "array.[0].b", "[\r\n  42\r\n]")]
+    [MemberData(nameof(GetDataJsonPathTests), parameters: 2)]
     public async Task JsonPathTests(string json, string jsonPath, string expectedResult)
     {
         (await JsonHelper.TestJsonPathAsync(json, jsonPath, new MockILogger(), CancellationToken.None))
             .Data.Should().Be(expectedResult);
+    }
+
+    public static IEnumerable<object[]> GetDataJsonPathTests(int numTests)
+    {
+        var allData = new List<object[]>();
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {null, null, ""},
+                    new object[] {"{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 42, \"array\": []}]}", "array.[0].b", "[\r\n  42\r\n]"},
+                }
+            );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {null, null, ""},
+                    new object[] {"{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 42, \"array\": []}]}", "array.[0].b", "[\n  42\n]"},
+                }
+            );
+        }
+
+        return allData.Take(numTests);
     }
 }

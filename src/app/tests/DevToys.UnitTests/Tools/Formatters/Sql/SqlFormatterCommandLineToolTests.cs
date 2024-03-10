@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using DevToys.CLI;
 using DevToys.Tools.Helpers.SqlFormatter;
@@ -83,8 +84,7 @@ VALUES
     }
 
     [Theory(DisplayName = "Format sql with valid standard sql should output valid sql")]
-    [InlineData(SqlLanguage.Sql, "SELECT * FETCH FIRST 2 ROWS ONLY;", "SELECT\r\n\t*\r\nFETCH FIRST\r\n\t2 ROWS ONLY;")]
-    [InlineData(SqlLanguage.Db2, "SELECT col1 FROM tbl ORDER BY col2 DESC FETCH FIRST 20 ROWS ONLY;", "SELECT\r\n\tcol1\r\nFROM\r\n\ttbl\r\nORDER BY\r\n\tcol2 DESC\r\nFETCH FIRST\r\n\t20 ROWS ONLY;")]
+    [MemberData(nameof(GetDataFormatSqlWithValidSqlAndTabShouldOutputValidSql), parameters: 2)]
     public async Task FormatSqlWithValidSqlAndTabShouldOutputValidSql(SqlLanguage language, string input, string expectedResult)
     {
         _tool.Input = input;
@@ -95,5 +95,33 @@ VALUES
         result.Should().Be(0);
         string consoleOutput = _consoleWriter.ToString().Trim();
         consoleOutput.Should().Be(expectedResult);
+    }
+
+    public static IEnumerable<object[]> GetDataFormatSqlWithValidSqlAndTabShouldOutputValidSql(int numTests)
+    {
+        var allData = new List<object[]>();
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {SqlLanguage.Sql, "SELECT * FETCH FIRST 2 ROWS ONLY;", "SELECT\r\n\t*\r\nFETCH FIRST\r\n\t2 ROWS ONLY;"},
+                    new object[] {SqlLanguage.Db2, "SELECT col1 FROM tbl ORDER BY col2 DESC FETCH FIRST 20 ROWS ONLY;", "SELECT\r\n\tcol1\r\nFROM\r\n\ttbl\r\nORDER BY\r\n\tcol2 DESC\r\nFETCH FIRST\r\n\t20 ROWS ONLY;"},
+                }
+            );
+        }
+        else
+        {
+            allData.AddRange(
+                new List<object[]>
+                {
+                    new object[] {SqlLanguage.Sql, "SELECT * FETCH FIRST 2 ROWS ONLY;", "SELECT\n\t*\nFETCH FIRST\n\t2 ROWS ONLY;"},
+                    new object[] {SqlLanguage.Db2, "SELECT col1 FROM tbl ORDER BY col2 DESC FETCH FIRST 20 ROWS ONLY;", "SELECT\n\tcol1\nFROM\n\ttbl\nORDER BY\n\tcol2 DESC\nFETCH FIRST\n\t20 ROWS ONLY;"},
+                }
+            );
+        }
+
+        return allData.Take(numTests);
     }
 }
