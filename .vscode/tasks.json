@@ -66,6 +66,24 @@
             },
             // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "Build DevToys Linux",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "src/DevToys-Linux.sln",
+                "-c:${input:configuration}",
+                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": ["$msCompile"]
         }
     ]
 }

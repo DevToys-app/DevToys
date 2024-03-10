@@ -2,6 +2,8 @@
 @import 'windows/light';
 @import 'macos/dark';
 @import 'macos/light';
+@import 'linux/dark';
+@import 'linux/light';
 
 * {
     /* Font Families */
@@ -55,6 +57,14 @@ div[data-theme='macos-dark-theme'] {
 
 div[data-theme='macos-light-theme'] {
     @include macos-light;
+}
+
+div[data-theme='linux-dark-theme'] {
+    @include linux-dark;
+}
+
+div[data-theme='linux-light-theme'] {
+    @include linux-light;
 }
 
 div {
