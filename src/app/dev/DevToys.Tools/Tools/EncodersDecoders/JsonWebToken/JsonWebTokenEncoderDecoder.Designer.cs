@@ -108,9 +108,9 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         /// <summary>
         ///   Looks up a localized string similar to Unknown token algorithm.
         /// </summary>
-        internal static string AlgorithmInvalid {
+        internal static string AlgorithmInvalidEncodeTokenHasDefaultTimeTitle {
             get {
-                return ResourceManager.GetString("AlgorithmInvalid", resourceCulture);
+                return ResourceManager.GetString("AlgorithmInvalidEncodeTokenHasDefaultTimeTitle", resourceCulture);
             }
         }
         
@@ -394,6 +394,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Token has default time.
+        /// </summary>
+        internal static string EncodeTokenHasDefaultTimeTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenHasDefaultTimeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Token has expiration.
         /// </summary>
         internal static string EncodeTokenHasExpirationTitle {
@@ -448,9 +457,7 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The &quot;groups&quot; claim provides object IDs that represent the group memberships of the subject. The groupMembershipClaims property of the application manifest configures the groups claim on a per-application basis. A value of null excludes all groups, a value of SecurityGroup includes only Active Directory Security Group memberships, and a value of All includes both Security Groups and Microsoft 365 Distribution Lists.
-        ///
-        ///See the hasgroups claim for details on using the groups claim with the implicit grant. For [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to The &quot;groups&quot; claim provides object IDs that represent the group memberships of the subject. The groupMembershipClaims property of the application manifest configures the groups claim on a per-application basis. A value of null excludes all groups, a value of SecurityGroup includes only Active Directory Security Group memberships, and a value of All includes both Security Groups and Microsoft 365 Distribution Lists.See the hasgroups claim for details on using the groups claim with the implicit grant. For oth [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string groups {
             get {
@@ -459,11 +466,7 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The &quot;groups:src1&quot; claim includes a link to the full groups list for the user when token requests are too large for the token. For JWTs as a distributed claim, for SAML as a new claim in place of the groups claim.
-        ///
-        ///Example JWT Value:
-        ///&quot;groups&quot;:&quot;src1&quot;
-        ///&quot;_claim_sources: &quot;src1&quot; : { &quot;endpoint&quot; : &quot;https://graph.microsoft.com/v1.0/users/{userID}/getMemberObjects&quot; }.
+        ///   Looks up a localized string similar to The &quot;groups:src1&quot; claim includes a link to the full groups list for the user when token requests are too large for the token. For JWTs as a distributed claim, for SAML as a new claim in place of the groups claim.Example JWT Value:&quot;groups&quot;:&quot;src1&quot;&quot;_claim_sources: &quot;src1&quot; : { &quot;endpoint&quot; : &quot;https://graph.microsoft.com/v1.0/users/{userID}/getMemberObjects&quot; }.
         /// </summary>
         internal static string groups_src1 {
             get {
@@ -486,15 +489,6 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         internal static string HeaderInputTitle {
             get {
                 return ResourceManager.GetString("HeaderInputTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to process the token header.
-        /// </summary>
-        internal static string HeaderInvalid {
-            get {
-                return ResourceManager.GetString("HeaderInvalid", resourceCulture);
             }
         }
         
@@ -522,6 +516,51 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         internal static string InvalidExpiration {
             get {
                 return ResourceManager.GetString("InvalidExpiration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to process the token header.
+        /// </summary>
+        internal static string InvalidHeader {
+            get {
+                return ResourceManager.GetString("InvalidHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to process the token payload.
+        /// </summary>
+        internal static string InvalidPayload {
+            get {
+                return ResourceManager.GetString("InvalidPayload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private key is either null or empty.
+        /// </summary>
+        internal static string InvalidPrivateKey {
+            get {
+                return ResourceManager.GetString("InvalidPrivateKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Public key is either null or empty.
+        /// </summary>
+        internal static string InvalidPublicKey {
+            get {
+                return ResourceManager.GetString("InvalidPublicKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to process the token signature.
+        /// </summary>
+        internal static string InvalidSignature {
+            get {
+                return ResourceManager.GetString("InvalidSignature", resourceCulture);
             }
         }
         
@@ -607,15 +646,6 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to process the token payload.
-        /// </summary>
-        internal static string PayloadInvalid {
-            get {
-                return ResourceManager.GetString("PayloadInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The &quot;preferred_username&quot; claim indicate the primary username that represents the user. The value could be an email address, phone number, or a generic username without a specified format. Use the value for username hints and in human-readable UI as a username. To receive this claim, use the profile scope..
         /// </summary>
         internal static string preferred_username {
@@ -625,11 +655,11 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Private key is either null or empty.
+        ///   Looks up a localized string similar to Private Key.
         /// </summary>
-        internal static string PrivateKeyInvalid {
+        internal static string PrivateKeyInputTitle {
             get {
-                return ResourceManager.GetString("PrivateKeyInvalid", resourceCulture);
+                return ResourceManager.GetString("PrivateKeyInputTitle", resourceCulture);
             }
         }
         
@@ -648,15 +678,6 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         internal static string PublicKeyInputTitle {
             get {
                 return ResourceManager.GetString("PublicKeyInputTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Public key is either null or empty.
-        /// </summary>
-        internal static string PublicKeyInvalid {
-            get {
-                return ResourceManager.GetString("PublicKeyInvalid", resourceCulture);
             }
         }
         
@@ -711,15 +732,6 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         internal static string SignatureInputTitle {
             get {
                 return ResourceManager.GetString("SignatureInputTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to process the token signature.
-        /// </summary>
-        internal static string SignatureInvalid {
-            get {
-                return ResourceManager.GetString("SignatureInvalid", resourceCulture);
             }
         }
         
@@ -819,6 +831,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         internal static string ValidIssuersEmptyError {
             get {
                 return ResourceManager.GetString("ValidIssuersEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token Validated.
+        /// </summary>
+        internal static string ValidToken {
+            get {
+                return ResourceManager.GetString("ValidToken", resourceCulture);
             }
         }
         

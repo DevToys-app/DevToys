@@ -1,7 +1,4 @@
-﻿using DevToys.Tools.Models;
-using YamlDotNet.Core.Tokens;
-
-namespace DevToys.Tools.Tools.EncodersDecoders.Jwt;
+﻿namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
 
 internal enum JsonWebTokenGridRows
 {

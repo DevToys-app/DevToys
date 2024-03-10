@@ -27,4 +27,13 @@ internal class TokenParameters
     public HashSet<string> Issuers { get; set; } = new HashSet<string>();
 
     public HashSet<string> Audiences { get; set; } = new HashSet<string>();
+
+    public void DefineExpirationDate(DateTimeOffset dateTimeOffset)
+    {
+        ExpirationYear = dateTimeOffset.Year;
+        ExpirationMonth = dateTimeOffset.Month;
+        ExpirationDay = dateTimeOffset.Day;
+        ExpirationHour = dateTimeOffset.Hour;
+        ExpirationMinute = dateTimeOffset.Minute;
+    }
 }

@@ -1,15 +1,13 @@
 ﻿using DevToys.Tools.Models;
-using DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
 using Microsoft.Extensions.Logging;
-using YamlDotNet.Core.Tokens;
 
-namespace DevToys.Tools.Tools.EncodersDecoders.Jwt;
+namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
 
 [Export(typeof(IGuiTool))]
 [Name("JsonWebTokenEncoderDecoder")]
 [ToolDisplayInformation(
     IconFontName = "DevToys-Tools-Icons",
-    IconGlyph = '\ue78d',
+    IconGlyph = '\u0110',
     GroupName = PredefinedCommonToolGroupNames.EncodersDecoders,
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.EncodersDecoders.JsonWebToken.JsonWebTokenEncoderDecoder",
@@ -29,8 +27,8 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
 
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
-    private readonly JsonWebTokenDecoderGuiTool _decoderGuiTool;
-    private readonly JsonWebTokenEncoderGuiTool _encoderGuiTool;
+    internal readonly JsonWebTokenDecoderGuiTool DecoderGuiTool;
+    internal readonly JsonWebTokenEncoderGuiTool EncoderGuiTool;
 
     private readonly IUISwitch _conversionModeSwitch = Switch("jwt-token-conversion-mode-switch");
 
@@ -41,14 +39,12 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
     {
         _logger = this.Log();
         _settingsProvider = settingsProvider;
-        _decoderGuiTool = new(_settingsProvider);
-        _encoderGuiTool = new(_settingsProvider);
+        DecoderGuiTool = new(_settingsProvider);
+        EncoderGuiTool = new(_settingsProvider);
 
-        JwtMode value = _settingsProvider.GetSetting(JsonWebTokenEncoderDecoderGuiTool.toolModeSetting);
+        JwtMode value = _settingsProvider.GetSetting(toolModeSetting);
         if (value is JwtMode.Encode)
-        {
             _conversionModeSwitch.On();
-        }
         _conversionModeSwitch.Off();
         LoadChildView();
     }
@@ -96,8 +92,8 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
                     Stack()
                     .Vertical()
                     .WithChildren(
-                        _decoderGuiTool.ViewStack(),
-                        _encoderGuiTool.ViewStack()
+                        DecoderGuiTool.ViewStack,
+                        EncoderGuiTool.ViewStack
                     )
                 )
             )
@@ -115,7 +111,7 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
 
     private void OnConversionModeChanged(bool toolMode)
     {
-        _settingsProvider.SetSetting(JsonWebTokenEncoderDecoderGuiTool.toolModeSetting, toolMode ? JwtMode.Encode : JwtMode.Decode);
+        _settingsProvider.SetSetting(toolModeSetting, toolMode ? JwtMode.Encode : JwtMode.Decode);
         LoadChildView();
     }
 
@@ -144,16 +140,16 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
 
     private void LoadChildView()
     {
-        switch (_settingsProvider.GetSetting(JsonWebTokenEncoderDecoderGuiTool.toolModeSetting))
+        switch (_settingsProvider.GetSetting(toolModeSetting))
         {
             case JwtMode.Encode:
-                _decoderGuiTool.Hide();
-                _encoderGuiTool.Show();
+                DecoderGuiTool.Hide();
+                EncoderGuiTool.Show();
                 break;
 
             case JwtMode.Decode:
-                _encoderGuiTool.Hide();
-                _decoderGuiTool.Show();
+                EncoderGuiTool.Hide();
+                DecoderGuiTool.Show();
                 break;
 
             default:

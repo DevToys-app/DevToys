@@ -64,7 +64,7 @@ internal static partial class JsonWebTokenDecoderHelper
                 cancellationToken);
             if (!headerResult.HasSucceeded)
             {
-                return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.HeaderInvalid, ResultInfoSeverity.Error);
+                return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.InvalidHeader, ResultInfoSeverity.Error);
             }
             tokenResult.Header = headerResult.Data;
 
@@ -81,7 +81,7 @@ internal static partial class JsonWebTokenDecoderHelper
                 cancellationToken);
             if (!payloadResult.HasSucceeded)
             {
-                return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.PayloadInvalid, ResultInfoSeverity.Error);
+                return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.InvalidPayload, ResultInfoSeverity.Error);
             }
             tokenResult.Payload = payloadResult.Data;
             tokenResult.PayloadClaims = jsonWebToken.Claims.Select(claim => new JsonWebTokenClaim(claim)).ToList();
@@ -228,7 +228,7 @@ internal static partial class JsonWebTokenDecoderHelper
     {
         if (string.IsNullOrWhiteSpace(signature))
         {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.SignatureInvalid, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidSignature, false);
         }
 
         byte[]? signatureByte;
@@ -286,7 +286,7 @@ internal static partial class JsonWebTokenDecoderHelper
     {
         if (string.IsNullOrWhiteSpace(key))
         {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PublicKeyInvalid, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidPublicKey, false);
         }
 
         var rsa = RSA.Create();
@@ -356,7 +356,7 @@ internal static partial class JsonWebTokenDecoderHelper
     {
         if (string.IsNullOrWhiteSpace(key))
         {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PublicKeyInvalid, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidPublicKey, false);
         }
 
         ECDsa ecd;

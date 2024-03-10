@@ -48,10 +48,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CronParser.resx</DependentUpon>
     </Compile>
-    <Compile Update="Tools\EncodersDecoders\Jwt\JwtEncoderDecoder.Designer.cs">
-      <DependentUpon>JwtEncoderDecoder.resx</DependentUpon>
+    <Compile Update="Tools\EncodersDecoders\JsonWebToken\JsonWebTokenEncoderDecoder.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DependentUpon>JsonWebTokenEncoderDecoder.resx</DependentUpon>
     </Compile>
     <Compile Update="Tools\EncodersDecoders\Certificate\CertificateDecoder.Designer.cs">
       <DesignTime>True</DesignTime>

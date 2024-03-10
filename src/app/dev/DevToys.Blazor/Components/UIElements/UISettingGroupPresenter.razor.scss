@@ -3,4 +3,14 @@
         background-color: var(--ui-setting-group-presenter-inner-ui-setting-background-color);
         border-color: var(--ui-setting-group-presenter-inner-ui-setting-border-color);
     }
+
+    .card {
+        &.expander-card {
+            .card-control {
+                &.child-of-expander {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
 }

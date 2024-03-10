@@ -75,12 +75,12 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
             defaultValue: false);
 
     private bool _showPayloadClaim;
-    private JsonWebTokenAlgorithm? _currentAlgorithm;
+    private JsonWebTokenAlgorithm _currentAlgorithm = JsonWebTokenAlgorithm.HS256;
 
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
 
-    private readonly IUIInfoBar _infoBar = InfoBar();
+    private readonly IUIInfoBar _infoBar = InfoBar("jwt-decode-info-bar");
     private readonly IUIStack _viewStack = Stack("jwt-decode-view-stack");
     private readonly IUIStack _decodeSettingsStack = Stack("jwt-decode-settings-stack");
 
@@ -97,12 +97,12 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     private readonly IUISingleLineTextInput _validateTokenAudiencesInput = SingleLineTextInput("jwt-decode-validate-token-audiences-input");
 
     private readonly IUIMultiLineTextInput _tokenInput = MultilineTextInput("jwt-decode-token-input");
+    private readonly IUIMultiLineTextInput _headerInput = MultilineTextInput("jwt-decode-header-input", "json");
+    private readonly IUIMultiLineTextInput _payloadInput = MultilineTextInput("jwt-decode-payload-input", "json");
     private readonly IUIMultiLineTextInput _signatureInput = MultilineTextInput("jwt-decode-signature-input");
     private readonly IUIMultiLineTextInput _publicKeyInput = MultilineTextInput("jwt-decode-public-key-input");
-    private readonly IUIMultiLineTextInput _headerInput = MultilineTextInput("jwt-decode-header-input", "json");
 
     private readonly IUIDataGrid _payloadClaimsDataGrid = DataGrid("jwt-decode-payload-claims-data-grid");
-    private readonly IUIMultiLineTextInput _payloadInput = MultilineTextInput("jwt-decode-payload-input", "json");
 
     private static readonly List<string> dateFields = new() { "exp", "nbf", "iat", "auth_time", "updated_at" };
 
@@ -120,7 +120,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     internal Task? WorkTask { get; private set; }
 
-    public IUIStack ViewStack()
+    public IUIStack ViewStack
         => _viewStack
         .Vertical()
         .WithChildren(
@@ -263,7 +263,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     private void OnValidateTokenChanged(bool validateToken)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenSetting, validateToken);
+        _settingsProvider.SetSetting(validateTokenSetting, validateToken);
         ConfigureUI();
         GetTokenAlgorithm();
         StartTokenDecode();
@@ -273,19 +273,19 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     private void OnValidateTokenIssuerSigningKey(bool validateTokenIssuerSigningKey)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuerSigningKeySetting, validateTokenIssuerSigningKey);
+        _settingsProvider.SetSetting(validateTokenIssuerSigningKeySetting, validateTokenIssuerSigningKey);
         StartTokenDecode();
     }
 
     private void OnValidateTokenIssuer(bool validateTokenIssuer)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuerSetting, validateTokenIssuer);
+        _settingsProvider.SetSetting(validateTokenIssuerSetting, validateTokenIssuer);
         StartTokenDecode();
     }
 
     private ValueTask OnTokenIssuerInputChanged(string issuer)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.tokenIssuerSetting, issuer);
+        _settingsProvider.SetSetting(tokenIssuerSetting, issuer);
         StartTokenDecode();
         return ValueTask.CompletedTask;
     }
@@ -296,13 +296,13 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     private void OnValidateTokenAudiences(bool validateTokenAudiences)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenAudiencesSetting, validateTokenAudiences);
+        _settingsProvider.SetSetting(validateTokenAudiencesSetting, validateTokenAudiences);
         StartTokenDecode();
     }
 
     private ValueTask OnTokenAudiencesInputChanged(string audiences)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.tokenAudiencesSetting, audiences);
+        _settingsProvider.SetSetting(tokenAudiencesSetting, audiences);
         StartTokenDecode();
         return ValueTask.CompletedTask;
     }
@@ -313,7 +313,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     private void OnValidateTokenLifetime(bool validateTokenLifetime)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenLifetimeSetting, validateTokenLifetime);
+        _settingsProvider.SetSetting(validateTokenLifetimeSetting, validateTokenLifetime);
         StartTokenDecode();
     }
 
@@ -323,7 +323,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     private void OnValidateTokenActors(bool validateTokenActors)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenActorsSetting, validateTokenActors);
+        _settingsProvider.SetSetting(validateTokenActorsSetting, validateTokenActors);
         StartTokenDecode();
     }
 
@@ -391,6 +391,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
             }
         }
 
+        tokenParameters.TokenAlgorithm = _currentAlgorithm;
         if (_currentAlgorithm is JsonWebTokenAlgorithm.HS256 ||
             _currentAlgorithm is JsonWebTokenAlgorithm.HS384 ||
             _currentAlgorithm is JsonWebTokenAlgorithm.HS512)
@@ -428,7 +429,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                     _headerInput.Text(result.Data!.Header!);
                     _payloadInput.Text(result.Data!.Payload!);
                     _infoBar
-                        .Description("Token Validated")
+                        .Description(JsonWebTokenEncoderDecoder.ValidToken)
                         .Success()
                         .Open();
                     BuildClaimsDataGrid(_payloadInput, _payloadClaimsDataGrid, result.Data.PayloadClaims);
@@ -459,7 +460,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     private void ConfigureUI()
     {
-        bool validateToken = _settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenSetting);
+        bool validateToken = _settingsProvider.GetSetting(validateTokenSetting);
         if (validateToken)
         {
             _validateTokenSwitch.On();
@@ -475,21 +476,21 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
             _infoBar.Close();
         }
 
-        ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuerSigningKeySetting), _validateTokenIssuerSigningKeySwitch);
-        ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuerSetting), _validateTokenIssuersSwitch);
-        ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenAudiencesSetting), _validateTokenAudiencesSwitch);
-        ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenLifetimeSetting), _validateLifetimeSwitch);
-        ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenActorsSetting), _validateActorsSwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(validateTokenIssuerSigningKeySetting), _validateTokenIssuerSigningKeySwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(validateTokenIssuerSetting), _validateTokenIssuersSwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(validateTokenAudiencesSetting), _validateTokenAudiencesSwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(validateTokenLifetimeSetting), _validateLifetimeSwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(validateTokenActorsSetting), _validateActorsSwitch);
 
-        _validateTokenIssuersInput.Text(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.tokenIssuerSetting));
-        _validateTokenAudiencesInput.Text(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.tokenAudiencesSetting));
+        _validateTokenIssuersInput.Text(_settingsProvider.GetSetting(tokenIssuerSetting));
+        _validateTokenAudiencesInput.Text(_settingsProvider.GetSetting(tokenAudiencesSetting));
 
         _payloadClaimsDataGrid.Hide();
     }
 
     private void GetTokenAlgorithm()
     {
-        bool validateToken = _settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenSetting);
+        bool validateToken = _settingsProvider.GetSetting(validateTokenSetting);
         if (validateToken && !string.IsNullOrWhiteSpace(_tokenInput.Text))
         {
             ResultInfo<JsonWebTokenAlgorithm?> tokenAlgorithm = JsonWebTokenDecoderHelper.GetTokenAlgorithm(_tokenInput.Text, _logger);
@@ -501,7 +502,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                     .Show();
                 return;
             }
-            _currentAlgorithm = tokenAlgorithm.Data;
+            _currentAlgorithm = tokenAlgorithm.Data.GetValueOrDefault();
             if (tokenAlgorithm.Data is JsonWebTokenAlgorithm.HS256 ||
                 tokenAlgorithm.Data is JsonWebTokenAlgorithm.HS384 ||
                 tokenAlgorithm.Data is JsonWebTokenAlgorithm.HS512)

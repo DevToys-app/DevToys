@@ -64,6 +64,11 @@ internal static partial class JsonWebTokenEncoderHelper
                 }
 
                 tokenDescriptor.Issuer = string.Join(',', tokenParameters.Issuers);
+
+                if (string.IsNullOrWhiteSpace(tokenDescriptor.Issuer))
+                {
+                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError, ResultInfoSeverity.Error);
+                }
             }
 
             if (encodeParameters.HasAudience)
@@ -74,6 +79,10 @@ internal static partial class JsonWebTokenEncoderHelper
                 }
 
                 tokenDescriptor.Audience = string.Join(',', tokenParameters.Audiences);
+                if (string.IsNullOrWhiteSpace(tokenDescriptor.Audience))
+                {
+                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError, ResultInfoSeverity.Error);
+                }
             }
 
             if (encodeParameters.HasExpiration)
@@ -138,7 +147,7 @@ internal static partial class JsonWebTokenEncoderHelper
     /// Generate a Symmetric Security Key using the token signature (base 64 or plain text)
     /// </summary>
     /// <param name="signature">Token signature</param>
-    /// <param name="jwtAlgorithm">
+    /// <param name="jsonWebTokenAlgorithm">
     ///     Supported Algorithm
     ///         HS256, 
     ///         HS384,
@@ -147,11 +156,11 @@ internal static partial class JsonWebTokenEncoderHelper
     /// <exception cref="NotSupportedException"></exception>
     private static ResultInfo<SigningCredentials> GetHmacShaSigningCredentials(
         string? signature,
-        JsonWebTokenAlgorithm jwtAlgorithm)
+        JsonWebTokenAlgorithm jsonWebTokenAlgorithm)
     {
         if (string.IsNullOrWhiteSpace(signature))
         {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.SignatureInvalid, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidSignature, false);
         }
 
         byte[]? signatureByte;
@@ -165,7 +174,7 @@ internal static partial class JsonWebTokenEncoderHelper
         }
 
         SigningCredentials signingCredentials;
-        switch (jwtAlgorithm)
+        switch (jsonWebTokenAlgorithm)
         {
             case JsonWebTokenAlgorithm.HS256:
                 byte[] hs256Key = new HMACSHA256(signatureByte).Key;
@@ -192,7 +201,7 @@ internal static partial class JsonWebTokenEncoderHelper
     /// Build RSA signing credentials using the token private key
     /// </summary>
     /// <param name="key">Token private key</param>
-    /// <param name="jwtAlgorithm">
+    /// <param name="jsonWebTokenAlgorithm">
     ///     Supported Algorithm 
     ///         RS256, 
     ///         RS384,
@@ -205,11 +214,11 @@ internal static partial class JsonWebTokenEncoderHelper
     /// <exception cref="NotSupportedException"></exception>
     private static ResultInfo<SigningCredentials> GetRsaShaSigningCredentials(
         string? key,
-        JsonWebTokenAlgorithm jwtAlgorithm)
+        JsonWebTokenAlgorithm jsonWebTokenAlgorithm)
     {
         if (string.IsNullOrWhiteSpace(key))
         {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PrivateKeyInvalid, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidPrivateKey, false);
         }
 
         var rsa = RSA.Create();
@@ -234,7 +243,7 @@ internal static partial class JsonWebTokenEncoderHelper
         }
 
         SigningCredentials signingCredentials;
-        switch (jwtAlgorithm)
+        switch (jsonWebTokenAlgorithm)
         {
             case JsonWebTokenAlgorithm.RS256:
                 var rs256RsaSecurityKey = new RsaSecurityKey(rsa);
@@ -270,7 +279,7 @@ internal static partial class JsonWebTokenEncoderHelper
     /// Build ECDsa signing credentials using the token private key
     /// </summary>
     /// <param name="key">Token public key</param>
-    /// <param name="jwtAlgorithm">
+    /// <param name="jsonWebTokenAlgorithm">
     ///     Supported Algorithm 
     ///         ES256, 
     ///         ES384,
@@ -280,11 +289,11 @@ internal static partial class JsonWebTokenEncoderHelper
     /// <exception cref="NotSupportedException"></exception>
     private static ResultInfo<SigningCredentials> GetECDsaSigningCredentials(
         string? key,
-        JsonWebTokenAlgorithm jwtAlgorithm)
+        JsonWebTokenAlgorithm jsonWebTokenAlgorithm)
     {
         if (string.IsNullOrWhiteSpace(key))
         {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PrivateKeyInvalid, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidPrivateKey, false);
         }
 
         ECDsa ecd;
@@ -313,7 +322,7 @@ internal static partial class JsonWebTokenEncoderHelper
         }
 
         SigningCredentials signingCredentials;
-        switch (jwtAlgorithm)
+        switch (jsonWebTokenAlgorithm)
         {
             case JsonWebTokenAlgorithm.ES256:
                 var es256RsaSecurityKey = new ECDsaSecurityKey(ecd);

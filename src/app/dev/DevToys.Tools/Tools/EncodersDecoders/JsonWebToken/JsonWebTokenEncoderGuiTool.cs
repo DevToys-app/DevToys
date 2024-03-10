@@ -1,8 +1,6 @@
-﻿using DevToys.Api;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
+using DevToys.Tools.Helpers.JsonWebToken;
 using DevToys.Tools.Models;
-using DevToys.Tools.Tools.Converters.Date;
-using DevToys.Tools.Tools.EncodersDecoders.Jwt;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
@@ -17,7 +15,6 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
             name: $"{nameof(JsonWebTokenEncoderGuiTool)}.{nameof(tokenAlgorithmSetting)}",
             defaultValue: JsonWebTokenAlgorithm.HS256);
 
-    #region TokenIssuer
     /// <summary>
     /// Define if the token has an issuer or not
     /// </summary>
@@ -33,9 +30,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         = new(
             name: $"{nameof(JsonWebTokenEncoderGuiTool)}.{nameof(tokenIssuerSetting)}",
             defaultValue: string.Empty);
-    #endregion
 
-    #region TokenAudience
     /// <summary>
     /// Define if the token has an audience or not
     /// </summary>
@@ -51,9 +46,15 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         = new(
             name: $"{nameof(JsonWebTokenEncoderGuiTool)}.{nameof(tokenAudienceSetting)}",
             defaultValue: string.Empty);
-    #endregion
 
-    #region TokenExpiration
+    /// <summary>
+    /// Define if the token has an expiration date or not
+    /// </summary>
+    private static readonly SettingDefinition<bool> tokenHasDefaultTimeSetting
+        = new(
+            name: $"{nameof(JsonWebTokenEncoderGuiTool)}.{nameof(tokenHasDefaultTimeSetting)}",
+            defaultValue: false);
+
     /// <summary>
     /// Define if the token has an expiration date or not
     /// </summary>
@@ -70,31 +71,14 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
             name: $"{nameof(JsonWebTokenEncoderGuiTool)}.{nameof(tokenExpirationSettings)}",
             defaultValue: DateTime.UtcNow);
 
-    #endregion
-
-    private bool _ignoreInputTextChange;
-
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
 
-    private readonly IUISettingGroup _encodeTokenSettingGroups = SettingGroup("jwt-encode-validate-token-setting");
-    private readonly IUISetting _encodeTokenAlgorithmSetting = Setting("jwt-encode-token-algorithm-setting");
-
-    #region TokenIssuer
+    private readonly IUIInfoBar _infoBar = InfoBar("jwt-encode-info-bar");
     private readonly IUISwitch _encodeTokenHasIssuerSwitch = Switch("jwt-encode-token-issuer-switch");
-    private readonly IUISettingGroup _encodeTokenIssuerSettingGroups = SettingGroup("jwt-encode-token-issuer-setting-group");
-    private readonly IUISingleLineTextInput _encodeTokenIssuerInput = SingleLineTextInput("jwt-encode-token-issuer-input");
-    #endregion
-
-    #region TokenAudience
     private readonly IUISwitch _encodeTokenHasAudienceSwitch = Switch("jwt-encode-token-audience-switch");
-    private readonly IUISettingGroup _encodeTokenAudienceSettingGroups = SettingGroup("jwt-encode-token-audience-setting-group");
-    private readonly IUISingleLineTextInput _encodeTokenAudienceInput = SingleLineTextInput("jwt-encode-token-audience-input");
-    #endregion
 
-    #region TokenExpiration
     private readonly IUISwitch _encodeTokenHasExpirationSwitch = Switch("jwt-encode-token-expiration-switch");
-    private readonly IUISettingGroup _encodeTokenExpirationSettingGroups = SettingGroup("jwt-encode-token-expiration-setting-group");
     private readonly IUINumberInput _encodeTokenExpirationYearInputNumber = NumberInput("jwt-encode-token-expiration-input-year");
     private readonly IUINumberInput _encodeTokenExpirationMonthInputNumber = NumberInput("jwt-encode-token-expiration-input-month");
     private readonly IUINumberInput _encodeTokenExpirationDayInputNumber = NumberInput("jwt-encode-token-expiration-input-day");
@@ -102,15 +86,17 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
     private readonly IUINumberInput _encodeTokenExpirationMinuteInputNumber = NumberInput("jwt-encode-token-expiration-input-minute");
     private readonly IUINumberInput _encodeTokenExpirationSecondsInputNumber = NumberInput("jwt-encode-token-expiration-input-second");
     private readonly IUINumberInput _encodeTokenExpirationMillisecondsInputNumber = NumberInput("jwt-encode-token-expiration-input-millisecond");
-    #endregion
 
-    #region TokenDefaultTime
     private readonly IUISwitch _encodeTokenDefaultTimeSwitch = Switch("jwt-encode-token-default-time-switch");
-    private readonly IUISettingGroup _encodeTokenDefaultTimeSettingGroups = SettingGroup("jwt-encode-token-default-time-setting-group");
-    #endregion
 
     private readonly IUIStack _viewStack = Stack("jwt-encode-view-stack");
     private readonly IUIStack _encodeSettingsStack = Stack("jwt-encode-settings-stack");
+
+    private readonly IUIMultiLineTextInput _tokenInput = MultilineTextInput("jwt-encode-token-input");
+    private readonly IUIMultiLineTextInput _signatureInput = MultilineTextInput("jwt-encode-signature-input");
+    private readonly IUIMultiLineTextInput _privateKeyInput = MultilineTextInput("jwt-encode-private-key-input");
+    private readonly IUIMultiLineTextInput _headerInput = MultilineTextInput("jwt-encode-header-input", "json");
+    private readonly IUIMultiLineTextInput _payloadInput = MultilineTextInput("jwt-encode-payload-input", "json");
 
     private DisposableSemaphore _semaphore = new();
     private CancellationTokenSource? _cancellationTokenSource;
@@ -120,27 +106,27 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
     {
         _logger = this.Log();
         _settingsProvider = settingsProvider;
-        ConfigureUI();
+        ConfigureUIAsync();
     }
 
     internal Task? WorkTask { get; private set; }
 
-    public IUIStack ViewStack()
+    public IUIStack ViewStack
         => _viewStack
         .Vertical()
         .WithChildren(
-            _encodeTokenSettingGroups
+            SettingGroup("jwt-encode-validate-token-setting")
                 .Icon("FluentSystemIcons", '\uec9e')
                 .Title(JsonWebTokenEncoderDecoder.EncodeTokenSettingsTitle)
                 .Description(JsonWebTokenEncoderDecoder.EncodeTokenSettingsDescription)
                 .WithChildren(
-                    _encodeTokenAlgorithmSetting
+                    Setting("jwt-encode-token-algorithm-setting")
                         .Icon("FluentSystemIcons", '\uF1EE')
                         .Title(JsonWebTokenEncoderDecoder.EncodeTokenAlgorithmTitle)
                         .Handle(
                             _settingsProvider,
                             tokenAlgorithmSetting,
-                            onOptionSelected: OnAlgorithmChanged,
+                            onOptionSelected: async (value) => await OnAlgorithmChangedAsync(value),
                             Item(JsonWebTokenAlgorithm.HS256),
                             Item(JsonWebTokenAlgorithm.HS384),
                             Item(JsonWebTokenAlgorithm.HS512),
@@ -154,7 +140,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                             Item(JsonWebTokenAlgorithm.ES384),
                             Item(JsonWebTokenAlgorithm.ES512)
                         ),
-                    _encodeTokenIssuerSettingGroups
+                    SettingGroup("jwt-encode-token-issuer-setting-group")
                         .Icon("FluentSystemIcons", '\ue30a')
                         .Title(JsonWebTokenEncoderDecoder.EncodeTokenHasIssuerTitle)
                         .InteractiveElement(
@@ -164,11 +150,11 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                                 .OnToggle(OnTokenHasIssuerChanged)
                         )
                         .WithChildren(
-                            _encodeTokenIssuerInput
+                            SingleLineTextInput("jwt-encode-token-issuer-input")
                                 .Title(JsonWebTokenEncoderDecoder.EncodeTokenIssuerInputTitle)
                                 .OnTextChanged(OnTokenIssuerInputChanged)
                         ),
-                    _encodeTokenAudienceSettingGroups
+                    SettingGroup("jwt-encode-token-audience-setting-group")
                         .Icon("FluentSystemIcons", '\ue30a')
                         .Title(JsonWebTokenEncoderDecoder.EncodeTokenHasAudienceTitle)
                         .InteractiveElement(
@@ -178,12 +164,12 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                                 .OnToggle(OnTokenHasAudienceChanged)
                         )
                         .WithChildren(
-                            _encodeTokenAudienceInput
+                            SingleLineTextInput("jwt-encode-token-audience-input")
                                 .Title(JsonWebTokenEncoderDecoder.EncodeTokenAudienceInputTitle)
                                 .OnTextChanged(OnTokenAudienceInputChanged)
                         ),
-                    _encodeTokenExpirationSettingGroups
-                        .Icon("FluentSystemIcons", '\ue30a')
+                    SettingGroup("jwt-encode-token-expiration-setting-group")
+                        .Icon("FluentSystemIcons", '\ue243')
                         .Title(JsonWebTokenEncoderDecoder.EncodeTokenHasExpirationTitle)
                         .InteractiveElement(
                             _encodeTokenHasExpirationSwitch
@@ -297,8 +283,45 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                                         )
                                     )
                                 )
+                        ),
+                    Setting("jwt-encode-token-default-time-setting")
+                        .Icon("FluentSystemIcons", '\ue36e')
+                        .Title(JsonWebTokenEncoderDecoder.EncodeTokenHasAudienceTitle)
+                        .InteractiveElement(
+                            _encodeTokenDefaultTimeSwitch
+                                .OnText(JsonWebTokenEncoderDecoder.Yes)
+                                .OffText(JsonWebTokenEncoderDecoder.No)
+                                .OnToggle(OnTokenHasDefaultTimeChanged)
                         )
+                ),
+            _infoBar
+                .NonClosable(),
+            _tokenInput
+                .Title(JsonWebTokenEncoderDecoder.TokenInputTitle)
+                .ReadOnly(),
+            SplitGrid()
+                .Vertical()
+                .WithLeftPaneChild(
+                    _headerInput
+                        .Title(JsonWebTokenEncoderDecoder.HeaderInputTitle)
+                        .Extendable()
+                        .Language("json")
+                        .OnTextChanged(OnTextInputChanged)
                 )
+                .WithRightPaneChild(
+                    _payloadInput
+                        .Title(JsonWebTokenEncoderDecoder.PayloadInputTitle)
+                        .Extendable()
+                        .Language("json")
+                        .OnTextChanged(OnTextInputChanged)
+                ),
+            _signatureInput
+                .Title(JsonWebTokenEncoderDecoder.SignatureInputTitle)
+                .OnTextChanged(OnTextInputChanged),
+            _privateKeyInput
+                .Title(JsonWebTokenEncoderDecoder.PrivateKeyInputTitle)
+                .OnTextChanged(OnTextInputChanged)
+
         );
 
     public void Show()
@@ -316,8 +339,6 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         _semaphore.Dispose();
     }
 
-    #region TokenIssuer
-
     private void OnTokenHasIssuerChanged(bool tokenHasIssuer)
     {
         _settingsProvider.SetSetting(tokenHasIssuerSetting, tokenHasIssuer);
@@ -330,10 +351,6 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         StartTokenEncode();
         return ValueTask.CompletedTask;
     }
-
-    #endregion
-
-    #region TokenAudience
 
     private void OnTokenHasAudienceChanged(bool tokenHasAudience)
     {
@@ -348,9 +365,11 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         return ValueTask.CompletedTask;
     }
 
-    #endregion
-
-    #region TokenExpiration
+    private void OnTokenHasDefaultTimeChanged(bool tokenHasDefaultTime)
+    {
+        _settingsProvider.SetSetting(tokenHasDefaultTimeSetting, tokenHasDefaultTime);
+        StartTokenEncode();
+    }
 
     private void OnTokenHasExpirationChanged(bool tokenHasExpiration)
     {
@@ -360,11 +379,6 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
 
     private void OnExpirationChanged(string value, DateValueType valueChanged)
     {
-        if (_ignoreInputTextChange)
-        {
-            return;
-        }
-
         DateTimeOffset epochToUse = _settingsProvider.GetSetting(tokenExpirationSettings);
 
         ResultInfo<DateTimeOffset> result = DateHelper.ChangeDateTime(
@@ -377,11 +391,21 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         StartTokenEncode();
     }
 
-    #endregion
-
-    private void OnAlgorithmChanged(JsonWebTokenAlgorithm algorithm)
+    private async Task OnAlgorithmChangedAsync(JsonWebTokenAlgorithm algorithm)
     {
         _settingsProvider.SetSetting(tokenAlgorithmSetting, algorithm);
+        await ConfigureTokenAlgorithmUIAsync(algorithm);
+        StartTokenEncode();
+    }
+
+    private void OnTokenDefaultTimeChanged(bool tokenHasDefaultTime)
+    {
+        _settingsProvider.SetSetting(tokenHasDefaultTimeSetting, tokenHasDefaultTime);
+        StartTokenEncode();
+    }
+
+    private void OnTextInputChanged(string text)
+    {
         StartTokenEncode();
     }
 
@@ -390,19 +414,148 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
+
+
+        if (string.IsNullOrWhiteSpace(_payloadInput.Text))
+        {
+            ClearUI();
+            return;
+        }
+
+        JsonWebTokenAlgorithm tokenAlgorithm = _settingsProvider.GetSetting(tokenAlgorithmSetting);
+        TokenParameters tokenParameters = new()
+        {
+            Payload = _payloadInput.Text,
+            TokenAlgorithm = tokenAlgorithm
+        };
+        EncoderParameters encoderParameters = new()
+        {
+            HasDefaultTime = _settingsProvider.GetSetting(tokenHasDefaultTimeSetting)
+        };
+        bool hasAudience = _settingsProvider.GetSetting(tokenHasAudienceSetting);
+        if (hasAudience)
+        {
+            encoderParameters.HasAudience = hasAudience;
+            tokenParameters.Audiences = _settingsProvider.GetSetting(tokenAudienceSetting).Split(',').ToHashSet();
+        }
+        bool hasIssuer = _settingsProvider.GetSetting(tokenHasIssuerSetting);
+        if (hasIssuer)
+        {
+            encoderParameters.HasIssuer = hasIssuer;
+            tokenParameters.Issuers = _settingsProvider.GetSetting(tokenIssuerSetting).Split(',').ToHashSet();
+        }
+        bool hasExpiration = _settingsProvider.GetSetting(tokenHasAudienceSetting);
+        if (hasExpiration)
+        {
+            DateTimeOffset dateTimeOffset = _settingsProvider.GetSetting(tokenExpirationSettings);
+            encoderParameters.HasExpiration = hasExpiration;
+            tokenParameters.DefineExpirationDate(dateTimeOffset);
+        }
+
+        if (tokenAlgorithm is JsonWebTokenAlgorithm.HS256 ||
+            tokenAlgorithm is JsonWebTokenAlgorithm.HS384 ||
+            tokenAlgorithm is JsonWebTokenAlgorithm.HS512)
+        {
+            tokenParameters.Signature = _signatureInput.Text;
+        }
+        else
+        {
+            tokenParameters.PrivateKey = _privateKeyInput.Text;
+        }
+
+        WorkTask = EncodeTokenAsync(
+            encoderParameters,
+            tokenParameters,
+            _cancellationTokenSource.Token);
     }
 
-    private void ConfigureUI()
+    private async Task EncodeTokenAsync(
+        EncoderParameters encoderParameters,
+        TokenParameters tokenParameters,
+        CancellationToken cancellationToken)
     {
+        using (await _semaphore.WaitAsync(cancellationToken))
+        {
+            ResultInfo<JsonWebTokenResult?, ResultInfoSeverity> result = JsonWebTokenEncoderHelper.GenerateToken(
+                encoderParameters,
+                tokenParameters,
+                _logger);
+
+            switch (result.Severity)
+            {
+                case ResultInfoSeverity.Success:
+                    _infoBar.Close();
+                    _tokenInput.Text(result.Data!.Token!);
+                    break;
+
+                case ResultInfoSeverity.Warning:
+                    _headerInput.Text(result.Data!.Header!);
+                    _payloadInput.Text(result.Data!.Payload!);
+                    _infoBar
+                        .Description(result.ErrorMessage)
+                        .Warning()
+                        .Open();
+                    break;
+
+                case ResultInfoSeverity.Error:
+                    _infoBar
+                        .Description(result.ErrorMessage)
+                        .Error()
+                        .Open();
+                    ClearUI();
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+    }
+
+    private void ClearUI()
+    {
+        _tokenInput.Text(string.Empty);
+    }
+
+    private async Task ConfigureUIAsync()
+    {
+        JsonWebTokenAlgorithm tokenAlgorithm = _settingsProvider.GetSetting(tokenAlgorithmSetting);
+        await ConfigureTokenAlgorithmUIAsync(tokenAlgorithm);
+
         ConfigureSwitch(_settingsProvider.GetSetting(tokenHasIssuerSetting), _encodeTokenHasIssuerSwitch);
         ConfigureSwitch(_settingsProvider.GetSetting(tokenHasAudienceSetting), _encodeTokenHasAudienceSwitch);
         ConfigureSwitch(_settingsProvider.GetSetting(tokenHasExpirationSetting), _encodeTokenHasExpirationSwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(tokenHasDefaultTimeSetting), _encodeTokenDefaultTimeSwitch);
         DateTimeOffset expirationDate = _settingsProvider.GetSetting(tokenExpirationSettings);
         _encodeTokenExpirationYearInputNumber.Value(expirationDate.Year);
         _encodeTokenExpirationMonthInputNumber.Value(expirationDate.Month);
         _encodeTokenExpirationDayInputNumber.Value(expirationDate.Day);
         _encodeTokenExpirationHourInputNumber.Value(expirationDate.Hour);
         _encodeTokenExpirationMinuteInputNumber.Value(expirationDate.Minute);
+    }
+
+    private async Task ConfigureTokenAlgorithmUIAsync(JsonWebTokenAlgorithm tokenAlgorithm)
+    {
+        if (tokenAlgorithm is JsonWebTokenAlgorithm.HS256 ||
+            tokenAlgorithm is JsonWebTokenAlgorithm.HS384 ||
+            tokenAlgorithm is JsonWebTokenAlgorithm.HS512)
+        {
+            _signatureInput.Show();
+            _privateKeyInput.Hide();
+        }
+        else
+        {
+            _signatureInput.Hide();
+            _privateKeyInput.Show();
+        }
+
+        ResultInfo<string> headerContent = await JsonHelper.FormatAsync(
+            @"{""alg"": """ + tokenAlgorithm.ToString() + @""", ""typ"": ""JWT""}",
+            Indentation.TwoSpaces,
+            false,
+            _logger,
+            CancellationToken.None);
+
+        _headerInput.Text(headerContent.Data!);
     }
 
     private static void ConfigureSwitch(bool value, IUISwitch inputSwitch)

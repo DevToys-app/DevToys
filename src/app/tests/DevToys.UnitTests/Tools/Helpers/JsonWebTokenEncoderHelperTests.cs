@@ -60,7 +60,7 @@ public class JsonWebTokenEncoderHelperTests
             tokenParameters,
             new MockILogger());
         result.Severity.Should().Be(ResultInfoSeverity.Error);
-        result.ErrorMessage.Should().Be(JsonWebTokenEncoderDecoder.SignatureInvalid);
+        result.ErrorMessage.Should().Be(JsonWebTokenEncoderDecoder.InvalidSignature);
     }
 
     [Fact(DisplayName = "Encode Json Web Token with Invalid Issuers should return false")]
