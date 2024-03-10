@@ -127,7 +127,8 @@ internal partial class LinuxProgram
         _serviceCollection.AddScoped<DocumentEventService, DocumentEventService>();
         _serviceCollection.AddScoped<PopoverService, PopoverService>();
         _serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
-        _serviceCollection.AddScoped<DialogService, DialogService>();
+        _serviceCollection.AddScoped<GlobalDialogService, GlobalDialogService>();
+        _serviceCollection.AddScoped<UIDialogService, UIDialogService>();
         _serviceCollection.AddScoped<FontService, FontService>();
 
         ServiceProvider serviceProvider = _serviceCollection.BuildServiceProvider();

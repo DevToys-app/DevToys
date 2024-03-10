@@ -1,0 +1,36 @@
+@namespace DevToys.Blazor.Pages.Dialogs
+@inherits MefComponentBase
+
+<Dialog @ref=_dialog
+        Dismissible ="false">
+    <Content>
+        <StackPanel Orientation="UIOrientation.Vertical"
+                    Spacing="16">
+            <StackPanel Orientation="UIOrientation.Vertical">
+                <TextBlock Appearance="@TextBlockAppearance.Title" Text="@DevToys.Localization.Strings.FirstStartDialog.FirstStartDialog.Welcome" />
+                <TextBlock Appearance="@TextBlockAppearance.Body" Text="@DevToys.Localization.Strings.FirstStartDialog.FirstStartDialog.AppDescription" />
+            </StackPanel>
+            <StackPanel Orientation="UIOrientation.Vertical">
+                <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="@DevToys.Localization.Strings.FirstStartDialog.FirstStartDialog.OfflineFirstTitle" />
+                <TextBlock Appearance="@TextBlockAppearance.Body" Text="@DevToys.Localization.Strings.FirstStartDialog.FirstStartDialog.OfflineFirstDescription" />
+            </StackPanel>
+            <StackPanel Orientation="UIOrientation.Vertical">
+                <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="@DevToys.Localization.Strings.FirstStartDialog.FirstStartDialog.TrustButVerifyTitle" />
+                <TextBlock Appearance="@TextBlockAppearance.Body" Text="@DevToys.Localization.Strings.FirstStartDialog.FirstStartDialog.TrustButVerifyDescription" />
+            </StackPanel>
+        </StackPanel>
+    </Content>
+    <Footer>
+        <StackPanel Orientation="UIOrientation.Horizontal"
+                    HorizontalAlignment="UIHorizontalAlignment.Right"
+                    Spacing="16">
+            <CheckBox Text="@DevToys.Localization.Strings.FirstStartDialog.FirstStartDialog.UnderstandAndAgree"
+                      IsCheckedChanged="IsAgreeCheckBoxCheckedChanged"/>
+            <Button @ref=_continueButton
+                    Appearance="@ButtonAppearance.Accent"
+                    @onclick="@OnContinueButtonClick">
+                    @DevToys.Localization.Strings.FirstStartDialog.FirstStartDialog.Continue
+            </Button>
+        </StackPanel>
+    </Footer>
+</Dialog>

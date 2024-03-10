@@ -13,7 +13,7 @@
 
     protected override Task OnInitializedAsync()
     {
-        DialogService.DialogContent = (__builder) =>
+        UIDialogService.DialogContent = (__builder) =>
         {
             @if (ViewModel.ToolView.CurrentOpenedDialog is not null)
             {
@@ -21,7 +21,7 @@
             }
         };
 
-        DialogService.FooterContent = (__builder) =>
+        UIDialogService.FooterContent = (__builder) =>
         {
             @if (ViewModel.ToolView.CurrentOpenedDialog is not null)
             {

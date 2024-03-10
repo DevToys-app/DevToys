@@ -1,4 +1,4 @@
-using DevToys.Api;
+﻿using DevToys.Api;
 using DevToys.Blazor.BuiltInTools;
 using DevToys.Blazor.BuiltInTools.ExtensionsManager;
 using DevToys.Blazor.Core.Languages;
@@ -134,7 +134,8 @@ public class AppDelegate : NSApplicationDelegate
         serviceCollection.AddScoped<DocumentEventService, DocumentEventService>();
         serviceCollection.AddScoped<PopoverService, PopoverService>();
         serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
-        serviceCollection.AddScoped<DialogService, DialogService>();
+        serviceCollection.AddScoped<GlobalDialogService, GlobalDialogService>();
+        serviceCollection.AddScoped<UIDialogService, UIDialogService>();
         serviceCollection.AddScoped<FontService, FontService>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
