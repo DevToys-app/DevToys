@@ -17,6 +17,7 @@ namespace DevToys.Tools.Tools.Converters.Date;
     ShortDisplayTitleResourceName = nameof(DateConverter.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(DateConverter.LongDisplayTitle),
     DescriptionResourceName = nameof(DateConverter.Description),
+    SearchKeywordsResourceName = nameof(DateConverter.SearchKeywords),
     AccessibleNameResourceName = nameof(DateConverter.AccessibleName))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Date)]
 internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable

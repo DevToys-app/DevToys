@@ -15,6 +15,7 @@ namespace DevToys.Tools.Tools.Formatters.Json;
     ShortDisplayTitleResourceName = nameof(JsonFormatter.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(JsonFormatter.LongDisplayTitle),
     DescriptionResourceName = nameof(JsonFormatter.Description),
+    SearchKeywordsResourceName = nameof(JsonFormatter.SearchKeywords),
     AccessibleNameResourceName = nameof(JsonFormatter.AccessibleName))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
 internal sealed partial class JsonFormatterGuiTool : IGuiTool, IDisposable
