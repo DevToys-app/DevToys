@@ -8,16 +8,8 @@
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
     <DefineConstants>$(DefineConstants);__MACOS__</DefineConstants>
 
-    <!-- The default runtime is osx-x64, except in Release config, in which case the default is osx-x64;osx-arm64.
-         When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifer>.
-         The App Store will NOT accept apps with ONLY osx-arm64 indicated;
-         either BOTH runtimes must be indicated or ONLY osx-x64. -->
-    <!-- ex. <RuntimeIdentifiers>osx-x64;osx-arm64</RuntimeIdentifiers> -->
-
-    <!-- The following 3 properties disable trimming and AOT. This allow us to load plugins at runtime. -->
-    <!-- <UseInterpreter>true</UseInterpreter>
-    <MtouchLink>None</MtouchLink>
-    <MtouchInterpreter>all</MtouchInterpreter> -->
+    <!-- The following property disable trimming and AOT. This allow us to load plugins at runtime. -->
+    <LinkMode>None</LinkMode>
 
     <ApplicationId>com.devtoys</ApplicationId>
   </PropertyGroup>
