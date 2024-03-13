@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using DevToys.CLI;
 using DevToys.Tools.Models;
 using DevToys.Tools.Tools.Formatters.Xml;
-using DevToys.UnitTests.Mocks;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.UnitTests.Tools.Formatters;
@@ -57,6 +56,7 @@ public sealed class XmlFormatterCommandLineToolTests : MefBasedTest
     [InlineData(false, "<root>\r\n  <xml test=\"true\" />\r\n</root>")]
     public async Task FormatXmlWithValidXmlAndTwoSpacesShouldOutputValidXml(bool newLineOnAttributes, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         _tool.NewLineOnAttributes = newLineOnAttributes;
         _tool.Input = "<root><xml test=\"true\" /></root>";
 
@@ -71,6 +71,7 @@ public sealed class XmlFormatterCommandLineToolTests : MefBasedTest
     [InlineData(false, "<root>\r\n    <xml test=\"true\" />\r\n</root>")]
     public async Task FormatXmlWithValidXmlAndFourSpacesShouldOutputValidXml(bool newLineOnAttributes, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         _tool.IndentationMode = Indentation.FourSpaces;
         _tool.NewLineOnAttributes = newLineOnAttributes;
         _tool.Input = "<root><xml test=\"true\" /></root>";
@@ -86,6 +87,7 @@ public sealed class XmlFormatterCommandLineToolTests : MefBasedTest
     [InlineData(false, "<root>\r\n\t<xml test=\"true\" />\r\n</root>")]
     public async Task FormatXmlWithValidXmlAndOneTabShouldOutputValidXml(bool newLineOnAttributes, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         _tool.IndentationMode = Indentation.OneTab;
         _tool.NewLineOnAttributes = newLineOnAttributes;
         _tool.Input = "<root><xml test=\"true\" /></root>";

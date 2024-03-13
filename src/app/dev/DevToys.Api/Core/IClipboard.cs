@@ -1,4 +1,7 @@
-﻿namespace DevToys.Api;
+﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+
+namespace DevToys.Api;
 
 /// <summary>
 /// Provides a platform agnostic way to interact with the clipboard of the operating system the app is running on.

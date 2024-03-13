@@ -78,6 +78,7 @@ public partial class Container : StyledComponentBase
                 break;
 
             case UIVerticalAlignment.Bottom:
+                styleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
                 styleBuilder.AddImportantStyle("align-items", "flex-end");
                 break;
 

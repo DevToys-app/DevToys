@@ -7,7 +7,6 @@ using DevToys.Windows.Core.Helpers;
 using DevToys.Windows.Helpers;
 using Microsoft.Extensions.Logging;
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.PixelFormats;
 using DataFormats = System.Windows.DataFormats;
 using DataObject = System.Windows.DataObject;
@@ -235,7 +234,7 @@ internal sealed partial class Clipboard : Api.IClipboard
             pngMemoryStream.Seek(0, SeekOrigin.Begin);
 
             using var image = SixLabors.ImageSharp.Image.Load(pngMemoryStream);
-            return image.CloneAs<Rgba32>(image.GetConfiguration());
+            return image.CloneAs<Rgba32>(image.Configuration);
         }
 
         return null;

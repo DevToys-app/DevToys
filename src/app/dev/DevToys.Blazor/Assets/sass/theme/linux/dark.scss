@@ -1,0 +1,427 @@
+@mixin linux-dark {
+  /* Roundness */
+  --control-corner-radius: 6px;
+  --overlay-corner-radius: 8px;
+
+  /* Text Weight */
+  --text-weight-normal: 300;
+  --text-weight-bold: 400;
+  --text-weight-bolder: 600;
+
+  /* Accent Colors (rgb) */
+  --accent-light-3: 144, 192, 244;
+  --accent-light-2: 106, 171, 240;
+  --accent-light-1: 71, 140, 246;
+  --accent-base: 22, 122, 229;
+  --accent-dark-1: 20, 109, 204;
+  --accent-dark-2: 17, 89, 167;
+  --accent-dark-3: 13, 69, 130;
+  --accent-default: rgba(var(--accent-base));
+  --accent-secondary: rgba(var(--accent-light-1), 1);
+  --accent-tertiary: rgba(var(--accent-light-2), 1);
+  --accent-disabled: rgba(255, 255, 255, 0.158);
+
+  /* System fill colors */
+  --system-fill-color-success: rgb(108, 203, 95);
+  --system-fill-color-caution: rgb(252, 225, 0);
+  --system-fill-color-critical: rgb(255, 153, 164);
+  --system-fill-color-neutral: rgba(255, 255, 255, 0.545);
+  --system-fill-color-success-background: rgb(57, 61, 27);
+  --system-fill-color-caution-background: rgb(67, 53, 25);
+  --system-fill-color-critical-background: rgb(68, 39, 38);
+  --system-fill-color-neutral-background: rgba(255, 255, 255, 0.031);
+  --system-fill-color-attention-background: rgba(255, 255, 255, 0.031);
+
+  /* Text on Accent */
+  --text-on-accent-primary: rgb(0, 0, 0);
+  --text-on-accent-secondary: rgba(0, 0, 0, 0.5);
+  --text-on-accent-disabled: rgba(255, 255, 255, 0.53);
+  --text-on-accent-selected: rgb(255, 255, 255);
+
+  /* Focus Stroke */
+  --focus-stroke-outer: rgb(255, 255, 255);
+  --focus-stroke-inner: rgba(0, 0, 0, 0.3);
+
+  /* Text */
+  --text-fill-color-primary: rgba(255, 255, 255, 1);
+  --text-fill-color-secondary: rgba(255, 255, 255, 0.8471);
+  --text-fill-color-tertiary: rgba(255, 255, 255, 0.53);
+  --text-fill-color-disabled: rgba(255, 255, 255, 0.36);
+  --text-fill-color-inverse: rgba(0, 0, 0, 0.89);
+
+  /* Control Fill */
+  --control-fill-color-default: rgb(55, 55, 55);
+  --control-fill-color-secondary: rgb(60, 60, 60);
+  --control-fill-color-tertiary: rgb(21, 21, 21);
+  --control-fill-color-disabled: rgb(42, 42, 42);
+  --control-fill-color-transparent: rgba(255, 255, 255, 0);
+  --control-fill-color-input-active: rgb(39, 39, 39);
+
+  --control-alt-fill-color-transparent: rgba(255, 255, 255, 0);
+  --control-alt-fill-color-secondary: rgb(74, 74, 74);
+  --control-alt-fill-color-tertiary: rgba(255, 255, 255, 0.043);
+  --control-alt-fill-color-quarternary: rgba(255, 255, 255, 0.071);
+  --control-alt-fill-color-disabled: rgba(255, 255, 255, 0);
+
+  /* Control Stroke */
+  --control-stroke-color-default: rgb(24, 24, 24);
+  --control-stroke-color-secondary: transparent;
+  --control-stroke-on-accent-default: hsla(0, 0%, 100%, 8%);
+  --control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 14%);
+  --control-strong-stroke-default: rgba(255, 255, 255, 0.15);
+  --control-strong-stroke-disabled: rgba(255, 255, 255, 0.157);
+  --divider-stroke-color-default: rgba(255, 255, 255, 0.082);
+
+  /* Subtle Fill */
+  --subtle-fill-transparent: transparent;
+  --subtle-fill-secondary: rgb(49, 49, 49);
+  --subtle-fill-tertiary: rgb(55, 55, 55);
+  --subtle-fill-disabled: transparent;
+
+  /* Background */
+  --background-color: rgb(39, 39, 39);
+  --layer-fill-color-default: rgb(44, 44, 44);
+
+  /* Borders */
+  --control-border-color-default:
+          var(--control-stroke-color-default)
+          var(--control-stroke-color-default)
+          var(--control-stroke-color-default)
+          var(--control-stroke-color-default);
+  --accent-control-border-color-default:
+          var(--control-stroke-on-accent-secondary)
+          var(--control-stroke-on-accent-secondary)
+          var(--control-stroke-on-accent-secondary)
+          var(--control-stroke-on-accent-secondary);
+
+  /* Card */
+  --card-stroke-color-default: rgba(0, 0, 0, 0.4);
+  --card-border: var(--card-stroke-color-default);
+  --card-border-thickness: 1px solid;
+  --card-foreground: var(--text-fill-color-primary);
+  --card-foreground-description: var(--text-fill-color-secondary);
+  --card-background-color: rgb(39, 39, 39);
+  --card-background-color-secondary: rgb(39, 39, 39);
+  --card-hover-background-color: rgb(49, 49, 49);
+
+  /* Button */
+  --button-background: var(--control-fill-color-default);
+  --button-background-pointer-over: var(--control-fill-color-secondary);
+  --button-background-pressed: var(--control-fill-color-tertiary);
+  --button-background-disabled: var(--control-fill-color-disabled);
+  --button-foreground: var(--text-fill-color-primary);
+  --button-foreground-pointer-over: var(--text-fill-color-primary);
+  --button-foreground-pressed: var(--text-fill-color-secondary);
+  --button-foreground-disabled: var(--text-fill-color-disabled);
+  --button-border: var(--control-border-color-default);
+  --button-border-pointer-over: var(--control-border-color-default);
+  --button-border-pressed: var(--control-stroke-color-default);
+  --button-border-disabled: var(--control-stroke-color-default);
+  --button-border-thickness: 1px solid;
+
+  --accent-button-background: var(--accent-default);
+  --accent-button-background-pointer-over: var(--accent-default);
+  --accent-button-background-pressed: var(--accent-secondary);
+  --accent-button-background-disabled: var(--accent-disabled);
+  --accent-button-foreground: var(--text-on-accent-primary);
+  --accent-button-foreground-pointer-over: var(--text-on-accent-primary);
+  --accent-button-foreground-pressed: var(--text-on-accent-primary);
+  --accent-button-foreground-disabled: var(--text-on-accent-disabled);
+  --accent-button-border: var(--accent-control-border-color-default);
+  --accent-button-border-pointer-over: var(--accent-control-border-color-default);
+  --accent-button-border-pressed: var(--control-fill-color-transparent);
+  --accent-button-border-disabled: var(--control-fill-color-transparent);
+  --accent-button-border-thickness: 1px solid;
+
+  --stealth-button-background: var(--control-fill-color-transparent);
+  --stealth-button-background-pointer-over: var(--control-fill-color-secondary);
+  --stealth-button-background-pressed: var(--control-fill-color-tertiary);
+  --stealth-button-background-disabled: var(--control-fill-color-transparent);
+  --stealth-button-foreground: var(--text-fill-color-primary);
+  --stealth-button-foreground-pointer-over: var(--text-fill-color-primary);
+  --stealth-button-foreground-pressed: var(--text-fill-color-secondary);
+  --stealth-button-foreground-disabled: var(--text-fill-color-disabled);
+  --stealth-button-border: var(--control-fill-color-transparent);
+  --stealth-button-border-pointer-over: var(--control-border-color-default);
+  --stealth-button-border-pressed: var(--control-stroke-color-default);
+  --stealth-button-border-disabled: var(--control-fill-color-transparent);
+  --stealth-button-border-thickness: 1px solid;
+
+  --hyperlink-button-background: var(--control-fill-color-transparent);
+  --hyperlink-button-background-pointer-over: var(--control-fill-color-transparent);
+  --hyperlink-button-background-pressed: var(--control-fill-color-transparent);
+  --hyperlink-button-background-disabled: var(--control-fill-color-transparent);
+  --hyperlink-button-foreground: var(--accent-tertiary);
+  --hyperlink-button-foreground-pointer-over: var(--accent-tertiary);
+  --hyperlink-button-foreground-pressed: var(--accent-tertiary);
+  --hyperlink-button-foreground-disabled: var(--accent-disabled);
+  --hyperlink-button-border: var(--control-fill-color-transparent);
+  --hyperlink-button-border-pointer-over: var(--control-fill-color-transparent);
+  --hyperlink-button-border-pressed: var(--control-fill-color-transparent);
+  --hyperlink-button-border-disabled: var(--control-fill-color-transparent);
+  --hyperlink-button-border-thickness: 0px solid;
+
+  /* CheckBox */
+  --check-box-check-corner-radius: var(--control-corner-radius);
+  --check-box-foreground: var(--text-fill-color-primary);
+  --check-box-foreground-disabled: var(--text-fill-color-disabled);
+
+  --check-box-check-background-stroke-unchecked: var(--control-strong-stroke-default);
+  --check-box-check-background-stroke-unchecked-pointer-over: var(--control-strong-stroke-default);
+  --check-box-check-background-stroke-unchecked-pressed: var(--control-strong-stroke-disabled);
+  --check-box-check-background-stroke-unchecked-disabled: var(--control-strong-stroke-disabled);
+  --check-box-check-background-stroke-checked: var(--accent-default);
+  --check-box-check-background-stroke-checked-pointer-over: var(--accent-secondary);
+  --check-box-check-background-stroke-checked-pressed: var(--accent-tertiary);
+  --check-box-check-background-stroke-checked-disabled: var(--control-strong-stroke-disabled);
+  --check-box-check-background-fill-unchecked: var(--control-alt-fill-color-secondary);
+  --check-box-check-background-fill-unchecked-pointer-over: var(--control-alt-fill-color-tertiary);
+  --check-box-check-background-fill-unchecked-pressed: var(--control-alt-fill-color-quarternary);
+  --check-box-check-background-fill-unchecked-disabled: var(--control-alt-fill-color-disabled);
+  --check-box-check-background-fill-checked: var(--accent-default);
+  --check-box-check-background-fill-checked-pointer-over: var(--accent-secondary);
+  --check-box-check-background-fill-checked-pressed: var(--accent-tertiary);
+  --check-box-check-background-fill-checked-disabled: var(--accent-disabled);
+
+  --check-box-check-glyph-foreground-unchecked: var(--text-on-accent-primary);
+  --check-box-check-glyph-foreground-unchecked-pointer-over: var(--text-on-accent-primary);
+  --check-box-check-glyph-foreground-unchecked-pressed: var(--text-on-accent-primary);
+  --check-box-check-glyph-foreground-unchecked-disabled: var(--text-on-accent-disabled);
+  --check-box-check-glyph-foreground-checked: var(--text-on-accent-primary);
+  --check-box-check-glyph-foreground-checked-pointer-over: var(--text-on-accent-primary);
+  --check-box-check-glyph-foreground-checked-pressed: var(--text-on-accent-secondary);
+  --check-box-check-glyph-foreground-checked-disabled: var(--text-on-accent-disabled);
+
+  /* RadioButton */
+  --radio-button-foreground: var(--text-fill-color-primary);
+  --radio-button-foreground-pointer-over: var(--text-fill-color-primary);
+  --radio-button-foreground-pressed: var(--text-fill-color-primary);
+  --radio-button-foreground-disabled: var(--text-fill-color-disabled);
+  --radio-button-background: var(--control-fill-color-transparent);
+  --radio-button-background-pointer-over: var(--control-fill-color-transparent);
+  --radio-button-background-pressed: var(--control-fill-color-transparent);
+  --radio-button-background-disabled: var(--control-fill-color-transparent);
+  --radio-button-border: var(--control-fill-color-transparent);
+  --radio-button-border-pointer-over: var(--control-fill-color-transparent);
+  --radio-button-border-pressed: var(--control-fill-color-transparent);
+  --radio-button-border-disabled: var(--control-fill-color-transparent);
+
+  --radio-button-outer-ellipse-stroke: var(--control-strong-stroke-default);
+  --radio-button-outer-ellipse-stroke-pointer-over: var(--control-strong-stroke-default);
+  --radio-button-outer-ellipse-stroke-pressed: var(--control-strong-stroke-disabled);
+  --radio-button-outer-ellipse-stroke-disabled: var(--control-strong-stroke-disabled);
+  --radio-button-outer-ellipse-fill: var(--control-alt-fill-color-secondary);
+  --radio-button-outer-ellipse-fill-pointer-over: var(--control-alt-fill-color-tertiary);
+  --radio-button-outer-ellipse-fill-pressed: var(--control-alt-fill-color-quarternary);
+  --radio-button-outer-ellipse-fill-disabled: var(--control-alt-fill-color-disabled);
+
+  --radio-button-outer-ellipse-checked-stroke: var(--accent-default);
+  --radio-button-outer-ellipse-checked-stroke-pointer-over: var(--accent-secondary);
+  --radio-button-outer-ellipse-checked-stroke-pressed: var(--accent-tertiary);
+  --radio-button-outer-ellipse-checked-stroke-disabled: var(--accent-disabled);
+  --radio-button-outer-ellipse-checked-fill: var(--accent-default);
+  --radio-button-outer-ellipse-checked-fill-pointer-over: var(--accent-secondary);
+  --radio-button-outer-ellipse-checked-fill-pressed: var(--accent-tertiary);
+  --radio-button-outer-ellipse-checked-fill-disabled: var(--accent-disabled);
+
+  --radio-button-check-glyph-fill: var(--text-on-accent-primary);
+  --radio-button-check-glyph-fill-pointer-over: var(--text-on-accent-primary);
+  --radio-button-check-glyph-fill-pressed: var(--text-on-accent-primary);
+  --radio-button-check-glyph-fill-disabled: var(--text-on-accent-primary);
+  --radio-button-check-glyph-stroke: var(--control-stroke-color-default);
+  --radio-button-check-glyph-stroke-pointer-over: var(--control-stroke-color-default);
+  --radio-button-check-glyph-stroke-pressed: var(--control-stroke-color-default);
+  --radio-button-check-glyph-stroke-disabled: var(--control-stroke-color-default);
+  --radio-button-check-glyph-stroke-checked: var(--control-stroke-on-accent-default);
+  --radio-button-check-glyph-stroke-checked-pointer-over: var(--control-stroke-on-accent-default);
+  --radio-button-check-glyph-stroke-checked-pressed: var(--control-stroke-on-accent-default);
+  --radio-button-check-glyph-stroke-checked-disabled: var(--control-stroke-color-default);
+
+  /* ToggleSwitch */
+  --toggle-switch-width: 51px;
+  --toggle-switch-height: 26px;
+  --toggle-switch-foreground: var(--text-fill-color-primary);
+  --toggle-switch-foreground-disabled: var(--text-fill-color-disabled);
+  --toggle-switch-on-stroke-thickness: 0px;
+  --toggle-switch-outer-border-stroke-thickness: 0px;
+  --toggle-switch-fill-off: var(--control-alt-fill-color-secondary);
+  --toggle-switch-fill-off-pointer-over: var(--control-alt-fill-color-secondary);
+  --toggle-switch-fill-off-pressed: var(--control-alt-fill-color-secondary);
+  --toggle-switch-fill-off-disabled: var(--control-alt-fill-color-disabled);
+  --toggle-switch-stroke-off: var(--control-strong-stroke-default);
+  --toggle-switch-stroke-off-pointer-over: var(--control-strong-stroke-default);
+  --toggle-switch-stroke-off-pressed: var(--control-strong-stroke-default);
+  --toggle-switch-stroke-off-disabled: var(--control-strong-stroke-disabled);
+  --toggle-switch-fill-on: var(--accent-secondary);
+  --toggle-switch-fill-on-pointer-over: var(--accent-secondary);
+  --toggle-switch-fill-on-pressed: var(--accent-secondary);
+  --toggle-switch-fill-on-disabled: var(--accent-disabled);
+  --toggle-switch-stroke-on: var(--accent-secondary);
+  --toggle-switch-stroke-on-pointer-over: var(--accent-secondary);
+  --toggle-switch-stroke-on-pressed: var(--accent-tertiary);
+  --toggle-switch-stroke-on-disabled: var(--accent-disabled);
+
+  --toggle-switch-knob-radius: 20px;
+  --toggle-switch-knob-width: 22px;
+  --toggle-switch-knob-height: 22px;
+  --toggle-switch-knob-offset: 2px;
+  --toggle-switch-knob-zoom-pointer-over: 0px;
+  --toggle-switch-knob-active-translation: 25px;
+  --toggle-switch-knob-width-pointer-over: 22px;
+  --toggle-switch-knob-height-pointer-over: 22px;
+  --toggle-switch-knob-fill-off: var(--text-fill-color-secondary);
+  --toggle-switch-knob-fill-off-pointer-over: var(--text-fill-color-secondary);
+  --toggle-switch-knob-fill-off-pressed: var(--text-fill-color-secondary);
+  --toggle-switch-knob-fill-off-disabled: var(--text-fill-color-disabled);
+  --toggle-switch-knob-fill-on: var(--text-on-accent-selected);
+  --toggle-switch-knob-fill-on-pointer-over: var(--text-on-accent-selected);
+  --toggle-switch-knob-fill-on-pressed: var(--text-on-accent-selected);
+  --toggle-switch-knob-fill-on-disabled: var(--text-on-accent-disabled);
+  --toggle-switch-knob-stroke-on: var(--control-border-color-default);
+
+  /* GridView */
+  --grid-view-header-border-line: rgba(255, 255, 255, 0.2);
+  --grid-view-item-background: var(--card-background-color);
+  --grid-view-item-background-hover: var(--card-hover-background-color);
+  --grid-view-item-stroke: rgba(0, 0, 0, 0.3);
+
+  /* NavBar */
+  --navigation-view-content-background: var(--layer-fill-color-default);
+  --navigation-view-content-grid-border: var(--card-stroke-color-default);
+  --navigation-view-content-grid-border-thickness: 1px solid;
+  --navigation-view-flyout-border-color: var(--control-stroke-color-default);
+  --navigation-view-flyout-background-color: rgba(32, 32, 32, 0.4);
+  --navigation-view-flyout-backdrop-filter: blur(50px) saturate(125%);
+  --navigation-view-separator-color: rgba(255, 255, 255, 0.0605);
+  --sidebar-item-margin: 0px;
+
+  /* List Box */
+  --list-box-item-radius: 0px;
+  --list-box-item-background: var(--subtle-fill-transparent);
+  --list-box-item-background-disabled: var(--subtle-fill-transparent);
+  --list-box-item-background-pointer-over: var(--subtle-fill-secondary);
+  --list-box-item-background-selected: rgb(var(--accent-dark-1));
+  --list-box-item-background-selected-disabled: var(--subtle-fill-transparent);
+  --list-box-item-background-pressed: var(--subtle-fill-transparent);
+  --list-box-item-foreground: var(--text-fill-color-primary);
+  --list-box-item-foreground-selected: var(--text-fill-color-primary);
+  --list-box-item-foreground-pressed: var(--text-fill-color-primary);
+  --list-box-item-foreground-disabled: var(--text-fill-color-disabled);
+  --list-box-item-selection-indicator: rgb(var(--accent-dark-1));
+
+  /* Context Menu */
+  --menu-flyout-presenter-background: rgb(29, 29, 29);
+  --menu-flyout-presenter-border: rgba(0, 0, 0, 0.2);
+  --menu-flyout-presenter-backdrop-filter: none;
+  --menu-flyout-presenter-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+
+  /* Context Menu Item */
+  --context-menu-item-background: var(--subtle-fill-transparent);
+  --context-menu-item-background-disabled: var(--subtle-fill-transparent);
+  --context-menu-item-background-pointer-over: var(--subtle-fill-secondary);
+  --context-menu-item-background-pressed: var(--subtle-fill-tertiary);
+  --context-menu-item-foreground: var(--text-fill-color-primary);
+  --context-menu-item-foreground-pressed: var(--text-fill-color-secondary);
+  --context-menu-item-foreground-disabled: var(--text-fill-color-disabled);
+  --context-menu-item-key-accelerator-foreground: var(--text-fill-color-secondary);
+  --context-menu-item-key-accelerator-foreground-disabled: var(--text-fill-color-disabled);
+
+  /* Text Box */
+  --text-box-background: var(--control-fill-color-input-active);
+  --text-box-background-pointer-over: var(--control-fill-color-input-active);
+  --text-box-background-focused: var(--control-fill-color-input-active);
+  --text-box-background-disabled: var(--control-fill-color-disabled);
+  --text-box-border: var(--control-stroke-color-default);
+  --text-box-border-pointer-over: var(--control-stroke-color-default);
+  --text-box-border-focused: var(--control-stroke-color-default);
+  --text-box-border-disabled: var(--control-stroke-color-default);
+  --text-box-foreground: var(--text-fill-color-primary);
+  --text-box-foreground-pointer-over: var(--text-fill-color-primary);
+  --text-box-foreground-focused: var(--text-fill-color-primary);
+  --text-box-foreground-disabled: var(--text-fill-color-disabled);
+  --text-box-placeholder-foreground: var(--text-fill-color-secondary);
+  --text-box-placeholder-foreground-pointer-over: var(--text-fill-color-secondary);
+  --text-box-placeholder-foreground-focused: var(--text-fill-color-tertiary);
+  --text-box-placeholder-foreground-disabled: var(--text-fill-color-disabled);
+  --text-box-selection-highlight-color: rgb(var(--accent-base));
+  --text-box-selection-color: rgb(255, 255, 255);
+  --text-box-underline-border-thickness: 0px;
+  --text-box-underline-border-thickness-focused: 0px;
+
+  /* Scrollbars */
+  --scrollbar-track-background-color: transparent;
+  --scrollbar-track-background-color-hover: transparent;
+  --scrollbar-thumb-border-color: rgba(85, 85, 85, 0.231);
+  --scrollbar-thumb-border-color-hover: rgba(183, 183, 183, 0.42);
+  --scrollbar-thumb-background-color: rgb(118, 118, 118);
+  --scrollbar-thumb-background-color-hover: rgb(169, 170, 170);
+
+  /* InfoBar */
+  --info-bar-error-severity-background: var(--system-fill-color-critical-background);
+  --info-bar-warning-severity-background: var(--system-fill-color-caution-background);
+  --info-bar-success-severity-background: var(--system-fill-color-success-background);
+  --info-bar-informational-severity-background: var(--system-fill-color-attention-background);
+
+  --info-bar-error-severity-icon-background: var(--system-fill-color-critical);
+  --info-bar-warning-severity-icon-background: var(--system-fill-color-caution);
+  --info-bar-success-severity-icon-background: var(--system-fill-color-success);
+  --info-bar-informational-severity-icon-background: var(--accent-default);
+
+  --info-bar-error-severity-icon-foreground: var(--text-fill-color-inverse);
+  --info-bar-warning-severity-icon-foreground: var(--text-fill-color-inverse);
+  --info-bar-success-severity-icon-foreground: var(--text-fill-color-inverse);
+  --info-bar-informational-severity-icon-foreground: var(--text-fill-color-inverse);
+
+  --info-bar-title-foreground: var(--text-fill-color-primary);
+  --info-bar-message-foreground: var(--text-fill-color-primary);
+
+  --info-bar-border: var(--card-stroke-color-default);
+  --info-bar-border-thickness: 1px;
+  --info-bar-border-corner-radius: var(--control-corner-radius);
+
+  /* DataGrid */
+  --data-grid-column-header-foreground: var(--text-fill-color-tertiary);
+  --data-grid-column-header-background: var(--control-fill-color-default);
+  --data-grid-column-header-background-pointer-over: rgba(255, 255, 255, 0.15);
+  --data-grid-column-header-background-pressed: var(--subtle-fill-tertiary);
+  --data-grid-row-foreground: var(--text-fill-color-primary);
+  --data-grid-row-background: var(--control-fill-color-default);
+  --data-grid-row-background-pointer-over: rgba(255, 255, 255, 0.15);
+  --data-grid-row-odd-background: rgba(255, 255, 255, 0.095);
+  --data-grid-row-odd-background-pointer-over: rgba(255, 255, 255, 0.18);
+  --data-grid-row-selected-background: rgba(var(--accent-base), 0.9);
+  --data-grid-row-selected-background-pointer-over: rgba(var(--accent-base), 0.8);
+  --data-grid-row-selected-foreground: var(--text-box-selection-color);
+  --data-grid-row-selected-foreground-pointer-over: var(--text-box-selection-color);
+  --data-grid-border: var(--control-stroke-color-default);
+
+  /* Dialog */
+  --dialog-light-dismiss-overlay-background: rgba(0, 0, 0, 0.305);
+  --dialog-shadow: 0px 30px 38px -3px rgba(0,0,0,0.24);
+  --dialog-background-color: rgb(43, 43, 43);
+  --dialog-footer-background-color: rgb(32, 32, 32);
+  --dialog-border-color: var(--control-stroke-color-default);
+
+  /* UISettingGroup */
+  --ui-setting-group-presenter-inner-ui-setting-background-color: transparent;
+  --ui-setting-group-presenter-inner-ui-setting-border-color: transparent;
+
+  /* UIFileSelector */
+  --ui-file-selector-background-color: transparent;
+  --ui-file-selector-stroke-color: var(--text-fill-color-disabled);
+  --ui-file-selector-dragging-background-color: var(--control-fill-color-tertiary);
+  --ui-file-selector-dragging-stroke-color: var(--text-fill-color-tertiary);
+
+  /* UIMultilineTextImput */
+  --ui-multiline-text-input-highlighted-text-span-background-color-blue: rgb(0, 120, 212);
+  --ui-multiline-text-input-highlighted-text-span-background-color-green: rgb(14, 119, 53);
+  --ui-multiline-text-input-highlighted-text-span-background-color-red: rgb(226, 36, 26);
+  --ui-multiline-text-input-highlighted-text-span-background-color-yellow: rgb(204, 146, 0);
+  --ui-multiline-text-input-highlighted-text-span-background-color-purple: rgb(107, 105, 214);
+  --ui-multiline-text-input-highlighted-text-span-background-color-teal: rgb(3, 131, 135);
+
+  /* Hero */
+  --hero-background-image: url("../img/hero/dark-theme-tile.png");
+  --hero-background-color: rgba(91, 42, 134, 0.5);
+  --hero-title-color: linear-gradient(to right, #db2777, #ec4b4b, #e8c137, #35d49b, #4eb1e0, #a445e8, #db2777) 0 0 / 5000% 5000% no-repeat;
+}

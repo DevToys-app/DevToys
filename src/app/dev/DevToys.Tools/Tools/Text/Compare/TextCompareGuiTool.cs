@@ -13,6 +13,7 @@ namespace DevToys.Tools.Tools.Text.Compare;
     ShortDisplayTitleResourceName = nameof(TextCompare.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(TextCompare.LongDisplayTitle),
     DescriptionResourceName = nameof(TextCompare.Description),
+    SearchKeywordsResourceName = nameof(TextCompare.SearchKeywords),
     AccessibleNameResourceName = nameof(TextCompare.AccessibleName))]
 internal sealed class TextCompareGuiTool : IGuiTool
 {

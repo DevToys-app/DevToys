@@ -18,6 +18,7 @@ namespace DevToys.Tools.Tools.Graphic.ColorBlindnessSimulator;
     ShortDisplayTitleResourceName = nameof(ColorBlindnessSimulator.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(ColorBlindnessSimulator.LongDisplayTitle),
     DescriptionResourceName = nameof(ColorBlindnessSimulator.Description),
+    SearchKeywordsResourceName = nameof(ColorBlindnessSimulator.SearchKeywords),
     AccessibleNameResourceName = nameof(ColorBlindnessSimulator.AccessibleName))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Image)]
 [AcceptedDataTypeName("StaticImageFile")]

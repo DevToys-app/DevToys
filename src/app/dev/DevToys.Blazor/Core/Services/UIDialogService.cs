@@ -1,8 +1,14 @@
 ﻿namespace DevToys.Blazor.Core.Services;
 
-public sealed class DialogService
+public sealed class UIDialogService
 {
     private readonly object _lock = new();
+    private readonly GlobalDialogService _globalDialogService;
+
+    public UIDialogService(GlobalDialogService globalDialogService)
+    {
+        _globalDialogService = globalDialogService;
+    }
 
     internal bool IsDialogOpened { get; private set; }
 
@@ -20,9 +26,9 @@ public sealed class DialogService
     {
         lock (_lock)
         {
-            if (IsDialogOpened)
+            if (_globalDialogService.IsDialogOpened)
             {
-                // Only one context menu should open at the same time.
+                // Only one dialog should open at the same time.
                 return false;
             }
 

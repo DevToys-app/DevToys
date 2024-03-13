@@ -214,7 +214,7 @@ namespace DevToys.Tools.Tools.Converters.JsonTable {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON,CSV,TSV,French,Excel,Tabular,Data.
+        ///   Looks up a localized string similar to JSON CSV TSV French Excel Tabular Data.
         /// </summary>
         internal static string SearchKeywords {
             get {

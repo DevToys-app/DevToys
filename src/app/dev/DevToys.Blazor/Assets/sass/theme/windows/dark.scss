@@ -261,6 +261,7 @@
     --toggle-switch-stroke-on-pressed: var(--accent-tertiary);
     --toggle-switch-stroke-on-disabled: var(--accent-disabled);
 
+    --toggle-switch-knob-radius: 7px;
     --toggle-switch-knob-width: 12px;
     --toggle-switch-knob-height: 12px;
     --toggle-switch-knob-offset: 3px;
@@ -292,8 +293,10 @@
     --navigation-view-flyout-background-color: rgba(32, 32, 32, 1); // Could be semi-transparent if we didn't have Mica
     --navigation-view-flyout-backdrop-filter: blur(50px) saturate(125%);
     --navigation-view-separator-color: rgba(255, 255, 255, 0.0605);
+    --sidebar-item-margin: 3px 5px;
 
     /* List Box */
+    --list-box-item-radius: var(--control-corner-radius);
     --list-box-item-background: var(--subtle-fill-transparent);
     --list-box-item-background-disabled: var(--subtle-fill-transparent);
     --list-box-item-background-pointer-over: var(--subtle-fill-secondary);
@@ -401,6 +404,7 @@
 
     /* UISettingGroup */
     --ui-setting-group-presenter-inner-ui-setting-background-color: transparent;
+    --ui-setting-group-presenter-inner-ui-setting-border-color: var(--card-border);
 
     /* UIFileSelector */
     --ui-file-selector-background-color: transparent;

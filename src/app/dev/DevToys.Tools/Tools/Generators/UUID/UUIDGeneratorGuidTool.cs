@@ -15,6 +15,7 @@ namespace DevToys.Tools.Tools.Generators.UUID;
     ShortDisplayTitleResourceName = nameof(UUIDGenerator.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(UUIDGenerator.LongDisplayTitle),
     DescriptionResourceName = nameof(UUIDGenerator.Description),
+    SearchKeywordsResourceName = nameof(UUIDGenerator.SearchKeywords),
     AccessibleNameResourceName = nameof(UUIDGenerator.AccessibleName))]
 internal sealed class UUIDGeneratorGuidTool : IGuiTool
 {

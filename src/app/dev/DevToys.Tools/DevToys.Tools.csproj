@@ -33,6 +33,11 @@
     -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Strings\GlobalStrings\GlobalStrings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -43,6 +48,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>NumberBaseConverter.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Converters\Cron\CronParser.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CronParser.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Certificate\CertificateDecoder.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -50,6 +60,11 @@
     </Compile>
     <Compile Update="Tools\Formatters\Json\JsonFormatter.Designer.cs">
       <DependentUpon>JsonFormatter.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Tools\Formatters\Sql\SqlFormatter.Designer.cs">
+      <DependentUpon>SqlFormatter.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -183,6 +198,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EscapeUnescape.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Text\ListCompare\ListCompare.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ListCompare.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Text\MarkdownPreview\MarkdownPreview.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -205,9 +225,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Strings\GlobalStrings\GlobalStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Converters\Cron\CronParser.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CronParser.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Converters\JsonTable\JsonTableConverter.resx">
       <LastGenOutput>JsonTableConverter.Designer.cs</LastGenOutput>
@@ -223,6 +251,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Formatters\Json\JsonFormatter.resx">
       <LastGenOutput>JsonFormatter.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Formatters\Sql\SqlFormatter.resx">
+      <LastGenOutput>SqlFormatter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Formatters\Xml\XmlFormatter.resx">
@@ -317,6 +349,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AnalyzerAndUtilities.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Text\ListCompare\ListCompare.resx">
+      <LastGenOutput>ListCompare.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\Text\Compare\TextCompare.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TextCompare.Designer.cs</LastGenOutput>
@@ -362,12 +398,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="CronExpressionDescriptor" />
+    <PackageReference Include="Cronos" />
     <PackageReference Include="YamlDotNet" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Markdown.ColorCode" />
     <PackageReference Include="ZXing.Net" />
     <PackageReference Include="ZXing.Net.Bindings.ImageSharp.V3" />
+    <PackageReference Include="Newtonsoft.Json">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="SixLabors.ImageSharp">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <Target Name="IncludeAllFilesInTargetDir" BeforeTargets="_GetPackageFiles">

@@ -232,15 +232,6 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string SearchKeywords {
-            get {
-                return ResourceManager.GetString("SearchKeywords", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to JSON &lt;&gt; YAML.
         /// </summary>
         internal static string ShortDisplayTitle {

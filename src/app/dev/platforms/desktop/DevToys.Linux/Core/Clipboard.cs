@@ -147,7 +147,7 @@ internal sealed partial class Clipboard : IClipboard
                             texture.SaveToPng(tempFile);
 
                             using Image image = await SixLabors.ImageSharp.Image.LoadAsync(tempFile);
-                            tcs.SetResult(image.CloneAs<Rgba32>(image.GetConfiguration()));
+                            tcs.SetResult(image.CloneAs<Rgba32>(image.Configuration));
 
                             File.Delete(tempFile);
                             texture.Dispose();

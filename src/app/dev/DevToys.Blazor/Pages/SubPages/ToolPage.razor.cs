@@ -15,7 +15,7 @@ public partial class ToolPage : MefComponentBase, IFocusable
     internal IWindowService WindowService { get; set; } = default!;
 
     [Inject]
-    internal DialogService DialogService { get; set; } = default!;
+    internal UIDialogService UIDialogService { get; set; } = default!;
 
     [Import]
     internal ToolPageViewModel ViewModel { get; set; } = default!;
@@ -35,7 +35,7 @@ public partial class ToolPage : MefComponentBase, IFocusable
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DialogService.CloseDialogRequested += DialogService_CloseDialogRequested;
+        UIDialogService.CloseDialogRequested += DialogService_CloseDialogRequested;
         HotReloadService.HotReloadRequestUpdateApplication += OnHotReloadRequestUpdateApplication;
     }
 
@@ -66,7 +66,7 @@ public partial class ToolPage : MefComponentBase, IFocusable
         }
 
         HotReloadService.HotReloadRequestUpdateApplication -= OnHotReloadRequestUpdateApplication;
-        DialogService.CloseDialogRequested -= DialogService_CloseDialogRequested;
+        UIDialogService.CloseDialogRequested -= DialogService_CloseDialogRequested;
 
         if (ViewModel.ToolView is not null)
         {
@@ -92,12 +92,12 @@ public partial class ToolPage : MefComponentBase, IFocusable
     {
         if (ViewModel.ToolView.CurrentOpenedDialog is null)
         {
-            DialogService.CloseDialog();
+            UIDialogService.CloseDialog();
         }
         else
         {
             ViewModel.ToolView.CurrentOpenedDialog.IsOpenedChanged += DialogService_CloseDialogRequested;
-            DialogService.TryOpenDialog(ViewModel.ToolView.CurrentOpenedDialog.IsDismissible);
+            UIDialogService.TryOpenDialog(ViewModel.ToolView.CurrentOpenedDialog.IsDismissible);
         }
     }
 
@@ -108,7 +108,7 @@ public partial class ToolPage : MefComponentBase, IFocusable
             ViewModel.ToolView.CurrentOpenedDialog.IsOpenedChanged -= DialogService_CloseDialogRequested;
         }
 
-        DialogService.CloseDialog();
+        UIDialogService.CloseDialog();
         ViewModel.ToolView.CurrentOpenedDialog?.Close();
     }
 

@@ -1,9 +1,11 @@
 ﻿using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
+using DevToys.Blazor.Pages.Dialogs;
 using DevToys.Blazor.Pages.SubPages;
 using DevToys.Business.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
+using DevToys.Core.Settings;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.ToolGroupPage;
@@ -25,6 +27,7 @@ public partial class Index : MefComponentBase
     private const int TitleBarMarginLeftWhenNavBarHidden = 90;
     private const int TitleBarMarginLeftWhenNavBarNotHidden = 47;
 
+    private FirstStartDialog _firstStartDialog = default!;
     private NavBar<INotifyPropertyChanged, GuiToolViewItem> _navBar = default!;
     private IFocusable? _contentPage;
 
@@ -50,7 +53,10 @@ public partial class Index : MefComponentBase
     internal ContextMenuService ContextMenuService { get; set; } = default!;
 
     [Inject]
-    internal DialogService DialogService { get; set; } = default!;
+    internal UIDialogService UIDialogService { get; set; } = default!;
+
+    [Inject]
+    internal GlobalDialogService GlobalDialogService { get; set; } = default!;
 
     [Inject]
     internal IWindowService WindowService { get; set; } = default!;
@@ -66,7 +72,7 @@ public partial class Index : MefComponentBase
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DialogService.IsDialogOpenedChanged += DialogService_IsDialogOpenedChanged;
+        UIDialogService.IsDialogOpenedChanged += DialogService_IsDialogOpenedChanged;
         ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
         ViewModel.SelectedMenuItem ??= ViewModel.HeaderAndBodyToolViewItems[0];
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
@@ -108,7 +114,7 @@ public partial class Index : MefComponentBase
         StateHasChanged();
 
         // Start Smart Detection
-        ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode, DialogService.IsDialogOpened)
+        ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode, GlobalDialogService.IsDialogOpened)
             .ContinueWith(async _ =>
             {
                 await InvokeAsync(StateHasChanged);
@@ -213,8 +219,13 @@ public partial class Index : MefComponentBase
             // Focus on the Search Box.
             _navBar.TryFocusSearchBoxAsync();
 
+            if (SettingsProvider.GetSetting(PredefinedSettings.IsFirstStart))
+            {
+                _firstStartDialog.Open();
+            }
+
             // Start Smart Detection
-            ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode, DialogService.IsDialogOpened).Forget();
+            ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode, GlobalDialogService.IsDialogOpened).Forget();
         }
 
         if (IsTransitioning)

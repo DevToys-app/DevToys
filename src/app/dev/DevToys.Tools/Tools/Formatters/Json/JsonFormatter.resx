@@ -162,11 +162,14 @@
   <data name="OutputFileOptionDescription" xml:space="preserve">
     <value>Path to the output file</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>sort order alphabetize</value>
+  </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>JSON</value>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort Properties</value>
+    <value>Sort JSON Properties alphabetically</value>
   </data>
   <data name="SortPropertiesOptionDescription" xml:space="preserve">
     <value>Whether properties within the JSON should be sorted alphabetically</value>

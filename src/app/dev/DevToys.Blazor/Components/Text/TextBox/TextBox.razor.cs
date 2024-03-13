@@ -97,6 +97,7 @@ public partial class TextBox : MefComponentBase, IFocusable
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
         _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
     }
 

@@ -76,9 +76,13 @@ public partial class MainLayout : LayoutComponentBase
             {
                 themeName = "windows-dark-theme";
             }
-            else
+            else if (OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst() || OperatingSystem.IsIOS())
             {
                 themeName = "macos-dark-theme";
+            }
+            else
+            {
+                themeName = "linux-dark-theme";
             }
         }
         else
@@ -87,9 +91,13 @@ public partial class MainLayout : LayoutComponentBase
             {
                 themeName = "windows-light-theme";
             }
-            else
+            else if (OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst() || OperatingSystem.IsIOS())
             {
                 themeName = "macos-light-theme";
+            }
+            else
+            {
+                themeName = "linux-light-theme";
             }
         }
 

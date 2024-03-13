@@ -196,6 +196,15 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sort order alphabetize.
+        /// </summary>
+        internal static string SearchKeywords {
+            get {
+                return ResourceManager.GetString("SearchKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JSON.
         /// </summary>
         internal static string ShortDisplayTitle {
@@ -205,7 +214,7 @@ namespace DevToys.Tools.Tools.Formatters.Json {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sort Properties.
+        ///   Looks up a localized string similar to Sort JSON Properties alphabetically.
         /// </summary>
         internal static string SortProperties {
             get {

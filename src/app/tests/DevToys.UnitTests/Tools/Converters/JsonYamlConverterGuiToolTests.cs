@@ -52,7 +52,7 @@ public class JsonYamlConverterGuiToolTests : MefBasedTest
     {
         _inputTextArea.Text("  { \"foo\": \"bar\" }  ");
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("foo: bar\r\n");
+        _outputTextArea.Text.Should().Be("foo: bar\r\n".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Convert json with valid json and two spaces indentation should return valid yaml")]
@@ -64,7 +64,7 @@ public class JsonYamlConverterGuiToolTests : MefBasedTest
         indentationOptions.Select(0); // Select TwoSpaces
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("foo: bar\r\nfizz:\r\n  - wizz\r\n");
+        _outputTextArea.Text.Should().Be("foo: bar\r\nfizz:\r\n  - wizz\r\n".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Convert json with valid json and four spaces indentation should return valid yaml")]
@@ -76,7 +76,7 @@ public class JsonYamlConverterGuiToolTests : MefBasedTest
         indentationOptions.Select(1); // Select FourSpaces
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("foo: bar\r\nfizz:\r\n    - wizz\r\n");
+        _outputTextArea.Text.Should().Be("foo: bar\r\nfizz:\r\n    - wizz\r\n".Replace("\r\n", Environment.NewLine));
     }
 
     [Theory(DisplayName = "Convert yaml with invalid input should return yaml error")]
@@ -115,7 +115,7 @@ public class JsonYamlConverterGuiToolTests : MefBasedTest
 
         _inputTextArea.Text("foo: bar\r\nfizz:\r\n - wizz\r\n\r\n");
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("{\r\n  \"foo\": \"bar\",\r\n  \"fizz\": [\r\n    \"wizz\"\r\n  ]\r\n}");
+        _outputTextArea.Text.Should().Be("{\r\n  \"foo\": \"bar\",\r\n  \"fizz\": [\r\n    \"wizz\"\r\n  ]\r\n}".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Convert yaml with valid yaml and four spaces should return valid json with four spaces")]
@@ -129,6 +129,6 @@ public class JsonYamlConverterGuiToolTests : MefBasedTest
 
         _inputTextArea.Text("foo: bar\r\nfizz:\r\n - wizz\r\n\r\n");
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("{\r\n    \"foo\": \"bar\",\r\n    \"fizz\": [\r\n        \"wizz\"\r\n    ]\r\n}");
+        _outputTextArea.Text.Should().Be("{\r\n    \"foo\": \"bar\",\r\n    \"fizz\": [\r\n        \"wizz\"\r\n    ]\r\n}".Replace("\r\n", Environment.NewLine));
     }
 }

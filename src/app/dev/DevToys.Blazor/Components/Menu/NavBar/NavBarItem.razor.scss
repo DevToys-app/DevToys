@@ -17,6 +17,10 @@ nav {
         grid-template-areas: ". . .";
         padding-right: 0px;
 
+        &.sidebar-item {
+          margin: var(--sidebar-item-margin);
+        }
+
         .sidebar-item-icon {
             height: 16px;
             width: 16px;

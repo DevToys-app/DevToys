@@ -21,7 +21,11 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
     /// </summary>
     /// <param name="path">Path to the directory to scan for assemblies to add to the catalog.</param>
     public RecursiveDirectoryCatalog(string path)
-        : this(path, "*.dll")
+        : this(
+              path,
+              "*.dll",
+              // Perf: Ignore resource assembly as they only don't contain MEF parts.
+              (file) => !file.EndsWith(".resources.dll"))
     {
     }
 
@@ -30,15 +34,16 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
     /// </summary>
     /// <param name="path">Path to the directory to scan for assemblies to add to the catalog.</param>
     /// <param name="searchPattern">The pattern to search with. The format of the pattern should be the same as specified for GetFiles.</param>
+    /// <param name="pathFilter">A filter to apply to files.</param>
     /// <exception cref="ArgumentNullException">The value of the <paramref name="path"/> parameter was <see langword="null"/>.</exception>
-    public RecursiveDirectoryCatalog(string path, string searchPattern)
+    public RecursiveDirectoryCatalog(string path, string searchPattern, Predicate<string>? pathFilter)
     {
         Guard.IsNotNull(path);
 
         _path = path;
         _logger = this.Log();
 
-        Initialize(path, searchPattern);
+        Initialize(path, searchPattern, pathFilter);
     }
 
     /// <summary>
@@ -68,10 +73,15 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
     /// </summary>
     public event EventHandler<ComposablePartCatalogChangeEventArgs>? Changing;
 
-    private void Initialize(string path, string searchPattern)
+    private void Initialize(string path, string searchPattern, Predicate<string>? pathFilter)
     {
         IEnumerable<string> files
             = Directory.EnumerateFiles(path, searchPattern, SearchOption.AllDirectories);
+
+        if (pathFilter is not null)
+        {
+            files = files.Where(f => pathFilter(f));
+        }
 
         _aggregateCatalog = new AggregateCatalog();
 
