@@ -30,6 +30,7 @@ internal sealed class AnalyzerAndUtilitiesCommandLineTool : ICommandLineTool
         TrainCase,
         AlternatingCase,
         InverseCase,
+        RandomCase,
         SortLinesAlphabetically,
         SortLinesAlphabeticallyDescending,
         SortLinesByLastWord,
@@ -118,6 +119,8 @@ internal sealed class AnalyzerAndUtilitiesCommandLineTool : ICommandLineTool
                     => StringHelper.ConvertToAlternatingCase(newText, cancellationToken),
                 OperationType.InverseCase
                     => StringHelper.ConvertToInverseCase(newText, cancellationToken),
+                OperationType.RandomCase
+                    => StringHelper.ConvertToRandomCase(newText, cancellationToken),
                 OperationType.SortLinesAlphabetically
                     => StringHelper.SortLinesAlphabetically(newText, StringHelper.DetectLineBreakKind(newText, cancellationToken)),
                 OperationType.SortLinesAlphabeticallyDescending

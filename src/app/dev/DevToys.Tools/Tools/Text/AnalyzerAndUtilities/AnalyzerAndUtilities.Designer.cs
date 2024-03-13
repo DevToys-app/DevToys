@@ -340,6 +340,15 @@ namespace DevToys.Tools.Tools.Text.AnalyzerAndUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to raNdoM cASe.
+        /// </summary>
+        internal static string RandomCase {
+            get {
+                return ResourceManager.GetString("RandomCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Randomize.
         /// </summary>
         internal static string Randomize {
