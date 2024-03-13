@@ -87,6 +87,7 @@ VALUES
     [InlineData(SqlLanguage.Db2, "SELECT col1 FROM tbl ORDER BY col2 DESC FETCH FIRST 20 ROWS ONLY;", "SELECT\r\n\tcol1\r\nFROM\r\n\ttbl\r\nORDER BY\r\n\tcol2 DESC\r\nFETCH FIRST\r\n\t20 ROWS ONLY;")]
     public async Task FormatSqlWithValidSqlAndTabShouldOutputValidSql(SqlLanguage language, string input, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         _tool.Input = input;
         _tool.SqlLanguage = language;
         _tool.IndentationMode = Indentation.OneTab;

@@ -56,7 +56,7 @@ public class XmlFormatterGuiToolTests : MefBasedTest
         indentationOptions.Select(0); // Select TwoSpaces
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("<root>\r\n  <xml />\r\n</root>");
+        _outputTextArea.Text.Should().Be("<root>\r\n  <xml />\r\n</root>".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Format xml with valid xml and four spaces indentation should return valid xml")]
@@ -68,7 +68,7 @@ public class XmlFormatterGuiToolTests : MefBasedTest
         indentationOptions.Select(1); // Select FourSpaces
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("<root>\r\n    <xml />\r\n</root>");
+        _outputTextArea.Text.Should().Be("<root>\r\n    <xml />\r\n</root>".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Format xml with valid xml and one tab indentation should return valid xml")]
@@ -80,7 +80,7 @@ public class XmlFormatterGuiToolTests : MefBasedTest
         indentationOptions.Select(2); // Select OneTab
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("<root>\r\n\t<xml />\r\n</root>");
+        _outputTextArea.Text.Should().Be("<root>\r\n\t<xml />\r\n</root>".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Format xml with valid xml and minified should return valid xml")]
@@ -106,11 +106,11 @@ public class XmlFormatterGuiToolTests : MefBasedTest
         newLineOnAttributesOptions.On();
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("<root>\r\n  <xml\r\n    test=\"true\" />\r\n</root>");
+        _outputTextArea.Text.Should().Be("<root>\r\n  <xml\r\n    test=\"true\" />\r\n</root>".Replace("\r\n", Environment.NewLine));
 
         newLineOnAttributesOptions.Off();
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("<root>\r\n  <xml test=\"true\" />\r\n</root>");
+        _outputTextArea.Text.Should().Be("<root>\r\n  <xml test=\"true\" />\r\n</root>".Replace("\r\n", Environment.NewLine));
     }
 }

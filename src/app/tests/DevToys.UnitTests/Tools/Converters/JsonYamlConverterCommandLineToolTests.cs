@@ -64,7 +64,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(0);
         string consoleOutput = _consoleWriter.ToString().Trim();
-        consoleOutput.Should().Be("foo: bar\r\nfizz:\r\n  - wizz");
+        consoleOutput.Should().Be("foo: bar\r\nfizz:\r\n  - wizz".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Convert json with valid json and four spaces indentation should output valid yaml")]
@@ -77,7 +77,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(0);
         string consoleOutput = _consoleWriter.ToString().Trim();
-        consoleOutput.Should().Be("foo: bar\r\nfizz:\r\n    - wizz");
+        consoleOutput.Should().Be("foo: bar\r\nfizz:\r\n    - wizz".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Convert json with unknown json file should output invalid json error")]
@@ -123,7 +123,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(0);
         string outputContent = File.ReadAllText(_tool.OutputFile.FullName);
-        outputContent.Should().Be("foo: bar\r\nfizz:\r\n  - wizz\r\n");
+        outputContent.Should().Be("foo: bar\r\nfizz:\r\n  - wizz\r\n".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Convert json with valid json file and four spaces should output valid yaml file")]
@@ -139,7 +139,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(0);
         string outputContent = File.ReadAllText(_tool.OutputFile.FullName);
-        outputContent.Should().Be("foo: bar\r\nfizz:\r\n    - wizz\r\n");
+        outputContent.Should().Be("foo: bar\r\nfizz:\r\n    - wizz\r\n".Replace("\r\n", Environment.NewLine));
     }
 
     #endregion
@@ -167,7 +167,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(0);
         string consoleOutput = _consoleWriter.ToString().Trim();
-        consoleOutput.Should().Be("{\r\n  \"foo\": \"bar\",\r\n  \"fizz\": [\r\n    \"wizz\"\r\n  ]\r\n}");
+        consoleOutput.Should().Be("{\r\n  \"foo\": \"bar\",\r\n  \"fizz\": [\r\n    \"wizz\"\r\n  ]\r\n}".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Convert yaml with valid yaml and four spaces should output valid json with four spaces")]
@@ -180,7 +180,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(0);
         string consoleOutput = _consoleWriter.ToString().Trim();
-        consoleOutput.Should().Be("{\r\n    \"foo\": \"bar\",\r\n    \"fizz\": [\r\n        \"wizz\"\r\n    ]\r\n}");
+        consoleOutput.Should().Be("{\r\n    \"foo\": \"bar\",\r\n    \"fizz\": [\r\n        \"wizz\"\r\n    ]\r\n}".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Convert yaml with invalid yaml file should output invalid yaml error")]
@@ -210,7 +210,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(0);
         string outputContent = File.ReadAllText(_tool.OutputFile.FullName);
-        outputContent.Should().Be("{\r\n  \"foo\": \"bar\",\r\n  \"fizz\": [\r\n    \"wizz\"\r\n  ]\r\n}");
+        outputContent.Should().Be("{\r\n  \"foo\": \"bar\",\r\n  \"fizz\": [\r\n    \"wizz\"\r\n  ]\r\n}".Replace("\r\n", Environment.NewLine));
     }
 
     [Fact(DisplayName = "Convert yaml with valid yaml file and four spaces should output valid json file")]
@@ -226,7 +226,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(0);
         string outputContent = File.ReadAllText(_tool.OutputFile.FullName);
-        outputContent.Should().Be("{\r\n    \"foo\": \"bar\",\r\n    \"fizz\": [\r\n        \"wizz\"\r\n    ]\r\n}");
+        outputContent.Should().Be("{\r\n    \"foo\": \"bar\",\r\n    \"fizz\": [\r\n        \"wizz\"\r\n    ]\r\n}".Replace("\r\n", Environment.NewLine));
     }
 
     #endregion

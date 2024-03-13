@@ -998,6 +998,6 @@ FROM
     internal static void AssertFormat(Formatter formatter, string input, string expectedOutput)
     {
         string output = formatter.Format(input);
-        output.Should().Be(expectedOutput);
+        output.Replace("\r\n", Environment.NewLine).Should().Be(expectedOutput.Replace("\r\n", Environment.NewLine));
     }
 }

@@ -31,6 +31,7 @@ public class XmlHelperTests
     [InlineData("<root><xml test=\"true\" /></root>", "<root>\r\n  <xml\r\n    test=\"true\" />\r\n</root>", true)]
     public void FormatTwoSpaces(string input, string expectedResult, bool newLineOnAttributes = false)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         ResultInfo<string> actual = XmlHelper.Format(input, Indentation.TwoSpaces, newLineOnAttributes, new MockILogger());
         actual.Data.Should().Be(expectedResult);
     }
@@ -45,6 +46,7 @@ public class XmlHelperTests
     [InlineData("<root><xml test=\"true\" /></root>", "<root>\r\n    <xml\r\n        test=\"true\" />\r\n</root>", true)]
     public void FormatFourSpaces(string input, string expectedResult, bool newLineOnAttributes = false)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         ResultInfo<string> actual = XmlHelper.Format(input, Indentation.FourSpaces, newLineOnAttributes, new MockILogger());
         actual.Data.Should().Be(expectedResult);
     }
@@ -59,6 +61,7 @@ public class XmlHelperTests
     [InlineData("<root><xml test=\"true\" /></root>", "<root>\r\n\t<xml\r\n\t\ttest=\"true\" />\r\n</root>", true)]
     public void FormatOneTab(string input, string expectedResult, bool newLineOnAttributes = false)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         ResultInfo<string> actual = XmlHelper.Format(input, Indentation.OneTab, newLineOnAttributes, new MockILogger());
         actual.Data.Should().Be(expectedResult);
     }

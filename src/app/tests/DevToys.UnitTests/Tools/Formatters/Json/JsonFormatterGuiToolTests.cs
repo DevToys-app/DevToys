@@ -56,7 +56,10 @@ public class JsonFormatterGuiToolTests : MefBasedTest
         indentationOptions.Select(0); // Select TwoSpaces
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("{\r\n  \"foo\": 123\r\n}");
+
+        string expectedResult = "{\r\n  \"foo\": 123\r\n}";
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
+        _outputTextArea.Text.Should().Be(expectedResult);
     }
 
     [Fact(DisplayName = "Format json with valid json and four spaces indentation should return valid json")]
@@ -68,7 +71,9 @@ public class JsonFormatterGuiToolTests : MefBasedTest
         indentationOptions.Select(1); // Select FourSpaces
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("{\r\n    \"foo\": 123\r\n}");
+        string expectedResult = "{\r\n    \"foo\": 123\r\n}";
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
+        _outputTextArea.Text.Should().Be(expectedResult);
     }
 
     [Fact(DisplayName = "Format json with valid json and one tab indentation should return valid json")]
@@ -80,7 +85,9 @@ public class JsonFormatterGuiToolTests : MefBasedTest
         indentationOptions.Select(2); // Select OneTab
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("{\r\n\t\"foo\": 123\r\n}");
+        string expectedResult = "{\r\n\t\"foo\": 123\r\n}";
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
+        _outputTextArea.Text.Should().Be(expectedResult);
     }
 
     [Fact(DisplayName = "Format json with valid json and minified should return valid json")]
@@ -106,11 +113,15 @@ public class JsonFormatterGuiToolTests : MefBasedTest
         newLineOnAttributesOptions.On();
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("{\r\n  \"a\": \"asdf\",\r\n  \"array\": [\r\n    {\r\n      \"a\": \"asdf\",\r\n      \"array\": [],\r\n      \"b\": 33,\r\n      \"c\": 545\r\n    }\r\n  ],\r\n  \"b\": 33,\r\n  \"c\": 545\r\n}");
+        string expectedResult = "{\r\n  \"a\": \"asdf\",\r\n  \"array\": [\r\n    {\r\n      \"a\": \"asdf\",\r\n      \"array\": [],\r\n      \"b\": 33,\r\n      \"c\": 545\r\n    }\r\n  ],\r\n  \"b\": 33,\r\n  \"c\": 545\r\n}";
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
+        _outputTextArea.Text.Should().Be(expectedResult);
 
         newLineOnAttributesOptions.Off();
 
         await _tool.WorkTask;
-        _outputTextArea.Text.Should().Be("{\r\n  \"a\": \"asdf\",\r\n  \"c\": 545,\r\n  \"b\": 33,\r\n  \"array\": [\r\n    {\r\n      \"a\": \"asdf\",\r\n      \"c\": 545,\r\n      \"b\": 33,\r\n      \"array\": []\r\n    }\r\n  ]\r\n}");
+        expectedResult = "{\r\n  \"a\": \"asdf\",\r\n  \"c\": 545,\r\n  \"b\": 33,\r\n  \"array\": [\r\n    {\r\n      \"a\": \"asdf\",\r\n      \"c\": 545,\r\n      \"b\": 33,\r\n      \"array\": []\r\n    }\r\n  ]\r\n}";
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
+        _outputTextArea.Text.Should().Be(expectedResult);
     }
 }
