@@ -14,8 +14,8 @@
   <a title="Crowdin" target="_blank" href="https://crowdin.com/project/devtoys">
     <img src="https://badges.crowdin.net/devtoys/localized.svg">
   </a>
-  <a style="text-decoration:none" href="https://github.com/veler/DevToys/releases" target="_blank">
-    <img src="https://img.shields.io/github/release/veler/devtoys.svg?label=Latest%20version" alt="Latest version" />
+  <a style="text-decoration:none" href="https://github.com/DevToys-app/DevToys/releases" target="_blank">
+    <img src="https://img.shields.io/github/release/DevToys-app/DevToys.svg?label=Latest%20version" alt="Latest version" />
   </a>
   <a style="text-decoration:none" href="https://community.chocolatey.org/packages/devtoys" target="_blank">
     <img src="https://img.shields.io/chocolatey/v/devtoys?include_prereleases" alt="Chocolatey Version (including pre-releases)">
@@ -180,10 +180,10 @@ DevToys is using a license that permits redistribution of the app as trialware o
 
 ### Code contributors
 
-![Alt](https://repobeats.axiom.co/api/embed/31f4c9d2d532ef010e6171dc501f976c1481d799.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/324efe7f02eac0ea57d264c986651a346e86caf9.svg "Repobeats analytics image")
 
-<a href="https://github.com/veler/devtoys/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=veler/devtoys" />
+<a href="https://github.com/DevToys-app/DevToys/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=DevToys-app/DevToys" />
 </a>
 
 ### Designers
