@@ -128,4 +128,9 @@ public partial class ToolPage : MefComponentBase, IFocusable
     {
         ViewModel.RebuildViewCommand.Execute(null);
     }
+
+    private void OnHotReloadButtonClick()
+    {
+        ViewModel.RebuildViewCommand.Execute(null);
+    }
 }
