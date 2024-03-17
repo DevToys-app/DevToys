@@ -165,6 +165,15 @@ public class StringHelperTests
             .Be("LoReM IpSuM DoLoR SiT AmEt tAkImAtA SiT.\r\n pLaCeRaT SeD DuIs cLiTa nOnUmY TiNcIdUnT EsT FaCiLiSiS.\r CuM Ea eLiTr cOnSeCtEtUeR NoNuMy dIaM.\n EoS Ut dIaM LaOrEeT AmEt mInIm dOlOr dOlOrEs dOlOrE AmEt lOrEm cOnSeTeTuR DoLoR ClItA.");
     }
 
+    [Fact]
+    internal void RandomCase()
+    {
+        string result = StringHelper.ConvertToRandomCase(Text, CancellationToken.None);
+        result
+        .Should()
+        .NotBe(Text);
+    }
+
     [Theory]
     [InlineData("", EndOfLineSequence.Unknown)]
     [InlineData(Text, EndOfLineSequence.Mixed)]

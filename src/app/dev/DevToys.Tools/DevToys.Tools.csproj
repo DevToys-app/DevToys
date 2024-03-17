@@ -43,6 +43,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>GlobalStrings.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Converters\NumberBase\NumberBaseConverter.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NumberBaseConverter.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Converters\Cron\CronParser.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -240,6 +245,10 @@
     <EmbeddedResource Update="Tools\Converters\JsonTable\JsonTableConverter.resx">
       <LastGenOutput>JsonTableConverter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Converters\NumberBase\NumberBaseConverter.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NumberBaseConverter.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\EncodersDecoders\Certificate\CertificateDecoder.resx">
       <Generator>ResXFileCodeGenerator</Generator>

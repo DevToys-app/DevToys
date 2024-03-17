@@ -568,6 +568,34 @@ internal static class StringHelper
         return new string(inverseCaseString.Span);
     }
 
+    internal static string ConvertToRandomCase(string text, CancellationToken cancellationToken)
+    {
+        Guard.IsNotNull(text);
+        if (text.Length == 0)
+        {
+            return text;
+        }
+
+        var randomCaseString = new Memory<char>(text.ToCharArray());
+
+        for (int i = 0; i < randomCaseString.Length; i++)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            bool isUpper = random.Next() > (int.MaxValue / 2);
+
+            if (isUpper)
+            {
+                randomCaseString.Span[i] = char.ToUpperInvariant(randomCaseString.Span[i]);
+            }
+            else
+            {
+                randomCaseString.Span[i] = char.ToLowerInvariant(randomCaseString.Span[i]);
+            }
+        }
+
+        return new string(randomCaseString.Span);
+    }
+
     internal static EndOfLineSequence DetectLineBreakKind(string text, CancellationToken cancellationToken)
     {
         EndOfLineSequence overallLineBreakType = EndOfLineSequence.Unknown;

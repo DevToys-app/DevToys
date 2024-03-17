@@ -123,7 +123,8 @@ internal sealed class AnalyzerAndUtilitiesGuiTool : IGuiTool, IDisposable
                                                 Button().Text(AnalyzerAndUtilities.CobolCase).OnClick(OnCobolCaseButtonClick),
                                                 Button().Text(AnalyzerAndUtilities.TrainCase).OnClick(OnTrainCaseButtonClick),
                                                 Button().Text(AnalyzerAndUtilities.AlternatingCase).OnClick(OnAlternatingCaseButtonClick),
-                                                Button().Text(AnalyzerAndUtilities.InverseCase).OnClick(OnInverseCaseButtonClick))),
+                                                Button().Text(AnalyzerAndUtilities.InverseCase).OnClick(OnInverseCaseButtonClick),
+                                                Button().Text(AnalyzerAndUtilities.RandomCase).OnClick(OnRandomCaseButtonClick))),
 
                                 // Sort lines
                                 Stack()
@@ -289,6 +290,11 @@ internal sealed class AnalyzerAndUtilitiesGuiTool : IGuiTool, IDisposable
     private void OnInverseCaseButtonClick()
     {
         SetTextWithoutBackup(StringHelper.ConvertToInverseCase(_textInput.Text, CancellationToken.None));
+    }
+
+    private void OnRandomCaseButtonClick()
+    {
+        SetTextWithoutBackup(StringHelper.ConvertToRandomCase(_textInput.Text, CancellationToken.None));
     }
 
     private void OnAlphabetizeButtonClick()

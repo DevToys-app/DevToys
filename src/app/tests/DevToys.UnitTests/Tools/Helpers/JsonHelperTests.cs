@@ -32,6 +32,7 @@ public class JsonHelperTests
     [InlineData("   { \"foo\": 123 }  ", true, "{\r\n  \"foo\": 123\r\n}")]
     public async Task FormatTwoSpaces(string input, bool expectedSucceeded, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.TwoSpaces, false, new MockILogger(), CancellationToken.None);
         result.HasSucceeded.Should().Be(expectedSucceeded);
         result.Data.Should().Be(expectedResult);
@@ -46,6 +47,7 @@ public class JsonHelperTests
     [InlineData("   { \"foo\": 123 }  ", true, "{\r\n    \"foo\": 123\r\n}")]
     public async Task FormatFourSpaces(string input, bool expectedSucceeded, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.FourSpaces, false, new MockILogger(), CancellationToken.None);
         result.HasSucceeded.Should().Be(expectedSucceeded);
         result.Data.Should().Be(expectedResult);
@@ -60,6 +62,7 @@ public class JsonHelperTests
     [InlineData("   { \"foo\": 123 }  ", true, "{\r\n\t\"foo\": 123\r\n}")]
     public async Task FormatOneTab(string input, bool expectedSucceeded, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.OneTab, false, new MockILogger(), CancellationToken.None);
         result.HasSucceeded.Should().Be(expectedSucceeded);
         result.Data.Should().Be(expectedResult);
@@ -152,6 +155,7 @@ public class JsonHelperTests
     [InlineData("   - key: value\r\n     key2: 1", "[\r\n  {\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }\r\n]")]
     public void ConvertFromYamlWithTwoSpaces(string input, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         ResultInfo<string> result = JsonHelper.ConvertFromYaml(
              input,
              Indentation.TwoSpaces,
@@ -165,6 +169,7 @@ public class JsonHelperTests
     [InlineData("   - key: value\r\n     key2: 1", "[\r\n    {\r\n        \"key\": \"value\",\r\n        \"key2\": 1\r\n    }\r\n]")]
     public void ConvertFromYamlWithFourSpaces(string input, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         ResultInfo<string> result = JsonHelper.ConvertFromYaml(
              input,
              Indentation.FourSpaces,
@@ -178,6 +183,7 @@ public class JsonHelperTests
     [InlineData("{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 42, \"array\": []}]}", "array.[0].b", "[\r\n  42\r\n]")]
     public async Task JsonPathTests(string json, string jsonPath, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         (await JsonHelper.TestJsonPathAsync(json, jsonPath, new MockILogger(), CancellationToken.None))
             .Data.Should().Be(expectedResult);
     }

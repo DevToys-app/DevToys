@@ -133,7 +133,7 @@
     <comment>Sidebar heading</comment>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JSON,CSV,TSV,French,Excel,Tabular,Data</value>
+    <value>JSON CSV TSV French Excel Tabular Data</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>

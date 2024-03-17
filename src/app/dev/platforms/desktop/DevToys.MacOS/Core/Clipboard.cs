@@ -214,7 +214,7 @@ internal sealed partial class Clipboard : IClipboard
 
                     using Image image = await Image.LoadAsync(imageFromPasteboardStream);
                     imageFromPasteboard.Dispose();
-                    return image.CloneAs<Rgba32>(image.GetConfiguration());
+                    return image.CloneAs<Rgba32>(image.Configuration);
                 }
             }
         }

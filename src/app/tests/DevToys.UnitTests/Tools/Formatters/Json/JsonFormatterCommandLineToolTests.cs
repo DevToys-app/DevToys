@@ -56,6 +56,7 @@ public sealed class JsonFormatterCommandLineToolTests : MefBasedTest
     [InlineData(false, "{\r\n  \"a\": \"asdf\",\r\n  \"c\": 545,\r\n  \"b\": 33,\r\n  \"array\": [\r\n    {\r\n      \"a\": \"asdf\",\r\n      \"c\": 545,\r\n      \"b\": 33,\r\n      \"array\": []\r\n    }\r\n  ]\r\n}")]
     public async Task FormatJsonWithValidJsonAndTwoSpacesShouldOutputValidJson(bool sortProperties, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         _tool.SortProperties = sortProperties;
         _tool.Input = "{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": []}]}";
 
@@ -70,6 +71,7 @@ public sealed class JsonFormatterCommandLineToolTests : MefBasedTest
     [InlineData(false, "{\r\n    \"a\": \"asdf\",\r\n    \"c\": 545,\r\n    \"b\": 33,\r\n    \"array\": [\r\n        {\r\n            \"a\": \"asdf\",\r\n            \"c\": 545,\r\n            \"b\": 33,\r\n            \"array\": []\r\n        }\r\n    ]\r\n}")]
     public async Task FormatJsonWithValidJsonAndFourSpacesShouldOutputValidJson(bool sortProperties, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         _tool.IndentationMode = Indentation.FourSpaces;
         _tool.SortProperties = sortProperties;
         _tool.Input = "{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": []}]}";
@@ -85,6 +87,7 @@ public sealed class JsonFormatterCommandLineToolTests : MefBasedTest
     [InlineData(false, "{\r\n\t\"a\": \"asdf\",\r\n\t\"c\": 545,\r\n\t\"b\": 33,\r\n\t\"array\": [\r\n\t\t{\r\n\t\t\t\"a\": \"asdf\",\r\n\t\t\t\"c\": 545,\r\n\t\t\t\"b\": 33,\r\n\t\t\t\"array\": []\r\n\t\t}\r\n\t]\r\n}")]
     public async Task FormatJsonWithValidJsonAndOneTabShouldOutputValidJson(bool sortProperties, string expectedResult)
     {
+        expectedResult = expectedResult.Replace("\r\n", Environment.NewLine);
         _tool.IndentationMode = Indentation.OneTab;
         _tool.SortProperties = sortProperties;
         _tool.Input = "{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": []}]}";

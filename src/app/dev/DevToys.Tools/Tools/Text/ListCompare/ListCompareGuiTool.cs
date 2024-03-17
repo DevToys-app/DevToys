@@ -64,7 +64,6 @@ internal sealed class ListCompareGuiTool : IGuiTool
     // For unit tests.
     internal Task? WorkTask { get; private set; }
 
-
     public UIToolView View
         => new(
             isScrollable: true,

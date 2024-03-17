@@ -14,6 +14,7 @@ namespace DevToys.Tools.Tools.Generators.Password;
     ShortDisplayTitleResourceName = nameof(PasswordGenerator.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(PasswordGenerator.LongDisplayTitle),
     DescriptionResourceName = nameof(PasswordGenerator.Description),
+    SearchKeywordsResourceName = nameof(PasswordGenerator.SearchKeywords),
     AccessibleNameResourceName = nameof(PasswordGenerator.AccessibleName))]
 internal sealed class PasswordGeneratorGuidTool : IGuiTool
 {

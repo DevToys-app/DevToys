@@ -8,7 +8,6 @@ internal class ReadOnlyMemoryEqualityComparer : IEqualityComparer<ReadOnlyMemory
         _comparisonType = caseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
     }
 
-
     public bool Equals(ReadOnlyMemory<char> x, ReadOnlyMemory<char> y)
     {
         return x.Span.Equals(y.Span, _comparisonType);
