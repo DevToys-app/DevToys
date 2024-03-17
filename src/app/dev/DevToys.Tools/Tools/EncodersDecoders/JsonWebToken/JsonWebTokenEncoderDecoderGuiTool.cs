@@ -44,8 +44,13 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
 
         JwtMode value = _settingsProvider.GetSetting(toolModeSetting);
         if (value is JwtMode.Encode)
+        {
             _conversionModeSwitch.On();
-        _conversionModeSwitch.Off();
+        }
+        else
+        {
+            _conversionModeSwitch.Off();
+        }
         LoadChildView();
     }
 
@@ -80,9 +85,9 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
                                 .Description(JsonWebTokenEncoderDecoder.ToolModeDescription)
                                 .InteractiveElement(
                                     _conversionModeSwitch
-                                    .OnText(JsonWebTokenEncoderDecoder.EncodeMode)
-                                    .OffText(JsonWebTokenEncoderDecoder.DecodeMode)
-                                    .OnToggle(OnConversionModeChanged)
+                                        .OnText(JsonWebTokenEncoderDecoder.EncodeMode)
+                                        .OffText(JsonWebTokenEncoderDecoder.DecodeMode)
+                                        .OnToggle(OnConversionModeChanged)
                                 )
                         )
                 ),

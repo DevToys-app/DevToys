@@ -84,8 +84,6 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     private readonly IUIStack _viewStack = Stack("jwt-decode-view-stack");
     private readonly IUIStack _decodeSettingsStack = Stack("jwt-decode-settings-stack");
 
-    private readonly IUISettingGroup _validateTokenSettingGroups = SettingGroup("jwt-decode-validate-token-setting");
-
     private readonly IUISwitch _validateTokenSwitch = Switch("jwt-decode-validate-token-switch");
     private readonly IUISwitch _validateTokenIssuerSigningKeySwitch = Switch("jwt-decode-validate-token-issuer-signing-key-switch");
     private readonly IUISwitch _validateTokenIssuersSwitch = Switch("jwt-decode-validate-token-issuers-switch");
@@ -124,19 +122,16 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
         => _viewStack
         .Vertical()
         .WithChildren(
-            Setting("jwt-decode-validate-token-setting")
-                .Icon("FluentSystemIcons", '\ueac9')
-                .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenTitle)
+            SettingGroup("jwt-decode-validate-token-setting")
+                .Icon("FluentSystemIcons", '\uec9e')
+                .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenSettingsTitle)
+                .Description(JsonWebTokenEncoderDecoder.DecodeValidateTokenSettingsDescription)
                 .InteractiveElement(
                     _validateTokenSwitch
                         .OnText(JsonWebTokenEncoderDecoder.Yes)
                         .OffText(JsonWebTokenEncoderDecoder.No)
                         .OnToggle(OnValidateTokenChanged)
-                ),
-            _validateTokenSettingGroups
-                .Icon("FluentSystemIcons", '\uec9e')
-                .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenSettingsTitle)
-                .Description(JsonWebTokenEncoderDecoder.DecodeValidateTokenSettingsDescription)
+                )
                 .WithChildren(
                     Setting("jwt-decode-validate-token-issuer-signing-key-setting")
                         .Icon("FluentSystemIcons", '\ue30a')
@@ -280,6 +275,14 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     private void OnValidateTokenIssuer(bool validateTokenIssuer)
     {
         _settingsProvider.SetSetting(validateTokenIssuerSetting, validateTokenIssuer);
+        if (validateTokenIssuer)
+        {
+            _validateTokenIssuersInput.Enable();
+        }
+        else
+        {
+            _validateTokenIssuersInput.Disable();
+        }
         StartTokenDecode();
     }
 
@@ -297,6 +300,14 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     private void OnValidateTokenAudiences(bool validateTokenAudiences)
     {
         _settingsProvider.SetSetting(validateTokenAudiencesSetting, validateTokenAudiences);
+        if (validateTokenAudiences)
+        {
+            _validateTokenAudiencesInput.Enable();
+        }
+        else
+        {
+            _validateTokenAudiencesInput.Disable();
+        }
         StartTokenDecode();
     }
 
@@ -464,21 +475,29 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
         if (validateToken)
         {
             _validateTokenSwitch.On();
-            _validateTokenSettingGroups.Show();
             _signatureInput.Show();
+            _validateTokenIssuerSigningKeySwitch.Enable();
+            _validateTokenIssuersSwitch.Enable();
+            _validateTokenAudiencesSwitch.Enable();
+            _validateLifetimeSwitch.Enable();
+            _validateActorsSwitch.Enable();
         }
         else
         {
             _validateTokenSwitch.Off();
-            _validateTokenSettingGroups.Hide();
             _signatureInput.Hide();
             _publicKeyInput.Hide();
             _infoBar.Close();
+            _validateTokenIssuerSigningKeySwitch.Disable();
+            _validateTokenIssuersSwitch.Disable();
+            _validateTokenAudiencesSwitch.Disable();
+            _validateLifetimeSwitch.Disable();
+            _validateActorsSwitch.Disable();
         }
 
         ConfigureSwitch(_settingsProvider.GetSetting(validateTokenIssuerSigningKeySetting), _validateTokenIssuerSigningKeySwitch);
-        ConfigureSwitch(_settingsProvider.GetSetting(validateTokenIssuerSetting), _validateTokenIssuersSwitch);
-        ConfigureSwitch(_settingsProvider.GetSetting(validateTokenAudiencesSetting), _validateTokenAudiencesSwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(validateTokenIssuerSetting), _validateTokenIssuersSwitch, _validateTokenIssuersInput);
+        ConfigureSwitch(_settingsProvider.GetSetting(validateTokenAudiencesSetting), _validateTokenAudiencesSwitch, _validateTokenAudiencesInput);
         ConfigureSwitch(_settingsProvider.GetSetting(validateTokenLifetimeSetting), _validateLifetimeSwitch);
         ConfigureSwitch(_settingsProvider.GetSetting(validateTokenActorsSetting), _validateActorsSwitch);
 
@@ -525,6 +544,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     private void ClearUI()
     {
+        _infoBar.Close();
         _headerInput.Text(string.Empty);
         _payloadInput.Text(string.Empty);
     }
@@ -553,13 +573,21 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
         dataGrid.Rows.AddRange(rows);
     }
 
-    private static void ConfigureSwitch(bool value, IUISwitch inputSwitch)
+    private static void ConfigureSwitch(bool value, IUISwitch inputSwitch, IUISingleLineTextInput? input = null)
     {
         if (value)
         {
             inputSwitch.On();
+            if (input != null)
+            {
+                input.Enable();
+            }
             return;
         }
         inputSwitch.Off();
+        if (input != null)
+        {
+            input.Disable();
+        }
     }
 }

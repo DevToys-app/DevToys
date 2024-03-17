@@ -77,8 +77,11 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
     private readonly IUIInfoBar _infoBar = InfoBar("jwt-encode-info-bar");
     private readonly IUISwitch _encodeTokenHasIssuerSwitch = Switch("jwt-encode-token-issuer-switch");
     private readonly IUISwitch _encodeTokenHasAudienceSwitch = Switch("jwt-encode-token-audience-switch");
+    private readonly IUISingleLineTextInput _encodeTokenIssuerInput = SingleLineTextInput("jwt-encode-token-issuer-input");
+    private readonly IUISingleLineTextInput _encodeTokenAudienceInput = SingleLineTextInput("jwt-encode-token-audience-input");
 
     private readonly IUISwitch _encodeTokenHasExpirationSwitch = Switch("jwt-encode-token-expiration-switch");
+    private readonly IUIGrid _encodeTokenExpirationGrid = Grid("jwt-encode-token-expiration-grid");
     private readonly IUINumberInput _encodeTokenExpirationYearInputNumber = NumberInput("jwt-encode-token-expiration-input-year");
     private readonly IUINumberInput _encodeTokenExpirationMonthInputNumber = NumberInput("jwt-encode-token-expiration-input-month");
     private readonly IUINumberInput _encodeTokenExpirationDayInputNumber = NumberInput("jwt-encode-token-expiration-input-day");
@@ -150,7 +153,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                                 .OnToggle(OnTokenHasIssuerChanged)
                         )
                         .WithChildren(
-                            SingleLineTextInput("jwt-encode-token-issuer-input")
+                            _encodeTokenIssuerInput
                                 .Title(JsonWebTokenEncoderDecoder.EncodeTokenIssuerInputTitle)
                                 .OnTextChanged(OnTokenIssuerInputChanged)
                         ),
@@ -164,7 +167,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                                 .OnToggle(OnTokenHasAudienceChanged)
                         )
                         .WithChildren(
-                            SingleLineTextInput("jwt-encode-token-audience-input")
+                            _encodeTokenAudienceInput
                                 .Title(JsonWebTokenEncoderDecoder.EncodeTokenAudienceInputTitle)
                                 .OnTextChanged(OnTokenAudienceInputChanged)
                         ),
@@ -178,7 +181,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                                 .OnToggle(OnTokenHasExpirationChanged)
                         )
                         .WithChildren(
-                            Grid("jwt-encode-token-expiration-grid")
+                            _encodeTokenExpirationGrid
                                 .RowSmallSpacing()
                                 .ColumnSmallSpacing()
                                 .Rows(
@@ -342,6 +345,14 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
     private void OnTokenHasIssuerChanged(bool tokenHasIssuer)
     {
         _settingsProvider.SetSetting(tokenHasIssuerSetting, tokenHasIssuer);
+        if (tokenHasIssuer)
+        {
+            _encodeTokenIssuerInput.Enable();
+        }
+        else
+        {
+            _encodeTokenIssuerInput.Disable();
+        }
         StartTokenEncode();
     }
 
@@ -355,6 +366,14 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
     private void OnTokenHasAudienceChanged(bool tokenHasAudience)
     {
         _settingsProvider.SetSetting(tokenHasAudienceSetting, tokenHasAudience);
+        if (tokenHasAudience)
+        {
+            _encodeTokenAudienceInput.Enable();
+        }
+        else
+        {
+            _encodeTokenAudienceInput.Disable();
+        }
         StartTokenEncode();
     }
 
@@ -374,6 +393,14 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
     private void OnTokenHasExpirationChanged(bool tokenHasExpiration)
     {
         _settingsProvider.SetSetting(tokenHasExpirationSetting, tokenHasExpiration);
+        if (tokenHasExpiration)
+        {
+            _encodeTokenExpirationGrid.Enable();
+        }
+        else
+        {
+            _encodeTokenExpirationGrid.Disable();
+        }
         StartTokenEncode();
     }
 
@@ -414,7 +441,6 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
-
 
         if (string.IsNullOrWhiteSpace(_payloadInput.Text))
         {
@@ -513,6 +539,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
 
     private void ClearUI()
     {
+        _infoBar.Close();
         _tokenInput.Text(string.Empty);
     }
 
@@ -521,9 +548,9 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         JsonWebTokenAlgorithm tokenAlgorithm = _settingsProvider.GetSetting(tokenAlgorithmSetting);
         await ConfigureTokenAlgorithmUIAsync(tokenAlgorithm);
 
-        ConfigureSwitch(_settingsProvider.GetSetting(tokenHasIssuerSetting), _encodeTokenHasIssuerSwitch);
-        ConfigureSwitch(_settingsProvider.GetSetting(tokenHasAudienceSetting), _encodeTokenHasAudienceSwitch);
-        ConfigureSwitch(_settingsProvider.GetSetting(tokenHasExpirationSetting), _encodeTokenHasExpirationSwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(tokenHasIssuerSetting), _encodeTokenHasIssuerSwitch, _encodeTokenIssuerInput);
+        ConfigureSwitch(_settingsProvider.GetSetting(tokenHasAudienceSetting), _encodeTokenHasAudienceSwitch, _encodeTokenAudienceInput);
+        ConfigureSwitch(_settingsProvider.GetSetting(tokenHasExpirationSetting), _encodeTokenHasExpirationSwitch, _encodeTokenExpirationGrid);
         ConfigureSwitch(_settingsProvider.GetSetting(tokenHasDefaultTimeSetting), _encodeTokenDefaultTimeSwitch);
         DateTimeOffset expirationDate = _settingsProvider.GetSetting(tokenExpirationSettings);
         _encodeTokenExpirationYearInputNumber.Value(expirationDate.Year);
@@ -558,13 +585,21 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         _headerInput.Text(headerContent.Data!);
     }
 
-    private static void ConfigureSwitch(bool value, IUISwitch inputSwitch)
+    private static void ConfigureSwitch(bool value, IUISwitch inputSwitch, IUIElementWithChildren? input = null)
     {
         if (value)
         {
             inputSwitch.On();
+            if (input != null)
+            {
+                input.Enable();
+            }
             return;
         }
         inputSwitch.Off();
+        if (input != null)
+        {
+            input.Disable();
+        }
     }
 }
