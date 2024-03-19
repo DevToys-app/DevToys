@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Clear" xml:space="preserve">
-    <value>Nettoyer</value>
+    <value>Effacer</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copie</value>
+    <value>Copier</value>
   </data>
   <data name="Cut" xml:space="preserve">
     <value>Couper</value>
   </data>
   <data name="Decrease" xml:space="preserve">
-    <value>Diminuer</value>
+    <value>Décrémenter</value>
   </data>
   <data name="Increase" xml:space="preserve">
-    <value>Agrandir</value>
+    <value>Incrémenter</value>
   </data>
   <data name="Paste" xml:space="preserve">
     <value>Coller</value>
@@ -139,6 +139,6 @@
     <value>Révéler</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>Tout sélectionner</value>
+    <value>Sélectionner tout</value>
   </data>
 </root>
