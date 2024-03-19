@@ -118,52 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>Gérer les extensions dans DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manager third-party extensions in DevToys</value>
+    <value>Ajouter et gérer des extensions dans DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>L'extension '{0}' est déjà installée. Si vous essayez de mettre à jour une extension qui est déjà installée, désinstallez d'abord l'ancienne version.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>Impossible d'installer cette extension</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>Trouver plus d'extensions en ligne</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>Installer une extension</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>Créer une extension pour DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>Veuillez fermer toutes les fenêtres DevToys et redémarrer l'application pour appliquer les modifications.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>Redémarrage nécessaire pour que les modifications prennent effet</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>Gérer les extensions</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Les extensions tierces peuvent modifier les fonctionnalités des outils existants et accéder à votre ordinateur sans votre autorisation. Cela peut exposer vos données à Internet ou installer des logiciels indésirables sur votre appareil. Nous vous recommandons fortement de faire preuve de prudence et d'installer uniquement les extensions auxquelles vous avez confiance. Les auteurs de DevToys ne sont pas responsables des dommages ou pertes causés par les extensions.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>Je comprends</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>Termes et Conditions</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Avertissement</value>
   </data>
 </root>
