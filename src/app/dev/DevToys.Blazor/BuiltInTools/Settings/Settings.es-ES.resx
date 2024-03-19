@@ -286,15 +286,15 @@
     <comment/>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versión {0}</value>
     <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Ajuste de líneas</value>
     <comment/>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>Ajuste de línea</value>
     <comment/>
   </data>
 </root>
