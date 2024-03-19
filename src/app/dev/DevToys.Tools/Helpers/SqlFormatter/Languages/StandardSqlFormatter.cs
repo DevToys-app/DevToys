@@ -381,6 +381,6 @@ internal sealed class StandardSqlFormatter : Formatter
                 indexedPlaceholderTypes: new[] { '?' },
                 namedPlaceholderTypes: new[] { '@' },
                 lineCommentTypes: new[] { "--" },
-                specialWordChars: Array.Empty<string>());
+                specialWordChars: new[] { "#", "@", "$" });
     }
 }

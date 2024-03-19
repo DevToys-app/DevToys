@@ -523,7 +523,7 @@ internal sealed class PostgreSqlFormatter : Formatter
                 indexedPlaceholderTypes: new[] { '$' },
                 namedPlaceholderTypes: new[] { ':', '@' },
                 lineCommentTypes: new[] { "--" },
-                specialWordChars: Array.Empty<string>(),
+                specialWordChars: new[] { "@", "$" },
                 operators: new[]
                 {
                     "!=",

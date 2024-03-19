@@ -332,7 +332,7 @@ internal sealed class MySqlFormatter : Formatter
                 indexedPlaceholderTypes: new[] { '?' },
                 namedPlaceholderTypes: Array.Empty<char>(),
                 lineCommentTypes: new[] { "#", "--" },
-                specialWordChars: new[] { "@" },
+                specialWordChars: new[] { "#", "@", "$" },
                 operators: new[] { ":=", "<<", ">>", "!=", "<>", "<=>", "&&", "||", "->", "->>" });
     }
 }
