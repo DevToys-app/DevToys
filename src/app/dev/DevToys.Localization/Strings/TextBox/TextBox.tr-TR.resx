@@ -127,18 +127,18 @@
     <value>Kes</value>
   </data>
   <data name="Decrease" xml:space="preserve">
-    <value>Decrease</value>
+    <value>Azalt</value>
   </data>
   <data name="Increase" xml:space="preserve">
-    <value>Increase</value>
+    <value>Arttır</value>
   </data>
   <data name="Paste" xml:space="preserve">
     <value>Yapıştır</value>
   </data>
   <data name="RevealPassword" xml:space="preserve">
-    <value>Reveal</value>
+    <value>Ortaya çıkar</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>Select All</value>
+    <value>Tümünü seç</value>
   </data>
 </root>
