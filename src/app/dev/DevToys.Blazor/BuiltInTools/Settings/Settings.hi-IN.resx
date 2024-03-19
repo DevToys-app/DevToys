@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>के बारे में</value>
   </data>
   <data name="AccessibleName" xml:space="preserve">
     <value>Settings</value>
@@ -127,13 +127,13 @@
     <value>Appearance</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>ऐप थीम</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>प्रदर्शित करने के लिए कौन सी ऐप थीम चुनें</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>व्यवहार</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Compact spacing</value>
@@ -142,13 +142,13 @@
     <value>Decrease space between UI elements</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>अँधेरा</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Same as the system</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>देव्तोयस के रंगरूप को अनुकूलित करें और महसूस करें</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
     <value>{0} for starting DevToysMac development</value>
@@ -170,16 +170,16 @@
     <value>Line Feed (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>फ़ॉन्ट</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>देव्तोयस का अनुवाद करने में हमारी सहायता करें!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>वर्तमान लाइन को हाइलाइट करें</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>वर्तमान लाइन की पृष्ठभूमि का रंग बदलें ताकि यह अधिक दिखाई दे</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>Higlight the current line</value>
@@ -189,34 +189,34 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>भाषा</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>किसी अन्य भाषा का चयन करते समय ऐप को पुनः आरंभ करने की आवश्यकता होती है</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>रोशनी</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>पंक्ति संख्याएँ</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>टेक्स्ट एडिटर में लाइन नंबर प्रदर्शित करें</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
     <value>Show line numbers</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>पेस्ट करते समय टेक्स्ट बदलें</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>पेस्ट बटन पर क्लिक करते समय, मौजूदा टेक्स्ट एडिटर सामग्री में जोड़ने के बजाय पेस्ट करने से पहले टेक्स्ट को साफ़ करें।</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>पेस्ट करते समय टेक्स्ट बदलें</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>सफेद स्थान प्रस्तुत करें</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
     <value>Show whitespace</value>
@@ -225,31 +225,31 @@
     <value>Settings</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>स्मार्ट डिटेक्शन</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>क्लिपबोर्ड सामग्री के आधार पर स्वचालित रूप से सर्वश्रेष्ठ टूल का पता लगाएं</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>अनुशंसित टूल का चयन करते समय क्लिपबोर्ड सामग्री को स्वचालित रूप से पेस्ट करें</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Special thanks to</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>पाठ संपादक</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
     <value>Preview</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>सिस्टम सेटिंग्स का प्रयोग करें</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>संस्करण: {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>शब्द लपेटें</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>Word wrap</value>
