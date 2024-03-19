@@ -142,7 +142,7 @@
     <value>Recents</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>टूल खोजने के लिए टाइप करें...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
     <value>Search</value>
@@ -151,13 +151,13 @@
     <value>Click to search</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>कोई परिणाम नहीं मिला</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
     <value>Toggle Navigation</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>DevToys</value>
+    <value>देव्तोयस</value>
   </data>
   <data name="WindowTitleInSystem" xml:space="preserve">
     <value>{0} - DevToys</value>
