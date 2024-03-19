@@ -154,7 +154,7 @@
     <value>Başka bir araca aktar</value>
   </data>
   <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
-    <value>Toggle keep the window on top (Ctrl+Up)</value>
+    <value>Pencereyi üstte tutmayı aç/kapa (Ctrl+Yukarı)</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
     <value>Açık</value>
@@ -163,15 +163,15 @@
     <value>Kapalı</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>Bu dosya açılamıyor</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened.</value>
+    <value>'{0}' dosyası açılamıyor. Yalnızca metinsel dosyalar açılabilir.</value>
   </data>
   <data name="UnableSaveFile" xml:space="preserve">
-    <value>Unable to save this file</value>
+    <value>Bu dosya kaydedilemiyor</value>
   </data>
   <data name="UnableSaveFileDescription" xml:space="preserve">
-    <value>Unable to save the file '{0}'. Check the logs to see the internal error.</value>
+    <value>'{0}' dosyası kaydedilemiyor. İç hatayı görmek için günlükleri kontrol edin.</value>
   </data>
 </root>
