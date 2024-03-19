@@ -118,52 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>إدارة الملحقات في DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manager third-party extensions in DevToys</value>
+    <value>إضافة وادارة ملحقات الطرف الثالث في DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>الملحق '{0}' مثبت مسبقا. إذا كنت تحاول تحديث ملحق مثبت بالفعل، الرجاء إلغاء تثبيت الإصدار القديم أولاً.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>غير قادر على تثبيت هذا الملحق</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>العثور على المزيد من الإضافات عبر الإنترنت</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>تثبيت ملحق</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>إنشاء ملحق لـ DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+    <value>حسناً</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>الرجاء إغلاق جميع نوافذ DevToys وإعادة تشغيل التطبيق لتطبيق التعديلات.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>إعادة التشغيل مطلوبة حتى تصبح التغييرات نافذة المفعول</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>إدارة الملحقات</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>يمكن لإضافات الطرف الثالث تعديل وظيفة الأدوات الموجودة والوصول إلى جهاز الكمبيوتر الخاص بك بدون إذنك. هذا قد يعرض بياناتك للإنترنت أو يقوم بتثبيت برنامج غير مرغوب فيه على جهازك. نوصي بشدة بأن تمارس الحذر وأن تقوم فقط بتثبيت الملحقات التي تثق بها. ولا يتحمل مؤلفو ديفلوز المسؤولية عن أي أضرار أو خسائر ناجمة عن عمليات التمديد.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>أنا أفهم</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>الأحكام والشروط</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>تحذير</value>
   </data>
 </root>
