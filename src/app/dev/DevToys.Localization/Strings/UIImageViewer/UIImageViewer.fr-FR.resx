@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CopyButtonTooltip" xml:space="preserve">
-    <value>Copie</value>
+    <value>Copier</value>
   </data>
   <data name="SaveAsButtonTooltip" xml:space="preserve">
     <value>Enregistrer sous</value>
@@ -127,6 +127,6 @@
     <value>Image inconnue</value>
   </data>
   <data name="ViewButtonText" xml:space="preserve">
-    <value>Voir</value>
+    <value>Visualiser</value>
   </data>
 </root>
