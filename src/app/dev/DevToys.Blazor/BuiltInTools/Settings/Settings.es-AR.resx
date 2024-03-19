@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Acerca de</value>
   </data>
   <data name="AccessibleName" xml:space="preserve">
     <value>Settings</value>
@@ -127,13 +127,13 @@
     <value>Appearance</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Tema de la aplicación</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>Elegí con que tema se va a mostrar la aplicación</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Comportamiento</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Compact spacing</value>
@@ -142,13 +142,13 @@
     <value>Decrease space between UI elements</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Oscuro</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Same as the system</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Personalizá la apariencia de DevToys</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
     <value>{0} for starting DevToysMac development</value>
@@ -170,16 +170,16 @@
     <value>Line Feed (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Tipo de letra</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>¡Ayúdanos a traducir DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>Resaltar la línea actual</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Cambiar el color de fondo de la línea actual para que sea más visible</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>Higlight the current line</value>
@@ -189,34 +189,34 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Lenguaje</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>Se tiene reiniciar la aplicación para user otro lenguaje</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Claro</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Número de línea</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Mostrar los números de línea en el editor de texto</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
     <value>Show line numbers</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Reemplazar texto al pegar</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Al hacer clic en el botón Pegar, borre el texto antes de pegar en lugar de añadir al contenido del editor de texto existente.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Reemplazar texto al pegar</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Renderizar espacio en blanco</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
     <value>Show whitespace</value>
@@ -225,31 +225,31 @@
     <value>Settings</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Detección inteligente</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Detecta automaticamente la mejor herramienta en base a los contenidos del portapapeles</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Pega automáticamente el contenido del portapapeles al seleccionar una herramienta recomendada</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Special thanks to</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Editor de Texto</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
     <value>Preview</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Usar la configuración del sistema</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versión {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Envolver palabra</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>Word wrap</value>
