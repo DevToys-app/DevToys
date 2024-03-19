@@ -124,7 +124,7 @@
     <value>复制</value>
   </data>
   <data name="ExtendButtonToolTip" xml:space="preserve">
-    <value>扩展</value>
+    <value>扩大</value>
   </data>
   <data name="LoadFileButtonText" xml:space="preserve">
     <value>打开文本文档</value>
@@ -142,7 +142,7 @@
     <value>另存为...</value>
   </data>
   <data name="ShrinkButtonToolTip" xml:space="preserve">
-    <value>收银机</value>
+    <value>缩小</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
     <value>转移到另一个工具</value>
