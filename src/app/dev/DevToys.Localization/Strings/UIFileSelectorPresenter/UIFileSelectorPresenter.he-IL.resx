@@ -124,7 +124,7 @@
     <value>Browse folders</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>גרור ושחרר כל קובץ לכאן</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
     <value>Drag &amp; drop any files here</value>
