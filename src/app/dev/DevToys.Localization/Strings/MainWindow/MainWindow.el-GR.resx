@@ -118,53 +118,53 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllToolsAccessibleName" xml:space="preserve">
-    <value>All tools</value>
+    <value>Όλα τα εργαλεία</value>
   </data>
   <data name="AllToolsDisplayTitle" xml:space="preserve">
-    <value>All tools</value>
+    <value>Όλα τα εργαλεία</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Πίσω</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorite tools</value>
+    <value>Αγαπημένα εργαλεία</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Αγαπημένα</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
-    <value>Keep on top</value>
+    <value>Κρατήστε στην κορυφή</value>
   </data>
   <data name="PictureInPictureExpand" xml:space="preserve">
-    <value>Back to full view</value>
+    <value>Επιστροφή στην πλήρη προβολή</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
     <value>Recents</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>Πληκτρολογήστε για αναζήτηση εργαλείων...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>Αναζήτηση</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>Κάντε κλικ για αναζήτηση</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Δεν βρέθηκαν αποτελέσματα</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Toggle Navigation</value>
+    <value>Εναλλαγή Πλοήγησης</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>DevToys</value>
+    <value>Προγραμματιστές</value>
   </data>
   <data name="WindowTitleInSystem" xml:space="preserve">
-    <value>{0} - DevToys</value>
+    <value>{0} - Προγραμματιστές</value>
     <comment>{0} is a tool name.</comment>
   </data>
   <data name="WindowTitleWithToolName" xml:space="preserve">
-    <value>DevToys - {0}</value>
+    <value>Προγραμματιστές - {0}</value>
     <comment>{0} is a tool name.</comment>
   </data>
 </root>
