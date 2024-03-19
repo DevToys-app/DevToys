@@ -118,43 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllToolsAccessibleName" xml:space="preserve">
-    <value>All tools</value>
+    <value>Tüm araçlar</value>
   </data>
   <data name="AllToolsDisplayTitle" xml:space="preserve">
-    <value>All tools</value>
+    <value>Tüm araçlar</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Geri</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorite tools</value>
+    <value>Sık kullanılan araçlar</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Sık kullanılanlar</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
-    <value>Keep on top</value>
+    <value>Üstte tut</value>
   </data>
   <data name="PictureInPictureExpand" xml:space="preserve">
     <value>Back to full view</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
-    <value>Recents</value>
+    <value>Son uygulamalar</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Araçları aramak için yazın...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>Ara</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>Aramak için tıkla</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>Sonuç bulunamadı</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Toggle Navigation</value>
+    <value>Navigasyona Geç</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
