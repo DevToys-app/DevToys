@@ -139,16 +139,16 @@
     <value>紧凑间距</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>减少界面元素之间的空间</value>
+    <value>减少 UI 元素间的空间</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>深色</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>与系统相同</value>
+    <value>跟随系统</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>自定义DevToys 外观和感觉。</value>
+    <value>自定义 DevToys 的外观。</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
     <value>开始DevToysMac 开发的 {0}</value>
@@ -161,16 +161,16 @@
     <value>行尾字符</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>与输入相同的行尾(自动)</value>
+    <value>与输入一致的行尾（自动）</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>运输返回和线条新闻源(\r\n) (Windows)</value>
+    <value>回车和换行（\r\n）（Windows）</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>线条新闻源(\n) (Unix)</value>
+    <value>回车（\n）（Unix）</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>字体</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>帮助我们翻译 DevToys！</value>
@@ -179,10 +179,10 @@
     <value>突出显示当前行</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>更改当前行的背景颜色，使其更加可见</value>
+    <value>改变当前行的背景颜色，使其更加明显</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>点亮当前行</value>
+    <value>突出显示当前行</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
     <value>设计应用程序图标的 {0}</value>
@@ -192,10 +192,10 @@
     <value>语言</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>选择另一种语言时需要重启应用程序</value>
+    <value>更改语言后必须重新启动应用程序</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>亮色的</value>
+    <value>亮色</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
     <value>行号</value>
@@ -204,22 +204,22 @@
     <value>在文本编辑器中显示行号</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>显示行数</value>
+    <value>显示行号</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>粘贴时替换文本</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>点击粘贴按钮时，在粘贴之前清除文本，而不是附加到现有文本编辑器内容。</value>
+    <value>点击粘贴按钮时，在粘贴之前清除文本，而不是添加到文本编辑器现有内容之后。</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>粘贴时替换文本</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>渲染白色空间</value>
+    <value>呈现空白字符</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>显示空白字符</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>设置</value>
@@ -228,7 +228,7 @@
     <value>智能检测</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>基于剪贴板内容自动检测最佳工具</value>
+    <value>根据剪贴板内容自动检测最佳工具</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>选择推荐工具时自动粘贴剪贴板内容</value>
@@ -246,10 +246,10 @@
     <value>使用系统设置</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>{0} 版本</value>
+    <value>版本 {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>换行</value>
+    <value>自动换行</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>自动换行</value>
