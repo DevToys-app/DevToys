@@ -118,138 +118,138 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Tietoja</value>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Asetukset</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>Ulkoasu</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Sovelluksen teema</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>Valitse minkä sovelluksen teema näytetään</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Käyttäytymiset</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>Kompakti väli</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>Vähennä tilaa käyttöliittymän elementtien välillä</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Tumma</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>Sama kuin järjestelmä</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Mukauta DevToys näyttää ja tuntuu</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>{0} DevToysMacin kehityksen aloittamiseksi</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>Muokataan</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>Rivin loppu</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>Sama rivin loppu kuin syöte (automaattinen)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+    <value>Kuljetuksen palautus ja linja syöte (\r\n) (Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
+    <value>Rivirehu (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
     <value>Font</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Auta meitä kääntämään DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>Korosta tämänhetkinen rivi</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Muuta nykyisen rivin taustaväriä, jotta se on näkyvämpi</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>Näytä nykyinen rivi</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>{0} sovelluskuvakkeen suunnittelussa</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Kieli</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>Sovellus täytyy käynnistää uudelleen, kun valitaan toinen kieli</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Vaalea</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Rivinumerot</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Näytä rivinumerot tekstieditorissa</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>Näytä rivinumerot</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Korvaa teksti liittäessäsi</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Kun napsautat Liitä painiketta, poista teksti ennen liittämistä sen sijaan, että liitämme olemassa olevaan tekstieditorin sisältöön.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Korvaa teksti liittäessäsi</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Renderöi tyhjä tila</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
     <value>Show whitespace</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Asetukset</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Älykäs tunnistus</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Tunnista automaattisesti paras työkalu leikepöydän sisällön perusteella</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Liitä leikepöydän sisältö automaattisesti suositellun työkalun valinnassa</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>Erityiset kiitokset</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Tekstin muokkain</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Esikatselu</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Käytä järjestelmän asetuksia</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versio {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Rivitä sana</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>Word wrap</value>
