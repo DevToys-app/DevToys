@@ -122,24 +122,24 @@
 Here’s what you need to know:</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Continue</value>
+    <value>Продолжить</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. We will occasionally connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys работает с первым в автономном режиме. Мы собираем минимальные анонимные данные локально для целей диагностики. Мы не загружаем журналы в интернет. Если вы столкнетесь с ошибкой и решите сообщить об этом, мы можем попросить вас поделиться с нами журналами. Время от времени мы подключимся к Интернету для проверки обновлений и обеспечения доступа к последним функциям и возможностям безопасности.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>Первая оффлайн философия</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>Сила DevToys растет с расширениями, увеличивая больше мощности в панели инструментов. В то время как мы гарантируем целостность основного приложения, важно знать, что мы не можем контролировать то, что делают сторонние расширения с вашим компьютером и данными. Поэтому мы рекомендуем вам проявлять осторожность при установке расширений. Для мониторинга DevToys или любой сетевой активности расширения, такие как Wireshark, Little Snitch или Fiddler могут использоваться для отслеживания входящих и исходящих соединений.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>Доверять, но проверить</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>Я понимаю и согласен</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>Добро пожаловать в DevToys!</value>
   </data>
 </root>
