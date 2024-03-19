@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Parcourir les fichiers</value>
   </data>
   <data name="BrowserFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Parcourir les dossiers</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Glissez et déposez n'importe quel fichier ici</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Glissez et déposez tous les fichiers ici</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Glissez et déposez un fichier {0} ici</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Glissez et déposez tous les fichiers {0} ici</value>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Seuls les fichiers {0} peuvent être utilisés.</value>
   </data>
   <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
-    <value>{0} files have been selected.</value>
+    <value>Les fichiers {0} ont été sélectionnés.</value>
   </data>
   <data name="Or" xml:space="preserve">
-    <value>or</value>
+    <value>ou</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Coller</value>
   </data>
 </root>
