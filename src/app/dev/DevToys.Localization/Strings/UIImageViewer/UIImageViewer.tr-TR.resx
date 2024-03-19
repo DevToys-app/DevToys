@@ -121,12 +121,12 @@
     <value>Kopyala</value>
   </data>
   <data name="SaveAsButtonTooltip" xml:space="preserve">
-    <value>Save as</value>
+    <value>Farklı kaydet</value>
   </data>
   <data name="UnknownImage" xml:space="preserve">
-    <value>Unknown image</value>
+    <value>Bilinmeyen görsel</value>
   </data>
   <data name="ViewButtonText" xml:space="preserve">
-    <value>View</value>
+    <value>Görünüm</value>
   </data>
 </root>
