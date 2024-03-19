@@ -521,7 +521,7 @@ internal sealed class PostgreSqlFormatter : Formatter
                 openParens: new[] { "(", "CASE" },
                 closeParens: new[] { ")", "END" },
                 indexedPlaceholderTypes: new[] { '$' },
-                namedPlaceholderTypes: new[] { ':' },
+                namedPlaceholderTypes: new[] { ':', '@' },
                 lineCommentTypes: new[] { "--" },
                 specialWordChars: Array.Empty<string>(),
                 operators: new[]
