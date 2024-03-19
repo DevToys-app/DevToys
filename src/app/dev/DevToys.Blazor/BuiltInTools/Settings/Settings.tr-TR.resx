@@ -121,10 +121,10 @@
     <value>Hakkında</value>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ayarlar</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>Görünüm</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>Uygulama teması</value>
@@ -145,7 +145,7 @@
     <value>Koyu</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>Sistem ile aynı</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>DevToys görünümünü ve hissiyatını özelleştir</value>
@@ -155,10 +155,10 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>Düzenleme</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>Satır Sonu karakteri</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
     <value>Same end of line as input (automatic)</value>
@@ -204,7 +204,7 @@
     <value>Metin düzenleyicide satır numaralarını göster</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>Satır numaralarını göster</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Yapıştırırken metni silip yerine koy</value>
@@ -219,10 +219,10 @@
     <value>Beyaz boşlukları renderla</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Boşluğu göster</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ayarlar</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Akıllı algılama</value>
@@ -234,13 +234,13 @@
     <value>Tavsiye edilen bir araç kullanırken pano içeriğini otomatik olarak yapıştır</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>Özel teşekkürler</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>Metin düzenleyici</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Önizleme</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Sistem ayarlarını kullan</value>
@@ -252,6 +252,6 @@
     <value>Sözcük kaydır</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>Sözcük kaydır</value>
   </data>
 </root>
