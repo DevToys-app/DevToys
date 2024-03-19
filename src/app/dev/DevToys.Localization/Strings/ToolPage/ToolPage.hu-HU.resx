@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Hozzáadás a kedvencekhez</value>
   </data>
   <data name="AllFileType" xml:space="preserve">
     <value>All Files</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>Törlés</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Másolás</value>
   </data>
   <data name="NoSmartDetectedTool" xml:space="preserve">
     <value>No tool to suggest</value>
@@ -136,16 +136,16 @@
     <value>OK</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Load a file</value>
+    <value>Fájl betöltése</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Beillesztés</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
     <value>Pin to Start</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Eltávolítás a kedvencekből</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save as...</value>
@@ -163,7 +163,7 @@
     <value>Off</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>Nem lehet ezt a fájlt megnyitni</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
     <value>Unable to load the file '{0}'. Only textual files can be opened.</value>
