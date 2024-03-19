@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FileNotFound" xml:space="preserve">
-    <value>The file '{0}' doesn't exist.</value>
+    <value>Het bestand '{0}' bestaat niet.</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>Ongeldig bestandspad. Het bestand moet een van de volgende extensies hebben: {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>Typ een relatief of absoluut bestandspad om te lezen (of druk op Enter om te annuleren):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>Typ een of meerdere relatieve of absolute bestandspaden om te lezen, gescheiden door een komma (of druk op Enter om te annuleren):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>Typ een relatief of absoluut map pad (of druk op Enter om te annuleren):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>Typ een relatief of absoluut bestandspad om in te schrijven (of druk op Enter om te annuleren):</value>
   </data>
 </root>
