@@ -124,7 +124,7 @@
     <value>复制</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>剪辑</value>
+    <value>剪切</value>
   </data>
   <data name="Decrease" xml:space="preserve">
     <value>减少</value>
@@ -139,6 +139,6 @@
     <value>显示</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>选择所有</value>
+    <value>全选</value>
   </data>
 </root>
