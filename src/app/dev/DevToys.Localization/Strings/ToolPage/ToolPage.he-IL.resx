@@ -124,16 +124,16 @@
     <value>All Files</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>ניקוי</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>העתק</value>
   </data>
   <data name="NoSmartDetectedTool" xml:space="preserve">
     <value>No tool to suggest</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>אישור</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Load a file</value>
@@ -163,7 +163,7 @@
     <value>Off</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>לא ניתן לפתוח את הקובץ</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
     <value>Unable to load the file '{0}'. Only textual files can be opened.</value>
