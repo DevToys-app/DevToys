@@ -169,9 +169,9 @@ public class StringHelperTests
     internal void RandomCase()
     {
         string result = StringHelper.ConvertToRandomCase(Text, CancellationToken.None);
-        result
-        .Should()
-        .NotBe(Text);
+
+        result.Should().BeEquivalentTo(Text);
+        result.Should().NotBe(Text);
     }
 
     [Theory]
