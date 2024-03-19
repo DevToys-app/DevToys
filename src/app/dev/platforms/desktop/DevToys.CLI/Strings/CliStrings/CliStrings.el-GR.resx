@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FileNotFound" xml:space="preserve">
-    <value>The file '{0}' doesn't exist.</value>
+    <value>Το αρχείο '{0}' δεν υπάρχει.</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>Μη έγκυρη διαδρομή αρχείου. Το αρχείο θα πρέπει να έχει μία από τις ακόλουθες επεκτάσεις: {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>Παρακαλώ πληκτρολογήστε μια σχετική ή απόλυτη διαδρομή αρχείου για ανάγνωση (ή πατήστε Enter για ακύρωση):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>Παρακαλώ πληκτρολογήστε μία ή πολλές σχετικές ή απόλυτες διαδρομές αρχείων για ανάγνωση, χωρισμένες με κόμμα (ή πατήστε Enter για ακύρωση):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>Παρακαλώ πληκτρολογήστε μια σχετική ή απόλυτη διαδρομή φακέλου (ή πατήστε Enter για ακύρωση):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>Παρακαλώ πληκτρολογήστε μια σχετική ή απόλυτη διαδρομή αρχείου για εγγραφή (ή πατήστε Enter για ακύρωση):</value>
   </data>
 </root>
