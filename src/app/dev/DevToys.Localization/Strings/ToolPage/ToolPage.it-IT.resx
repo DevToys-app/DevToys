@@ -160,7 +160,7 @@
     <value>Acceso</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>Off</value>
+    <value>Spento</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
     <value>Impossibile aprire questo file</value>
