@@ -143,7 +143,7 @@
     <value>Créer une extension pour DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
     <value>Veuillez fermer toutes les fenêtres DevToys et redémarrer l'application pour appliquer les modifications.</value>
@@ -155,7 +155,7 @@
     <value>Gérer les extensions</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Les extensions tierces peuvent modifier les fonctionnalités des outils existants et accéder à votre ordinateur sans votre autorisation. Cela peut exposer vos données à Internet ou installer des logiciels indésirables sur votre appareil. Nous vous recommandons fortement de faire preuve de prudence et d'installer uniquement les extensions auxquelles vous avez confiance. Les auteurs de DevToys ne sont pas responsables des dommages ou pertes causés par les extensions.</value>
+    <value>Les extensions tierces peuvent modifier les fonctionnalités des outils existants et accéder à votre ordinateur sans votre autorisation. Cela peut exposer vos données à Internet ou installer des logiciels indésirables sur votre ordinateur. Nous vous recommandons fortement de faire preuve de prudence et d'installer uniquement les extensions auxquelles vous avez confiance. Les auteurs de DevToys ne sont pas responsables des dommages ou pertes causés par les extensions.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
     <value>Je comprends</value>
@@ -164,6 +164,6 @@
     <value>Termes et Conditions</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Avertissement</value>
+    <value>Attention</value>
   </data>
 </root>
