@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>אודות</value>
   </data>
   <data name="AccessibleName" xml:space="preserve">
     <value>Settings</value>
@@ -127,7 +127,7 @@
     <value>Appearance</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>ערכת הנושא של האפליקציה</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Select which app theme to display</value>
@@ -142,7 +142,7 @@
     <value>Decrease space between UI elements</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>כהה</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Same as the system</value>
@@ -170,7 +170,7 @@
     <value>Line Feed (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>גופן</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>Help us translating DevToys!</value>
@@ -189,13 +189,13 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>שפה</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>The app needs to be restarted when selecting another language</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>בהיר</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
     <value>Line numbers</value>
@@ -237,7 +237,7 @@
     <value>Special thanks to</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>עורך טקסט</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
     <value>Preview</value>
@@ -246,10 +246,10 @@
     <value>Use system settings</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>גירסא {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>גלישת שורות</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>Word wrap</value>
