@@ -148,10 +148,10 @@
     <value>跟随系统</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>自定义 DevToys 的外观。</value>
+    <value>自定义 DevToys 的样子和风格</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>开始DevToysMac 开发的 {0}</value>
+    <value>{0} 用于开始 DevToysMac 开发</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
@@ -185,7 +185,7 @@
     <value>突出显示当前行</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>设计应用程序图标的 {0}</value>
+    <value>{0} 用于设计应用程序的图标</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
