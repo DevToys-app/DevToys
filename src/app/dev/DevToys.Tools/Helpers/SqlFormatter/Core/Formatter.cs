@@ -5,7 +5,6 @@ namespace DevToys.Tools.Helpers.SqlFormatter.Core;
 
 internal abstract class Formatter
 {
-    private static readonly Regex WhitespacesRegex = new(@"\s+$", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
     private static readonly Regex CommentWhitespacesRegex = new(@"\n[ \t]*", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
 
     private readonly InlineBlock _inlineBlock = new();
@@ -135,7 +134,7 @@ internal abstract class Formatter
 
     private void FormatLineComment(Token token, ReadOnlySpan<char> querySpan)
     {
-        _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+        AppendToken(querySpan, token);
         AddNewLine();
     }
 
@@ -159,7 +158,7 @@ internal abstract class Formatter
 
         AddNewLine();
 
-        _queryBuilder.Append(EqualizeWhitespace(Show(querySpan.Slice(token), token.Type)));
+        AppendToken(querySpan, token);
 
         AddNewLine();
     }
@@ -173,7 +172,7 @@ internal abstract class Formatter
 
         _indentation.IncreaseTopLevel();
 
-        _queryBuilder.Append(EqualizeWhitespace(Show(querySpan.Slice(token), token.Type)));
+        AppendToken(querySpan, token);
 
         AddNewLine();
     }
@@ -192,17 +191,9 @@ internal abstract class Formatter
         }
         AddNewLine();
 
-        _queryBuilder.Append(EqualizeWhitespace(Show(querySpan.Slice(token), token.Type)));
+        AppendToken(querySpan, token);
 
         _queryBuilder.Append(' ');
-    }
-
-    /// <summary>
-    /// Replace any sequence of whitespace characters with single space
-    /// </summary>
-    private static string EqualizeWhitespace(string input)
-    {
-        return WhitespacesRegex.Replace(input, " ");
     }
 
     /// <summary>
@@ -222,7 +213,7 @@ internal abstract class Formatter
                 _queryBuilder.TrimSpaceEnd();
             }
         }
-        _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+        AppendToken(querySpan, token);
 
         Guard.IsNotNull(token);
         _inlineBlock.BeginIfPossible(_tokens!, _index, querySpan.Slice(token));
@@ -281,7 +272,7 @@ internal abstract class Formatter
             AddNewLine();
         }
 
-        _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+        AppendToken(querySpan, token);
 
         _queryBuilder.Append(' ');
 
@@ -304,19 +295,19 @@ internal abstract class Formatter
     private void FormatWithSpaceAfter(Token token, ReadOnlySpan<char> querySpan)
     {
         _queryBuilder.TrimSpaceEnd();
-        _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+        AppendToken(querySpan, token);
         _queryBuilder.Append(' ');
     }
 
     private void FormatWithoutSpaces(Token token, ReadOnlySpan<char> querySpan)
     {
         _queryBuilder.TrimSpaceEnd();
-        _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+        AppendToken(querySpan, token);
     }
 
     private void FormatWithSpaces(Token token, ReadOnlySpan<char> querySpan)
     {
-        _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+        AppendToken(querySpan, token);
         _queryBuilder.Append(' ');
     }
 
@@ -326,7 +317,7 @@ internal abstract class Formatter
         _indentation!.ResetIndentation();
 
         _queryBuilder.TrimSpaceEnd();
-        _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+        AppendToken(querySpan, token);
 
         int times = _options.LinesBetweenQueries;
 
@@ -338,23 +329,26 @@ internal abstract class Formatter
     }
 
     /// <summary>
-    /// Converts token to string (uppercasing it if needed)
+    /// Appends the token value to the _queryBuilder, optionally uppercasing it.
     /// </summary>
-    private string Show(ReadOnlySpan<char> value, TokenType tokenType)
+    private void AppendToken(ReadOnlySpan<char> value, Token token)
     {
         if (_options.Uppercase
-            && (tokenType is TokenType.Reserved
+            && (token.Type is TokenType.Reserved
                 or TokenType.ReservedTopLevel
                 or TokenType.ReservedTopLevelNoIndent
                 or TokenType.ReservedNewLine
                 or TokenType.OpenParen
                 or TokenType.CloseParen))
         {
-            return value.ToString().ToUpper();
+            foreach (char c in value.Slice(token))
+            {
+                _queryBuilder.Append(char.ToUpper(c));
+            }
         }
         else
         {
-            return value.ToString();
+            _queryBuilder.Append(value.Slice(token));
         }
     }
 
