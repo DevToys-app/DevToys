@@ -124,10 +124,10 @@
     <value>Browse folders</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Herhangi bir dosyayı buraya sürükleyip buraya bırakın</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Herhangi bir dosyayı buraya sürükleyip bırakın</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
     <value>Drag &amp; drop a {0} file here</value>
@@ -145,6 +145,6 @@
     <value>or</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Yapıştır</value>
   </data>
 </root>
