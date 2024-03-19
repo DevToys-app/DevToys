@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Off" xml:space="preserve">
-    <value>Off</value>
+    <value>Desligado</value>
   </data>
   <data name="On" xml:space="preserve">
-    <value>On</value>
+    <value>Ligado</value>
   </data>
 </root>
