@@ -44,6 +44,8 @@ public sealed class LanguageManager
     {
         CultureInfo.DefaultThreadCurrentCulture = language.Culture;
         CultureInfo.DefaultThreadCurrentUICulture = language.Culture;
+        CultureInfo.CurrentCulture = language.Culture;
+        CultureInfo.CurrentUICulture = language.Culture;
 
         if (language.Culture.TextInfo.IsRightToLeft)
         {
