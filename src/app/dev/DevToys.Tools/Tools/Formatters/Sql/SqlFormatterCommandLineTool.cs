@@ -43,6 +43,11 @@ internal sealed class SqlFormatterCommandLineTool : ICommandLineTool
         DescriptionResourceName = nameof(SqlFormatter.SqlLanguageDescription))]
     internal SqlLanguage SqlLanguage { get; set; } = SqlLanguage.Sql;
 
+    [CommandLineOption(
+        Name = "leadingComma",
+        DescriptionResourceName = nameof(SqlFormatter.LeadingCommaDescription))]
+    internal bool UseLeadingComma { get; set; } = false;
+
     public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
         if (!Input.HasValue)
@@ -64,8 +69,9 @@ internal sealed class SqlFormatterCommandLineTool : ICommandLineTool
                 SqlLanguage,
                 new SqlFormatterOptions(
                             IndentationMode,
-                            uppercase: true,
-                            linesBetweenQueries: 2));
+                            Uppercase: true,
+                            LinesBetweenQueries: 2,
+                            UseLeadingComma: UseLeadingComma));
 
         cancellationToken.ThrowIfCancellationRequested();
 

@@ -97,4 +97,46 @@ VALUES
         string consoleOutput = _consoleWriter.ToString().Trim();
         consoleOutput.Should().Be(expectedResult);
     }
+
+    [Theory(DisplayName = "Format sql with valid sql and use leading comma should return valid sql")]
+    [InlineData("SELECT column1, column2 FROM table", """
+SELECT
+  column1
+  , column2
+FROM
+  TABLE
+""")]
+    public async Task FormatSqlWithValidSqlAndUseLeadingCommaShouldReturnValidSql(string input, string expectedResult)
+    {
+        _tool.Input = input;
+        _tool.UseLeadingComma = true;
+
+        int result = await _tool.InvokeAsync(_loggerMock.Object, default);
+
+        result.Should().Be(0);
+        string consoleOutput = _consoleWriter.ToString().Trim();
+        consoleOutput.Should().Be(expectedResult);
+    }
+
+    [Theory(DisplayName = "Format sql with valid sql and without leading comma should return valid sql")]
+    [InlineData("SELECT column1, column2 FROM table", """
+SELECT
+  column1,
+  column2
+FROM
+  TABLE
+""")]
+    public async Task FormatSqlWithValidSqlAndWithoutLeadingCommaShouldReturnValidSql(string input, string expectedResult)
+    {
+        _tool.Input = input;
+        _tool.UseLeadingComma = false;
+
+        int result = await _tool.InvokeAsync(_loggerMock.Object, default);
+
+        result.Should().Be(0);
+        string consoleOutput = _consoleWriter.ToString().Trim();
+        consoleOutput.Should().Be(expectedResult);
+    }
+
+
 }

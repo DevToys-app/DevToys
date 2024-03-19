@@ -23,7 +23,7 @@ internal abstract class Formatter
     /// </summary>
     internal string Format(string query)
     {
-        return Format(query, new SqlFormatterOptions(indentation: Models.Indentation.TwoSpaces, uppercase: false));
+        return Format(query, new SqlFormatterOptions(Indentation: Models.Indentation.TwoSpaces, Uppercase: false));
     }
 
     /// <summary>
@@ -261,7 +261,7 @@ internal abstract class Formatter
         string? value = null;
         ReadOnlySpan<char> valueSpan = querySpan.Slice(token);
         if (valueSpan.Length != 0)
-            // assumme the length of all placeholder is 1, since only char array is accepted 
+            // assume the length of all placeholder is 1, since only char array is accepted 
             value = _params!.Get(valueSpan.Slice(0, 1).ToString());
 
         _queryBuilder.Append(value ?? querySpan.Slice(token).ToString());
@@ -274,7 +274,16 @@ internal abstract class Formatter
     /// </summary>
     private void FormatComma(Token token, ReadOnlySpan<char> querySpan)
     {
-        FormatWithSpaceAfter(token, querySpan);
+        _queryBuilder.TrimSpaceEnd();
+
+        if (_options.UseLeadingComma)
+        {
+            AddNewLine();
+        }
+
+        _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+
+        _queryBuilder.Append(' ');
 
         if (_inlineBlock.IsActive())
         {
@@ -286,8 +295,10 @@ internal abstract class Formatter
             return;
         }
 
-        AddNewLine();
-
+        if (!_options.UseLeadingComma)
+        {
+            AddNewLine();
+        }
     }
 
     private void FormatWithSpaceAfter(Token token, ReadOnlySpan<char> querySpan)
@@ -332,12 +343,12 @@ internal abstract class Formatter
     private string Show(ReadOnlySpan<char> value, TokenType tokenType)
     {
         if (_options.Uppercase
-            && (tokenType == TokenType.Reserved
-            || tokenType == TokenType.ReservedTopLevel
-            || tokenType == TokenType.ReservedTopLevelNoIndent
-            || tokenType == TokenType.ReservedNewLine
-            || tokenType == TokenType.OpenParen
-            || tokenType == TokenType.CloseParen))
+            && (tokenType is TokenType.Reserved
+                or TokenType.ReservedTopLevel
+                or TokenType.ReservedTopLevelNoIndent
+                or TokenType.ReservedNewLine
+                or TokenType.OpenParen
+                or TokenType.CloseParen))
         {
             return value.ToString().ToUpper();
         }
@@ -353,7 +364,7 @@ internal abstract class Formatter
 
         _queryBuilder.TrimSpaceEnd();
 
-        if (_queryBuilder.Length != 0 && _queryBuilder[_queryBuilder.Length - 1] != '\n')
+        if (_queryBuilder.Length != 0 && _queryBuilder[^1] != '\n')
             _queryBuilder.AppendLine();
 
         _queryBuilder.Append(_indentation!.GetIndent());

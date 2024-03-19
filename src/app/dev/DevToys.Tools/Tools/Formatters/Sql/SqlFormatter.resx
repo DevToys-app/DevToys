@@ -150,6 +150,12 @@
   <data name="InvalidInputOrFileCommand" xml:space="preserve">
     <value>Please specify an input text or an input file</value>
   </data>
+  <data name="LeadingComma" xml:space="preserve">
+    <value>Leading comma</value>
+  </data>
+  <data name="LeadingCommaDescription" xml:space="preserve">
+    <value>Whether to use leading commas or not</value>
+  </data>
   <data name="LongDisplayTitle" xml:space="preserve">
     <value>SQL Formatter</value>
   </data>
