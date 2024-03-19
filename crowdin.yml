@@ -1,8 +1,0 @@
-commit_message: 'fix: new translations in %original_file_name% (%file_name%.%locale%%file_extension%) from Crowdin'
-append_commit_message: false
-files:
-  - source: /src/**/*.resx
-    translation: %original_path%/%file_name%.%locale%%file_extension%
-    ignore:
-      /**/DevToys.Tools/**/*.*
-      /**/*.%locale%%file_extension%
