@@ -121,10 +121,10 @@
     <value>在 DevToys 中管理扩展</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>在DevToys中添加和管理第三方扩展</value>
+    <value>在 DevToys 中添加和管理第三方扩展</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>扩展名 '{0}' 已经安装。 如果您试图更新已安装的扩展，请先卸载旧版本。</value>
+    <value>扩展“{0}”已安装。如果您正尝试更新已安装的扩展，请先卸载旧版本。</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
     <value>无法安装此扩展</value>
@@ -149,19 +149,19 @@
     <value>请关闭所有 DevToys 窗口并重新启动应用程序以应用修改。</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>需要重新启动才能使更改生效</value>
+    <value>需要重新启动以使更改生效</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>管理扩展</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>第三方扩展可以修改现有工具的功能并无需您的许可访问您的计算机。 这可能会将您的数据暴露在互联网上，或在您的设备上安装不需要的软件。 我们强烈建议您谨慎行事，只安装您信任的扩展。 Dev玩具作者不对延期造成的任何损害或损失负责。</value>
+    <value>第三方扩展可以修改现有工具的功能，且无需您的许可就能访问计算机。这可能会将您的数据暴露到互联网，或在您的设备上安装不需要的软件。我们强烈建议您谨慎行事，只安装您信任的扩展。DevToys 作者不对扩展所造成的任何损害或损失负责。</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>我明白了</value>
+    <value>我已了解</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>条款和条件</value>
+    <value>使用条款</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
     <value>警告</value>
