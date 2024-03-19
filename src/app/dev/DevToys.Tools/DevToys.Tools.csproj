@@ -400,6 +400,7 @@
   <ItemGroup>
     <PackageReference Include="CronExpressionDescriptor" />
     <PackageReference Include="Cronos" />
+    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" />
     <PackageReference Include="YamlDotNet" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Markdown.ColorCode" />

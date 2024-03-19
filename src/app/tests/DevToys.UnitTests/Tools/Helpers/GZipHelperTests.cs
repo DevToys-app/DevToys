@@ -24,6 +24,8 @@ public class GZipHelperTests
 
     [Theory]
     [InlineData(null, "")]
+    [InlineData("", "H4sIAAAAAAAACgMAAAAAAAAAAAA=")]
+    [InlineData("  ", "H4sIAAAAAAAAClNQAACVFjPvAgAAAA==")]
     [InlineData("Hello World!", "H4sIAAAAAAAACvNIzcnJVwjPL8pJUQQAoxwpHAwAAAA=")]
     [InlineData("Hello World! é)à", "H4sIAAAAAAAACvNIzcnJVwjPL8pJUVQ4vFLz8AIAeJm72xIAAAA=")]
     [InlineData("H4sIAAAAAAAACvNIzcnJVwjPL8pJUVQ4vFLz8AIAeJm72xIAAAA=", "H4sIAAAAAAAACvMwKfZ0hALnMj/PquQ8r7DyrAAfiwKv0LBAkzI3nyoLR0/HVK9cc6MKsFJbAI7LDrY0AAAA")]
@@ -40,6 +42,8 @@ public class GZipHelperTests
 
     [Theory]
     [InlineData(null, "")]
+    [InlineData("H4sIAAAAAAAACgMAAAAAAAAAAAA=", "")]
+    [InlineData("H4sIAAAAAAAAClNQAACVFjPvAgAAAA==", "  ")]
     [InlineData("H4sIAAAAAAAACvNIzcnJVwjPL8pJUQQAoxwpHAwAAAA=", "Hello World!")]
     [InlineData("H4sIAAAAAAAACvNIzcnJVwjPL8pJUVQ4vFLz8AIAeJm72xIAAAA=", "Hello World! é)à")]
     [InlineData("H4sIAAAAAAAACvMwKfZ0hALnMj/PquQ8r7DyrAAfiwKv0LBAkzI3nyoLR0/HVK9cc6MKsFJbAI7LDrY0AAAA", "H4sIAAAAAAAACvNIzcnJVwjPL8pJUVQ4vFLz8AIAeJm72xIAAAA=")]
