@@ -118,53 +118,53 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllToolsAccessibleName" xml:space="preserve">
-    <value>All tools</value>
+    <value>جميع الأدوات</value>
   </data>
   <data name="AllToolsDisplayTitle" xml:space="preserve">
-    <value>All tools</value>
+    <value>جميع الأدوات</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>الرجوع</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorite tools</value>
+    <value>الأدوات المفضلة</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
+    <value>المفضلة</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
-    <value>Keep on top</value>
+    <value>إبقاء في الأعلى</value>
   </data>
   <data name="PictureInPictureExpand" xml:space="preserve">
-    <value>Back to full view</value>
+    <value>العودة إلى العرض الكامل</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
     <value>Recents</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>اكتب للبحث عن الأدوات...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>البحث</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>انقر للبحث</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>لم يتم العثور على نتائج</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Toggle Navigation</value>
+    <value>تبديل التنقل</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>DevToys</value>
+    <value>ألعاب</value>
   </data>
   <data name="WindowTitleInSystem" xml:space="preserve">
-    <value>{0} - DevToys</value>
+    <value>{0} - ألعاب ديف</value>
     <comment>{0} is a tool name.</comment>
   </data>
   <data name="WindowTitleWithToolName" xml:space="preserve">
-    <value>DevToys - {0}</value>
+    <value>ألعاب - {0}</value>
     <comment>{0} is a tool name.</comment>
   </data>
 </root>
