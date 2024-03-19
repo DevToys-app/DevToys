@@ -142,9 +142,9 @@
     <value>Save as...</value>
   </data>
   <data name="ShrinkButtonToolTip" xml:space="preserve">
-    <value>Shrink</value>
+    <value>Зменшити</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>Перехід до іншого інструменту</value>
   </data>
 </root>
