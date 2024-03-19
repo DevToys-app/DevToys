@@ -154,7 +154,7 @@
     <value>转移到另一个工具</value>
   </data>
   <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
-    <value>切换保持窗口在顶部(Ctrl+Up)</value>
+    <value>切换窗口置顶（Ctrl+向上键）</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
     <value>开启</value>
@@ -166,12 +166,12 @@
     <value>无法打开此文件</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>无法加载文件 '{0}'。只能打开文本文件。</value>
+    <value>无法加载文件“{0}”。只能打开文本文件。</value>
   </data>
   <data name="UnableSaveFile" xml:space="preserve">
     <value>无法保存此文件</value>
   </data>
   <data name="UnableSaveFileDescription" xml:space="preserve">
-    <value>无法保存文件 '{0}'。请检查日志以查看内部错误。</value>
+    <value>无法保存文件“{0}”。请检查日志以查看内部错误。</value>
   </data>
 </root>
