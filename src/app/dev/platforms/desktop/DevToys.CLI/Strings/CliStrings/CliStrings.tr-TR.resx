@@ -127,12 +127,12 @@
     <value>Lütfen okunacak dosya yolu için göreli veya mutlak bir dosya yolu girin (ya da iptal etmek için Enter'a basın):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>Lütfen okunacak dosya yolları için virgülle ayırarak bir veya birden fazla göreli veya mutlak dosya yolu girin (ya da iptal etmek için Enter'a basın):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>Lütfen göreli veya mutlak bir klasör yolu girin (ya da iptal etmek için Enter'a basın):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>Lütfen içine yazılacak göreli veya mutlak bir dosya yolu girin (ya da iptal etmek için Enter'a basın):</value>
   </data>
 </root>
