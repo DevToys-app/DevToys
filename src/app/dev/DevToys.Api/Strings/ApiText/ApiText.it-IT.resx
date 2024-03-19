@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="SwitchOffDefaultText" xml:space="preserve">
-    <value>Off</value>
+    <value>Spento</value>
   </data>
   <data name="SwitchOnDefaultText" xml:space="preserve">
     <value>Acceso</value>
