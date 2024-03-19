@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using System.Text;
 using DevToys.Tools.Helpers;
 using DevToys.Tools.Tools.EncodersDecoders.Certificate;
@@ -30,6 +31,8 @@ public class CertificateHelperTests
 
     private static void DecodeCertificate(string inputFile, string password, bool successfullyDecoded, string expectedResultFile)
     {
+        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+
         string inputFilePath = TestDataProvider.GetFile(Path.Combine(baseTestDataDirectory, inputFile)).FullName;
 
         string input;
