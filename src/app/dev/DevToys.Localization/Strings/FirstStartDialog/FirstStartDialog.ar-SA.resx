@@ -122,24 +122,24 @@
 Here’s what you need to know:</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Continue</value>
+    <value>متابعة</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. We will occasionally connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>يعمل DevToys بعقل دون الاتصال بالإنترنت. نقوم بجمع الحد الأدنى من البيانات المجهولة محليا لأغراض استكشاف الأخطاء وإصلاحها. لا نقوم برفع السجلات إلى الإنترنت. إذا واجهت خطأ واخترت الإبلاغ عنه، قد نطلب منك مشاركة السجلات معنا. سنقوم من حين لآخر بالاتصال بالإنترنت للتحقق من وجود تحديثات، وضمان الوصول إلى أحدث الميزات والتحسينات الأمنية.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>الفلسفة الأولى دون اتصال</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>تنمو قوة DevToys مع الإضافات، وتضيف المزيد من الطاقة إلى صندوق الأدوات الخاص بك. بينما نضمن سلامة التطبيق الأساسي، من المهم أن نعرف أنه ليس لدينا سيطرة على ما يفعله طرف ثالث مع حاسوبك وبياناتك. ولذلك، نشجعكم على ممارسة الحذر عند تثبيت الملحقات. لمراقبة DevToys أو أي نشاط شبكي إضافي، يمكن استخدام أدوات مثل Wireshark، أو Litsmall Snitch، أو Fiddler لتتبع الاتصالات الواردة والصادرة.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>ثق لكن تحقق</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>أنا أفهم وأوافق على</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>مرحبا بكم في DevToys!</value>
   </data>
 </root>
