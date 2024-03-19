@@ -1,8 +1,8 @@
 files:
   - source: /src/**/*.resx
     ignore:
-      - /**/DevToys.Tools/**/*.*
       - /**/*.%locale%.%file_extension%
-      - /**/DevToys.UnitTests/**/*.*
       - /**/*.%two_letters_code%.%file_extension%
+      - /**/DevToys.Tools/**/*.*
+      - /**/DevToys.UnitTests/**/*.*
     translation: /src/**/%file_name%.%locale%.%file_extension%
