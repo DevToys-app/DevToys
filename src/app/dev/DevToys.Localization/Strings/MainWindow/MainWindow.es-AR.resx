@@ -142,7 +142,7 @@
     <value>Recents</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>Escribí para buscar herramientas...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
     <value>Search</value>
@@ -151,7 +151,7 @@
     <value>Click to search</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>No se encontraron resultados</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
     <value>Toggle Navigation</value>
