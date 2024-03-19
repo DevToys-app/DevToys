@@ -139,13 +139,13 @@
     <value>Retour à la vue complète</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
-    <value>Recents</value>
+    <value>Récents</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Tapez pour rechercher des outils...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Chercher</value>
+    <value>Recherche</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
     <value>Cliquer pour rechercher</value>
@@ -154,10 +154,10 @@
     <value>Aucun résultat trouvé</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Activer/désactiver la navigation</value>
+    <value>Déplier/Replier</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>format@@0 DevToys</value>
+    <value>DevToys</value>
   </data>
   <data name="WindowTitleInSystem" xml:space="preserve">
     <value>{0} - DevToys</value>
