@@ -4,4 +4,4 @@ files:
       - /**/DevToys.Tools/**/*.*
       - /**/*.%locale%%file_extension%
       - /**/DevToys.UnitTests/**/*.*
-    translation: '%original_path%/%file_name%.%locale%%file_extension%'
+    translation: /src/**/%file_name%.%locale%.%file_extension%
