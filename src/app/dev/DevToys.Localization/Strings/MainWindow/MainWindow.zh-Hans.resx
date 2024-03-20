@@ -142,7 +142,7 @@
     <value>Recents</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>输入以搜索工具…</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
     <value>Search</value>
