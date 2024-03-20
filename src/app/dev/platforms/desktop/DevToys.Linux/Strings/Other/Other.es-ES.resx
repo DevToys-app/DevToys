@@ -119,7 +119,7 @@
   </resheader>
   <data name="AllFiles" xml:space="preserve">
     <value>Todos {0}</value>
-    <comment/>
+    <comment>This text is used in open file dialog and goes like "All PNG, JPG, GIF"</comment>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Abrir archivo</value>
