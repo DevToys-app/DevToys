@@ -121,7 +121,7 @@
     <value>Clear</value>
   </data>
   <data name="CopyButtonText" xml:space="preserve">
-    <value>Copy</value>
+    <value>העתק</value>
   </data>
   <data name="ExtendButtonToolTip" xml:space="preserve">
     <value>Extend</value>
@@ -136,10 +136,10 @@
     <value>No tool to suggest</value>
   </data>
   <data name="PasteButtonText" xml:space="preserve">
-    <value>Paste</value>
+    <value>הדבק</value>
   </data>
   <data name="SaveAsButtonText" xml:space="preserve">
-    <value>Save as...</value>
+    <value>שמור בשם...</value>
   </data>
   <data name="ShrinkButtonToolTip" xml:space="preserve">
     <value>Shrink</value>
