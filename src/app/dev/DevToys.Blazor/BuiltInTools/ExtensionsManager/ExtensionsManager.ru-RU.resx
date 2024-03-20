@@ -155,7 +155,7 @@
     <value>Управление расширениями</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Сторонние расширения могут изменять функционал существующих инструментов и иметь доступ к вашему компьютеру без разрешения. Это может привести к раскрытию ваших данных в интернете и установке нежеланного ПО на ваш компьютер. Мы настоятельно рекомендуем вам устанавливать только доверенные расширения. Команда DevToys не несёт ответственность за любые потери по вине авторов расширений.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
     <value>I understand</value>
