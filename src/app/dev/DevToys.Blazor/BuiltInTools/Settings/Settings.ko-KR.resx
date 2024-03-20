@@ -118,63 +118,63 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>제품 정보</value>
     <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
+    <value>설정</value>
     <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>모양</value>
     <comment/>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>앱 테마</value>
     <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>표시할 앱 테마 선택</value>
     <comment/>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>동작</value>
     <comment/>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>공간 압축</value>
     <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>UI 요소 간의 공간 감소</value>
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>어두운</value>
     <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>시스템과 동일</value>
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>DevToy 모양과 느낌을 사용자 정의</value>
     <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>DevToysMac 개발을 시작하기 위한 {0}</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>편집</value>
     <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>줄 끝의 문자</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>입력과 동일한 줄 끝(자동)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
@@ -202,7 +202,7 @@
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>현재 줄 강조</value>
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
