@@ -124,7 +124,7 @@
     <value>Open a feature request on GitHub</value>
   </data>
   <data name="NotFindingToolSuggestIdea" xml:space="preserve">
-    <value>Suggest an idea</value>
+    <value>アイディアを投稿</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
     <value>Open in a new window</value>
