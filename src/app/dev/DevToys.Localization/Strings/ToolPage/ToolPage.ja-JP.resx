@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>お気に入りに追加</value>
   </data>
   <data name="AllFileType" xml:space="preserve">
     <value>All Files</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>削除</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>コピー</value>
   </data>
   <data name="NoSmartDetectedTool" xml:space="preserve">
     <value>No tool to suggest</value>
@@ -136,10 +136,10 @@
     <value>OK</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Load a file</value>
+    <value>ファイルを読み込む</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>貼り付け</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
     <value>Pin to Start</value>
@@ -163,13 +163,13 @@
     <value>Off</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>ファイルを開けませんでした</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
     <value>Unable to load the file '{0}'. Only textual files can be opened.</value>
   </data>
   <data name="UnableSaveFile" xml:space="preserve">
-    <value>Unable to save this file</value>
+    <value>ファイルを保存できませんでした</value>
   </data>
   <data name="UnableSaveFileDescription" xml:space="preserve">
     <value>Unable to save the file '{0}'. Check the logs to see the internal error.</value>
