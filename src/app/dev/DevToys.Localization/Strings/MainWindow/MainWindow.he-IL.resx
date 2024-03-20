@@ -121,7 +121,7 @@
     <value>All tools</value>
   </data>
   <data name="AllToolsDisplayTitle" xml:space="preserve">
-    <value>All tools</value>
+    <value>כל הכלים</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
@@ -145,7 +145,7 @@
     <value>Type to search for tools...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>חיפוש</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
     <value>Click to search</value>
