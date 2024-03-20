@@ -118,52 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>DevToy에서 확장 관리</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manager third-party extensions in DevToys</value>
+    <value>DevToy에서 타사 확장 추가 및 관리</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
     <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>이 확장을 설치할 수 없습니다</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>온라인에서 더 많은 확장 정보 찾기</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>확장 설치</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>DevToy용 확장 만들기</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+    <value>확인</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>모든 DevToy 창을 닫고 앱을 다시 시작하여 수정 사항을 적용하십시오.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>변경 사항을 적용하려면 다시 시작해야 합니다</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>확장 관리</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>타사 확장은 사용자의 허가 없이 기존 도구의 기능을 수정하고 컴퓨터에 액세스할 수 있습니다. 이로 인해 데이터가 인터넷에 노출되거나 원하지 않는 소프트웨어가 장치에 설치될 수 있습니다. 주의를 기울이고 신뢰할 수 있는 확장만 설치하는 것이 좋습니다. DevToys 저자는 확장으로 인한 손상이나 손실에 대해 책임을 지지 않습니다.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>이해했습니다</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>이용 약관</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>경고</value>
   </data>
 </root>
