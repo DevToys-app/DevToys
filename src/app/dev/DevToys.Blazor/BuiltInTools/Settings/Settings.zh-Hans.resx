@@ -250,51 +250,51 @@
     <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>显示空白字符</value>
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
     <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>智能检测</value>
     <comment/>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>根据剪贴板内容自动检测最佳工具</value>
     <comment/>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>选择推荐工具时自动粘贴剪贴板内容</value>
     <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>特别鸣谢</value>
     <comment/>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>文本编辑器</value>
     <comment/>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>预览</value>
     <comment/>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>跟随系统</value>
     <comment/>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>版本 {0}</value>
     <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>自动换行</value>
     <comment/>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>自动换行</value>
     <comment/>
   </data>
 </root>
