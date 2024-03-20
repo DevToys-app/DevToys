@@ -137,10 +137,10 @@
     <value>Find more extensions online</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>拡張機能をインストール</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>DevToys 用の拡張機能を作成</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
     <value>OK</value>
@@ -152,18 +152,18 @@
     <value>Restart is require for changes to take effect</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>拡張機能を管理</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
     <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>了解しました</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>利用規約</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>警告</value>
   </data>
 </root>
