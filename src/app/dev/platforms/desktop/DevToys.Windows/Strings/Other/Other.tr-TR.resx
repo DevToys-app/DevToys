@@ -119,5 +119,6 @@
   </resheader>
   <data name="AllFiles" xml:space="preserve">
     <value>Tüm {0}</value>
+    <comment>This text is displayed in an open file dialog and goes like "All PNG, JPG, GIF"</comment>
   </data>
 </root>
