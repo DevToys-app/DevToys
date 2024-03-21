@@ -1,5 +1,4 @@
-﻿using DevToys.Api.Tool.CLI;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.SmartDetection;
 using DevToys.Tools.Strings.GlobalStrings;
 using Microsoft.Extensions.Logging;

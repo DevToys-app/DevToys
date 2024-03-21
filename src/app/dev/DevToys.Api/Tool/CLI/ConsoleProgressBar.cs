@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace DevToys.Api.Tool.CLI;
+namespace DevToys.Api;
 
 /// <summary>
 /// A progress bar for the console.
