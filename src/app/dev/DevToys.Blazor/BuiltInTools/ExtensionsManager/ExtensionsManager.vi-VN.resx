@@ -118,52 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>Quản lý tiện ích mở rộng</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manager third-party extensions in DevToys</value>
+    <value>Thêm và quản lý tiện ích mở rộng của bên thứ ba</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>Tiện ích '{0}' đã được cài đặt. Nếu bạn muốn cập nhật tiện ích đã được cài đặt, hãy gỡ cài đặt phiên bản cũ.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>Không thể cài đặt tiện ích</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>Tìm thêm các tiện ích mở rộng trực tuyến</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>Cài đặt tiện ích</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>Tạo một tiện ích mở rộng cho DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>Đóng tất cả cửa sổ DevToys và khởi động lại ứng dụng để các thay đổi được áp dụng.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>Cần khởi động lại ứng dụng để thay đổi có hiệu lực</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>Quản lý tiện ích mở rộng</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Các tiện ích mở rộng từ bên thứ ba có thể thay đổi chức năng của các công cụ hiện có và truy cập trái phép vào máy tính của bạn. Điều này có thể làm lộ dữ liệu của bạn ra internet hoặc cài đặt phần mềm không mong muốn trên thiết bị. Chúng tôi khuyến nghị bạn hãy cẩn thận và chỉ cài đặt các tiện ích mở rộng mà bạn tin tưởng. Tác giả của DevToys không chịu trách nhiệm về bất kỳ thiệt hại hoặc mất mát nào do các tiện ích mở rộng gây ra.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>Tôi hiểu</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>Điều khoản và Điều kiện</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Cảnh báo</value>
   </data>
 </root>
