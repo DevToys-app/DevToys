@@ -8,10 +8,19 @@ namespace DevToys.Api;
 /// <typeparam name="T">Type of the result</typeparam>
 public record ResultInfo<T>
 {
+    /// <summary>
+    /// The resulting data or the task
+    /// </summary>
     public T? Data { get; }
 
+    /// <summary>
+    /// Whether the task succeeded
+    /// </summary>
     public bool HasSucceeded { get; }
 
+    /// <summary>
+    /// Error message to display
+    /// </summary>
     public string? ErrorMessage { get; }
 
     /// <summary>
@@ -46,10 +55,19 @@ public record ResultInfo<T>
 /// <typeparam name="ResultInfoSeverity">The severity of the result</typeparam>
 public record ResultInfo<T, ResultInfoSeverity>
 {
+    /// <summary>
+    /// The resulting data or the task
+    /// </summary>
     public T? Data { get; }
 
+    /// <summary>
+    /// Severity of the result
+    /// </summary>
     public ResultInfoSeverity Severity { get; }
 
+    /// <summary>
+    /// Error message to display
+    /// </summary>
     public string? ErrorMessage { get; }
 
     /// <summary>

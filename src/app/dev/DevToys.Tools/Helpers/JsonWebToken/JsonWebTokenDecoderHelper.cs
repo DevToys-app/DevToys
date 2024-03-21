@@ -9,10 +9,14 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DevToys.Tools.Helpers.JsonWebToken;
 
+using System.Security.Claims;
 using Microsoft.IdentityModel.JsonWebTokens;
+using YamlDotNet.Core.Tokens;
 
 internal static partial class JsonWebTokenDecoderHelper
 {
+    private static readonly List<string> _dateFields = new() { "exp", "nbf", "iat", "auth_time", "updated_at" };
+
     public static ResultInfo<JsonWebTokenAlgorithm?> GetTokenAlgorithm(string token, ILogger logger)
     {
         Guard.IsNotNullOrWhiteSpace(token);
@@ -84,7 +88,7 @@ internal static partial class JsonWebTokenDecoderHelper
                 return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.InvalidPayload, ResultInfoSeverity.Error);
             }
             tokenResult.Payload = payloadResult.Data;
-            tokenResult.PayloadClaims = jsonWebToken.Claims.Select(claim => new JsonWebTokenClaim(claim)).ToList();
+            tokenResult.PayloadClaims = ProcessClaims(payloadResult.Data, jsonWebToken.Claims);
 
             if (decodeParameters.ValidateSignature)
             {
@@ -403,5 +407,24 @@ internal static partial class JsonWebTokenDecoderHelper
                 throw new NotSupportedException();
         }
         return new ResultInfo<SigningCredentials>(signingCredentials);
+    }
+
+    private static List<JsonWebTokenClaim> ProcessClaims(ReadOnlySpan<char> data, IEnumerable<Claim> claims)
+    {
+        List<JsonWebTokenClaim> processedClaims = new();
+
+        foreach (Claim claim in claims)
+        {
+            int claimStartPosition = data.IndexOf(claim.Type);
+            TextSpan span = new(claimStartPosition, claim.Type.Length);
+            JsonWebTokenClaim processedClaim = new(claim.Type, claim.Value, span);
+            if (_dateFields.Contains(claim.Type) && long.TryParse(claim.Value, out long value))
+            {
+                processedClaim.Value = $"{DateTimeOffset.FromUnixTimeSeconds(value).ToLocalTime()} ({claim.Value})";
+            }
+            processedClaims.Add(processedClaim);
+        }
+
+        return processedClaims;
     }
 }

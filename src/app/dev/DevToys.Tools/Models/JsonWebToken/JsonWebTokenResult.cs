@@ -15,7 +15,5 @@ internal class JsonWebTokenResult
 
     public JsonWebTokenAlgorithm TokenAlgorithm { get; set; }
 
-    public List<JsonWebTokenClaim> HeaderClaims { get; set; } = new List<JsonWebTokenClaim>();
-
     public List<JsonWebTokenClaim> PayloadClaims { get; set; } = new List<JsonWebTokenClaim>();
 }

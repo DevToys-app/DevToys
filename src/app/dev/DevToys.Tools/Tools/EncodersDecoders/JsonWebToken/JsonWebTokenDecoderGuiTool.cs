@@ -196,7 +196,6 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                 .OnTextChanged(OnTokenInputChanged),
             SplitGrid()
                 .Vertical()
-                .Horizontal()
                 .WithLeftPaneChild(
                     _headerInput
                         .Title(JsonWebTokenEncoderDecoder.HeaderInputTitle)
@@ -370,6 +369,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
         if (string.IsNullOrWhiteSpace(_tokenInput.Text))
         {
             ClearUI();
+            _infoBar.Close();
             return;
         }
 
@@ -544,7 +544,6 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     private void ClearUI()
     {
-        _infoBar.Close();
         _headerInput.Text(string.Empty);
         _payloadInput.Text(string.Empty);
     }
@@ -562,10 +561,8 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
             string? localizedDescription = JsonWebTokenEncoderDecoder.ResourceManager.GetString(claim.Key);
             if (!string.IsNullOrWhiteSpace(localizedDescription))
             {
-                IUIDataGridCell descriptionCell = Cell(localizedDescription);
                 rows.Add(Row(null, typeCell, valueCell));
-                // Todo add hidden row to show on click
-                UIHoverTooltip tooltip = new(claim.Key, localizedDescription);
+                UIHoverTooltip tooltip = new(claim.Span, localizedDescription);
                 tooltips.Add(tooltip);
             }
         }

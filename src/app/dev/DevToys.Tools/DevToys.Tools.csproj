@@ -408,8 +408,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
     <PackageReference Include="CronExpressionDescriptor" />
     <PackageReference Include="Cronos" />
     <PackageReference Include="YamlDotNet" />

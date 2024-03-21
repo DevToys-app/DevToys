@@ -28,6 +28,7 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         UIMultiLineTextInput.IsReadOnlyChanged += UIMultiLineTextInput_IsReadOnlyChanged;
         UIMultiLineTextInput.SelectionChanged += UIMultiLineTextInput_SelectionChanged;
         UIMultiLineTextInput.HighlightedSpansChanged += UIMultiLineTextInput_HighlightedSpansChanged;
+        UIMultiLineTextInput.HoverTooltipChanged += UIMultiLineTextInput_HoverTooltipChanged;
     }
 
     public override ValueTask DisposeAsync()
@@ -37,6 +38,7 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         UIMultiLineTextInput.IsReadOnlyChanged -= UIMultiLineTextInput_IsReadOnlyChanged;
         UIMultiLineTextInput.SelectionChanged -= UIMultiLineTextInput_SelectionChanged;
         UIMultiLineTextInput.HighlightedSpansChanged -= UIMultiLineTextInput_HighlightedSpansChanged;
+        UIMultiLineTextInput.HoverTooltipChanged -= UIMultiLineTextInput_HoverTooltipChanged;
 
         return base.DisposeAsync();
     }
@@ -135,6 +137,52 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         }
     }
 
+    private async void UIMultiLineTextInput_HoverTooltipChanged(object? sender, EventArgs e)
+    {
+        await _monacoInitializationAwaiter.Task;
+
+        using (await _semaphore.WaitAsync(CancellationToken.None))
+        {
+            TextModel model = await _monacoEditor.GetModelAsync();
+
+            if (model is not null)
+            {
+                var decorations = new ModelDeltaDecoration[UIMultiLineTextInput.HoverTooltips.Count];
+
+                for (int i = 0; i < decorations.Length; i++)
+                {
+                    UIHoverTooltip hoverTooltip = UIMultiLineTextInput.HoverTooltips[i];
+                    Position selectionStartPosition = await model.GetPositionAtAsync(JSRuntime, hoverTooltip.Span.StartPosition);
+                    Position selectionEndPosition = await model.GetPositionAtAsync(JSRuntime, hoverTooltip.Span.EndPosition);
+
+                    decorations[i]
+                        = new ModelDeltaDecoration
+                        {
+                            Range = new Monaco.Range
+                            {
+                                StartLineNumber = selectionStartPosition.LineNumber,
+                                StartColumn = selectionStartPosition.Column,
+                                EndLineNumber = selectionEndPosition.LineNumber,
+                                EndColumn = selectionEndPosition.Column
+                            },
+                            Options = new ModelDecorationOptions
+                            {
+                                HoverMessage = new[]
+                                {
+                                    new MarkdownString()
+                                    {
+                                        Value = hoverTooltip.Description
+                                    }
+                                }
+                            }
+                        };
+                }
+
+                await _monacoEditor.ReplaceAllDecorationsByAsync(decorations);
+            }
+        }
+    }
+
     private async Task OnMonacoEditorTextChangedAsync(ModelContentChangedEvent ev)
     {
         if (ev.Changes is not null)
@@ -178,54 +226,6 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         UIMultiLineTextInput_SelectionChanged(UIMultiLineTextInput, EventArgs.Empty);
 
         return Task.CompletedTask;
-    }
-
-    private async Task OnMonacoEditorPositionChanged(CursorPositionChangedEvent cursorPosition)
-    {
-        if (UIMultiLineTextInput.Tooltips.Count == 0)
-        {
-            return;
-        }
-
-        await _monacoInitializationAwaiter.Task;
-        TextModel model = await _monacoEditor.GetModelAsync();
-        if (model is not null && cursorPosition.Position is not null)
-        {
-            WordAtPosition wordAtPosition = await model.GetWordAtPositionAsync(JSRuntime, cursorPosition.Position);
-            if (wordAtPosition is not null)
-            {
-                UIHoverTooltip? tooltip = UIMultiLineTextInput.Tooltips.FirstOrDefault(tooltip => tooltip.Word.Equals(wordAtPosition.Word, StringComparison.OrdinalIgnoreCase));
-                if (tooltip != null)
-                {
-                    var decoration = new ModelDeltaDecoration
-                    {
-                        Range = new Range
-                        {
-                            StartLineNumber = 1,
-                            StartColumn = 1,
-
-                            EndLineNumber = wordAtPosition.EndColumn,
-                            EndColumn = wordAtPosition.EndColumn
-                        },
-                        Options = new ModelDecorationOptions
-                        {
-                            HoverMessage = new[]
-                            {
-                                new MarkdownString()
-                                {
-                                    Value = tooltip.Description
-                                }
-                            }
-                        }
-                    };
-                    await _monacoEditor.ReplaceAllDecorationsByAsync(new[] { decoration });
-                }
-                else
-                {
-                    await _monacoEditor.ResetDeltaDecorationsAsync();
-                }
-            }
-        }
     }
 
     private async Task OnMonacoEditorSelectionChanged(CursorSelectionChangedEvent newSelection)

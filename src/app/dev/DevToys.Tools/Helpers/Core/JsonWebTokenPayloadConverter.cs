@@ -100,12 +100,6 @@ internal sealed class JsonWebTokenPayloadConverter : JsonConverter<Dictionary<st
             return null!;
         }
 
-        if (reader.TokenType != JsonTokenType.String)
-        {
-            //        throw LogHelper.LogExceptionMessage(
-            //CreateJsonReaderException(ref reader, "JsonTokenType.String", className, propertyName));
-        }
-
         string? originalString = reader.GetString();
         try
         {

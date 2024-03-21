@@ -6,17 +6,14 @@ internal class JsonWebTokenClaim
 {
     public string Key { get; }
 
-    public string Value { get; }
+    public TextSpan Span { get; }
 
-    public JsonWebTokenClaim(Claim claim)
-    {
-        Key = claim.Type;
-        Value = claim.Value;
-    }
+    public string Value { get; set; }
 
-    public JsonWebTokenClaim(string key, string value)
+    public JsonWebTokenClaim(string key, string value, TextSpan span)
     {
         Key = key;
         Value = value;
+        Span = span;
     }
 }
