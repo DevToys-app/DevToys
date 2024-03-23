@@ -52,7 +52,6 @@ public sealed class JsonWebTokenEncoderGuiToolTests : MefBasedTest
 
         _tokenIssuersSwitch = (IUISwitch)_toolView.GetChildElementById("jwt-encode-token-issuer-switch");
         _tokenAudiencesSwitch = (IUISwitch)_toolView.GetChildElementById("jwt-encode-token-audience-switch");
-        _tokenExpirationSwitch = (IUISwitch)_toolView.GetChildElementById("jwt-encode-token-expiration-switch");
         _tokenIssuersInput = (IUISingleLineTextInput)_toolView.GetChildElementById("jwt-encode-token-issuer-input");
         _tokenAudiencesInput = (IUISingleLineTextInput)_toolView.GetChildElementById("jwt-encode-token-audience-input");
 
