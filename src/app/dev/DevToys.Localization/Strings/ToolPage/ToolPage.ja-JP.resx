@@ -121,7 +121,7 @@
     <value>お気に入りに追加</value>
   </data>
   <data name="AllFileType" xml:space="preserve">
-    <value>All Files</value>
+    <value>全てのファイル</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>削除</value>
@@ -130,7 +130,7 @@
     <value>コピー</value>
   </data>
   <data name="NoSmartDetectedTool" xml:space="preserve">
-    <value>No tool to suggest</value>
+    <value>提案するツールはありません</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
@@ -142,16 +142,16 @@
     <value>貼り付け</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>Pin to Start</value>
+    <value>「スタート」にピン留め</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>お気に入りの解除</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as...</value>
+    <value>名前を付けて保存</value>
   </data>
   <data name="SendToSmartDetection" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>他のツールで開く</value>
   </data>
   <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
     <value>Toggle keep the window on top (Ctrl+Up)</value>
