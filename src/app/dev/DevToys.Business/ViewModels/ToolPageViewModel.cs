@@ -34,7 +34,7 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
     /// <summary>
     /// Gets the UI of the tool.
     /// </summary>
-    internal UIToolView ToolView
+    internal UIToolView? ToolView
     {
         get
         {

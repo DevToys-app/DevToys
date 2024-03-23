@@ -9,7 +9,7 @@ namespace DevToys.Core.Tools;
 [DebuggerDisplay($"InternalComponentName = {{{nameof(InternalComponentName)}}}")]
 public sealed partial class GuiToolInstance : ObservableObject, IDisposable
 {
-    private Lazy<UIToolView> _view;
+    private Lazy<UIToolView?> _view;
     private readonly ILogger _logger;
     private readonly Lazy<IGuiTool, GuiToolMetadata> _guiToolDefinition;
     private readonly Lazy<IGuiTool> _instance;
@@ -79,7 +79,7 @@ public sealed partial class GuiToolInstance : ObservableObject, IDisposable
     /// Gets the view of the tool.
     /// Calling this property is expensive the first time as it will create the instance of the tool and the instance of the view.
     /// </summary>
-    public UIToolView View => _view.Value;
+    public UIToolView? View => _view.Value;
 
     public void Dispose()
     {
@@ -124,7 +124,7 @@ public sealed partial class GuiToolInstance : ObservableObject, IDisposable
     {
         if (_view is not null && _view.IsValueCreated)
         {
-            _view.Value.CurrentOpenedDialog?.Dispose();
+            _view.Value?.CurrentOpenedDialog?.Dispose();
         }
 
         _view
@@ -133,7 +133,7 @@ public sealed partial class GuiToolInstance : ObservableObject, IDisposable
                 Exception? exception = null;
                 try
                 {
-                    return _instance.Value.View;
+                    return _instance.Value?.View;
                 }
                 catch (NotImplementedException) { }
                 catch (Exception ex)

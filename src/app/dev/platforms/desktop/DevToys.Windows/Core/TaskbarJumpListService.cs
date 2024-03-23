@@ -69,7 +69,7 @@ internal class TaskbarJumpListService : ObservableRecipient
             Title = tool.LongOrShortDisplayTitle,
             Description = tool.Description,
             CustomCategory = category,
-            Arguments = $"{CommandLineLauncherService.ToolArgument}{tool.InternalComponentName}"
+            Arguments = $"--{CommandLineLauncherService.ToolArgument}:\"{tool.InternalComponentName}\""
         };
 
         jumpList.JumpItems.Add(jumpTask);

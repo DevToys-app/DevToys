@@ -339,8 +339,7 @@ public sealed partial class GuiToolProvider
         {
             GuiToolInstance tool = AllTools[i];
 
-            if (!tool.NotSearchable                                     // do not search tools marked as non-searchable
-                && !string.IsNullOrWhiteSpace(tool.LongDisplayTitle))   // do not search tools without long display name.
+            if (!tool.NotSearchable) // do not search tools marked as non-searchable
             {
                 SearchTool(searchQueries, tool, out TextSpan[] matchedSpans, out double weight);
 
@@ -659,7 +658,7 @@ public sealed partial class GuiToolProvider
         weight = 0;
         foreach (string? query in searchQueries)
         {
-            WeightMatch(query, tool.LongDisplayTitle, out double titleWeight, out IReadOnlyList<TextSpan> spans);
+            WeightMatch(query, tool.LongOrShortDisplayTitle, out double titleWeight, out IReadOnlyList<TextSpan> spans);
             WeightMatch(query, tool.SearchKeywords, out double searchKeywordsWeight, out _);
             WeightMatch(query, tool.Description, out double descriptionWeight, out _);
 

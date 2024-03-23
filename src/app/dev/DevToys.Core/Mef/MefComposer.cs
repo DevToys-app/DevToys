@@ -9,9 +9,12 @@ namespace DevToys.Core.Mef;
 /// </summary>
 public sealed partial class MefComposer : IDisposable
 {
+    private const string ExtraPluginArgument = "extraplugin";
+
     private readonly ILogger _logger;
     private readonly Assembly[] _assemblies;
     private readonly string[]? _pluginFolders;
+    private readonly string _extraPlugin;
     private readonly object[] _customExports;
     private bool _isExportProviderDisposed = true;
 
@@ -21,12 +24,9 @@ public sealed partial class MefComposer : IDisposable
 
     public MefComposer(Assembly[]? assemblies = null, string[]? pluginFolders = null, params object[] customExports)
     {
-        if (Provider is not null)
-        {
-            throw new InvalidOperationException("Mef composer already initialized.");
-        }
-
         _logger = this.Log();
+
+        _extraPlugin = AppHelper.GetCommandLineArgument(ExtraPluginArgument);
 
         _assemblies = assemblies ?? Array.Empty<Assembly>();
         _pluginFolders = pluginFolders;
@@ -125,6 +125,11 @@ public sealed partial class MefComposer : IDisposable
         {
             string appFolder = AppContext.BaseDirectory;
             pluginFolders = new[] { Path.Combine(appFolder!, "Plugins") };
+        }
+
+        if (!string.IsNullOrWhiteSpace(_extraPlugin) && Directory.Exists(_extraPlugin))
+        {
+            yield return _extraPlugin;
         }
 
         for (int i = 0; i < pluginFolders.Length; i++)

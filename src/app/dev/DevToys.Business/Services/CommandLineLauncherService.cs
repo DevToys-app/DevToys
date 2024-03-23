@@ -11,7 +11,7 @@ namespace DevToys.Business.Services;
 [Export]
 internal sealed class CommandLineLauncherService : ObservableRecipient
 {
-    internal const string ToolArgument = "--tool:";
+    internal const string ToolArgument = "tool";
 
     private readonly GuiToolProvider _guiToolProvider;
     private readonly IMefProvider _mefProvider;
@@ -25,9 +25,9 @@ internal sealed class CommandLineLauncherService : ObservableRecipient
 
     internal void HandleCommandLineArguments()
     {
-        if (Environment.CommandLine.Contains(ToolArgument))
+        string toolName = AppHelper.GetCommandLineArgument(ToolArgument);
+        if (!string.IsNullOrEmpty(toolName))
         {
-            string toolName = Environment.CommandLine.Substring(Environment.CommandLine.IndexOf(ToolArgument) + ToolArgument.Length);
             GuiToolInstance? tool = _guiToolProvider.GetToolFromInternalName(toolName);
             if (tool is not null)
             {
@@ -44,7 +44,7 @@ internal sealed class CommandLineLauncherService : ObservableRecipient
         if (tool is not null)
         {
             string appStartExe = Process.GetCurrentProcess().MainModule!.FileName;
-            OSHelper.OpenFileInShell(appStartExe, $"{ToolArgument}{toolInternalName}");
+            OSHelper.OpenFileInShell(appStartExe, $"--{ToolArgument}:\"{toolInternalName}\"");
         }
     }
 }
