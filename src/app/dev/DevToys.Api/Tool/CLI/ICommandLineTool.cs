@@ -25,7 +25,7 @@ namespace DevToys.Api;
 ///             [CommandLineOption(Name = "utf8", DescriptionResourceName = nameof(Strings.Utf8OptionDescription))]
 ///             internal bool Utf8 { get; set; } = true; // Default value is true.
 ///             
-///             public ValueTask&lt;int&gt; InvokeAsync(CancellationToken cancellationToken)
+///             public ValueTask&lt;int&gt; InvokeAsync(ILogger logger, CancellationToken cancellationToken)
 ///             {
 ///                 // [...]
 ///                 return 0; // Exit code.

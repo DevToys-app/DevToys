@@ -160,6 +160,24 @@ namespace DevToys.Tools.Tools.Formatters.Sql {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leading comma.
+        /// </summary>
+        internal static string LeadingComma {
+            get {
+                return ResourceManager.GetString("LeadingComma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whether to use leading commas or not.
+        /// </summary>
+        internal static string LeadingCommaDescription {
+            get {
+                return ResourceManager.GetString("LeadingCommaDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SQL Formatter.
         /// </summary>
         internal static string LongDisplayTitle {

@@ -1,4 +1,5 @@
-﻿using Decimal = DevToys.Tools.Models.NumberBase.Decimal;
+﻿using System.Globalization;
+using Decimal = DevToys.Tools.Models.NumberBase.Decimal;
 
 namespace DevToys.UnitTests.Tools.Models.NumberBase;
 
@@ -13,6 +14,7 @@ public class DecimalTests
     [InlineData(long.MaxValue, "9,223,372,036,854,775,807")]
     public void FormatDecimal(long input, string expectedResult)
     {
+        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         Decimal.Instance.ToFormattedString(input, true).Should().Be(expectedResult);
     }
 

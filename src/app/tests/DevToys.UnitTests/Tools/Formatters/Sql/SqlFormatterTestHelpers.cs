@@ -588,7 +588,7 @@ SELECT count(*)
 FROM
     Table1;";
 
-        string output = formatter.Format(input, new SqlFormatterOptions(indentation: Indentation.FourSpaces, uppercase: false));
+        string output = formatter.Format(input, new SqlFormatterOptions(Indentation: Indentation.FourSpaces, Uppercase: false));
         output.Should().Be(expectedResult);
 
         // supports linesBetweenQueries option
@@ -605,7 +605,7 @@ SELECT
 FROM
   bar;";
 
-        output = formatter.Format(input, new SqlFormatterOptions(indentation: Indentation.TwoSpaces, uppercase: false, linesBetweenQueries: 2));
+        output = formatter.Format(input, new SqlFormatterOptions(Indentation: Indentation.TwoSpaces, Uppercase: false, LinesBetweenQueries: 2));
         output.Should().Be(expectedResult);
 
         // supports uppercase option
@@ -621,7 +621,7 @@ WHERE
   cola > 1
   AND colb = 3";
 
-        output = formatter.Format(input, new SqlFormatterOptions(indentation: Indentation.TwoSpaces, uppercase: true));
+        output = formatter.Format(input, new SqlFormatterOptions(Indentation: Indentation.TwoSpaces, Uppercase: true));
         output.Should().Be(expectedResult);
 
         // supports indent option one tab
@@ -634,7 +634,55 @@ string.Format(@"SELECT
 FROM
 {2}Table1;", "\t", "\t", "\t");
 
-        output = formatter.Format(input, new SqlFormatterOptions(indentation: Indentation.OneTab, uppercase: false));
+        output = formatter.Format(input, new SqlFormatterOptions(Indentation: Indentation.OneTab, Uppercase: false));
+        output.Should().Be(expectedResult);
+
+        // supports leading comma option
+        input = """
+select f.title,
+f.replacement_cost,
+f.rental_rate,
+r.return_date AS total_rentals FROM film f
+GROUP by
+f.title,
+f.replacement_cost,
+f.rental_rate
+""";
+
+        expectedResult =
+"""
+SELECT
+    f.title,
+    f.replacement_cost,
+    f.rental_rate,
+    r.return_date AS total_rentals
+FROM
+    film f
+GROUP BY
+    f.title,
+    f.replacement_cost,
+    f.rental_rate
+""";
+
+        output = formatter.Format(input, new SqlFormatterOptions(Indentation: Indentation.FourSpaces, Uppercase: true, UseLeadingComma: false));
+        output.Should().Be(expectedResult);
+
+        expectedResult =
+"""
+SELECT
+    f.title
+    , f.replacement_cost
+    , f.rental_rate
+    , r.return_date AS total_rentals
+FROM
+    film f
+GROUP BY
+    f.title
+    , f.replacement_cost
+    , f.rental_rate
+""";
+
+        output = formatter.Format(input, new SqlFormatterOptions(Indentation: Indentation.FourSpaces, Uppercase: true, UseLeadingComma: true));
         output.Should().Be(expectedResult);
     }
 
@@ -730,7 +778,7 @@ FROM
   WHEN 'three' THEN 3
   ELSE 4
 END;";
-        string output = formatter.Format(input, new SqlFormatterOptions(indentation: Indentation.TwoSpaces, uppercase: true));
+        string output = formatter.Format(input, new SqlFormatterOptions(Indentation: Indentation.TwoSpaces, Uppercase: true));
         output.Should().Be(expectedResult);
     }
 
