@@ -118,23 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>DevToys 拡張機能の管理</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manager third-party extensions in DevToys</value>
+    <value>サードパーティ製の DevToys 拡張機能の追加と管理</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>拡張機能 '{0}' は既にインストールされています。インストール済みの拡張機能を更新する場合、先に古いバージョンをアンインストールしてください。</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>この拡張機能をインストールする事ができません</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>オンラインで他の拡張機能を検索する</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
     <value>拡張機能をインストール</value>
@@ -146,16 +146,16 @@
     <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>変更を適用するには、すべての DevToys のウィンドウを閉じて再起動してください。</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>変更の内容は再起動後に適用されます。</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>拡張機能を管理</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>サードパーティ製の拡張機能は、既存のツールの機能を変更、または、許可なしにデバイスにアクセスする可能性があります。 これにより、データがインターネットに公開されたり、デバイスに不要なソフトウェアがインストールされる可能性があります。これらのリスクに注意し、信頼できる拡張機能のみをインストールすることを強くお勧めします。 DevToys の作者は、拡張機能によって生じた損害や損失に対して責任を負いません。</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
     <value>了解しました</value>
