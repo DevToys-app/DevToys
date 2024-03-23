@@ -132,13 +132,16 @@
     <value>オフラインファーストの理念</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>DevToys は拡張機能によってあなたのツールボックスが更に強化されます。
+DevToys はコア アプリの整合性を保証しますが、サードパーティ製の拡張機能が利用者のコンピューターとデータをどのように扱うかはコントロール出来ません。
+拡張機能をインストール際には以上のリスクを理解する必要があります。
+DevToys や拡張機能のネットワーク アクティビティを監視するには、Wireshark、Little Snitch、Fiddler といったツールを使用して、送受信接続を追跡することができます。</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>信用しても信頼しない</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>上記を理解し、同意します。</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>DevToys へようこそ！</value>
