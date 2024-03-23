@@ -30,6 +30,12 @@ internal sealed partial class SqlFormatterGuiTool : IGuiTool, IDisposable
     private static readonly SettingDefinition<SqlLanguage> sqlLanguage
         = new(name: $"{nameof(SqlFormatterGuiTool)}.{nameof(sqlLanguage)}", defaultValue: SqlLanguage.Sql);
 
+    /// <summary>
+    /// Whether to use leading commas in the formatted SQL queries.
+    /// </summary>
+    private static readonly SettingDefinition<bool> useLeadingComma
+        = new(name: $"{nameof(SqlFormatterGuiTool)}.{nameof(useLeadingComma)}", defaultValue: false);
+
     private enum GridColumn
     {
         Content
@@ -106,7 +112,15 @@ internal sealed partial class SqlFormatterGuiTool : IGuiTool, IDisposable
                             Item(SqlFormatter.TwoSpaces, Indentation.TwoSpaces),
                             Item(SqlFormatter.FourSpaces, Indentation.FourSpaces),
                             Item(SqlFormatter.OneTab, Indentation.OneTab)
-                        )
+                        ),
+                        Setting("sql-leading-comma-setting")
+                           .Icon("FluentSystemIcons", '\uF18D')
+                           .Title(SqlFormatter.LeadingComma)
+                           .Handle(
+                                _settingsProvider,
+                                useLeadingComma,
+                                OnUseLeadingCommaChanged
+                            )
                     )
                 ),
                 Cell(
@@ -151,6 +165,11 @@ internal sealed partial class SqlFormatterGuiTool : IGuiTool, IDisposable
         StartFormat(_inputTextArea.Text);
     }
 
+    private void OnUseLeadingCommaChanged(bool useLeadingComma)
+    {
+        StartFormat(_inputTextArea.Text);
+    }
+
     private void OnInputTextChanged(string text)
     {
         StartFormat(text);
@@ -162,10 +181,15 @@ internal sealed partial class SqlFormatterGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = FormatAsync(text, _settingsProvider.GetSetting(indentationMode), _settingsProvider.GetSetting(sqlLanguage), _cancellationTokenSource.Token);
+        WorkTask = FormatAsync(
+            text,
+            _settingsProvider.GetSetting(indentationMode),
+            _settingsProvider.GetSetting(sqlLanguage),
+            _settingsProvider.GetSetting(useLeadingComma),
+            _cancellationTokenSource.Token);
     }
 
-    private async Task FormatAsync(string input, Indentation indentationSetting, SqlLanguage sqlLanguageSetting, CancellationToken cancellationToken)
+    private async Task FormatAsync(string input, Indentation indentationSetting, SqlLanguage sqlLanguageSetting, bool useLeadingComma, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
@@ -176,8 +200,9 @@ internal sealed partial class SqlFormatterGuiTool : IGuiTool, IDisposable
                 sqlLanguageSetting,
                 new SqlFormatterOptions(
                             indentationSetting,
-                            uppercase: true,
-                            linesBetweenQueries: 2));
+                            Uppercase: true,
+                            LinesBetweenQueries: 2,
+                            UseLeadingComma: useLeadingComma));
 
             _outputTextArea.Text(formatResult);
         }

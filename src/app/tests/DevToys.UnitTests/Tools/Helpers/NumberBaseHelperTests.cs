@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Helpers;
+﻿using System.Globalization;
+using DevToys.Tools.Helpers;
 using DevToys.Tools.Models.NumberBase;
 using Decimal = DevToys.Tools.Models.NumberBase.Decimal;
 
@@ -452,6 +453,8 @@ public class NumberBaseHelperTests
         string expectedBinary,
         bool expectedSuccess)
     {
+        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+
         NumberBaseHelper.TryConvertNumberBase(
             input,
             numberBaseDefinition,

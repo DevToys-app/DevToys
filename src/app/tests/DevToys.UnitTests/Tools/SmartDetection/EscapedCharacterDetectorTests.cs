@@ -14,6 +14,12 @@ public class EscapedCharacterDetectorTests
     [InlineData("hello world", false)]
     [InlineData("hello\rworld", false)]
     [InlineData("hello\\rworld", true)]
+    [InlineData("hello\\nworld", true)]
+    [InlineData("hello\\\\world", true)]
+    [InlineData("hello\\\"world", true)]
+    [InlineData("hello\\tworld", true)]
+    [InlineData("hello\\fworld", true)]
+    [InlineData("hello\\bworld", true)]
     public async Task TryDetectDataAsync(string input, bool expectedResult)
     {
         LoggingExtensions.LoggerFactory ??= LoggerFactory.Create(builder => { });

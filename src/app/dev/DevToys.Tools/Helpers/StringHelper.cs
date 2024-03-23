@@ -6,20 +6,14 @@ using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Helpers;
 
-internal static class StringHelper
+internal static partial class StringHelper
 {
-    private static readonly Random random = new();
+    [GeneratedRegex(@"\\[nrtfb\\""]")]
+    private static partial Regex EscapeCharactersRegex();
 
     internal static bool HasEscapeCharacters(string text)
     {
-        // TODO: This could be improved. Using multiple Contains means we have to iterate through the text multiple times.
-        return text.Contains("\\n")
-            || text.Contains("\\r")
-            || text.Contains("\\\\")
-            || text.Contains("\\\"")
-            || text.Contains("\\t")
-            || text.Contains("\\f")
-            || text.Contains("\\b");
+        return EscapeCharactersRegex().IsMatch(text);
     }
 
     internal static ResultInfo<string> EscapeString(string? data, ILogger logger, CancellationToken cancellationToken)
@@ -247,7 +241,7 @@ internal static class StringHelper
             text,
             lineComparer: (ReadOnlyMemory<char> x, ReadOnlyMemory<char> y) => // Order randomly.
             {
-                return random.Next(-1, 1);
+                return Random.Shared.Next(-1, 1);
             },
             endOfLineSequence);
     }
@@ -267,71 +261,81 @@ internal static class StringHelper
     internal static string ConvertToSentenceCase(string text, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(text);
+
         if (text.Length == 0)
         {
             return text;
         }
 
-        var sentenceCaseString = new Memory<char>(text.ToCharArray());
-        bool newSentence = true;
-        for (int i = 0; i < sentenceCaseString.Length; i++)
+        return string.Create(text.Length, (text, cancellationToken), static (buffer, state) =>
         {
-            cancellationToken.ThrowIfCancellationRequested();
+            ReadOnlySpan<char> textSpan = state.text.AsSpan();
 
-            EndOfLineSequence lineBreakType = EndOfLineSequence.Unknown;
-            if (IsSentenceTerminator(sentenceCaseString.Span[i]) || sentenceCaseString.Span.IsLineBreak(i, out lineBreakType))
+            bool newSentence = true;
+            for (int i = 0; i < textSpan.Length; i++)
             {
-                newSentence = true;
-                if (lineBreakType == EndOfLineSequence.CarriageReturnLineFeed)
-                {
-                    i++;
-                }
-                continue;
-            }
+                state.cancellationToken.ThrowIfCancellationRequested();
+                char @char = textSpan[i];
 
-            if (char.IsLetterOrDigit(sentenceCaseString.Span[i]))
-            {
-                if (newSentence)
+                EndOfLineSequence lineBreakType = EndOfLineSequence.Unknown;
+                if (IsSentenceTerminator(@char) || textSpan.IsLineBreak(i, out lineBreakType))
                 {
-                    sentenceCaseString.Span[i] = char.ToUpperInvariant(sentenceCaseString.Span[i]);
-                    newSentence = false;
+                    buffer[i] = @char;
+                    newSentence = true;
+                    if (lineBreakType == EndOfLineSequence.CarriageReturnLineFeed)
+                    {
+                        i++;
+                        buffer[i] = textSpan[i];
+                    }
+                    continue;
                 }
-                else
-                {
-                    sentenceCaseString.Span[i] = char.ToLowerInvariant(sentenceCaseString.Span[i]);
-                }
-            }
-        }
 
-        return new string(sentenceCaseString.Span);
+                if (char.IsLetterOrDigit(@char))
+                {
+                    if (newSentence)
+                    {
+                        buffer[i] = char.ToUpperInvariant(@char);
+                        newSentence = false;
+                    }
+                    else
+                    {
+                        buffer[i] = char.ToLowerInvariant(@char);
+                    }
+                    continue;
+                }
+
+                buffer[i] = @char;
+            }
+        });
     }
 
     internal static string ConvertToTitleCase(string text, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(text);
+
         if (text.Length == 0)
         {
             return text;
         }
 
-        var titleCaseString = new Memory<char>(text.ToCharArray());
-
-        for (int i = 0; i < titleCaseString.Length; i++)
+        return string.Create(text.Length, (text, cancellationToken), static (buffer, state) =>
         {
-            cancellationToken.ThrowIfCancellationRequested();
+            ReadOnlySpan<char> textSpan = state.text.AsSpan();
 
-            if (i == 0
-                || !char.IsLetterOrDigit(titleCaseString.Span[i - 1]))
+            for (int i = 0; i < textSpan.Length; i++)
             {
-                titleCaseString.Span[i] = char.ToUpperInvariant(titleCaseString.Span[i]);
-            }
-            else
-            {
-                titleCaseString.Span[i] = char.ToLowerInvariant(titleCaseString.Span[i]);
-            }
-        }
+                state.cancellationToken.ThrowIfCancellationRequested();
 
-        return new string(titleCaseString.Span);
+                if (i == 0 || !char.IsLetterOrDigit(textSpan[i - 1]))
+                {
+                    buffer[i] = char.ToUpperInvariant(textSpan[i]);
+                }
+                else
+                {
+                    buffer[i] = char.ToLowerInvariant(textSpan[i]);
+                }
+            }
+        });
     }
 
     internal static string ConvertToCamelCase(string text, CancellationToken cancellationToken)
@@ -511,89 +515,75 @@ internal static class StringHelper
     internal static string ConvertToAlternatingCase(string text, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(text);
+
         if (text.Length == 0)
         {
             return text;
         }
 
-        var alternatingCaseString = new Memory<char>(text.ToCharArray());
-
-        bool lowerCase = true;
-        for (int i = 0; i < alternatingCaseString.Length; i++)
+        return string.Create(text.Length, (text, cancellationToken), static (buffer, state) =>
         {
-            cancellationToken.ThrowIfCancellationRequested();
+            ReadOnlySpan<char> textSpan = state.text.AsSpan();
 
-            if (lowerCase)
+            bool lowerCase = true;
+            for (int i = 0; i < textSpan.Length; i++)
             {
-                alternatingCaseString.Span[i] = char.ToLowerInvariant(alternatingCaseString.Span[i]);
-            }
-            else
-            {
-                alternatingCaseString.Span[i] = char.ToUpperInvariant(alternatingCaseString.Span[i]);
-            }
+                state.cancellationToken.ThrowIfCancellationRequested();
 
-            lowerCase = !lowerCase;
-        }
+                buffer[i] = lowerCase ? char.ToLowerInvariant(textSpan[i]) : char.ToUpperInvariant(textSpan[i]);
 
-        return new string(alternatingCaseString.Span);
+                lowerCase = !lowerCase;
+            }
+        });
     }
 
     internal static string ConvertToInverseCase(string text, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(text);
+
         if (text.Length == 0)
         {
             return text;
         }
 
-        var inverseCaseString = new Memory<char>(text.ToCharArray());
-
-        bool lowerCase = false;
-        for (int i = 0; i < inverseCaseString.Length; i++)
+        return string.Create(text.Length, (text, cancellationToken), static (buffer, state) =>
         {
-            cancellationToken.ThrowIfCancellationRequested();
+            ReadOnlySpan<char> textSpan = state.text.AsSpan();
 
-            if (lowerCase)
+            bool lowerCase = false;
+            for (int i = 0; i < textSpan.Length; i++)
             {
-                inverseCaseString.Span[i] = char.ToLowerInvariant(inverseCaseString.Span[i]);
-            }
-            else
-            {
-                inverseCaseString.Span[i] = char.ToUpperInvariant(inverseCaseString.Span[i]);
-            }
+                state.cancellationToken.ThrowIfCancellationRequested();
 
-            lowerCase = !lowerCase;
-        }
+                buffer[i] = lowerCase ? char.ToLowerInvariant(textSpan[i]) : char.ToUpperInvariant(textSpan[i]);
 
-        return new string(inverseCaseString.Span);
+                lowerCase = !lowerCase;
+            }
+        });
     }
 
     internal static string ConvertToRandomCase(string text, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(text);
+
         if (text.Length == 0)
         {
             return text;
         }
 
-        var randomCaseString = new Memory<char>(text.ToCharArray());
-
-        for (int i = 0; i < randomCaseString.Length; i++)
+        return string.Create(text.Length, (text, cancellationToken), static (buffer, state) =>
         {
-            cancellationToken.ThrowIfCancellationRequested();
-            bool isUpper = random.Next() > (int.MaxValue / 2);
+            ReadOnlySpan<char> textSpan = state.text.AsSpan();
 
-            if (isUpper)
+            for (int i = 0; i < textSpan.Length; i++)
             {
-                randomCaseString.Span[i] = char.ToUpperInvariant(randomCaseString.Span[i]);
-            }
-            else
-            {
-                randomCaseString.Span[i] = char.ToLowerInvariant(randomCaseString.Span[i]);
-            }
-        }
+                state.cancellationToken.ThrowIfCancellationRequested();
 
-        return new string(randomCaseString.Span);
+                bool isUpper = Random.Shared.Next() % 2 == 0;
+
+                buffer[i] = isUpper ? char.ToUpperInvariant(textSpan[i]) : char.ToLowerInvariant(textSpan[i]);
+            }
+        });
     }
 
     internal static EndOfLineSequence DetectLineBreakKind(string text, CancellationToken cancellationToken)

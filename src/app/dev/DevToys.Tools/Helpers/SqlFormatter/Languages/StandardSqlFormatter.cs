@@ -379,8 +379,8 @@ internal sealed class StandardSqlFormatter : Formatter
                 openParens: new[] { "(", "CASE" },
                 closeParens: new[] { ")", "END" },
                 indexedPlaceholderTypes: new[] { '?' },
-                namedPlaceholderTypes: Array.Empty<char>(),
+                namedPlaceholderTypes: new[] { '@' },
                 lineCommentTypes: new[] { "--" },
-                specialWordChars: Array.Empty<string>());
+                specialWordChars: new[] { "#", "@", "$" });
     }
 }

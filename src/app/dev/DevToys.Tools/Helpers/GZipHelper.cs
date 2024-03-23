@@ -1,41 +1,22 @@
-﻿using System.IO.Compression;
+﻿using System.Buffers;
+using System.Buffers.Text;
+using System.IO.Compression;
 using System.Text;
 using DevToys.Tools.Tools.EncodersDecoders.GZip;
 using Microsoft.Extensions.Logging;
+using Microsoft.IO;
 
 namespace DevToys.Tools.Helpers;
 
 internal static partial class GZipHelper
 {
-    internal static bool IsGZip(string input)
+    private static readonly RecyclableMemoryStreamManager streamManager = new();
+
+    internal static bool IsGZip(string? input)
     {
-        if (string.IsNullOrWhiteSpace(input))
-        {
-            return false;
-        }
+        ReadOnlySpan<char> trimmedInput = input.AsSpan().TrimStart();
 
-        int index = -1;
-        for (int i = 0; i < input.Length; i++)
-        {
-            if (!char.IsWhiteSpace(input[i]))
-            {
-                index = i;
-                break;
-            }
-        }
-
-        if (index > -1 && input.Length > index + 3)
-        {
-            bool isGZip
-                = input[index] == 'H'
-                && input[index + 1] == '4'
-                && input[index + 2] == 's'
-                && input[index + 3] == 'I';
-
-            return isGZip;
-        }
-
-        return false;
+        return trimmedInput is ['H', '4', 's', 'I', ..];
     }
 
     internal static async Task<(string compressedData, double compressionPercentage)> CompressOrDecompressAsync(
@@ -44,30 +25,12 @@ internal static partial class GZipHelper
         ILogger logger,
         CancellationToken cancellationToken)
     {
-        (string data, double differencePercentage) conversionResult;
-
-        switch (compressionMode)
+        (string, double) conversionResult = compressionMode switch
         {
-            case CompressionMode.Compress:
-                conversionResult
-                    = await CompressGZipDataAsync(
-                        input,
-                        logger,
-                        cancellationToken);
-                break;
-
-            case CompressionMode.Decompress:
-                conversionResult
-                    = await DecompressGZipDataAsync(
-                        input,
-                        logger,
-                        cancellationToken);
-                break;
-
-            default:
-                throw new NotSupportedException();
-        }
-
+            CompressionMode.Compress => await CompressGZipDataAsync(input, logger, cancellationToken),
+            CompressionMode.Decompress => await DecompressGZipDataAsync(input, logger, cancellationToken),
+            _ => throw new NotSupportedException(),
+        };
         cancellationToken.ThrowIfCancellationRequested();
 
         return conversionResult;
@@ -75,22 +38,26 @@ internal static partial class GZipHelper
 
     internal static async Task<(string compressedData, double compressionPercentage)> CompressGZipDataAsync(string? data, ILogger logger, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(data))
+        if (data is null)
         {
             return (string.Empty, 0);
         }
 
+        byte[]? inputBytes = null;
         string compressed = string.Empty;
+
         try
         {
-            byte[] inputBytes = Encoding.UTF8.GetBytes(data);
-            using var outputStream = new MemoryStream();
-            using (var gZipStream = new GZipStream(outputStream, CompressionMode.Compress))
+            inputBytes = ArrayPool<byte>.Shared.Rent(Encoding.UTF8.GetByteCount(data));
+            int bytesWritten = Encoding.UTF8.GetBytes(data, inputBytes);
+
+            using RecyclableMemoryStream outputStream = streamManager.GetStream();
+            using (var gZipStream = new GZipStream(outputStream, CompressionMode.Compress, leaveOpen: true))
             {
-                await gZipStream.WriteAsync(inputBytes, cancellationToken);
+                await gZipStream.WriteAsync(inputBytes.AsMemory(0, bytesWritten), cancellationToken);
             }
 
-            compressed = Convert.ToBase64String(outputStream.ToArray());
+            compressed = Convert.ToBase64String(outputStream.GetBuffer().AsSpan(0, (int)outputStream.Length));
             cancellationToken.ThrowIfCancellationRequested();
         }
         catch (OperationCanceledException)
@@ -102,6 +69,13 @@ internal static partial class GZipHelper
             LogFailCompressGZip(logger, ex);
             return (ex.Message, 0);
         }
+        finally
+        {
+            if (inputBytes is not null)
+            {
+                ArrayPool<byte>.Shared.Return(inputBytes);
+            }
+        }
 
         int difference = data.Length - compressed.Length;
         double percentageDifference = (double)difference / data.Length * 100;
@@ -111,16 +85,24 @@ internal static partial class GZipHelper
 
     internal static async Task<(string decompressedData, double compressionPercentage)> DecompressGZipDataAsync(string? compressedData, ILogger logger, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(compressedData))
+        if (compressedData is null)
         {
             return (string.Empty, 0);
         }
 
-        string? decompressed = string.Empty;
+        byte[]? inputBytes = null;
+        string decompressed = string.Empty;
 
         try
         {
-            byte[] inputBytes = Convert.FromBase64String(compressedData);
+            inputBytes = ArrayPool<byte>.Shared.Rent(Encoding.UTF8.GetByteCount(compressedData));
+            int bytesWritten = Encoding.UTF8.GetBytes(compressedData, inputBytes);
+
+            OperationStatus operationStatus = Base64.DecodeFromUtf8InPlace(inputBytes.AsSpan(0, bytesWritten), out bytesWritten);
+
+            if (operationStatus is not OperationStatus.Done)
+                return (GZipEncoderDecoder.InvalidGZipData, 0);
+
             using var inputStream = new MemoryStream(inputBytes);
             using var gZipStream = new GZipStream(inputStream, CompressionMode.Decompress);
             using var streamReader = new StreamReader(gZipStream);
@@ -140,10 +122,16 @@ internal static partial class GZipHelper
             LogFailDecompressGZip(logger, ex);
             return (GZipEncoderDecoder.InvalidGZipData, 0);
         }
+        finally
+        {
+            if (inputBytes is not null)
+            {
+                ArrayPool<byte>.Shared.Return(inputBytes);
+            }
+        }
 
         int difference = decompressed.Length - compressedData.Length;
         double percentageDifference = (double)difference / decompressed.Length * 100;
-
         return (decompressed, percentageDifference);
     }
 

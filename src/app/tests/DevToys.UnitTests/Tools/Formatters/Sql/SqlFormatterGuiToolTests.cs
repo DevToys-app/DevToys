@@ -80,4 +80,40 @@ FETCH FIRST
         await _tool.WorkTask;
         _outputTextArea.Text.Should().Be("SELECT\r\n\t*\r\nFETCH FIRST\r\n\t2 ROWS ONLY;".Replace("\r\n", Environment.NewLine));
     }
+
+    [Fact(DisplayName = "Format sql with valid sql and use leading comma should return valid sql")]
+    public async Task FormatSqlWithValidSqlAndUseLeadingCommaShouldReturnValidSql()
+    {
+        _inputTextArea.Text("SELECT column1, column2 FROM table");
+
+        var leadingCommaSetting = (IUISwitch)((IUISetting)_toolView.GetChildElementById("sql-leading-comma-setting")).InteractiveElement;
+        leadingCommaSetting.On();
+
+        await _tool.WorkTask;
+        _outputTextArea.Text.Should().Be("""
+SELECT
+  column1
+  , column2
+FROM
+  TABLE
+""");
+    }
+
+    [Fact(DisplayName = "Format sql with valid sql and without leading comma should return valid sql")]
+    public async Task FormatSqlWithValidSqlAndWithoutLeadingCommaShouldReturnValidSql()
+    {
+        _inputTextArea.Text("SELECT column1, column2 FROM table");
+
+        var leadingCommaSetting = (IUISwitch)((IUISetting)_toolView.GetChildElementById("sql-leading-comma-setting")).InteractiveElement;
+        leadingCommaSetting.Off();
+
+        await _tool.WorkTask;
+        _outputTextArea.Text.Should().Be("""
+SELECT
+  column1,
+  column2
+FROM
+  TABLE
+""");
+    }
 }

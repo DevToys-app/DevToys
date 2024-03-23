@@ -263,7 +263,7 @@ internal sealed class TSqlFormatter : Formatter
                 indexedPlaceholderTypes: Array.Empty<char>(),
                 namedPlaceholderTypes: new[] { '@' },
                 lineCommentTypes: new[] { "--" },
-                specialWordChars: new[] { "#", "@" },
+                specialWordChars: new[] { "#", "@", "$" },
                 operators: new[]
                 {
                     ">=",
