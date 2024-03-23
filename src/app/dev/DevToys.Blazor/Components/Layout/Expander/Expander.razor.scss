@@ -80,6 +80,10 @@
             background-color: var(--card-background-color-secondary);
             @include transition(transform 250ms cubic-bezier(1, 1, 0, 1));
             transform: translateY(-100%);
+
+            .expander-card {
+                background-color: transparent;
+            }
         }
 
         &[aria-expanded='true'] {

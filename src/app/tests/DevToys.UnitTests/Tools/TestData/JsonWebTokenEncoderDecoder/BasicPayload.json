@@ -1,0 +1,22 @@
+﻿{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "object": {
+    "ObjectProperty": "object value"
+  },
+  "objectOfObject": {
+    "object": {
+      "ObjectProperty": "object value"
+    }
+  },
+  "array": [
+    "array value"
+  ],
+  "arrayOfObject": [
+    {
+      "object": {
+        "ObjectProperty": "object value"
+      }
+    }
+  ]
+}

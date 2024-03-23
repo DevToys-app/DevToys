@@ -1,5 +1,7 @@
 ﻿using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Components.Monaco.Editor;
+using Microsoft.VisualBasic;
+using Range = DevToys.Blazor.Components.Monaco.Range;
 
 namespace DevToys.Blazor.Components.UIElements;
 
@@ -26,6 +28,7 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         UIMultiLineTextInput.IsReadOnlyChanged += UIMultiLineTextInput_IsReadOnlyChanged;
         UIMultiLineTextInput.SelectionChanged += UIMultiLineTextInput_SelectionChanged;
         UIMultiLineTextInput.HighlightedSpansChanged += UIMultiLineTextInput_HighlightedSpansChanged;
+        UIMultiLineTextInput.HoverTooltipChanged += UIMultiLineTextInput_HoverTooltipChanged;
     }
 
     public override ValueTask DisposeAsync()
@@ -35,6 +38,7 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         UIMultiLineTextInput.IsReadOnlyChanged -= UIMultiLineTextInput_IsReadOnlyChanged;
         UIMultiLineTextInput.SelectionChanged -= UIMultiLineTextInput_SelectionChanged;
         UIMultiLineTextInput.HighlightedSpansChanged -= UIMultiLineTextInput_HighlightedSpansChanged;
+        UIMultiLineTextInput.HoverTooltipChanged -= UIMultiLineTextInput_HoverTooltipChanged;
 
         return base.DisposeAsync();
     }
@@ -124,6 +128,52 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
                             Options = new ModelDecorationOptions
                             {
                                 InlineClassName = GetClassNameForHighlightedTextSpan(highlightedSpan)
+                            }
+                        };
+                }
+
+                await _monacoEditor.ReplaceAllDecorationsByAsync(decorations);
+            }
+        }
+    }
+
+    private async void UIMultiLineTextInput_HoverTooltipChanged(object? sender, EventArgs e)
+    {
+        await _monacoInitializationAwaiter.Task;
+
+        using (await _semaphore.WaitAsync(CancellationToken.None))
+        {
+            TextModel model = await _monacoEditor.GetModelAsync();
+
+            if (model is not null)
+            {
+                var decorations = new ModelDeltaDecoration[UIMultiLineTextInput.HoverTooltips.Count];
+
+                for (int i = 0; i < decorations.Length; i++)
+                {
+                    UIHoverTooltip hoverTooltip = UIMultiLineTextInput.HoverTooltips[i];
+                    Position selectionStartPosition = await model.GetPositionAtAsync(JSRuntime, hoverTooltip.Span.StartPosition);
+                    Position selectionEndPosition = await model.GetPositionAtAsync(JSRuntime, hoverTooltip.Span.EndPosition);
+
+                    decorations[i]
+                        = new ModelDeltaDecoration
+                        {
+                            Range = new Monaco.Range
+                            {
+                                StartLineNumber = selectionStartPosition.LineNumber,
+                                StartColumn = selectionStartPosition.Column,
+                                EndLineNumber = selectionEndPosition.LineNumber,
+                                EndColumn = selectionEndPosition.Column
+                            },
+                            Options = new ModelDecorationOptions
+                            {
+                                HoverMessage = new[]
+                                {
+                                    new MarkdownString()
+                                    {
+                                        Value = hoverTooltip.Description
+                                    }
+                                }
                             }
                         };
                 }

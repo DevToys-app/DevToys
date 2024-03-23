@@ -53,6 +53,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CronParser.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\EncodersDecoders\JsonWebToken\JsonWebTokenEncoderDecoder.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonWebTokenEncoderDecoder.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Certificate\CertificateDecoder.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -253,6 +258,10 @@
       <LastGenOutput>JsonFormatter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\EncodersDecoders\JsonWebToken\JsonWebTokenEncoderDecoder.resx">
+      <LastGenOutput>JsonWebTokenEncoderDecoder.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\Formatters\Sql\SqlFormatter.resx">
       <LastGenOutput>SqlFormatter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -398,6 +407,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
     <PackageReference Include="CronExpressionDescriptor" />
     <PackageReference Include="Cronos" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" />

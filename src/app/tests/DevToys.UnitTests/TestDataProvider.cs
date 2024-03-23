@@ -13,10 +13,17 @@ internal static class TestDataProvider
     /// <returns></returns>
     public static async Task<string> GetEmbeddedFileContent(string filePath)
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        using Stream resourceStream = assembly.GetManifestResourceStream(filePath);
-        using StreamReader streamReader = new(resourceStream);
-        return await streamReader.ReadToEndAsync();
+        try
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            using Stream resourceStream = assembly.GetManifestResourceStream(filePath);
+            using StreamReader streamReader = new(resourceStream);
+            return await streamReader.ReadToEndAsync();
+        }
+        catch
+        {
+            throw new FileNotFoundException(filePath);
+        }
     }
 
     /// <summary>
@@ -26,9 +33,16 @@ internal static class TestDataProvider
     /// <returns></returns>
     public static FileInfo GetFile(string filePath)
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        string assemblyDirectory = Path.GetDirectoryName(assembly.Location);
-        string resourcePath = Path.Combine(assemblyDirectory, filePath);
-        return new(resourcePath);
+        try
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            string assemblyDirectory = Path.GetDirectoryName(assembly.Location);
+            string resourcePath = Path.Combine(assemblyDirectory, filePath);
+            return new(resourcePath);
+        }
+        catch
+        {
+            throw new FileNotFoundException(filePath);
+        }
     }
 }

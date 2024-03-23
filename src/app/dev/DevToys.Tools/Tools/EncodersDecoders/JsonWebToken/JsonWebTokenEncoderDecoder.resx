@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>JWT Encoder and Decoder tool</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="acr" xml:space="preserve">
+    <value>The "acr" claim with a value of 0 indicates the end-user authentication didn't meet the requirements of ISO/IEC 29115.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="acrs" xml:space="preserve">
+    <value>The "acrs" claim indicates the Auth Context IDs of the operations that the bearer is eligible to perform. Auth Context IDs can be used to trigger a demand for step-up authentication from within your application and services. Often used along with the xms_cc claim.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="aio" xml:space="preserve">
+    <value>The "aio" claim is an internal claim used by Microsoft Entra ID to record data for token reuse. Resources shouldn't use this claim.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="alg" xml:space="preserve">
+    <value>Indicates the algorithm used to sign the token</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="AlgorithmInvalidEncodeTokenHasDefaultTimeTitle" xml:space="preserve">
+    <value>Unknown token algorithm</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="amr" xml:space="preserve">
+    <value>The "amr" claim identifies the authentication method of the subject of the token.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="appid" xml:space="preserve">
+    <value>The "appid" claim indicate the application ID of the client using the token. The application can act as itself or on behalf of a user. The application ID typically represents an application object, but it can also represent a service principal object in Microsoft Entra ID.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="appidacr" xml:space="preserve">
+    <value>The "appidacr" claim indicate the authentication method of the client. For a public client, the value is 0. When you use the client ID and client secret, the value is 1. When you use a client certificate for authentication, the value is 2.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="aud" xml:space="preserve">
+    <value>The "aud" (audience) claim identifies the recipients that the JWT is intended for. Each principal intended to process the JWT MUST identify itself with a value in the audience claim. If the principal processing the claim does not identify itself with a value in the "aud" claim when this claim is present, then the JWT MUST be rejected. In the general case, the "aud" value is an array of case- sensitive strings, each containing a StringOrURI value. In the special case when the JWT has one audience, the "aud" value MAY be a single case-sensitive string containing a StringOrURI value. The interpretation of audience values is generally application specific. Use of this claim is OPTIONAL.</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="azp" xml:space="preserve">
+    <value>The "azp" claim is a replacement for appid. The application ID of the client using the token. The application can act as itself or on behalf of a user. The application ID typically represents an application object, but it can also represent a service principal object in Microsoft Entra ID.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="azpacr" xml:space="preserve">
+    <value>The "azpacr" claim is a replacement for appidacr. Indicates the authentication method of the client. For a public client, the value is 0. When you use the client ID and client secret, the value is 1. When you use a client certificate for authentication, the value is 2.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="ClaimDescriptionTitle" xml:space="preserve">
+    <value>Description</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="ClaimTypeTitle" xml:space="preserve">
+    <value>Type</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="ClaimValueTitle" xml:space="preserve">
+    <value>Value</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configuration</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeMode" xml:space="preserve">
+    <value>Decode</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenActorsTitle" xml:space="preserve">
+    <value>Validate actors</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenAudiencesInputLabel" xml:space="preserve">
+    <value>Token audiences (separated by comma)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenAudiencesTitle" xml:space="preserve">
+    <value>Validate audiences</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenIssuerInputLabel" xml:space="preserve">
+    <value>Token issuer (separated by comma)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenIssuerSigningKeyTitle" xml:space="preserve">
+    <value>Validate issuer signing key</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenIssuerTitle" xml:space="preserve">
+    <value>Validate issuer</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenLifetimeTitle" xml:space="preserve">
+    <value>Validate lifetime</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenSettingsDescription" xml:space="preserve">
+    <value>Select which token parameters to validate</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenSettingsTitle" xml:space="preserve">
+    <value>Token validation settings</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="DecodeValidateTokenTitle" xml:space="preserve">
+    <value>Validate Token</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Encode and decode Json Web Token </value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeMode" xml:space="preserve">
+    <value>Encode</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenAlgorithmTitle" xml:space="preserve">
+    <value>Token hashing algorithm</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenAudienceInputTitle" xml:space="preserve">
+    <value>Token audience (separated by comma)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationDayInputTitle" xml:space="preserve">
+    <value>Expire in day(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationHourInputTitle" xml:space="preserve">
+    <value>Expire in hour(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationMinuteInputTitle" xml:space="preserve">
+    <value>Expire in minute(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationMonthInputTitle" xml:space="preserve">
+    <value>Expire in month(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationYearInputTitle" xml:space="preserve">
+    <value>Expire in year(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenHasAudienceTitle" xml:space="preserve">
+    <value>Token has audience</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenHasExpirationTitle" xml:space="preserve">
+    <value>Token has expiration</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenHasIssuerTitle" xml:space="preserve">
+    <value>Token has issuer</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenIssuerInputTitle" xml:space="preserve">
+    <value>Token issuer (separated by comma)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenSettingsDescription" xml:space="preserve">
+    <value>Select token parameters</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenSettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="exp" xml:space="preserve">
+    <value>The "exp" (expiration time) claim identifies the expiration time on or after which the JWT MUST NOT be accepted for processing. The processing of the "exp" claim requires that the current date/time MUST be before the expiration date/time listed in the "exp" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="groups" xml:space="preserve">
+    <value>The "groups" claim provides object IDs that represent the group memberships of the subject. The groupMembershipClaims property of the application manifest configures the groups claim on a per-application basis. A value of null excludes all groups, a value of SecurityGroup includes only Active Directory Security Group memberships, and a value of All includes both Security Groups and Microsoft 365 Distribution Lists.See the hasgroups claim for details on using the groups claim with the implicit grant. For other flows, if the number of groups the user is in goes over 150 for SAML and 200 for JWT, then Microsoft Entra ID adds an overage claim to the claim sources. The claim sources point to the Microsoft Graph endpoint that contains the list of groups for the user.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="groups:src1" xml:space="preserve">
+    <value>The "groups:src1" claim includes a link to the full groups list for the user when token requests are too large for the token. For JWTs as a distributed claim, for SAML as a new claim in place of the groups claim.Example JWT Value:"groups":"src1""_claim_sources: "src1" : { "endpoint" : "https://graph.microsoft.com/v1.0/users/{userID}/getMemberObjects" }</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="hasgroups" xml:space="preserve">
+    <value>If present, always true, indicates whether the user is in at least one group. Used in place of the groups claim for JWTs in implicit grant flows if the full groups claim would extend the URI fragment beyond the URL length limits (currently six or more groups). Indicates that the client should use the Microsoft Graph API to determine the groups (https://graph.microsoft.com/v1.0/users/{userID}/getMemberObjects) of the user.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="HeaderInputTitle" xml:space="preserve">
+    <value>Header</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="iat" xml:space="preserve">
+    <value>The "iat" (issued at) claim identifies the time at which the JWT was issued. This claim can be used to determine the age of the JWT. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="idp" xml:space="preserve">
+    <value>The "idp" claim records the identity provider that authenticated the subject of the token. This value is identical to the value of the Issuer claim unless the user account isn't in the same tenant as the issuer, such as guests. Use the value of iss if the claim isn't present.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="InvalidExpiration" xml:space="preserve">
+    <value>Expiartion Date is invalid</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="iss" xml:space="preserve">
+    <value>The "iss" (issuer) claim identifies the principal that issued the JWT. The processing of this claim is generally application specific. The "iss" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="jti" xml:space="preserve">
+    <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case- sensitive string. Use of this claim is OPTIONAL.</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="kid" xml:space="preserve">
+    <value>Specifies the thumbprint for the public key used for validating the signature of the token.</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="LongDisplayTitle" xml:space="preserve">
+    <value>JWT Encoder / Decoder</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>The "name" claim provides a human-readable value that identifies the subject of the token. The value can vary, it's mutable, and is for display purposes only. To receive this claim, use the profile scope.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="nbf" xml:space="preserve">
+    <value>The "nbf" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the "nbf" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="oid" xml:space="preserve">
+    <value>The immutable identifier for the requestor, which is the verified identity of the user or service principal. This ID uniquely identifies the requestor across applications. Two different applications signing in the same user receive the same value in the oid claim. The oid can be used when making queries to Microsoft online services, such as the Microsoft Graph. The Microsoft Graph returns this ID as the id property for a given user account. Because the oid allows multiple applications to correlate principals, to receive this claim for users use the profile scope. If a single user exists in multiple tenants, the user contains a different object ID in each tenant. Even though the user logs into each account with the same credentials, the accounts are different.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="PayloadInputTitle" xml:space="preserve">
+    <value>Payload</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="preferred_username" xml:space="preserve">
+    <value>The "preferred_username" claim indicate the primary username that represents the user. The value could be an email address, phone number, or a generic username without a specified format. Use the value for username hints and in human-readable UI as a username. To receive this claim, use the profile scope.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="PrivateKeyNotSupported" xml:space="preserve">
+    <value>This type of privatec key is not supported</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="PublicKeyInputTitle" xml:space="preserve">
+    <value>Public Key</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="PublicKeyNotSupported" xml:space="preserve">
+    <value>This type of public key is not supported</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="rh" xml:space="preserve">
+    <value>The "rh" claim is an internal claim used by Azure to revalidate tokens. Resources shouldn't use this claim.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="roles" xml:space="preserve">
+    <value>The "roles" claim indicate the set of permissions exposed by the application that the requesting application or user has been given permission to call. The client credential flow uses this set of permission in place of user scopes for application tokens. For user tokens, this set of values contains the assigned roles of the user on the target application.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="scp" xml:space="preserve">
+    <value>The "scp" claim indicate the set of scopes exposed by the application for which the client application has requested (and received) consent. Only included for user tokens.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="ShortDisplayTitle" xml:space="preserve">
+    <value>JWT</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="SignatureInputTitle" xml:space="preserve">
+    <value>Signature</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="sub" xml:space="preserve">
+    <value>The "sub" (subject) claim identifies the principal that is the subject of the JWT. The claims in a JWT are normally statements about the subject.  The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique. The processing of this claim is generally application specific. The "sub" value is a case-sensitive string containing a StringOrURI value.  Use of this claim is OPTIONAL.</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="tid" xml:space="preserve">
+    <value>The "tid" claim represents the tenant that the user is signing in to. For work and school accounts, the GUID is the immutable tenant ID of the organization that the user is signing in to.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="TokenInputTitle" xml:space="preserve">
+    <value>Token</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="TokenNotValidated" xml:space="preserve">
+    <value>Token not validated (no parameters selected)</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="ToolModeDescription" xml:space="preserve">
+    <value>Select which mode you want to use</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="ToolModeTitle" xml:space="preserve">
+    <value>Tool Mode</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="typ" xml:space="preserve">
+    <value>Indicates the token type</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="unique_name" xml:space="preserve">
+    <value>The "unique_name" claim provides a human readable value that identifies the subject of the token.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="uti" xml:space="preserve">
+    <value>The "uti" claim (Token identifier claim), is equivalent to "jti" in the JWT specification. Unique, per-token identifier that is case-sensitive.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="ValidAudiencesEmptyError" xml:space="preserve">
+    <value>Audiences are empty or invalid</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="ValidIssuersEmptyError" xml:space="preserve">
+    <value>Issuers are empty or invalid</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="ver" xml:space="preserve">
+    <value>The "ver" claim indicates the version of the access token.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="wids" xml:space="preserve">
+    <value>The "wids" claim denotes the tenant-wide roles assigned to this user, from the section of roles present in Microsoft Entra built-in roles. The groupMembershipClaims property of the application manifest configures this claim on a per-application basis. Set the claim to All or DirectoryRole. May not be present in tokens obtained through the implicit flow due to token length concerns.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="x5t" xml:space="preserve">
+    <value>Functions the same as "kid". "x5t" is a legacy claim emitted only in v1.0 access tokens for compatibility purposes.</value>
+    <comment>Claim</comment>
+  </data>
+  <data name="xms_cc" xml:space="preserve">
+    <value>The "xms_cc" claim indicates whether the client application that acquired the token is capable of handling claims challenges. It's often used along with claim acrs. This claim is commonly used in Conditional Access and Continuous Access Evaluation scenarios. The resource server or service application that the token is issued for controls the presence of this claim in a token. A value of cp1 in the access token is the authoritative way to identify that a client application is capable of handling a claims challenge.</value>
+    <comment>Claim (Microsoft)</comment>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenHasDefaultTimeTitle" xml:space="preserve">
+    <value>Token has default time</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="InvalidHeader" xml:space="preserve">
+    <value>Unable to process the token header</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="InvalidPayload" xml:space="preserve">
+    <value>Unable to process the token payload</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="InvalidPrivateKey" xml:space="preserve">
+    <value>Private key is either null or empty</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="InvalidPublicKey" xml:space="preserve">
+    <value>Public key is either null or empty</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="PrivateKeyInputTitle" xml:space="preserve">
+    <value>Private Key</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="ValidToken" xml:space="preserve">
+    <value>Token Validated</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="InvalidSignature" xml:space="preserve">
+    <value>Unable to process the token signature</value>
+    <comment>Error message</comment>
+  </data>
+</root>

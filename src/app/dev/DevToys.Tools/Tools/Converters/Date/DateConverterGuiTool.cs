@@ -95,8 +95,6 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
 
     private readonly IUISettingGroup _customEpochSetting = SettingGroup("date-converter-custom-epoch-setting");
 
-    private readonly IUIDataGrid _dstInformation = DataGrid("date-converter-dst-information-data-grid");
-
     #region EpochUiInputs
     private readonly IUIStack _epochStack = Stack("date-converter-epoch-stack");
     private readonly IUISwitch _useCustomEpochSwitch = Switch("date-converter-use-custom-epoch-switch");
