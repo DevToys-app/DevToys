@@ -121,18 +121,18 @@
     <value>文件“{0}”不存在。</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>无效的文件路径。文件应具有下列扩展名之一：{0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>请输入要读取的相对或绝对文件路径（或按回车键取消）：</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>请输入一个或多个相对或绝对文件路径，用逗号分隔（或按回车键取消）：</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>请输入相对或绝对文件夹路径（或按回车键取消）：</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>请输入要写入的相对或绝对文件路径（或按回车键取消）：</value>
   </data>
 </root>

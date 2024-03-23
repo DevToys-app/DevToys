@@ -142,7 +142,7 @@
     <value>粘贴</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>Pin to Start</value>
+    <value>固定到“开始”屏幕</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>从收藏夹中移除</value>

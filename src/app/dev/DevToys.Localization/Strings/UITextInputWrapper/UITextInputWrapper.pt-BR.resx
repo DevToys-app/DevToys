@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ClearButtonText" xml:space="preserve">
-    <value>Clear</value>
+    <value>Limpar</value>
   </data>
   <data name="CopyButtonText" xml:space="preserve">
-    <value>Copy</value>
+    <value>Copiar</value>
   </data>
   <data name="ExtendButtonToolTip" xml:space="preserve">
-    <value>Extend</value>
+    <value>Estender</value>
   </data>
   <data name="LoadFileButtonText" xml:space="preserve">
-    <value>Open a text document</value>
+    <value>Abrir um documento de texto</value>
   </data>
   <data name="MoreButtonToolTip" xml:space="preserve">
-    <value>More...</value>
+    <value>Mais...</value>
   </data>
   <data name="NoToolSuggested" xml:space="preserve">
-    <value>No tool to suggest</value>
+    <value>Nenhuma ferramenta para sugerir</value>
   </data>
   <data name="PasteButtonText" xml:space="preserve">
-    <value>Paste</value>
+    <value>Colar</value>
   </data>
   <data name="SaveAsButtonText" xml:space="preserve">
-    <value>Save as...</value>
+    <value>Salvar como...</value>
   </data>
   <data name="ShrinkButtonToolTip" xml:space="preserve">
-    <value>Shrink</value>
+    <value>Diminuir</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>Transferir para outra ferramenta</value>
   </data>
 </root>

@@ -238,7 +238,7 @@
     <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>点击粘贴按钮时，在粘贴之前清除文本，而不是添加到文本编辑器现有内容之后。</value>
+    <value>点击粘贴按钮时，会替换现有文本为剪切板中的内容，而不是添加到现有文本之后。</value>
     <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
