@@ -142,11 +142,11 @@
     <comment/>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>間隔を詰める</value>
     <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>UIのスペースを縮小します</value>
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
@@ -154,35 +154,35 @@
     <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>システムと同じ</value>
+    <value>システム設定を使用する</value>
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>DevToys をカスタマイズする</value>
     <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>DevToysMac の開発 : {0}</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>エディタ</value>
     <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>行末文字</value>
+    <value>改行コード</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>入力と同じ行末（自動）</value>
+    <value>入力された内容に合わせる (自動判別)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>キャリッジリターンとラインフィード (\r\n) (Windows)</value>
+    <value>CR+LF (\r\n) (Windows)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>ラインフィード (\n) (Unix)</value>
+    <value>LF (\n) (Unix)</value>
     <comment/>
   </data>
   <data name="Font" xml:space="preserve">
@@ -190,23 +190,23 @@
     <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>DevToysの翻訳にご協力ください！</value>
+    <value>DevToys の翻訳にご協力ください！</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>選択行を強調する</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>現在の行の背景色を変更する</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>選択された行のハイライト</value>
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>アプリアイコン : {0}</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
@@ -214,7 +214,7 @@
     <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>別の言語を選択する際にアプリを再起動する必要があります</value>
+    <value>The app needs to be restarted when selecting another language. (要再起動)</value>
     <comment/>
   </data>
   <data name="Light" xml:space="preserve">
@@ -226,7 +226,7 @@
     <comment/>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>テキストエディタに行番号を表示する</value>
+    <value>テキストエディターで行番号を表示する</value>
     <comment/>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
@@ -234,15 +234,15 @@
     <comment/>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>置換貼り付け</value>
     <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>クリップボードから貼り付ける際に、入力されていた内容を消去して置き換えます</value>
     <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>貼り付け時に整形</value>
     <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
@@ -250,23 +250,23 @@
     <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>空白文字を表示</value>
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>設定</value>
     <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>スマート検出</value>
     <comment/>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>クリップボードの内容から最適なツールを自動的に検出します</value>
     <comment/>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>推奨ツールを選択するときにクリップボードの内容を自動的に貼り付けます</value>
     <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
@@ -274,15 +274,15 @@
     <comment/>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>テキストエディター</value>
     <comment/>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>プレビュー</value>
     <comment/>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>システムの言語に合わせる</value>
     <comment/>
   </data>
   <data name="Version" xml:space="preserve">
@@ -290,11 +290,11 @@
     <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>文字列を端で折り返す</value>
     <comment/>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>折り返す</value>
     <comment/>
   </data>
 </root>
