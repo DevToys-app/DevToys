@@ -28,13 +28,13 @@ internal class MockIFileStorage : IFileStorage
         throw new NotImplementedException();
     }
 
-    public ValueTask<FileStream?> PickSaveFileAsync(params string[] fileTypes)
+    public ValueTask<FileStream> PickSaveFileAsync(params string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
     }
 
-    public ValueTask<SandboxedFileReader?> PickOpenFileAsync(params string[] fileTypes)
+    public ValueTask<SandboxedFileReader> PickOpenFileAsync(params string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
@@ -45,7 +45,7 @@ internal class MockIFileStorage : IFileStorage
         throw new NotImplementedException();
     }
 
-    public ValueTask<string?> PickFolderAsync()
+    public ValueTask<string> PickFolderAsync()
     {
         throw new NotImplementedException();
     }
@@ -53,7 +53,7 @@ internal class MockIFileStorage : IFileStorage
     public FileInfo CreateSelfDestroyingTempFile(string desiredFileExtension = null)
     {
         var assembly = Assembly.GetExecutingAssembly();
-        string? assemblyDirectory = Path.GetDirectoryName(assembly.Location);
+        string assemblyDirectory = Path.GetDirectoryName(assembly.Location);
         return FileHelper.CreateTempFile(assemblyDirectory!, desiredFileExtension);
     }
 }

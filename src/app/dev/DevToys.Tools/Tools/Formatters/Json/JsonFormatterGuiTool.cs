@@ -176,7 +176,7 @@ internal sealed partial class JsonFormatterGuiTool : IGuiTool, IDisposable
                 _logger,
                 cancellationToken);
 
-            _outputTextArea.Text(formatResult.Data);
+            _outputTextArea.Text(formatResult.Data!);
         }
     }
 }

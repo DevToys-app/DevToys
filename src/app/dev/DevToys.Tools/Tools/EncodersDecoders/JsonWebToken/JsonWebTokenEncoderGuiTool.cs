@@ -109,7 +109,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
     {
         _logger = this.Log();
         _settingsProvider = settingsProvider;
-        ConfigureUIAsync();
+        ConfigureUIAsync().Forget();
     }
 
     internal Task? WorkTask { get; private set; }

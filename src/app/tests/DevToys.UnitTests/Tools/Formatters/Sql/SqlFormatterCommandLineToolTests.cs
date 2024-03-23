@@ -137,6 +137,4 @@ FROM
         string consoleOutput = _consoleWriter.ToString().Trim();
         consoleOutput.Should().Be(expectedResult);
     }
-
-
 }

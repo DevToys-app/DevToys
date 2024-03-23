@@ -52,8 +52,8 @@ public record ResultInfo<T>
 /// Record to contain both whether the task was a success and the resulting data
 /// </summary>
 /// <typeparam name="T">Type of the result</typeparam>
-/// <typeparam name="ResultInfoSeverity">The severity of the result</typeparam>
-public record ResultInfo<T, ResultInfoSeverity>
+/// <typeparam name="U">The severity of the result</typeparam>
+public record ResultInfo<T, U> where U : Enum
 {
     /// <summary>
     /// The resulting data or the task
@@ -63,7 +63,7 @@ public record ResultInfo<T, ResultInfoSeverity>
     /// <summary>
     /// Severity of the result
     /// </summary>
-    public ResultInfoSeverity Severity { get; }
+    public U Severity { get; }
 
     /// <summary>
     /// Error message to display
@@ -75,7 +75,7 @@ public record ResultInfo<T, ResultInfoSeverity>
     /// </summary>
     /// <param name="data">The resulting data or the task</param>
     /// <param name="severity">The severity of the result</param>
-    public ResultInfo(T data, ResultInfoSeverity severity)
+    public ResultInfo(T data, U severity)
     {
         Data = data;
         Severity = severity;
@@ -86,7 +86,7 @@ public record ResultInfo<T, ResultInfoSeverity>
     /// </summary>
     /// <param name="errorMessage">The error message</param>
     /// <param name="severity">The severity of the result</param>
-    public ResultInfo(string errorMessage, ResultInfoSeverity severity)
+    public ResultInfo(string errorMessage, U severity)
     {
         Severity = severity;
         ErrorMessage = errorMessage;
@@ -98,7 +98,7 @@ public record ResultInfo<T, ResultInfoSeverity>
     /// <param name="data">The resulting data or the task</param>
     /// <param name="errorMessage">The error message</param>
     /// <param name="severity">The severity of the result</param>
-    public ResultInfo(T data, string errorMessage, ResultInfoSeverity severity)
+    public ResultInfo(T data, string errorMessage, U severity)
     {
         Data = data;
         Severity = severity;

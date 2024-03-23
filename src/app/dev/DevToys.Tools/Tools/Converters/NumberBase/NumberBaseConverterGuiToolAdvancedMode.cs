@@ -14,7 +14,7 @@ internal sealed class NumberBaseConverterGuiToolAdvancedMode : INumberBaseConver
     private readonly IUISingleLineTextInput _inputText = SingleLineTextInput();
     private readonly IUISingleLineTextInput _outputText = SingleLineTextInput();
 
-    private bool _ignoreInputChanges;
+    private readonly bool _ignoreInputChanges;
 
     internal NumberBaseConverterGuiToolAdvancedMode(ISettingsProvider settingsProvider, Action<string> onErrorCallback)
     {

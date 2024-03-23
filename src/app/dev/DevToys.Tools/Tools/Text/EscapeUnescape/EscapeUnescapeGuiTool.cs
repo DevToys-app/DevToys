@@ -180,7 +180,7 @@ internal sealed class EscapeUnescapeGuiTool : IGuiTool, IDisposable
             };
 
             cancellationToken.ThrowIfCancellationRequested();
-            _outputText.Text(conversionResult.Data);
+            _outputText.Text(conversionResult.Data!);
         }
     }
 }

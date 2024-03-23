@@ -192,7 +192,7 @@ internal sealed class ListCompareGuiTool : IGuiTool
                 _ => string.Empty,
             };
             _diffListResult.Title(selectedComparisonModeTitle);
-            _diffListResult.Text(result.Data);
+            _diffListResult.Text(result.Data!);
         }
     }
 }

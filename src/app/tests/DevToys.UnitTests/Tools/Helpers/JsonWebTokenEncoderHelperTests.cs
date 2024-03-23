@@ -145,7 +145,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string signatureContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -179,7 +178,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string privateKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-RsaPrivateKey.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -209,7 +207,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string privateKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-PrivateKey.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -239,7 +236,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string privateKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-PrivateKey.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -273,7 +269,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string privateKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-RsaPrivateKey.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -303,7 +298,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string privateKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-PrivateKey.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -333,7 +327,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string privateKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-PrivateKey.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -367,7 +360,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string privateKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-PrivateKey.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -397,7 +389,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string privateKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-PrivateKey.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -427,7 +418,6 @@ public class JsonWebTokenEncoderHelperTests
     {
         string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
         string privateKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-PrivateKey.txt");
-        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-ComplexToken.txt");
 
         var encoderParameters = new EncoderParameters()
         {
@@ -453,12 +443,4 @@ public class JsonWebTokenEncoderHelperTests
     }
 
     #endregion
-
-    private async Task<ResultInfo<string>> GetFormattedDataAsync(string rawData)
-        => await JsonHelper.FormatAsync(
-                rawData,
-                Indentation.TwoSpaces,
-                false,
-                _logger,
-                CancellationToken.None);
 }

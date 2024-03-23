@@ -26,7 +26,6 @@ public sealed class JsonWebTokenEncoderGuiToolTests : MefBasedTest
 
     private readonly IUISwitch _tokenIssuersSwitch;
     private readonly IUISwitch _tokenAudiencesSwitch;
-    private readonly IUISwitch _tokenExpirationSwitch;
     private readonly IUISingleLineTextInput _tokenIssuersInput;
     private readonly IUISingleLineTextInput _tokenAudiencesInput;
 

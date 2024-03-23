@@ -4,7 +4,7 @@ internal static class FileHelper
     /// <summary>
     /// Writes the output to the output file path if provided, otherwise to the console
     /// </summary>
-    internal static async Task WriteOutputAsync(string output, FileInfo? outputFile, CancellationToken cancellationToken)
+    internal static async Task WriteOutputAsync(string? output, FileInfo? outputFile, CancellationToken cancellationToken)
     {
         if (outputFile is null)
         {

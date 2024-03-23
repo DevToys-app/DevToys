@@ -66,7 +66,7 @@ internal sealed class HashAndChecksumGeneratorCommandLineTool : ICommandLineTool
         try
         {
             ResultInfo<Stream> streamResult = await Input.Value.GetStreamAsync(_fileStorage, cancellationToken);
-            using Stream inputStream = streamResult.Data;
+            using Stream inputStream = streamResult.Data!;
 
             if (inputStream == null || inputStream == Stream.Null)
             {
