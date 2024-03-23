@@ -4,7 +4,7 @@
 
 <ScrollViewer @ref=_scrollViewer
               Class="entrance-theme-transition tool-page-content"
-              IsScrollable="@(!IsInFullScreenMode && ViewModel.ToolView.IsScrollable)">
+              IsScrollable="@(!IsInFullScreenMode && ViewModel.ToolView is not null && ViewModel.ToolView.IsScrollable)">
     @RenderToolWithHeader(true)
 </ScrollViewer>
 
@@ -15,7 +15,7 @@
     {
         UIDialogService.DialogContent = (__builder) =>
         {
-            @if (ViewModel.ToolView.CurrentOpenedDialog is not null)
+            @if (ViewModel.ToolView?.CurrentOpenedDialog is not null)
             {
                 <UIElementPresenter UIElement="@ViewModel.ToolView.CurrentOpenedDialog.DialogContent" />
             }
@@ -23,7 +23,7 @@
 
         UIDialogService.FooterContent = (__builder) =>
         {
-            @if (ViewModel.ToolView.CurrentOpenedDialog is not null)
+            @if (ViewModel.ToolView?.CurrentOpenedDialog is not null)
             {
                 <UIElementPresenter UIElement="@ViewModel.ToolView.CurrentOpenedDialog.FooterContent" />
             }
