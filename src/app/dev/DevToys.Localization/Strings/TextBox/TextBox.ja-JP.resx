@@ -127,10 +127,10 @@
     <value>切り取り</value>
   </data>
   <data name="Decrease" xml:space="preserve">
-    <value>Decrease</value>
+    <value>減算</value>
   </data>
   <data name="Increase" xml:space="preserve">
-    <value>Increase</value>
+    <value>加算</value>
   </data>
   <data name="Paste" xml:space="preserve">
     <value>貼り付け</value>
