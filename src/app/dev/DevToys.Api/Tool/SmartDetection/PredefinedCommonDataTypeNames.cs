@@ -21,11 +21,6 @@ public static class PredefinedCommonDataTypeNames
     public const string JsonArray = "jsonArray";
 
     /// <summary>
-    /// Represents the YAML data type.
-    /// </summary>
-    public const string Yaml = "yaml";
-
-    /// <summary>
     /// Represents the XML data type.
     /// </summary>
     public const string Xml = "xml";

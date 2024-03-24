@@ -43,6 +43,7 @@ public static class OneOfExtensions
             input.Match(
                 inputFile =>
                 {
+                    Guard.IsNotNull(fileStorage);
                     if (!fileStorage.FileExists(inputFile.FullName))
                     {
                         return Task.FromResult(new ResultInfo<Stream>(Stream.Null, false));
@@ -99,6 +100,7 @@ public static class OneOfExtensions
         return await input.Match(
             async inputFile =>
             {
+                Guard.IsNotNull(fileStorage);
                 if (!fileStorage.FileExists(inputFile.FullName))
                 {
                     return new ResultInfo<string>("", false);

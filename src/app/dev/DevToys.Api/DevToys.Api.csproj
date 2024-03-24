@@ -25,12 +25,12 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="OneOf" />
     <PackageReference Include="System.ComponentModel.Composition" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" />
     <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <None Include="$(AssemblyName).targets" Pack="true" PackagePath="build" />
     <None Include="README.md" Pack="true" PackagePath="\" />
     <None Include="$(RepoRoot)LICENSE.md" Link="LICENSE.md" Pack="true" PackagePath="\" />
     <None Include="$(RepoRoot)assets\logo\Icon-Windows-Linux.png" Link="Icon-Windows-Linux.png" Pack="true" PackagePath="" />

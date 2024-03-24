@@ -41,41 +41,54 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Assets\samples\json-sample.json" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf" Link="Assets\fonts\DevToys-Tools-Icons.ttf">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </EmbeddedResource>
     <EmbeddedResource Include="Assets\fonts\FluentSystemIcons-Regular.ttf">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\samples\json-sample.json" />
-    <EmbeddedResource Update="BuiltInTools\ExtensionsManager\ExtensionsManager.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExtensionsManager.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="BuiltInTools\Settings\Settings.resx">
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="BuiltInTools\SupportDevelopment\SupportDevelopment.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SupportDevelopment.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="BuiltInGroups\Groups.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Groups.resx</DependentUpon>
+    </Compile>
     <Compile Update="BuiltInTools\ExtensionsManager\ExtensionsManager.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ExtensionsManager.resx</DependentUpon>
     </Compile>
     <Compile Update="BuiltInTools\Settings\Settings.Designer.cs">
-      <DependentUpon>Settings.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.resx</DependentUpon>
     </Compile>
     <Compile Update="BuiltInTools\SupportDevelopment\SupportDevelopment.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SupportDevelopment.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="BuiltInGroups\Groups.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Groups.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="BuiltInTools\ExtensionsManager\ExtensionsManager.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExtensionsManager.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="BuiltInTools\Settings\Settings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="BuiltInTools\SupportDevelopment\SupportDevelopment.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SupportDevelopment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <!-- Target ran on `dotnet restore -p:RestoreNpm=true` -->

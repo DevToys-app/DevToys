@@ -36,23 +36,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "desktops", "desktops", "{22EE9386-CEFA-47D8-97B2-09A63EDF7F2E}"
-	ProjectSection(SolutionItems) = preProject
-		app\dev\platforms\desktop\Directory.Build.props = app\dev\platforms\desktop\Directory.Build.props
-		app\dev\platforms\desktop\Directory.Build.targets = app\dev\platforms\desktop\Directory.Build.targets
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.CLI", "app\dev\platforms\desktop\DevToys.CLI\DevToys.CLI.csproj", "{8C72D38A-658D-4C9D-B0AD-2DA975BE7826}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B6D48157-5257-4B60-B065-3B231B610A54} = {B6D48157-5257-4B60-B065-3B231B610A54}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{745FD4CA-84CC-45D8-A3E2-814A0B9C16C4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Api", "app\dev\DevToys.Api\DevToys.Api.csproj", "{89A4D88F-5AC0-436A-8EC5-8E98728CA89E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.UnitTests", "app\tests\DevToys.UnitTests\DevToys.UnitTests.csproj", "{CCAB7530-4341-4C24-B4E8-28679BB6C4FB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Tools", "app\dev\DevToys.Tools\DevToys.Tools.csproj", "{B6D48157-5257-4B60-B065-3B231B610A54}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Core", "app\dev\DevToys.Core\DevToys.Core.csproj", "{A730FA8A-3713-4F7A-915D-79098CA12DF0}"
 EndProject
@@ -74,9 +65,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Blazor", "app\dev\DevToys.Blazor\DevToys.Blazor.csproj", "{565D2497-6078-4558-911C-EA7D3A25AB16}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Windows", "app\dev\platforms\desktop\DevToys.Windows\DevToys.Windows.csproj", "{48531D2E-83C6-49F2-9ADD-C9490386718B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B6D48157-5257-4B60-B065-3B231B610A54} = {B6D48157-5257-4B60-B065-3B231B610A54}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -154,22 +142,6 @@ Global
 		{CCAB7530-4341-4C24-B4E8-28679BB6C4FB}.Release|x64.Build.0 = Release|AnyCPU
 		{CCAB7530-4341-4C24-B4E8-28679BB6C4FB}.Release|x86.ActiveCfg = Release|AnyCPU
 		{CCAB7530-4341-4C24-B4E8-28679BB6C4FB}.Release|x86.Build.0 = Release|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Debug|ARM64.ActiveCfg = Debug|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Debug|ARM64.Build.0 = Debug|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Debug|x64.ActiveCfg = Debug|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Debug|x64.Build.0 = Debug|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Debug|x86.ActiveCfg = Debug|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Debug|x86.Build.0 = Debug|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Release|AnyCPU.Build.0 = Release|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Release|ARM64.ActiveCfg = Release|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Release|ARM64.Build.0 = Release|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Release|x64.ActiveCfg = Release|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Release|x64.Build.0 = Release|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Release|x86.ActiveCfg = Release|AnyCPU
-		{B6D48157-5257-4B60-B065-3B231B610A54}.Release|x86.Build.0 = Release|AnyCPU
 		{A730FA8A-3713-4F7A-915D-79098CA12DF0}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
 		{A730FA8A-3713-4F7A-915D-79098CA12DF0}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{A730FA8A-3713-4F7A-915D-79098CA12DF0}.Debug|ARM64.ActiveCfg = Debug|AnyCPU
@@ -280,7 +252,6 @@ Global
 		{745FD4CA-84CC-45D8-A3E2-814A0B9C16C4} = {0AC87D9B-BBEC-4DCE-A9D4-82A159E5E7C1}
 		{89A4D88F-5AC0-436A-8EC5-8E98728CA89E} = {B20E4027-0777-4A75-A848-609594E9A6B0}
 		{CCAB7530-4341-4C24-B4E8-28679BB6C4FB} = {4C40BF47-315A-4B60-9ED6-8D65B5E79C2C}
-		{B6D48157-5257-4B60-B065-3B231B610A54} = {B20E4027-0777-4A75-A848-609594E9A6B0}
 		{A730FA8A-3713-4F7A-915D-79098CA12DF0} = {B20E4027-0777-4A75-A848-609594E9A6B0}
 		{12A1461D-3357-4007-BE15-9622E9513D09} = {B20E4027-0777-4A75-A848-609594E9A6B0}
 		{DB6B033B-584E-43CF-AC96-4F6548C96ECA} = {FA3821C4-74BB-4927-ABCC-0D0A12E097A2}
