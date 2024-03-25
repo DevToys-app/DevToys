@@ -9,12 +9,12 @@ namespace DevToys.Core.Mef;
 /// </summary>
 public sealed partial class MefComposer : IDisposable
 {
-    private const string ExtraPluginArgument = "extraplugin";
+    public const string ExtraPluginEnvironmentVariableName = "EXTRAPLUGIN";
 
     private readonly ILogger _logger;
     private readonly Assembly[] _assemblies;
     private readonly string[]? _pluginFolders;
-    private readonly string _extraPlugin;
+    private readonly string? _extraPlugin;
     private readonly object[] _customExports;
     private bool _isExportProviderDisposed = true;
 
@@ -26,7 +26,7 @@ public sealed partial class MefComposer : IDisposable
     {
         _logger = this.Log();
 
-        _extraPlugin = AppHelper.GetCommandLineArgument(ExtraPluginArgument);
+        _extraPlugin = Environment.GetEnvironmentVariable(ExtraPluginEnvironmentVariableName);
 
         _assemblies = assemblies ?? Array.Empty<Assembly>();
         _pluginFolders = pluginFolders;
