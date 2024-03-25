@@ -121,10 +121,10 @@
     <value>Gestiona components a DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manager third-party extensions in DevToys</value>
+    <value>Afegeix i gestiona components de tercers a DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>El component '{0}' ja està instal·lat. Si el que vols és actualitzar un component que ja està instal·lat, si us plau, desinstal·la la versió antiga abans.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
     <value>No s'ha pogut instal·lar aquesta extensió</value>
@@ -137,33 +137,33 @@
     <value>Troba més components online</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>Instal·la un component</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>Crea un component per DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+    <value>D'acord</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>Si us plau, tanca totes les finestres de DevToys i reinicia l'aplicació per a què les modificacions s'apliquin.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>Cal reiniciar per a què els canvis tinguin efecte</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>Gestiona components</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Els components de tercers poden modificar la funcionalitat de les eines existents i accedir al vostre ordinador sense el vostre permís. Això pot exposar les vostres dades a internet o instal·lar programes no desitjats al vostre dispositiu. Recomanem fermament que exerciu precaució i només instal·leu components de confiança. Els autors de DevToys no són responsables de cap dany o pèrdua causats pels components.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>Ho entenc</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>Termes i condicions</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Advertència</value>
   </data>
 </root>
