@@ -118,28 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys is your go-to toolbox for developers, packed with a collection of free and open-source tools. Think of it as a Swiss Army knife tailored to tackle those pesky daily tasks that slow you down.
-Here’s what you need to know:</value>
+    <value>DevToys és la vostra caixa d'eines de referència per a desenvolupadors, una col·lecció d'eines gratuïtes i de codi obert. Penseu-hi com una navalla suïssa adaptada per fer front a aquelles tasques diàries molestes que us frenen. Aquí teniu el que necessiteu saber:</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Continue</value>
+    <value>Continuar</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. We will occasionally connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys opera amb una mentalitat de prioritat al funcionament sense connexió. Recopilem dades anònimes mínimes localment per a fins de solució de problemes. No pugem els registres a internet. Si us trobeu amb un error i trieu informar-nos, podríem demanar-vos que compartiu els registres amb nosaltres. Ocasionalment, ens connectarem a internet per comprovar actualitzacions, assegurant que tingueu accés a les últimes característiques i millores de seguretat.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>Prioritat al funcionament sense connexió</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>El poder de DevToys creix amb els components, afegint més potència a la vostra caixa d'eines. Tot i que assegurem la integritat de l'aplicació principal, és important saber que no tenim cap control sobre el que els components de tercers fan amb el vostre ordinador i dades. Per tant, us animem a tenir precaució quan instal·leu components. Per monitoritzar l'activitat de xarxa de DevToys o de qualsevol component, es poden utilitzar eines com Wireshark, Little Snitch o Fiddler per rastrejar les connexions entrants i sortints.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>Confia però verifica</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>Entenc i accepto</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>Et donem la benvinguda a DevToys!</value>
   </data>
 </root>
