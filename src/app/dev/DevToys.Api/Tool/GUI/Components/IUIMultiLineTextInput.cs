@@ -155,9 +155,9 @@ public static partial class GUI
     /// <remarks>
     /// This component is powered by Monaco Editor.
     /// </remarks>
-    public static IUIMultiLineTextInput MultilineTextInput()
+    public static IUIMultiLineTextInput MultiLineTextInput()
     {
-        return MultilineTextInput(null);
+        return MultiLineTextInput(null);
     }
 
     /// <summary>
@@ -167,7 +167,7 @@ public static partial class GUI
     /// This component is powered by Monaco Editor.
     /// </remarks>
     /// <param name="id">An optional unique identifier for this UI element.</param>
-    public static IUIMultiLineTextInput MultilineTextInput(string? id)
+    public static IUIMultiLineTextInput MultiLineTextInput(string? id)
     {
         return new UIMultilineTextInput(id);
     }
@@ -180,7 +180,7 @@ public static partial class GUI
     /// </remarks>
     /// <param name="id">An optional unique identifier for this UI element.</param>
     /// <param name="programmingLanguageName">the programming language name to use to colorize the text in the control.</param>
-    public static IUIMultiLineTextInput MultilineTextInput(string? id, string programmingLanguageName)
+    public static IUIMultiLineTextInput MultiLineTextInput(string? id, string programmingLanguageName)
     {
         return new UIMultilineTextInput(id).Language(programmingLanguageName);
     }

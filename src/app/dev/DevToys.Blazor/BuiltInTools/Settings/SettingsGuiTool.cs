@@ -198,7 +198,7 @@ internal sealed class SettingsGuiTool : IGuiTool
                                         stateDescriptionWhenOn: Settings.PasteClearsTextStateDescriptionWhenOn,
                                         stateDescriptionWhenOff: null),
 
-                                MultilineTextInput("text-editor-render-preview")
+                                MultiLineTextInput("text-editor-render-preview")
                                     .Title(Settings.TextEditorPreview)
                                     .AlignVertically(UIVerticalAlignment.Top)
                                     .Language("json")
