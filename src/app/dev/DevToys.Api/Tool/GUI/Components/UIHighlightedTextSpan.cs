@@ -20,10 +20,10 @@ public record UIHighlightedTextSpan : TextSpan
     /// <summary>
     /// Initializes a new instance of the <see cref="UIHighlightedTextSpan"/> class based on the original <see cref="TextSpan"/>.
     /// </summary>
-    /// <param name="original">The original <see cref="TextSpan"/>.</param>
+    /// <param name="span">The location where the text document should be highlighted <see cref="TextSpan"/>.</param>
     /// <param name="color">The color of the highlighted text span.</param>
-    protected UIHighlightedTextSpan(TextSpan original, UIHighlightedTextSpanColor color = UIHighlightedTextSpanColor.Default)
-        : base(original)
+    public UIHighlightedTextSpan(TextSpan span, UIHighlightedTextSpanColor color = UIHighlightedTextSpanColor.Default)
+        : base(span)
     {
         Color = color;
     }
