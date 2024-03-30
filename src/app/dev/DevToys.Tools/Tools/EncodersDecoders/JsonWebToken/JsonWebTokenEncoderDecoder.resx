@@ -485,4 +485,12 @@
     <value>Unable to process the token signature</value>
     <comment>Error message</comment>
   </data>
+  <data name="Base64" xml:space="preserve">
+    <value>Base64</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="PlainText" xml:space="preserve">
+    <value>Plain text</value>
+    <comment>Gui</comment>
+  </data>
 </root>

@@ -169,6 +169,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base64.
+        /// </summary>
+        internal static string Base64 {
+            get {
+                return ResourceManager.GetString("Base64", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         internal static string ClaimDescriptionTitle {
@@ -642,6 +651,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         internal static string PayloadInputTitle {
             get {
                 return ResourceManager.GetString("PayloadInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plain text.
+        /// </summary>
+        internal static string PlainText {
+            get {
+                return ResourceManager.GetString("PlainText", resourceCulture);
             }
         }
         

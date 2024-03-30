@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
 
-internal sealed partial class JsonWebTokenDecoderGuiTool
+internal sealed class JsonWebTokenDecoderGuiTool
 {
     /// <summary>
     /// Define if we want to validate the token or not
@@ -20,6 +20,14 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     private static readonly SettingDefinition<bool> validateTokenIssuerSigningKeySetting
         = new(
             name: $"{nameof(JsonWebTokenDecoderGuiTool)}.{nameof(validateTokenIssuerSigningKeySetting)}",
+            defaultValue: false);
+
+    /// <summary>
+    /// Defines whether the signature key is in Base64 format or not (Plain text).
+    /// </summary>
+    private static readonly SettingDefinition<bool> isSignatureKeyInBase64FormatSwitchSetting
+        = new(
+            name: $"{nameof(JsonWebTokenDecoderGuiTool)}.{nameof(isSignatureKeyInBase64FormatSwitchSetting)}",
             defaultValue: false);
 
     #region TokenIssuers
@@ -86,6 +94,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
 
     private readonly IUISwitch _validateTokenSwitch = Switch("jwt-decode-validate-token-switch");
     private readonly IUISwitch _validateTokenIssuerSigningKeySwitch = Switch("jwt-decode-validate-token-issuer-signing-key-switch");
+    private readonly IUISwitch _isSignatureKeyInBase64FormatSwitch = Switch("jwt-decode-is-signature-key-base64-format-switch");
     private readonly IUISwitch _validateTokenIssuersSwitch = Switch("jwt-decode-validate-token-issuers-switch");
     private readonly IUISwitch _validateTokenAudiencesSwitch = Switch("jwt-decode-validate-token-audiences-switch");
     private readonly IUISwitch _validateLifetimeSwitch = Switch("jwt-decode-validate-token-lifetime-switch");
@@ -133,7 +142,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                         .OnToggle(OnValidateTokenChanged)
                 )
                 .WithChildren(
-                    Setting("jwt-decode-validate-token-issuer-signing-key-setting")
+                    SettingGroup("jwt-decode-validate-token-issuer-signing-key-setting")
                         .Icon("FluentSystemIcons", '\ue30a')
                         .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenIssuerSigningKeyTitle)
                         .InteractiveElement(
@@ -141,6 +150,13 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                                 .OnText(JsonWebTokenEncoderDecoder.Yes)
                                 .OffText(JsonWebTokenEncoderDecoder.No)
                                 .OnToggle(OnValidateTokenIssuerSigningKey)
+                        )
+                        .WithChildren(
+                            _isSignatureKeyInBase64FormatSwitch
+                                .AlignHorizontally(UIHorizontalAlignment.Right)
+                                .OnText(JsonWebTokenEncoderDecoder.Base64)
+                                .OffText(JsonWebTokenEncoderDecoder.PlainText)
+                                .OnToggle(OnIsSigningKeyBase64)
                         ),
                     SettingGroup("jwt-decode-validate-token-issuers-setting-group")
                         .Icon("FluentSystemIcons", '\ue30a')
@@ -193,6 +209,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                 .NonClosable(),
             _tokenInput
                 .Title(JsonWebTokenEncoderDecoder.TokenInputTitle)
+                .AlwaysWrap()
                 .OnTextChanged(OnTokenInputChanged),
             SplitGrid()
                 .Vertical()
@@ -268,6 +285,20 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     private void OnValidateTokenIssuerSigningKey(bool validateTokenIssuerSigningKey)
     {
         _settingsProvider.SetSetting(validateTokenIssuerSigningKeySetting, validateTokenIssuerSigningKey);
+        if (validateTokenIssuerSigningKey)
+        {
+            _isSignatureKeyInBase64FormatSwitch.Enable();
+        }
+        else
+        {
+            _isSignatureKeyInBase64FormatSwitch.Disable();
+        }
+        StartTokenDecode();
+    }
+
+    private void OnIsSigningKeyBase64(bool value)
+    {
+        _settingsProvider.SetSetting(isSignatureKeyInBase64FormatSwitchSetting, value);
         StartTokenDecode();
     }
 
@@ -408,6 +439,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
             _currentAlgorithm is JsonWebTokenAlgorithm.HS512)
         {
             tokenParameters.Signature = _signatureInput.Text;
+            tokenParameters.IsSignatureInBase64Format = _settingsProvider.GetSetting(isSignatureKeyInBase64FormatSwitchSetting);
         }
         else
         {
@@ -476,6 +508,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
             _validateTokenSwitch.On();
             _signatureInput.Show();
             _validateTokenIssuerSigningKeySwitch.Enable();
+            _isSignatureKeyInBase64FormatSwitch.Enable();
             _validateTokenIssuersSwitch.Enable();
             _validateTokenAudiencesSwitch.Enable();
             _validateLifetimeSwitch.Enable();
@@ -485,6 +518,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
         {
             _validateTokenSwitch.Off();
             _signatureInput.Hide();
+            _isSignatureKeyInBase64FormatSwitch.Disable();
             _publicKeyInput.Hide();
             _infoBar.Close();
             _validateTokenIssuerSigningKeySwitch.Disable();
@@ -574,16 +608,10 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
         if (value)
         {
             inputSwitch.On();
-            if (input != null)
-            {
-                input.Enable();
-            }
+            input?.Enable();
             return;
         }
         inputSwitch.Off();
-        if (input != null)
-        {
-            input.Disable();
-        }
+        input?.Disable();
     }
 }
