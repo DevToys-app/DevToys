@@ -460,7 +460,6 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                         .Description(result.ErrorMessage)
                         .Error()
                         .Open();
-                    ClearUI();
                     break;
 
                 default:
