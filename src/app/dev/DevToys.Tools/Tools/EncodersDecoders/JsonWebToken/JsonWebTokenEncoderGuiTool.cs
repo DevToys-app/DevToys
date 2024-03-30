@@ -71,6 +71,14 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
             name: $"{nameof(JsonWebTokenEncoderGuiTool)}.{nameof(tokenExpirationSettings)}",
             defaultValue: DateTime.UtcNow);
 
+    /// <summary>
+    /// Defines whether the signature key is in Base64 format or not (Plain text).
+    /// </summary>
+    private static readonly SettingDefinition<bool> isSignatureInBase64Format
+        = new(
+            name: $"{nameof(JsonWebTokenEncoderGuiTool)}.{nameof(isSignatureInBase64Format)}",
+            defaultValue: false);
+
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
 
@@ -92,6 +100,9 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
 
     private readonly IUISwitch _encodeTokenDefaultTimeSwitch = Switch("jwt-encode-token-default-time-switch");
 
+    private readonly IUISwitch _isSignatureBase64FormatSwitch = Switch("jwt-encode-is-signature-base64-format-switch");
+    private readonly IUISetting _isSignatureBase64FormatSetting = Setting("jwt-encode-is-signature-base64-format-setting");
+
     private readonly IUIStack _viewStack = Stack("jwt-encode-view-stack");
     private readonly IUIStack _encodeSettingsStack = Stack("jwt-encode-settings-stack");
 
@@ -109,7 +120,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
     {
         _logger = this.Log();
         _settingsProvider = settingsProvider;
-        ConfigureUIAsync().Forget();
+        ConfigureUI();
     }
 
     internal Task? WorkTask { get; private set; }
@@ -129,7 +140,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                         .Handle(
                             _settingsProvider,
                             tokenAlgorithmSetting,
-                            onOptionSelected: async (value) => await OnAlgorithmChangedAsync(value),
+                            onOptionSelected: OnAlgorithmChanged,
                             Item(JsonWebTokenAlgorithm.HS256),
                             Item(JsonWebTokenAlgorithm.HS384),
                             Item(JsonWebTokenAlgorithm.HS512),
@@ -295,12 +306,22 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                                 .OnText(JsonWebTokenEncoderDecoder.Yes)
                                 .OffText(JsonWebTokenEncoderDecoder.No)
                                 .OnToggle(OnTokenHasDefaultTimeChanged)
+                        ),
+                    _isSignatureBase64FormatSetting
+                        .Icon("FluentSystemIcons", '\uF18D')
+                        .Title(JsonWebTokenEncoderDecoder.SignatureFormat)
+                        .InteractiveElement(
+                            _isSignatureBase64FormatSwitch
+                                .OnText(JsonWebTokenEncoderDecoder.Base64)
+                                .OffText(JsonWebTokenEncoderDecoder.PlainText)
+                                .OnToggle(OnIsSignatureInBase64FormatChanged)
                         )
                 ),
             _infoBar
                 .NonClosable(),
             _tokenInput
                 .Title(JsonWebTokenEncoderDecoder.TokenInputTitle)
+                .AlwaysWrap()
                 .ReadOnly(),
             SplitGrid()
                 .Vertical()
@@ -356,11 +377,10 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         StartTokenEncode();
     }
 
-    private ValueTask OnTokenIssuerInputChanged(string issuer)
+    private void OnTokenIssuerInputChanged(string issuer)
     {
         _settingsProvider.SetSetting(tokenIssuerSetting, issuer);
         StartTokenEncode();
-        return ValueTask.CompletedTask;
     }
 
     private void OnTokenHasAudienceChanged(bool tokenHasAudience)
@@ -377,16 +397,21 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         StartTokenEncode();
     }
 
-    private ValueTask OnTokenAudienceInputChanged(string audience)
+    private void OnTokenAudienceInputChanged(string audience)
     {
         _settingsProvider.SetSetting(tokenAudienceSetting, audience);
         StartTokenEncode();
-        return ValueTask.CompletedTask;
     }
 
     private void OnTokenHasDefaultTimeChanged(bool tokenHasDefaultTime)
     {
         _settingsProvider.SetSetting(tokenHasDefaultTimeSetting, tokenHasDefaultTime);
+        StartTokenEncode();
+    }
+
+    private void OnIsSignatureInBase64FormatChanged(bool value)
+    {
+        _settingsProvider.SetSetting(isSignatureInBase64Format, value);
         StartTokenEncode();
     }
 
@@ -418,10 +443,10 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         StartTokenEncode();
     }
 
-    private async Task OnAlgorithmChangedAsync(JsonWebTokenAlgorithm algorithm)
+    private void OnAlgorithmChanged(JsonWebTokenAlgorithm algorithm)
     {
         _settingsProvider.SetSetting(tokenAlgorithmSetting, algorithm);
-        await ConfigureTokenAlgorithmUIAsync(algorithm);
+        ConfigureTokenAlgorithmUI(algorithm);
         StartTokenEncode();
     }
 
@@ -483,6 +508,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
             tokenAlgorithm is JsonWebTokenAlgorithm.HS512)
         {
             tokenParameters.Signature = _signatureInput.Text;
+            tokenParameters.IsSignatureInBase64Format = _isSignatureBase64FormatSwitch.IsOn;
         }
         else
         {
@@ -542,10 +568,10 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         _tokenInput.Text(string.Empty);
     }
 
-    private async Task ConfigureUIAsync()
+    private void ConfigureUI()
     {
         JsonWebTokenAlgorithm tokenAlgorithm = _settingsProvider.GetSetting(tokenAlgorithmSetting);
-        await ConfigureTokenAlgorithmUIAsync(tokenAlgorithm);
+        ConfigureTokenAlgorithmUI(tokenAlgorithm);
 
         ConfigureSwitch(_settingsProvider.GetSetting(tokenHasIssuerSetting), _encodeTokenHasIssuerSwitch, _encodeTokenIssuerInput);
         ConfigureSwitch(_settingsProvider.GetSetting(tokenHasAudienceSetting), _encodeTokenHasAudienceSwitch, _encodeTokenAudienceInput);
@@ -559,29 +585,32 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         _encodeTokenExpirationMinuteInputNumber.Value(expirationDate.Minute);
     }
 
-    private async Task ConfigureTokenAlgorithmUIAsync(JsonWebTokenAlgorithm tokenAlgorithm)
+    private void ConfigureTokenAlgorithmUI(JsonWebTokenAlgorithm tokenAlgorithm)
     {
         if (tokenAlgorithm is JsonWebTokenAlgorithm.HS256 ||
             tokenAlgorithm is JsonWebTokenAlgorithm.HS384 ||
             tokenAlgorithm is JsonWebTokenAlgorithm.HS512)
         {
+            _isSignatureBase64FormatSetting.Show();
             _signatureInput.Show();
             _privateKeyInput.Hide();
         }
         else
         {
+            _isSignatureBase64FormatSetting.Hide();
             _signatureInput.Hide();
             _privateKeyInput.Show();
         }
 
-        ResultInfo<string> headerContent = await JsonHelper.FormatAsync(
-            @"{""alg"": """ + tokenAlgorithm.ToString() + @""", ""typ"": ""JWT""}",
-            Indentation.TwoSpaces,
-            false,
-            _logger,
-            CancellationToken.None);
+        string headerContent =
+        $$"""
+        {
+          "alg": "{{tokenAlgorithm}}",
+          "typ": "JWT"
+        }
+        """;
 
-        _headerInput.Text(headerContent.Data!);
+        _headerInput.Text(headerContent);
     }
 
     private static void ConfigureSwitch(bool value, IUISwitch inputSwitch, IUIElementWithChildren? input = null)

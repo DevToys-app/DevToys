@@ -745,6 +745,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Signature format.
+        /// </summary>
+        internal static string SignatureFormat {
+            get {
+                return ResourceManager.GetString("SignatureFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Signature.
         /// </summary>
         internal static string SignatureInputTitle {

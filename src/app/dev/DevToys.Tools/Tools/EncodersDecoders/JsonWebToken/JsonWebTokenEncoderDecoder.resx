@@ -493,4 +493,8 @@
     <value>Plain text</value>
     <comment>Gui</comment>
   </data>
+  <data name="SignatureFormat" xml:space="preserve">
+    <value>Signature format</value>
+    <comment>Gui</comment>
+  </data>
 </root>

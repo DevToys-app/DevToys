@@ -17,7 +17,8 @@ internal static partial class JsonWebTokenEncoderHelper
 {
     private static readonly JsonSerializerOptions options = new()
     {
-        Converters = {
+        Converters =
+        {
             new JsonWebTokenPayloadConverter()
         }
     };
@@ -122,14 +123,13 @@ internal static partial class JsonWebTokenEncoderHelper
     /// <summary>
     /// Get the Signing Credentials depending on the token Algorithm
     /// </summary>
-    private static ResultInfo<SigningCredentials> GetSigningCredentials(
-        TokenParameters tokenParameters)
+    private static ResultInfo<SigningCredentials> GetSigningCredentials(TokenParameters tokenParameters)
     {
         return tokenParameters.TokenAlgorithm switch
         {
             JsonWebTokenAlgorithm.HS256 or
             JsonWebTokenAlgorithm.HS384 or
-            JsonWebTokenAlgorithm.HS512 => GetHmacShaSigningCredentials(tokenParameters.Signature, tokenParameters.TokenAlgorithm),
+            JsonWebTokenAlgorithm.HS512 => GetHmacShaSigningCredentials(tokenParameters.Signature, tokenParameters.IsSignatureInBase64Format, tokenParameters.TokenAlgorithm),
             JsonWebTokenAlgorithm.RS256 or
             JsonWebTokenAlgorithm.RS384 or
             JsonWebTokenAlgorithm.RS512 or
@@ -156,44 +156,27 @@ internal static partial class JsonWebTokenEncoderHelper
     /// <exception cref="NotSupportedException"></exception>
     private static ResultInfo<SigningCredentials> GetHmacShaSigningCredentials(
         string? signature,
-        JsonWebTokenAlgorithm jsonWebTokenAlgorithm)
+        bool isSignatureInBase64Format,
+        JsonWebTokenAlgorithm jwtAlgorithm)
     {
         if (string.IsNullOrWhiteSpace(signature))
         {
             return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidSignature, false);
         }
 
-        byte[]? signatureByte;
-        if (Base64Helper.IsBase64DataStrict(signature))
-        {
-            signatureByte = Convert.FromBase64String(signature);
-        }
-        else
-        {
-            signatureByte = Encoding.UTF8.GetBytes(signature);
-        }
+        byte[] signatureByte = isSignatureInBase64Format ? Convert.FromBase64String(signature) : Encoding.UTF8.GetBytes(signature);
 
-        SigningCredentials signingCredentials;
-        switch (jsonWebTokenAlgorithm)
+        (byte[] hashKey, string algorithm) = jwtAlgorithm switch
         {
-            case JsonWebTokenAlgorithm.HS256:
-                byte[] hs256Key = new HMACSHA256(signatureByte).Key;
-                var hs256SymmetricSecurityKey = new SymmetricSecurityKey(hs256Key);
-                signingCredentials = new SigningCredentials(hs256SymmetricSecurityKey, SecurityAlgorithms.HmacSha256);
-                break;
-            case JsonWebTokenAlgorithm.HS384:
-                byte[] hs384Key = new HMACSHA384(signatureByte).Key;
-                var hs384SymmetricSecurityKey = new SymmetricSecurityKey(hs384Key);
-                signingCredentials = new SigningCredentials(hs384SymmetricSecurityKey, SecurityAlgorithms.HmacSha384);
-                break;
-            case JsonWebTokenAlgorithm.HS512:
-                byte[] hs512Key = new HMACSHA512(signatureByte).Key;
-                var hs512SymmetricSecurityKey = new SymmetricSecurityKey(hs512Key);
-                signingCredentials = new SigningCredentials(hs512SymmetricSecurityKey, SecurityAlgorithms.HmacSha512);
-                break;
-            default:
-                throw new NotSupportedException();
-        }
+            JsonWebTokenAlgorithm.HS256 => (new HMACSHA256(signatureByte).Key, SecurityAlgorithms.HmacSha256Signature),
+            JsonWebTokenAlgorithm.HS384 => (new HMACSHA384(signatureByte).Key, SecurityAlgorithms.HmacSha384Signature),
+            JsonWebTokenAlgorithm.HS512 => (new HMACSHA512(signatureByte).Key, SecurityAlgorithms.HmacSha512Signature),
+            _ => throw new NotSupportedException()
+        };
+
+        var symmetricSecurityKey = new SymmetricSecurityKey(hashKey);
+        var signingCredentials = new SigningCredentials(symmetricSecurityKey, algorithm);
+
         return new ResultInfo<SigningCredentials>(signingCredentials);
     }
 
