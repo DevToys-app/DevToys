@@ -1,45 +1,42 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace DevToys.Tools.Helpers.JsonWebToken;
+﻿namespace DevToys.Tools.Helpers.JsonWebToken;
 
 using Microsoft.IdentityModel.JsonWebTokens;
 
 internal static partial class JsonWebTokenHelper
 {
-    private static readonly string AuthorizationHeader = "Authorization:";
-    private static readonly string BearerScheme = "Bearer";
+    private const string AuthorizationHeader = "Authorization:";
+    private const string BearerScheme = "Bearer";
 
     /// <summary>
     /// Detects whether the given string is a JWT Token or not.
     /// </summary>
-    internal static bool IsValid(string? input, ILogger logger)
+    internal static bool IsValid(string? input)
     {
-        if (string.IsNullOrWhiteSpace(input))
+        ReadOnlySpan<char> inputSpan = input.AsSpan().Trim();
+
+        if (inputSpan.IsEmpty)
         {
             return false;
         }
 
-        input = input!.Trim();
-
-        if (input.StartsWith(AuthorizationHeader))
+        if (inputSpan.StartsWith(AuthorizationHeader))
         {
-            input = input.Remove(0, AuthorizationHeader.Length).Trim();
+            inputSpan = inputSpan.Slice(AuthorizationHeader.Length).TrimStart();
         }
 
-        if (input.StartsWith(BearerScheme))
+        if (inputSpan.StartsWith(BearerScheme))
         {
-            input = input.Remove(0, BearerScheme.Length).Trim();
+            inputSpan = inputSpan.Slice(BearerScheme.Length).TrimStart();
         }
 
         try
         {
             JsonWebTokenHandler handler = new();
-            JsonWebToken jsonWebToken = handler.ReadJsonWebToken(input);
+            JsonWebToken jsonWebToken = handler.ReadJsonWebToken(inputSpan.ToString());
             return jsonWebToken is not null;
         }
-        catch (Exception ex) //some other exception
+        catch
         {
-            logger.LogError(ex, "Invalid data detected '{input}'", input);
             return false;
         }
     }
