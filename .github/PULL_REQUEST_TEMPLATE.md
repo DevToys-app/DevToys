@@ -45,5 +45,5 @@ Before creating this PR:
 - [ ] Did you verify that all unit tests pass
 - [ ] If necessary and if possible, did you verify your changes on:
    - [ ] Windows
-   - [ ] macOS (DevToys 2.0)
-   - [ ] Linux (DevToys 2.0)
+   - [ ] macOS
+   - [ ] Linux

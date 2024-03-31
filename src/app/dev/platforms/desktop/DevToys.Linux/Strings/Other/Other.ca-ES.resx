@@ -118,38 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllFiles" xml:space="preserve">
-    <value>All {0}</value>
-    <comment/>
+    <value>Tot {0}</value>
+    <comment>This text is used in open file dialog and goes like "All PNG, JPG, GIF"</comment>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Open file</value>
+    <value>Obrir arxiu</value>
     <comment/>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>Open</value>
+    <value>Obrir</value>
     <comment/>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancel·lar</value>
     <comment/>
   </data>
   <data name="OpenFiles" xml:space="preserve">
-    <value>Open files</value>
+    <value>Obrir arxius</value>
     <comment/>
   </data>
   <data name="AllFiles2" xml:space="preserve">
-    <value>All files</value>
+    <value>Tots els arxius</value>
     <comment/>
   </data>
   <data name="SaveFile" xml:space="preserve">
-    <value>Save file</value>
+    <value>Desar arxiu</value>
     <comment/>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Desar</value>
     <comment/>
   </data>
   <data name="OpenFolder" xml:space="preserve">
-    <value>Open folder</value>
+    <value>Obrir carpeta</value>
   </data>
 </root>

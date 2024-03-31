@@ -24,5 +24,5 @@ using System.Reflection;
 // you're about to release a new version of the app on the Store.
 [assembly: AssemblyVersion("2.0.0.0")]
 [assembly: AssemblyFileVersion("2.0.0.0")]
-[assembly: AssemblyInformationalVersion("2.0.0-pre.0")]
+[assembly: AssemblyInformationalVersion("2.0.0-pre.1")]
 

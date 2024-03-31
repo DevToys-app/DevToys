@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <!-- Define .NET and C# configuration -->
-    <LangVersion>11.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>

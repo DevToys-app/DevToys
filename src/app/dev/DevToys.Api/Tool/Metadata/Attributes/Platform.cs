@@ -18,10 +18,5 @@ public enum Platform
     /// <summary>
     /// The Linux platform.
     /// </summary>
-    Linux,
-
-    /// <summary>
-    /// The WebAssembly platform.
-    /// </summary>
-    WASM
+    Linux
 }

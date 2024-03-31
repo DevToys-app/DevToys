@@ -15,9 +15,9 @@ using System.Runtime.CompilerServices;
 // associated with an assembly.
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Etienne Baudoux")]
+[assembly: AssemblyCompany("DevToys")]
 [assembly: AssemblyProduct("DevToys")]
-[assembly: AssemblyCopyright("© Etienne Baudoux. All rights reserved.")]
+[assembly: AssemblyCopyright("© Etienne Baudoux & Benjamin Titeux. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -7,11 +7,7 @@ public static class OSHelper
         if (targetPlatforms.Count > 0)
         {
             Platform currentPlatform;
-            if (OperatingSystem.IsBrowser())
-            {
-                currentPlatform = Platform.WASM;
-            }
-            else if (OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst())
+            if (OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst())
             {
                 currentPlatform = Platform.MacOS;
             }

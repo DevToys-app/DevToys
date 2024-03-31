@@ -250,7 +250,7 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Higlight the current line.
+        ///   Looks up a localized string similar to Highlight the current line.
         /// </summary>
         internal static string HighlightCurrentLineStateDescriptionWhenOn {
             get {

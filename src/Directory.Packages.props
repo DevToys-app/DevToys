@@ -9,17 +9,12 @@
     <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
     <PackageVersion Include="CommunityToolkit.Diagnostics" Version="$(CommunityToolkitVersion)" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="$(CommunityToolkitVersion)" />
-    <PackageVersion Include="CommunityToolkit.Maui" Version="5.2.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
-    <PackageVersion Include="CronExpressionDescriptor" Version="2.32.0" />
-    <PackageVersion Include="Cronos" Version="0.8.3" />
     <PackageVersion Include="FluentAssertions" Version="6.11.0" />
     <PackageVersion Include="FuzzySharp" Version="2.0.2" />
     <PackageVersion Include="GirCore.Adw-1" Version="$(GirCore)" />
     <PackageVersion Include="GirCore.Gtk-4.0" Version="$(GirCore)" />
     <PackageVersion Include="GirCore.WebKit-6.0" Version="$(GirCore)" />
-    <PackageVersion Include="Markdig" Version="0.33.0" />
-    <PackageVersion Include="Markdown.ColorCode" Version="2.1.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebView" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.3" />
@@ -40,11 +35,7 @@
     <PackageVersion Include="System.Text.Json" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
-    <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageVersion Include="xunit" Version="$(XUnit)" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="$(XUnit)" />
-    <PackageVersion Include="YamlDotNet" Version="13.0.0" />
-    <PackageVersion Include="ZXing.Net" Version="0.16.9" />
-    <PackageVersion Include="ZXing.Net.Bindings.ImageSharp.V3" Version="0.16.15" />
   </ItemGroup>
 </Project>

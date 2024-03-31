@@ -1,7 +1,10 @@
 ﻿using System.ComponentModel.Composition;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using DevToys.Tools.Helpers;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DevToys.UnitTests.Mocks.Tools;
 
@@ -15,13 +18,46 @@ internal class MockJsonDataTypeDetector : IDataTypeDetector
             && resultFromBaseDetector.Data is string dataString
             && !long.TryParse(dataString, out _))
         {
-            if (await JsonHelper.IsValidAsync(dataString, new MockILogger(), cancellationToken))
+            if (await IsValidAsync(dataString, new MockILogger(), cancellationToken))
             {
                 return new DataDetectionResult(Success: true, Data: dataString);
             }
         }
 
         return DataDetectionResult.Unsuccessful;
+    }
+
+    /// <summary>
+    /// Detects whether the given string is a valid JSON or not.
+    /// </summary>
+    internal static async ValueTask<bool> IsValidAsync(string input, ILogger logger, CancellationToken cancellationToken)
+    {
+        if (input == null)
+        {
+            return true;
+        }
+
+        if (long.TryParse(input, out _))
+        {
+            return false;
+        }
+
+        try
+        {
+            using JsonReader reader = new JsonTextReader(new StringReader(input));
+            JToken jtoken = await JToken.LoadAsync(reader, settings: null, cancellationToken);
+            return jtoken is not null;
+        }
+        catch (JsonReaderException)
+        {
+            // Exception in parsing json. It likely mean the text isn't a JSON.
+            return false;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Invalid data detected.");
+            return false;
+        }
     }
 }
 

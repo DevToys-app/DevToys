@@ -31,7 +31,7 @@ public class CultureHelperGenerator : ISourceGenerator
 
         if (InitialCheckUp(context, out string projectRootPath, out string projectRootNamespace))
         {
-            string[] cultures = DetectAllCutlures(context);
+            string[] cultures = DetectAllCultures(context);
 
             if (!context.CancellationToken.IsCancellationRequested)
             {
@@ -79,7 +79,7 @@ public class CultureHelperGenerator : ISourceGenerator
         return true;
     }
 
-    private string[] DetectAllCutlures(GeneratorExecutionContext context)
+    private string[] DetectAllCultures(GeneratorExecutionContext context)
     {
         var cultures = new HashSet<string>() { "en-US" };
 

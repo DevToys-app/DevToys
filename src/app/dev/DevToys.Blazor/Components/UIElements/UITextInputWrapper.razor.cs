@@ -44,6 +44,7 @@ public partial class UITextInputWrapper : MefComponentBase
     protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/UIElements/UITextInputWrapper.razor.js";
 
     [Import]
+#pragma warning disable IDE0044 // Add readonly modifier
     private SmartDetectionService _smartDetectionService = default!;
 
     [Import]
@@ -54,6 +55,7 @@ public partial class UITextInputWrapper : MefComponentBase
 
     [Import]
     private ISettingsProvider _settingsProvider = default!;
+#pragma warning restore IDE0044 // Add readonly modifier
 
     [Parameter]
     public IUISingleLineTextInput UITextInput { get; set; } = default!;

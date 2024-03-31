@@ -54,6 +54,6 @@ internal class MockIFileStorage : IFileStorage
     {
         var assembly = Assembly.GetExecutingAssembly();
         string assemblyDirectory = Path.GetDirectoryName(assembly.Location);
-        return FileHelper.CreateTempFile(assemblyDirectory, desiredFileExtension);
+        return FileHelper.CreateTempFile(assemblyDirectory!, desiredFileExtension);
     }
 }

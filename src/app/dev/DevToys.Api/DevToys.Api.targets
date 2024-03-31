@@ -1,0 +1,31 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="RemoveFromCopyLocal" AfterTargets="ResolveAssemblyReferences">
+    <!-- Exclude these dlls from appearing in the output (bin) folder when compiling an extension -->
+    <ItemGroup>
+      <ReferenceCopyLocalPaths
+        Remove="@(ReferenceCopyLocalPaths)"
+        Condition="$([System.String]::new('%(Filename)').Contains('DevToys.Api'))" />
+      <ReferenceCopyLocalPaths
+        Remove="@(ReferenceCopyLocalPaths)"
+        Condition="'%(Filename)%(Extension)' == 'CommunityToolkit.Common.dll'" />
+      <ReferenceCopyLocalPaths
+        Remove="@(ReferenceCopyLocalPaths)"
+        Condition="'%(Filename)%(Extension)' == 'CommunityToolkit.Diagnostics.dll'" />
+      <ReferenceCopyLocalPaths
+        Remove="@(ReferenceCopyLocalPaths)"
+        Condition="'%(Filename)%(Extension)' == 'Microsoft.Extensions.DependencyInjection.Abstractions.dll'" />
+      <ReferenceCopyLocalPaths
+        Remove="@(ReferenceCopyLocalPaths)"
+        Condition="'%(Filename)%(Extension)' == 'Microsoft.Extensions.Logging.Abstractions.dll'" />
+      <ReferenceCopyLocalPaths
+        Remove="@(ReferenceCopyLocalPaths)"
+        Condition="'%(Filename)%(Extension)' == 'OneOf.dll'" />
+      <ReferenceCopyLocalPaths
+        Remove="@(ReferenceCopyLocalPaths)"
+        Condition="'%(Filename)%(Extension)' == 'SixLabors.ImageSharp.dll'" />
+      <ReferenceCopyLocalPaths
+        Remove="@(ReferenceCopyLocalPaths)"
+        Condition="'%(Filename)%(Extension)' == 'System.ComponentModel.Composition.dll'" />
+    </ItemGroup>
+  </Target>
+</Project>

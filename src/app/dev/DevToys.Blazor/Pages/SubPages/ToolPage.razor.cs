@@ -90,6 +90,7 @@ public partial class ToolPage : MefComponentBase, IFocusable
 
     private void ToolView_CurrentOpenedDialogChanged(object? sender, EventArgs e)
     {
+        Guard.IsNotNull(ViewModel.ToolView);
         if (ViewModel.ToolView.CurrentOpenedDialog is null)
         {
             UIDialogService.CloseDialog();
@@ -103,6 +104,7 @@ public partial class ToolPage : MefComponentBase, IFocusable
 
     private void DialogService_CloseDialogRequested(object? sender, EventArgs e)
     {
+        Guard.IsNotNull(ViewModel.ToolView);
         if (ViewModel.ToolView.CurrentOpenedDialog is not null)
         {
             ViewModel.ToolView.CurrentOpenedDialog.IsOpenedChanged -= DialogService_CloseDialogRequested;
@@ -125,6 +127,11 @@ public partial class ToolPage : MefComponentBase, IFocusable
     }
 
     private void OnHotReloadRequestUpdateApplication(object? sender, HotReloadEventArgs e)
+    {
+        ViewModel.RebuildViewCommand.Execute(null);
+    }
+
+    private void OnHotReloadButtonClick()
     {
         ViewModel.RebuildViewCommand.Execute(null);
     }

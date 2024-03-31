@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>$(NetCore)</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -7,13 +7,16 @@
   <PropertyGroup>
     <!-- NuGet package -->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.0-pre.0</Version>
+    <Version>2.0.0-pre.1</Version>
     <Authors>veler,btiteux</Authors>
     <Description>SDK for developing extensions for DevToys 2.0 and higher</Description>
     <PackageProjectUrl>https://devtoys.app</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/veler/DevToys</RepositoryUrl>
-    <PackageTags>devtoys</PackageTags>
+    <RepositoryUrl>https://github.com/DevToys-app/DevToys</RepositoryUrl>
+    <PackageTags>devtoys-app</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageIcon>Icon-Windows-Linux.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,16 +25,15 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="OneOf" />
     <PackageReference Include="System.ComponentModel.Composition" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" />
-    <PackageReference Include="SixLabors.ImageSharp"/>
+    <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
-    <None Include="$(RepoRoot)LICENSE.md" Link="LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <None Include="$(AssemblyName).targets" Pack="true" PackagePath="build" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="$(RepoRoot)LICENSE.md" Link="LICENSE.md" Pack="true" PackagePath="\" />
+    <None Include="$(RepoRoot)assets\logo\Icon-Windows-Linux.png" Link="Icon-Windows-Linux.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>

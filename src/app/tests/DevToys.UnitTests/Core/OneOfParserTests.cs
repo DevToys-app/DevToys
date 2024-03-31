@@ -1,4 +1,5 @@
 ﻿using System.CommandLine.Parsing;
+using System.Globalization;
 using DevToys.CLI.Core;
 using OneOf;
 
@@ -8,6 +9,8 @@ public class OneOfParserTests
     [Fact]
     public void OneOfParser_Float_String()
     {
+        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+
         var option
             = new OneOfOption(
                 "test",

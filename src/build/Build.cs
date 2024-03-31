@@ -241,12 +241,14 @@ class Build : NukeBuild
             DotNetBuild(s => s
                 .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
                 .SetConfiguration(Configuration)
-                .SetSelfContained(true)
-                .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
+                .SetFramework(dotnetParameters.TargetFramework)
+                .SetRuntime(dotnetParameters.RuntimeIdentifier)
+                .SetPlatform(dotnetParameters.Platform)
+                .SetSelfContained(dotnetParameters.Portable)
+                .SetPublishSingleFile(false)
                 .SetPublishReadyToRun(false)
-                .SetPublishTrimmed(true) // Should be true, even though the CSPROJ disable AOT and Trimming.
+                .SetPublishTrimmed(true) // HACK: Required for MacOS. However, <LinkMode>None</LinkMode> in the CSPROJ disables trimming.
                 .SetVerbosity(DotNetVerbosity.quiet)
-                .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
                 .SetProcessArgumentConfigurator(_ => _
                     .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
                     .Add("/p:CreatePackage=True") /* Will create an installable .pkg */
@@ -403,11 +405,11 @@ class Build : NukeBuild
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            project = MacSolution!.GetProject(publishProject);
+            project = MacSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
-                yield return new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true);
-                yield return new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "osx-arm64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "osx-x64", targetFramework, portable: true);
             }
         }
         else

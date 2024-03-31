@@ -9,7 +9,7 @@
 ///         [Export(typeof(GuiToolGroup))]
 ///         [Name("Encoders / Decoders")]
 ///         [Order(After = "Converters")] // Optional
-///         internal sealed class MyGroup : IGuiTool
+///         internal sealed class MyGroup : GuiToolGroup
 ///         {
 ///             [ImportingConstructor]
 ///             internal MyGroup()

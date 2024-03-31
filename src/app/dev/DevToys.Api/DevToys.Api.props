@@ -1,4 +1,9 @@
 <Project>
+  <PropertyGroup>
     <!-- See https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#enabledynamicloading -->
     <EnableDynamicLoading>true</EnableDynamicLoading>
+
+    <!-- Make any NuGet using DevToys.API to have the tag "devtoys-app" so we can find every published extensions on Nuget.org through this tag. -->
+    <PackageTags>devtoys-app $(PackageTags)</PackageTags>
+  </PropertyGroup>
 </Project>

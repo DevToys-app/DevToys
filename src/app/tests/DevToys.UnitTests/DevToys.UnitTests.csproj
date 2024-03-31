@@ -3,103 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>$(NetCore)</TargetFrameworks>
     <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="Tools\TestData\Base64ImageEncoderDecoder\PNG_transparency_demonstration_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\Base64ImageEncoderDecoder\Png_transparency_demonstration_1_base64.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\CertDecoded.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\CertificateRequest.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\CertWithExtensionsDecoded.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\PemCertPublic.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\PemCertPublicWithExtensions.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\PemCertWithPrivateKey.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\PemCertWithPrivateKeyWithExtensions.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\PfxNoPassword.pfx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\PfxWithExtensionsNoPassword.pfx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\CertificateDecoder\PfxWithPassword.pfx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\HashAndChecksumGenerator\Checksum.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\HashAndChecksumGenerator\File.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EmbeddedResource Include="Tools\TestData\JsonPathTester\sample.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <Content Include="Tools\TestData\JsonYamlConverter\FourSpaces.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\JsonYamlConverter\FourSpaces.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\JsonYamlConverter\Invalid.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\JsonYamlConverter\Invalid.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\JsonYamlConverter\TwoSpaces.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\JsonYamlConverter\TwoSpaces.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\XmlFormatter\FourSpaces.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\XmlFormatter\Minified.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\XmlFormatter\NewLineOnAttributes.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\XmlFormatter\OneTab.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\XmlFormatter\TwoSpaces.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\XmlFormatter\ValidXml.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Tools\TestData\XMLTester\InvalidXml.xml" />
-    <EmbeddedResource Include="Tools\TestData\XMLTester\InvalidXsd.xml" />
-    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXml.xml" />
-    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXmlWithNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXmlWithoutNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsd.xml" />
-    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsdOnlyWithTargetNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsdWithNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsdWithoutNamespace.xml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" />
@@ -121,7 +26,6 @@
     <ProjectReference Include="..\..\dev\DevToys.Blazor\DevToys.Blazor.csproj" />
     <ProjectReference Include="..\..\dev\DevToys.Business\DevToys.Business.csproj" />
     <ProjectReference Include="..\..\dev\DevToys.Core\DevToys.Core.csproj" />
-    <ProjectReference Include="..\..\dev\DevToys.Tools\DevToys.Tools.csproj" />
     <ProjectReference Include="..\..\dev\platforms\desktop\DevToys.CLI\DevToys.CLI.csproj" />
   </ItemGroup>
 

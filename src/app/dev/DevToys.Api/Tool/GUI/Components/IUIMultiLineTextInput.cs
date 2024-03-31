@@ -11,6 +11,11 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     IReadOnlyList<UIHighlightedTextSpan> HighlightedSpans { get; }
 
     /// <summary>
+    /// Gets the list of tooltip to display on word hover.
+    /// </summary>
+    IReadOnlyList<UIHoverTooltip> HoverTooltips { get; }
+
+    /// <summary>
     /// Gets the programming language name to use when colorizing the text in the control.
     /// </summary>
     string SyntaxColorizationLanguageName { get; }
@@ -32,6 +37,11 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     /// Gets the primary selection of the text control. When the selection length is 0, the span indicates the caret position.
     /// </summary>
     TextSpan Selection { get; }
+
+    /// <summary>
+    /// Raised when <see cref="HoverTooltips"/> is changed.
+    /// </summary>
+    event EventHandler? HoverTooltipChanged;
 
     /// <summary>
     /// Raised when <see cref="HighlightedSpans"/> is changed.
@@ -62,6 +72,7 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}, SyntaxColorizationLanguageName = {{{nameof(SyntaxColorizationLanguageName)}}}")]
 internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInput
 {
+    private IReadOnlyList<UIHoverTooltip>? _hoverTooltip;
     private IReadOnlyList<UIHighlightedTextSpan>? _highlightedSpans;
     private string? _syntaxColorizationLanguageName;
     private bool _isExtendableToFullScreen;
@@ -77,6 +88,12 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
     {
         get => _highlightedSpans ?? Array.Empty<UIHighlightedTextSpan>();
         internal set => SetPropertyValue(ref _highlightedSpans, value, HighlightedSpansChanged);
+    }
+
+    public IReadOnlyList<UIHoverTooltip> HoverTooltips
+    {
+        get => _hoverTooltip ?? Array.Empty<UIHoverTooltip>();
+        internal set => SetPropertyValue(ref _hoverTooltip, value, HoverTooltipChanged);
     }
 
     public string SyntaxColorizationLanguageName
@@ -122,6 +139,7 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
         }
     }
 
+    public event EventHandler? HoverTooltipChanged;
     public event EventHandler? HighlightedSpansChanged;
     public event EventHandler? SyntaxColorizationLanguageNameChanged;
     public event EventHandler? IsExtendableToFullScreenChanged;
@@ -137,9 +155,9 @@ public static partial class GUI
     /// <remarks>
     /// This component is powered by Monaco Editor.
     /// </remarks>
-    public static IUIMultiLineTextInput MultilineTextInput()
+    public static IUIMultiLineTextInput MultiLineTextInput()
     {
-        return MultilineTextInput(null);
+        return MultiLineTextInput(null);
     }
 
     /// <summary>
@@ -149,7 +167,7 @@ public static partial class GUI
     /// This component is powered by Monaco Editor.
     /// </remarks>
     /// <param name="id">An optional unique identifier for this UI element.</param>
-    public static IUIMultiLineTextInput MultilineTextInput(string? id)
+    public static IUIMultiLineTextInput MultiLineTextInput(string? id)
     {
         return new UIMultilineTextInput(id);
     }
@@ -162,7 +180,7 @@ public static partial class GUI
     /// </remarks>
     /// <param name="id">An optional unique identifier for this UI element.</param>
     /// <param name="programmingLanguageName">the programming language name to use to colorize the text in the control.</param>
-    public static IUIMultiLineTextInput MultilineTextInput(string? id, string programmingLanguageName)
+    public static IUIMultiLineTextInput MultiLineTextInput(string? id, string programmingLanguageName)
     {
         return new UIMultilineTextInput(id).Language(programmingLanguageName);
     }
@@ -173,6 +191,15 @@ public static partial class GUI
     public static IUIMultiLineTextInput Highlight(this IUIMultiLineTextInput element, params UIHighlightedTextSpan[] spans)
     {
         ((UIMultilineTextInput)element).HighlightedSpans = spans;
+        return element;
+    }
+
+    /// <summary>
+    /// Sets the list of tooltips to display on Word hover in the text document.
+    /// </summary>
+    public static IUIMultiLineTextInput HoverTooltip(this IUIMultiLineTextInput element, params UIHoverTooltip[] tooltips)
+    {
+        ((UIMultilineTextInput)element).HoverTooltips = tooltips;
         return element;
     }
 

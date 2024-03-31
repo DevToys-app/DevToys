@@ -35,7 +35,6 @@ public partial class TextBox : MefComponentBase, IFocusable
             KeyboardShortcut = "Ctrl+A"
         };
 
-    private readonly string _contextMenuId = NewId();
     private readonly ObservableCollection<ContextMenuItem> _contextMenuItems = new();
     private InputText? _input;
     private bool _isContextMenuOpened;

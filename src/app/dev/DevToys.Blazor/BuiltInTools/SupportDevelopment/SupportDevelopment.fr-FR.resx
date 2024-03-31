@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Support the development of DevToys</value>
+    <value>Soutenez le développement de DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>See how you can help improving DevToys</value>
+    <value>Voyez comment vous pouvez aider à améliorer DevToys</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Support the development</value>
+    <value>Soutenir le développement</value>
   </data>
 </root>
