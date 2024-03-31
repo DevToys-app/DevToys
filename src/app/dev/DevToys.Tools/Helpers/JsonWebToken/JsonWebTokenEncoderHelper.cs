@@ -38,12 +38,9 @@ internal static partial class JsonWebTokenEncoderHelper
         {
             IdentityModelEventSource.ShowPII = true;
             Dictionary<string, object>? payload = JsonSerializer.Deserialize<Dictionary<string, object>>(tokenParameters.Payload!, options);
-            if (payload is null)
-            {
-                //return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError, ResultInfoSeverity.Error);
-            }
 
             ResultInfo<SigningCredentials> signingCredentials = GetSigningCredentials(tokenParameters);
+            
             if (!signingCredentials.HasSucceeded)
             {
                 return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(signingCredentials.ErrorMessage!, ResultInfoSeverity.Error);
@@ -53,8 +50,8 @@ internal static partial class JsonWebTokenEncoderHelper
             {
                 Claims = payload,
                 SigningCredentials = signingCredentials.Data,
-                IssuedAt = DateTime.UtcNow,
-                Expires = null
+                IssuedAt = null,
+                Expires = null,
             };
 
             if (encodeParameters.HasIssuer)
