@@ -354,11 +354,11 @@ class Popover {
             const classList: DOMTokenList = popoverContentNode.classList;
             const classListArray: string[] = Array.from(popoverContentNode.classList);
 
-            const postion: PopoverPosition = Popover.calculatePopoverPosition(classListArray, boundingRect, selfRect);
-            let left: number = postion.left;
-            let top: number = postion.top;
-            let offsetX: number = postion.offsetX;
-            let offsetY: number = postion.offsetY;
+            const position: PopoverPosition = Popover.calculatePopoverPosition(classListArray, boundingRect, selfRect);
+            let left: number = position.left;
+            let top: number = position.top;
+            let offsetX: number = position.offsetX;
+            let offsetY: number = position.offsetY;
 
             if (classList.contains("popover-overflow-flip-onopen") || classList.contains("popover-overflow-flip-always")) {
                 const graceMargin: number = Popover.flipMargin;
