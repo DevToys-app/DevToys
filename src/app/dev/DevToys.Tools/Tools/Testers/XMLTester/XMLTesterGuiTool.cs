@@ -133,23 +133,23 @@ internal sealed class XMLTesterGuiTool : IGuiTool, IDisposable
 
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsd, xml, _logger, cancellationToken);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsd, xml, _logger, cancellationToken);
 
         switch (result.Severity)
         {
-            case XMLTesterResultSeverity.Success:
+            case ResultInfoSeverity.Success:
                 _infoBar
                     .Description(XMLTester.XmlValidMessage)
                     .Success();
                 break;
 
-            case XMLTesterResultSeverity.Warning:
+            case ResultInfoSeverity.Warning:
                 _infoBar
                     .Description(result.Data)
                     .Warning();
                 break;
 
-            case XMLTesterResultSeverity.Error:
+            case ResultInfoSeverity.Error:
                 string errorDescription;
                 if (string.IsNullOrWhiteSpace(result.Data))
                 {

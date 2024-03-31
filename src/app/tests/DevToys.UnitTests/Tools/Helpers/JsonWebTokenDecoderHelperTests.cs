@@ -34,7 +34,7 @@ public class JsonWebTokenDecoderHelperTests
             Token = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
+        ResultInfo<JsonWebTokenResult> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
             decodeParameters,
             tokenParameters,
             new MockILogger(), CancellationToken.None);
@@ -57,7 +57,7 @@ public class JsonWebTokenDecoderHelperTests
             TokenAlgorithm = JsonWebTokenAlgorithm.RS256
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
+        ResultInfo<JsonWebTokenResult> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
             decodeParameters,
             tokenParameters,
             new MockILogger(), CancellationToken.None);
@@ -79,7 +79,7 @@ public class JsonWebTokenDecoderHelperTests
             Token = tokenContent,
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
+        ResultInfo<JsonWebTokenResult> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
             decodeParameters,
             tokenParameters,
             new MockILogger(), CancellationToken.None);
@@ -103,7 +103,7 @@ public class JsonWebTokenDecoderHelperTests
             Signature = signatureContent
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
+        ResultInfo<JsonWebTokenResult> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
             decodeParameters,
             tokenParameters,
             new MockILogger(), CancellationToken.None);
@@ -127,7 +127,7 @@ public class JsonWebTokenDecoderHelperTests
             Signature = signatureContent
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
+        ResultInfo<JsonWebTokenResult> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
             decodeParameters,
             tokenParameters,
             new MockILogger(), CancellationToken.None);
@@ -151,7 +151,7 @@ public class JsonWebTokenDecoderHelperTests
             Signature = signatureContent
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
+        ResultInfo<JsonWebTokenResult> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
             decodeParameters,
             tokenParameters,
             new MockILogger(), CancellationToken.None);
@@ -183,12 +183,11 @@ public class JsonWebTokenDecoderHelperTests
             Audiences = ["DevToys"]
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
+        ResultInfo<JsonWebTokenResult> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
             decodeParameters,
             tokenParameters,
             new MockILogger(), CancellationToken.None);
 
-        result.ErrorMessage.Should().BeNull();
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
         JsonWebTokenResult tokenResult = result.Data;
@@ -230,13 +229,12 @@ public class JsonWebTokenDecoderHelperTests
             Audiences = ["DevToys"]
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
+        ResultInfo<JsonWebTokenResult> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
             decodeParameters,
             tokenParameters,
             _logger,
             CancellationToken.None);
 
-        result.ErrorMessage.Should().BeNull();
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
         JsonWebTokenResult tokenResult = result.Data;
@@ -246,7 +244,6 @@ public class JsonWebTokenDecoderHelperTests
 
         ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
         ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
-        ResultInfo<string> formattedPayload222 = await GetFormattedDataAsync(tokenResult.Payload);
 
         tokenResult.Header.Should().Be(formattedHeader.Data);
         tokenResult.Payload.Should().Be(formattedPayload.Data);

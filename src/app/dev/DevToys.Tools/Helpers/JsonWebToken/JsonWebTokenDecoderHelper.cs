@@ -34,7 +34,7 @@ internal static class JsonWebTokenDecoderHelper
         }
     }
 
-    public static async ValueTask<ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>> DecodeTokenAsync(
+    public static async ValueTask<ResultInfo<JsonWebTokenResult?>> DecodeTokenAsync(
         DecoderParameters decodeParameters,
         TokenParameters tokenParameters,
         ILogger logger,
@@ -65,54 +65,46 @@ internal static class JsonWebTokenDecoderHelper
                 cancellationToken);
             if (!headerResult.HasSucceeded)
             {
-                return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.InvalidHeader, ResultInfoSeverity.Error);
+                return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.InvalidHeader);
             }
             tokenResult.Header = headerResult.Data;
 
-            string decodedpayload = Base64Helper.FromBase64ToText(
+            string decodedPayload = Base64Helper.FromBase64ToText(
                 jsonWebToken.EncodedPayload,
                 Base64Encoding.Utf8,
                 logger,
                 cancellationToken);
             ResultInfo<string> payloadResult = await JsonHelper.FormatAsync(
-                decodedpayload,
+                decodedPayload,
                 Indentation.TwoSpaces,
                 false,
                 logger,
                 cancellationToken);
             if (!payloadResult.HasSucceeded)
             {
-                return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.InvalidPayload, ResultInfoSeverity.Error);
+                return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.InvalidPayload);
             }
             tokenResult.Payload = payloadResult.Data;
             tokenResult.PayloadClaims = ProcessClaims(payloadResult.Data, jsonWebToken.Claims);
 
             if (decodeParameters.ValidateSignature)
             {
-                ResultInfo<JsonWebTokenResult, ResultInfoSeverity> signatureValid = await ValidateTokenSignatureAsync(handler, decodeParameters, tokenParameters, tokenResult);
-                if (signatureValid.Severity == ResultInfoSeverity.Error)
-                {
-                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(signatureValid.ErrorMessage!, signatureValid.Severity);
-                }
-                else if (signatureValid.Severity == ResultInfoSeverity.Warning)
-                {
-                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(tokenResult, signatureValid.ErrorMessage!, signatureValid.Severity);
-                }
+                return await ValidateTokenSignatureAsync(handler, decodeParameters, tokenParameters, tokenResult);
             }
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "Invalid token detected");
-            return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(ex.Message, ResultInfoSeverity.Error);
+            return ResultInfo<JsonWebTokenResult?>.Error(ex.Message);
         }
 
-        return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(tokenResult, ResultInfoSeverity.Success);
+        return tokenResult;
     }
 
     /// <summary>
     /// Validate the token using the Signing Credentials 
     /// </summary>
-    private static async Task<ResultInfo<JsonWebTokenResult, ResultInfoSeverity>> ValidateTokenSignatureAsync(
+    private static async Task<ResultInfo<JsonWebTokenResult?>> ValidateTokenSignatureAsync(
         JsonWebTokenHandler handler,
         DecoderParameters decodeParameters,
         TokenParameters tokenParameters,
@@ -131,7 +123,7 @@ internal static class JsonWebTokenDecoderHelper
             ResultInfo<SigningCredentials> signingCredentials = GetSigningCredentials(tokenParameters, false);
             if (!signingCredentials.HasSucceeded)
             {
-                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(signingCredentials.ErrorMessage!, ResultInfoSeverity.Error);
+                return ResultInfo<JsonWebTokenResult?>.Error(signingCredentials.Message!);
             }
 
             validationParameters.ValidateIssuerSigningKey = decodeParameters.ValidateIssuersSigningKey;
@@ -149,7 +141,7 @@ internal static class JsonWebTokenDecoderHelper
         {
             if (tokenParameters.Issuers.Count == 0)
             {
-                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError, ResultInfoSeverity.Error);
+                return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError);
             }
             validationParameters.ValidIssuers = tokenParameters.Issuers;
         }
@@ -159,7 +151,7 @@ internal static class JsonWebTokenDecoderHelper
         {
             if (tokenParameters.Audiences.Count == 0)
             {
-                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError, ResultInfoSeverity.Error);
+                return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError);
             }
             validationParameters.ValidAudiences = tokenParameters.Audiences;
         }
@@ -169,7 +161,7 @@ internal static class JsonWebTokenDecoderHelper
             TokenValidationResult validationResult = await handler.ValidateTokenAsync(tokenParameters.Token, validationParameters);
             if (!validationResult.IsValid)
             {
-                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(validationResult.Exception.Message, ResultInfoSeverity.Error);
+                return ResultInfo<JsonWebTokenResult?>.Error(validationResult.Exception.Message);
             }
             tokenResult.Signature = tokenParameters.Signature;
             tokenResult.PublicKey = tokenParameters.PublicKey;
@@ -178,13 +170,13 @@ internal static class JsonWebTokenDecoderHelper
                 !decodeParameters.ValidateIssuers && !decodeParameters.ValidateAudiences &&
                 !decodeParameters.ValidateIssuersSigningKey)
             {
-                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(tokenResult, JsonWebTokenEncoderDecoder.TokenNotValidated, ResultInfoSeverity.Warning);
+                return ResultInfo<JsonWebTokenResult?>.Warning(tokenResult, JsonWebTokenEncoderDecoder.TokenNotValidated);
             }
-            return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(tokenResult, ResultInfoSeverity.Success);
+            return tokenResult;
         }
         catch (Exception exception)
         {
-            return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(exception.Message, ResultInfoSeverity.Error);
+            return ResultInfo<JsonWebTokenResult?>.Error(exception.Message);
         }
     }
 

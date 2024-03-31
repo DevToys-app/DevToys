@@ -22,7 +22,7 @@ internal static class JsonWebTokenEncoderHelper
         }
     };
 
-    public static ResultInfo<JsonWebTokenResult?, ResultInfoSeverity> GenerateToken(
+    public static ResultInfo<JsonWebTokenResult?> GenerateToken(
         EncoderParameters encodeParameters,
         TokenParameters tokenParameters,
         ILogger logger)
@@ -42,7 +42,7 @@ internal static class JsonWebTokenEncoderHelper
 
             if (!signingCredentials.HasSucceeded)
             {
-                return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(signingCredentials.ErrorMessage!, ResultInfoSeverity.Error);
+                return ResultInfo<JsonWebTokenResult?>.Error(signingCredentials.Message!);
             }
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -57,14 +57,14 @@ internal static class JsonWebTokenEncoderHelper
             {
                 if (tokenParameters.Issuers.Count == 0)
                 {
-                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError, ResultInfoSeverity.Error);
+                    return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError);
                 }
 
                 tokenDescriptor.Issuer = string.Join(',', tokenParameters.Issuers);
 
                 if (string.IsNullOrWhiteSpace(tokenDescriptor.Issuer))
                 {
-                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError, ResultInfoSeverity.Error);
+                    return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError);
                 }
             }
 
@@ -72,13 +72,13 @@ internal static class JsonWebTokenEncoderHelper
             {
                 if (tokenParameters.Audiences.Count == 0)
                 {
-                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError, ResultInfoSeverity.Error);
+                    return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError);
                 }
 
                 tokenDescriptor.Audience = string.Join(',', tokenParameters.Audiences);
                 if (string.IsNullOrWhiteSpace(tokenDescriptor.Audience))
                 {
-                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError, ResultInfoSeverity.Error);
+                    return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError);
                 }
             }
 
@@ -88,7 +88,7 @@ internal static class JsonWebTokenEncoderHelper
                     !tokenParameters.ExpirationDay.HasValue || !tokenParameters.ExpirationHour.HasValue ||
                     !tokenParameters.ExpirationMinute.HasValue)
                 {
-                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.InvalidExpiration, ResultInfoSeverity.Error);
+                    return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.InvalidExpiration);
                 }
                 tokenDescriptor.HandleExpiration(tokenParameters);
             }
@@ -110,10 +110,10 @@ internal static class JsonWebTokenEncoderHelper
         catch (Exception ex)
         {
             logger.LogError(ex, "Invalid Payload detected");
-            return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(ex.Message, ResultInfoSeverity.Error);
+            return ResultInfo<JsonWebTokenResult?>.Error(ex.Message);
         }
 
-        return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(tokenResult, ResultInfoSeverity.Success);
+        return tokenResult;
     }
 
     private static void HandleExpiration(this SecurityTokenDescriptor tokenDescriptor, TokenParameters tokenParameters)
@@ -184,7 +184,7 @@ internal static class JsonWebTokenEncoderDecoderHelper
     {
         if (string.IsNullOrWhiteSpace(signature))
         {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidSignature, false);
+            return ResultInfo<SigningCredentials>.Error(JsonWebTokenEncoderDecoder.InvalidSignature);
         }
 
         byte[] signatureByte = isSignatureInBase64Format ? Convert.FromBase64String(signature) : Encoding.UTF8.GetBytes(signature);
@@ -200,7 +200,7 @@ internal static class JsonWebTokenEncoderDecoderHelper
         var symmetricSecurityKey = new SymmetricSecurityKey(hashKey);
         var signingCredentials = new SigningCredentials(symmetricSecurityKey, algorithm);
 
-        return new ResultInfo<SigningCredentials>(signingCredentials);
+        return signingCredentials;
     }
 
     private static ResultInfo<SigningCredentials> GetRsaShaSigningCredentials(string? key, JsonWebTokenAlgorithm algorithm)
@@ -224,7 +224,7 @@ internal static class JsonWebTokenEncoderDecoderHelper
     {
         if (string.IsNullOrWhiteSpace(key))
         {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidPrivateKey, false);
+            return ResultInfo<SigningCredentials>.Error(JsonWebTokenEncoderDecoder.InvalidPrivateKey);
         }
 
         TAlgorithm ecd = algorithmFactory();
@@ -233,7 +233,7 @@ internal static class JsonWebTokenEncoderDecoderHelper
 
         var signingCredentials = new SigningCredentials(securityKeyFactory(ecd), jsonWebTokenAlgorithm.ToString());
 
-        return new ResultInfo<SigningCredentials>(signingCredentials);
+        return signingCredentials;
     }
 }
 

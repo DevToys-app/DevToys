@@ -33,19 +33,19 @@ internal static class XsdHelper
         }
     }
 
-    internal static ResultInfo<string, XMLTesterResultSeverity> ValidateXmlAgainstXsd(string xsd, string xml, ILogger logger, CancellationToken cancellationToken)
+    internal static ResultInfo<string> ValidateXmlAgainstXsd(string xsd, string xml, ILogger logger, CancellationToken cancellationToken)
     {
         Guard.IsNotNullOrWhiteSpace(xsd);
         Guard.IsNotNullOrWhiteSpace(xml);
 
         try
         {
-            XMLTesterResultSeverity hasSucceeded = XMLTesterResultSeverity.Success;
+            ResultInfoSeverity hasSucceeded = ResultInfoSeverity.Success;
             var errors = new StringBuilder();
             void ValidationErrorCallBack(object? sender, ValidationEventArgs e)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                hasSucceeded = e.Severity == XmlSeverityType.Warning ? XMLTesterResultSeverity.Warning : XMLTesterResultSeverity.Error;
+                hasSucceeded = e.Severity == XmlSeverityType.Warning ? ResultInfoSeverity.Warning : ResultInfoSeverity.Error;
                 errors.AppendLine(e.Message);
             }
 
@@ -66,7 +66,7 @@ internal static class XsdHelper
                 }
                 catch (XmlException ex)
                 {
-                    return new ResultInfo<string, XMLTesterResultSeverity>($"XML: {ex.Message}", XMLTesterResultSeverity.Error);
+                    return ResultInfo<string>.Error($"XML: {ex.Message}");
                 }
 
                 cancellationToken.ThrowIfCancellationRequested();
@@ -74,7 +74,7 @@ internal static class XsdHelper
                 // Validate XML against the XSD.
                 xmlDocument.Validate(xmlSchemaSet, ValidationErrorCallBack);
 
-                if (hasSucceeded == XMLTesterResultSeverity.Success)
+                if (hasSucceeded == ResultInfoSeverity.Success)
                 {
                     // XML will always be valid if it doesn't define a namespace. Let's verify that namespaces aren't missing.
                     var xsdDocument = XDocument.Parse(xsd);
@@ -90,14 +90,14 @@ internal static class XsdHelper
                     if (!areAllNamespacesDefinedInXsd)
                     {
                         string missingNamespacesFormatted = FormatNamespaces(namespacesMissingInXsd);
-                        return new ResultInfo<string, XMLTesterResultSeverity>(string.Format(XMLTester.XsdNamespacesInconsistentMsg, missingNamespacesFormatted), XMLTesterResultSeverity.Warning);
+                        return ResultInfo<string>.Warning(null, string.Format(XMLTester.XsdNamespacesInconsistentMsg, missingNamespacesFormatted));
                     }
 
                     bool isTargetNamespaceReferenceMissingInXml
                         = DetectMissingTargetNamespaceInXml(xmlSchema.TargetNamespace, xmlNamespaces, out string? missingTargetNamespaceUri);
                     if (isTargetNamespaceReferenceMissingInXml)
                     {
-                        return new ResultInfo<string, XMLTesterResultSeverity>(string.Format(XMLTester.TargetNamespaceNotDefinedInXml, missingTargetNamespaceUri), XMLTesterResultSeverity.Warning);
+                        return ResultInfo<string>.Warning(null, string.Format(XMLTester.TargetNamespaceNotDefinedInXml, missingTargetNamespaceUri));
                     }
 
                     IEnumerable<XmlNamespace> namespacesMissingInXml
@@ -107,23 +107,23 @@ internal static class XsdHelper
                     if (!areAllNamespacesDefinedInXml)
                     {
                         string missingNamespacesFormatted = FormatNamespaces(namespacesMissingInXml);
-                        return new ResultInfo<string, XMLTesterResultSeverity>(string.Format(XMLTester.XmlNamespacesInconsistentMsg, missingNamespacesFormatted), XMLTesterResultSeverity.Warning);
+                        return ResultInfo<string>.Warning(null, string.Format(XMLTester.XmlNamespacesInconsistentMsg, missingNamespacesFormatted));
                     }
                 }
             }
 
-            return new ResultInfo<string, XMLTesterResultSeverity>(errors.ToString(), hasSucceeded);
+            return new ResultInfo<string>(null, hasSucceeded, errors.ToString());
         }
         catch (Exception ex) when (ex is XmlException || ex is XmlSchemaException)
         {
-            return new ResultInfo<string, XMLTesterResultSeverity>($"XSD: {ex.Message}", XMLTesterResultSeverity.Error);
+            return ResultInfo<string>.Error($"XSD: {ex.Message}");
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "Error while validation XML against XSD.");
         }
 
-        return new ResultInfo<string, XMLTesterResultSeverity>(string.Empty, XMLTesterResultSeverity.Error);
+        return ResultInfo<string>.Error(string.Empty);
     }
 
     /// <summary>

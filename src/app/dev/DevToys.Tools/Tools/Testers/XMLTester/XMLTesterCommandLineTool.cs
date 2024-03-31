@@ -61,18 +61,18 @@ internal sealed class XMLTesterCommandLineTool : ICommandLineTool
             return -1;
         }
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsd.Data, xml.Data, logger, cancellationToken);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsd.Data, xml.Data, logger, cancellationToken);
 
         switch (result.Severity)
         {
-            case XMLTesterResultSeverity.Success:
+            case ResultInfoSeverity.Success:
                 return 0;
 
-            case XMLTesterResultSeverity.Warning:
+            case ResultInfoSeverity.Warning:
                 Console.Error.WriteLine(result.Data);
                 return -1;
 
-            case XMLTesterResultSeverity.Error:
+            case ResultInfoSeverity.Error:
                 string errorDescription;
                 if (string.IsNullOrWhiteSpace(result.Data))
                 {

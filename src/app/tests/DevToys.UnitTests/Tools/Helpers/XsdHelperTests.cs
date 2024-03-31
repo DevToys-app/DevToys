@@ -14,9 +14,9 @@ public class XsdHelperTests
         string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsd.xml");
         string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.InvalidXml.xml");
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
-        result.Severity.Should().Be(XMLTesterResultSeverity.Error);
+        result.Severity.Should().Be(ResultInfoSeverity.Error);
     }
 
     [Fact]
@@ -25,9 +25,9 @@ public class XsdHelperTests
         string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsd.xml");
         string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXml.xml");
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
-        result.Severity.Should().Be(XMLTesterResultSeverity.Success);
+        result.Severity.Should().Be(ResultInfoSeverity.Success);
     }
 
     [Fact]
@@ -36,9 +36,9 @@ public class XsdHelperTests
         string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.InvalidXsd.xml");
         string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXml.xml");
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
-        result.Severity.Should().Be(XMLTesterResultSeverity.Error);
+        result.Severity.Should().Be(ResultInfoSeverity.Error);
     }
 
     [Fact]
@@ -47,9 +47,9 @@ public class XsdHelperTests
         string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdWithNamespace.xml");
         string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithNamespace.xml");
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
-        result.Severity.Should().Be(XMLTesterResultSeverity.Success);
+        result.Severity.Should().Be(ResultInfoSeverity.Success);
     }
 
     [Fact]
@@ -58,9 +58,9 @@ public class XsdHelperTests
         string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsd.xml");
         string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXml.xml");
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
-        result.Severity.Should().Be(XMLTesterResultSeverity.Success);
+        result.Severity.Should().Be(ResultInfoSeverity.Success);
     }
 
     [Fact]
@@ -69,9 +69,9 @@ public class XsdHelperTests
         string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdWithNamespace.xml");
         string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithoutNamespace.xml");
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
-        result.Severity.Should().Be(XMLTesterResultSeverity.Warning);
+        result.Severity.Should().Be(ResultInfoSeverity.Warning);
     }
 
     [Fact]
@@ -80,9 +80,9 @@ public class XsdHelperTests
         string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdWithoutNamespace.xml");
         string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithNamespace.xml");
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
-        result.Severity.Should().Be(XMLTesterResultSeverity.Warning);
+        result.Severity.Should().Be(ResultInfoSeverity.Warning);
     }
 
     [Fact]
@@ -91,8 +91,8 @@ public class XsdHelperTests
         string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdOnlyWithTargetNamespace.xml");
         string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithoutNamespace.xml");
 
-        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
-        result.Severity.Should().Be(XMLTesterResultSeverity.Warning);
+        result.Severity.Should().Be(ResultInfoSeverity.Warning);
     }
 }

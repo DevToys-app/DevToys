@@ -33,7 +33,7 @@ public class JsonWebTokenEncoderHelperTests
             Payload = "xxx"
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = JsonWebTokenEncoderHelper.GenerateToken(
+        ResultInfo<JsonWebTokenResult> result = JsonWebTokenEncoderHelper.GenerateToken(
             encoderParameters,
             tokenParameters,
             new MockILogger());
@@ -52,12 +52,12 @@ public class JsonWebTokenEncoderHelperTests
             TokenAlgorithm = JsonWebTokenAlgorithm.HS256
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = JsonWebTokenEncoderHelper.GenerateToken(
+        ResultInfo<JsonWebTokenResult> result = JsonWebTokenEncoderHelper.GenerateToken(
             encoderParameters,
             tokenParameters,
             new MockILogger());
         result.Severity.Should().Be(ResultInfoSeverity.Error);
-        result.ErrorMessage.Should().Be(JsonWebTokenEncoderDecoder.InvalidSignature);
+        result.Message.Should().Be(JsonWebTokenEncoderDecoder.InvalidSignature);
     }
 
     [Fact(DisplayName = "Encode Json Web Token with Invalid Issuers should return false")]
@@ -77,12 +77,12 @@ public class JsonWebTokenEncoderHelperTests
             TokenAlgorithm = JsonWebTokenAlgorithm.HS256
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = JsonWebTokenEncoderHelper.GenerateToken(
+        ResultInfo<JsonWebTokenResult> result = JsonWebTokenEncoderHelper.GenerateToken(
             encoderParameters,
             tokenParameters,
             new MockILogger());
         result.Severity.Should().Be(ResultInfoSeverity.Error);
-        result.ErrorMessage.Should().Be(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError);
+        result.Message.Should().Be(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError);
     }
 
     [Fact(DisplayName = "Encode Json Web Token with Invalid Audience should return false")]
@@ -102,12 +102,12 @@ public class JsonWebTokenEncoderHelperTests
             TokenAlgorithm = JsonWebTokenAlgorithm.HS256
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = JsonWebTokenEncoderHelper.GenerateToken(
+        ResultInfo<JsonWebTokenResult> result = JsonWebTokenEncoderHelper.GenerateToken(
             encoderParameters,
             tokenParameters,
             new MockILogger());
         result.Severity.Should().Be(ResultInfoSeverity.Error);
-        result.ErrorMessage.Should().Be(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError);
+        result.Message.Should().Be(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError);
     }
 
     [Fact(DisplayName = "Encode Json Web Token with Invalid Expiration should return false")]
@@ -127,12 +127,12 @@ public class JsonWebTokenEncoderHelperTests
             TokenAlgorithm = JsonWebTokenAlgorithm.HS256
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = JsonWebTokenEncoderHelper.GenerateToken(
+        ResultInfo<JsonWebTokenResult> result = JsonWebTokenEncoderHelper.GenerateToken(
             encoderParameters,
             tokenParameters,
             new MockILogger());
         result.Severity.Should().Be(ResultInfoSeverity.Error);
-        result.ErrorMessage.Should().Be(JsonWebTokenEncoderDecoder.InvalidExpiration);
+        result.Message.Should().Be(JsonWebTokenEncoderDecoder.InvalidExpiration);
     }
 
     [Theory(DisplayName = "Encode JWT using Asymmetric Algorithms with Valid Payload and Parameters")]
@@ -158,12 +158,11 @@ public class JsonWebTokenEncoderHelperTests
             Audiences = ["DevToys"]
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = JsonWebTokenEncoderHelper.GenerateToken(
+        ResultInfo<JsonWebTokenResult> result = JsonWebTokenEncoderHelper.GenerateToken(
             encoderParameters,
             tokenParameters,
             new MockILogger());
 
-        result.ErrorMessage.Should().BeNull();
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
 
@@ -198,12 +197,11 @@ public class JsonWebTokenEncoderHelperTests
             Audiences = ["DevToys"]
         };
 
-        ResultInfo<JsonWebTokenResult, ResultInfoSeverity> result = JsonWebTokenEncoderHelper.GenerateToken(
+        ResultInfo<JsonWebTokenResult> result = JsonWebTokenEncoderHelper.GenerateToken(
             encoderParameters,
             tokenParameters,
             new MockILogger());
 
-        result.ErrorMessage.Should().BeNull();
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
         result.Data.Token.Should().Be(expectedResult);

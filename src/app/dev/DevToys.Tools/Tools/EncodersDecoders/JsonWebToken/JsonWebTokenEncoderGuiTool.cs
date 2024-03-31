@@ -522,7 +522,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
-            ResultInfo<JsonWebTokenResult?, ResultInfoSeverity> result = JsonWebTokenEncoderHelper.GenerateToken(
+            ResultInfo<JsonWebTokenResult?> result = JsonWebTokenEncoderHelper.GenerateToken(
                 encoderParameters,
                 tokenParameters,
                 _logger);
@@ -538,14 +538,14 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                     _headerInput.Text(result.Data!.Header!);
                     _payloadInput.Text(result.Data!.Payload!);
                     _infoBar
-                        .Description(result.ErrorMessage)
+                        .Description(result.Message)
                         .Warning()
                         .Open();
                     break;
 
                 case ResultInfoSeverity.Error:
                     _infoBar
-                        .Description(result.ErrorMessage)
+                        .Description(result.Message)
                         .Error()
                         .Open();
                     break;

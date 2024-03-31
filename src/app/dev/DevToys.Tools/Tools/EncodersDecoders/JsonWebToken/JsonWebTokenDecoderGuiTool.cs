@@ -459,7 +459,7 @@ internal sealed class JsonWebTokenDecoderGuiTool
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
-            ResultInfo<JsonWebTokenResult?, ResultInfoSeverity> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
+            ResultInfo<JsonWebTokenResult?> result = await JsonWebTokenDecoderHelper.DecodeTokenAsync(
                 decoderParameters,
                 tokenParameters,
                 _logger,
@@ -482,14 +482,14 @@ internal sealed class JsonWebTokenDecoderGuiTool
                     _headerInput.Text(result.Data!.Header!);
                     _payloadInput.Text(result.Data!.Payload!);
                     _infoBar
-                        .Description(result.ErrorMessage)
+                        .Description(result.Message)
                         .Warning()
                         .Open();
                     break;
 
                 case ResultInfoSeverity.Error:
                     _infoBar
-                        .Description(result.ErrorMessage)
+                        .Description(result.Message)
                         .Error()
                         .Open();
                     break;
@@ -549,7 +549,7 @@ internal sealed class JsonWebTokenDecoderGuiTool
             if (!tokenAlgorithm.HasSucceeded)
             {
                 _infoBar
-                    .Description(tokenAlgorithm.ErrorMessage)
+                    .Description(tokenAlgorithm.Message)
                     .Error()
                     .Show();
                 return;
