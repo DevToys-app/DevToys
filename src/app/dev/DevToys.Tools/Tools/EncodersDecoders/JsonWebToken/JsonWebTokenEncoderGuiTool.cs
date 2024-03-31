@@ -300,7 +300,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                         ),
                     Setting("jwt-encode-token-default-time-setting")
                         .Icon("FluentSystemIcons", '\ue36e')
-                        .Title(JsonWebTokenEncoderDecoder.EncodeTokenHasAudienceTitle)
+                        .Title(JsonWebTokenEncoderDecoder.EncodeTokenHasDefaultTimeTitle)
                         .InteractiveElement(
                             _encodeTokenDefaultTimeSwitch
                                 .OnText(JsonWebTokenEncoderDecoder.Yes)
@@ -618,16 +618,10 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         if (value)
         {
             inputSwitch.On();
-            if (input != null)
-            {
-                input.Enable();
-            }
+            input?.Enable();
             return;
         }
         inputSwitch.Off();
-        if (input != null)
-        {
-            input.Disable();
-        }
+        input?.Disable();
     }
 }
