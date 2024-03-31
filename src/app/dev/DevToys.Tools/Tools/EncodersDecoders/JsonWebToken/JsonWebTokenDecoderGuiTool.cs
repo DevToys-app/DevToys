@@ -589,8 +589,16 @@ internal sealed class JsonWebTokenDecoderGuiTool
             string? localizedDescription = JsonWebTokenEncoderDecoder.ResourceManager.GetString(claim.Key);
             if (!string.IsNullOrWhiteSpace(localizedDescription))
             {
-                rows.Add(Row(null, Cell(claim.Key), Cell(claim.Value)));
+                rows.Add(Row(null, Cell(claim.Key), Cell(claim.ActualValue)));
                 tooltips.Add(new UIHoverTooltip(claim.Span, localizedDescription));
+            }
+
+            if (JsonWebTokenDecoderHelper.IsKnownClaimDateFields(claim.Key))
+            {
+                int valueStartIndex = multilineInput.Text.AsSpan(claim.Span.StartPosition).IndexOf(claim.Value);
+                var valueSpan = new TextSpan(claim.Span.StartPosition + valueStartIndex, claim.Value.Length);
+
+                tooltips.Add(new UIHoverTooltip(valueSpan, claim.FormattedValue ?? ""));
             }
         }
         multilineInput.HoverTooltip(tooltips.ToArray());

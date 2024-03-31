@@ -7,6 +7,7 @@ using static DevToys.Tools.Helpers.JsonWebToken.JsonWebTokenEncoderDecoderHelper
 
 namespace DevToys.Tools.Helpers.JsonWebToken;
 
+using System;
 using System.Security.Claims;
 using DevToys.Api;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -14,6 +15,8 @@ using Microsoft.IdentityModel.JsonWebTokens;
 internal static class JsonWebTokenDecoderHelper
 {
     private static readonly HashSet<string> _claimDateFields = new() { "exp", "nbf", "iat", "auth_time", "updated_at" };
+
+    public static bool IsKnownClaimDateFields(string claim) => _claimDateFields.Contains(claim);
 
     public static ResultInfo<JsonWebTokenAlgorithm?> GetTokenAlgorithm(string token, ILogger logger)
     {
@@ -170,13 +173,12 @@ internal static class JsonWebTokenDecoderHelper
         foreach (Claim claim in claims)
         {
             int claimStartPosition = data.IndexOf(claim.Type);
-            TextSpan span = new(claimStartPosition, claim.Type.Length);
-            JsonWebTokenClaim processedClaim = new(claim.Type, claim.Value, span);
-            if (_claimDateFields.Contains(claim.Type) && long.TryParse(claim.Value, out long value))
+            string? formattedValue = null;
+            if (IsKnownClaimDateFields(claim.Type) && long.TryParse(claim.Value, out long value))
             {
-                processedClaim.Value = $"{DateTimeOffset.FromUnixTimeSeconds(value).ToLocalTime()} ({claim.Value})";
+                formattedValue = $"{DateTimeOffset.FromUnixTimeSeconds(value).ToLocalTime()} ({claim.Value})";
             }
-            processedClaims.Add(processedClaim);
+            processedClaims.Add(new(claim.Type, claim.Value, formattedValue, new(claimStartPosition, claim.Type.Length)));
         }
 
         return processedClaims;
