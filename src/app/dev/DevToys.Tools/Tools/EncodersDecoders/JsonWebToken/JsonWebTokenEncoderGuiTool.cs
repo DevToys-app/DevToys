@@ -450,12 +450,6 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         StartTokenEncode();
     }
 
-    private void OnTokenDefaultTimeChanged(bool tokenHasDefaultTime)
-    {
-        _settingsProvider.SetSetting(tokenHasDefaultTimeSetting, tokenHasDefaultTime);
-        StartTokenEncode();
-    }
-
     private void OnTextInputChanged(string text)
     {
         StartTokenEncode();
@@ -577,6 +571,10 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
         ConfigureSwitch(_settingsProvider.GetSetting(tokenHasAudienceSetting), _encodeTokenHasAudienceSwitch, _encodeTokenAudienceInput);
         ConfigureSwitch(_settingsProvider.GetSetting(tokenHasExpirationSetting), _encodeTokenHasExpirationSwitch, _encodeTokenExpirationGrid);
         ConfigureSwitch(_settingsProvider.GetSetting(tokenHasDefaultTimeSetting), _encodeTokenDefaultTimeSwitch);
+
+        _encodeTokenIssuerInput.Text(_settingsProvider.GetSetting(tokenIssuerSetting));
+        _encodeTokenAudienceInput.Text(_settingsProvider.GetSetting(tokenAudienceSetting));
+
         DateTimeOffset expirationDate = _settingsProvider.GetSetting(tokenExpirationSettings);
         _encodeTokenExpirationYearInputNumber.Value(expirationDate.Year);
         _encodeTokenExpirationMonthInputNumber.Value(expirationDate.Month);
