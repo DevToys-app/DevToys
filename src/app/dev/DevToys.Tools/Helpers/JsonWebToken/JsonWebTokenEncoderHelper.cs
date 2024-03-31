@@ -168,9 +168,9 @@ internal static partial class JsonWebTokenEncoderHelper
 
         (byte[] hashKey, string algorithm) = jwtAlgorithm switch
         {
-            JsonWebTokenAlgorithm.HS256 => (new HMACSHA256(signatureByte).Key, SecurityAlgorithms.HmacSha256Signature),
-            JsonWebTokenAlgorithm.HS384 => (new HMACSHA384(signatureByte).Key, SecurityAlgorithms.HmacSha384Signature),
-            JsonWebTokenAlgorithm.HS512 => (new HMACSHA512(signatureByte).Key, SecurityAlgorithms.HmacSha512Signature),
+            JsonWebTokenAlgorithm.HS256 => (new HMACSHA256(signatureByte).Key, SecurityAlgorithms.HmacSha256),
+            JsonWebTokenAlgorithm.HS384 => (new HMACSHA384(signatureByte).Key, SecurityAlgorithms.HmacSha384),
+            JsonWebTokenAlgorithm.HS512 => (new HMACSHA512(signatureByte).Key, SecurityAlgorithms.HmacSha512),
             _ => throw new NotSupportedException()
         };
 
@@ -230,27 +230,27 @@ internal static partial class JsonWebTokenEncoderHelper
         {
             case JsonWebTokenAlgorithm.RS256:
                 var rs256RsaSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(rs256RsaSecurityKey, SecurityAlgorithms.RsaSha256Signature);
+                signingCredentials = new SigningCredentials(rs256RsaSecurityKey, SecurityAlgorithms.RsaSha256);
                 break;
             case JsonWebTokenAlgorithm.RS384:
                 var rs384SymmetricSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(rs384SymmetricSecurityKey, SecurityAlgorithms.RsaSha384Signature);
+                signingCredentials = new SigningCredentials(rs384SymmetricSecurityKey, SecurityAlgorithms.RsaSha384);
                 break;
             case JsonWebTokenAlgorithm.RS512:
                 var rs512SymmetricSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(rs512SymmetricSecurityKey, SecurityAlgorithms.RsaSha512Signature);
+                signingCredentials = new SigningCredentials(rs512SymmetricSecurityKey, SecurityAlgorithms.RsaSha512);
                 break;
             case JsonWebTokenAlgorithm.PS256:
                 var ps256RsaSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(ps256RsaSecurityKey, SecurityAlgorithms.RsaSsaPssSha256Signature);
+                signingCredentials = new SigningCredentials(ps256RsaSecurityKey, SecurityAlgorithms.RsaSsaPssSha256);
                 break;
             case JsonWebTokenAlgorithm.PS384:
                 var ps384SymmetricSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(ps384SymmetricSecurityKey, SecurityAlgorithms.RsaSsaPssSha384Signature);
+                signingCredentials = new SigningCredentials(ps384SymmetricSecurityKey, SecurityAlgorithms.RsaSsaPssSha384);
                 break;
             case JsonWebTokenAlgorithm.PS512:
                 var ps512SymmetricSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(ps512SymmetricSecurityKey, SecurityAlgorithms.RsaSsaPssSha512Signature);
+                signingCredentials = new SigningCredentials(ps512SymmetricSecurityKey, SecurityAlgorithms.RsaSsaPssSha512);
                 break;
             default:
                 throw new NotSupportedException();
@@ -309,15 +309,15 @@ internal static partial class JsonWebTokenEncoderHelper
         {
             case JsonWebTokenAlgorithm.ES256:
                 var es256RsaSecurityKey = new ECDsaSecurityKey(ecd);
-                signingCredentials = new SigningCredentials(es256RsaSecurityKey, SecurityAlgorithms.EcdsaSha256Signature);
+                signingCredentials = new SigningCredentials(es256RsaSecurityKey, SecurityAlgorithms.EcdsaSha256);
                 break;
             case JsonWebTokenAlgorithm.ES384:
                 var es384SymmetricSecurityKey = new ECDsaSecurityKey(ecd);
-                signingCredentials = new SigningCredentials(es384SymmetricSecurityKey, SecurityAlgorithms.EcdsaSha384Signature);
+                signingCredentials = new SigningCredentials(es384SymmetricSecurityKey, SecurityAlgorithms.EcdsaSha384);
                 break;
             case JsonWebTokenAlgorithm.ES512:
                 var es512SymmetricSecurityKey = new ECDsaSecurityKey(ecd);
-                signingCredentials = new SigningCredentials(es512SymmetricSecurityKey, SecurityAlgorithms.EcdsaSha512Signature);
+                signingCredentials = new SigningCredentials(es512SymmetricSecurityKey, SecurityAlgorithms.EcdsaSha512);
                 break;
             default:
                 throw new NotSupportedException();
