@@ -12,14 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Tools\TestData\JsonWebTokenEncoderDecoder\BasicPayload.json" />
-    <None Remove="Tools\TestData\JsonWebTokenEncoderDecoder\ComplexPayload.json" />
-    <None Remove="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-EncryptedComplexToken.txt" />
-    <None Remove="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-EncryptedPrivateKey.txt" />
-    <None Remove="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-EncryptedPublicKey.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Tools\TestData\Base64ImageEncoderDecoder\PNG_transparency_demonstration_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -106,53 +98,42 @@
   <ItemGroup>
     <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\BasicPayload.json" />
     <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ComplexPayload.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES256-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES256-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES256-PrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES256-PublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES384-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES384-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES384-PrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES384-PublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES512-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES512-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES512-PrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\ES512-PublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\HS256-BasicToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\HS256-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\HS256-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\HS256-Signature.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS256-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS256-PrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS256-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS256-PublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS256-RsaPrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS256-RsaPublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS384-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS384-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS384-PrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS384-PublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS512-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS512-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS512-PrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PS512-PublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-EncryptedComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-EncryptedPublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-EncryptedPrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-PrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-PublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-RsaPrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-RsaPublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS384-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS384-PrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS384-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS384-PublicKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS512-Header.json" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS512-PrivateKey.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS512-ComplexToken.txt" />
-    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS512-PublicKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_256\PrivateKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_256\PublicKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_256\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_256\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_384\PrivateKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_384\PublicKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_384\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_384\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_512\PrivateKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_512\PublicKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_512\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\ES\_512\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\_256\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\_384\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\_512\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\_384\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\_512\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\_256\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\Signature-Base64.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\HS\Signature.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\_256\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\_256\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\_384\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\_384\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\_512\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\_512\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PrivateKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\PS\PublicKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\_256\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\_256\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\_384\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\_384\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\_512\Token.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\_512\Header.json" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\PrivateKey.txt" />
+    <EmbeddedResource Include="Tools\TestData\JsonWebTokenEncoderDecoder\RS\PublicKey.txt" />
     <EmbeddedResource Include="Tools\TestData\XmlFormatter\FourSpaces.xml" />
     <EmbeddedResource Include="Tools\TestData\XmlFormatter\Minified.xml" />
     <EmbeddedResource Include="Tools\TestData\XmlFormatter\NewLineOnAttributes.xml" />

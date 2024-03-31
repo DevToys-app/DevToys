@@ -13,21 +13,10 @@ public abstract class MefBasedTest
 
     protected MefBasedTest(params Assembly[] assembliesToLoad)
     {
-        var assemblies
-            = new List<Assembly>(assembliesToLoad)
-            {
-                typeof(MefBasedTest).Assembly
-            };
-
-        if (LoggingExtensions.LoggerFactory is null)
-        {
-            LoggingExtensions.LoggerFactory = LoggerFactory.Create(builder => { });
-        }
+        LoggingExtensions.LoggerFactory ??= LoggerFactory.Create(builder => { });
 
         // Initialize MEF.
-        _mefComposer
-            = new MefComposer(
-                assemblies.ToArray());
+        _mefComposer = new MefComposer([.. assembliesToLoad, typeof(MefBasedTest).Assembly]);
 
         // Set language to english for unit tests.
         CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");

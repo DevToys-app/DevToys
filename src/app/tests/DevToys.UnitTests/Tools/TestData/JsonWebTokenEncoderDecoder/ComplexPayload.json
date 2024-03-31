@@ -1,4 +1,7 @@
 ﻿{
+  "aud": "DevToys",
+  "iss": "DevToys",
+  "iat": 1711862568,
   "sub": "1234567890",
   "name": "John Doe",
   "true": true,
@@ -24,8 +27,5 @@
     }
   ],
   "nbf": 1661092370,
-  "exp": 1661095970,
-  "iat": 1661092370,
-  "iss": "devtoys",
-  "aud": "devtoys"
+  "exp": 1661095970
 }
