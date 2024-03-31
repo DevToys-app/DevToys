@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Explorează fisiere</value>
   </data>
   <data name="BrowserFolders" xml:space="preserve">
     <value>Browse folders</value>
