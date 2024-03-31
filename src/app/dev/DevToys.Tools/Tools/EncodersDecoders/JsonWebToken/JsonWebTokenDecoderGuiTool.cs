@@ -111,8 +111,6 @@ internal sealed class JsonWebTokenDecoderGuiTool
 
     private readonly IUIDataGrid _payloadClaimsDataGrid = DataGrid("jwt-decode-payload-claims-data-grid");
 
-    private static readonly List<string> dateFields = new() { "exp", "nbf", "iat", "auth_time", "updated_at" };
-
     private DisposableSemaphore _semaphore = new();
     private CancellationTokenSource? _cancellationTokenSource;
 
@@ -588,15 +586,11 @@ internal sealed class JsonWebTokenDecoderGuiTool
         var tooltips = new List<UIHoverTooltip>();
         foreach (JsonWebTokenClaim claim in claims)
         {
-            IUIDataGridCell typeCell = Cell(claim.Key);
-            IUIDataGridCell valueCell = Cell(claim.Value);
-
             string? localizedDescription = JsonWebTokenEncoderDecoder.ResourceManager.GetString(claim.Key);
             if (!string.IsNullOrWhiteSpace(localizedDescription))
             {
-                rows.Add(Row(null, typeCell, valueCell));
-                UIHoverTooltip tooltip = new(claim.Span, localizedDescription);
-                tooltips.Add(tooltip);
+                rows.Add(Row(null, Cell(claim.Key), Cell(claim.Value)));
+                tooltips.Add(new UIHoverTooltip(claim.Span, localizedDescription));
             }
         }
         multilineInput.HoverTooltip(tooltips.ToArray());

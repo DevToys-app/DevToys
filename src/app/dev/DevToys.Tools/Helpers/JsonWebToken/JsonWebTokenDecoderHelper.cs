@@ -8,11 +8,12 @@ using static DevToys.Tools.Helpers.JsonWebToken.JsonWebTokenEncoderDecoderHelper
 namespace DevToys.Tools.Helpers.JsonWebToken;
 
 using System.Security.Claims;
+using DevToys.Api;
 using Microsoft.IdentityModel.JsonWebTokens;
 
 internal static class JsonWebTokenDecoderHelper
 {
-    private static readonly List<string> _dateFields = new() { "exp", "nbf", "iat", "auth_time", "updated_at" };
+    private static readonly HashSet<string> _claimDateFields = new() { "exp", "nbf", "iat", "auth_time", "updated_at" };
 
     public static ResultInfo<JsonWebTokenAlgorithm?> GetTokenAlgorithm(string token, ILogger logger)
     {
@@ -52,34 +53,14 @@ internal static class JsonWebTokenDecoderHelper
             JsonWebTokenHandler handler = new();
             JsonWebToken jsonWebToken = handler.ReadJsonWebToken(tokenParameters.Token);
 
-            string decodedHeader = Base64Helper.FromBase64ToText(
-                jsonWebToken.EncodedHeader,
-                Base64Encoding.Utf8,
-                logger,
-                cancellationToken);
-            ResultInfo<string> headerResult = await JsonHelper.FormatAsync(
-                decodedHeader,
-                Indentation.TwoSpaces,
-                false,
-                logger,
-                cancellationToken);
+            ResultInfo<string> headerResult = await jsonWebToken.GetFormattedHeaderAsync(logger, cancellationToken);
             if (!headerResult.HasSucceeded)
             {
-                return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.InvalidHeader);
+                return ResultInfo<JsonWebTokenResult?>.Error(headerResult.Message!);
             }
             tokenResult.Header = headerResult.Data;
 
-            string decodedPayload = Base64Helper.FromBase64ToText(
-                jsonWebToken.EncodedPayload,
-                Base64Encoding.Utf8,
-                logger,
-                cancellationToken);
-            ResultInfo<string> payloadResult = await JsonHelper.FormatAsync(
-                decodedPayload,
-                Indentation.TwoSpaces,
-                false,
-                logger,
-                cancellationToken);
+            ResultInfo<string> payloadResult = await jsonWebToken.GetFormattedPayloadAsync(logger, cancellationToken);
             if (!payloadResult.HasSucceeded)
             {
                 return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.InvalidPayload);
@@ -166,9 +147,11 @@ internal static class JsonWebTokenDecoderHelper
             tokenResult.Signature = tokenParameters.Signature;
             tokenResult.PublicKey = tokenParameters.PublicKey;
 
-            if (!decodeParameters.ValidateActors && !decodeParameters.ValidateLifetime &&
-                !decodeParameters.ValidateIssuers && !decodeParameters.ValidateAudiences &&
-                !decodeParameters.ValidateIssuersSigningKey)
+            if (!decodeParameters.ValidateActors
+                && !decodeParameters.ValidateLifetime
+                && !decodeParameters.ValidateIssuers
+                && !decodeParameters.ValidateAudiences
+                && !decodeParameters.ValidateIssuersSigningKey)
             {
                 return ResultInfo<JsonWebTokenResult?>.Warning(tokenResult, JsonWebTokenEncoderDecoder.TokenNotValidated);
             }
@@ -189,7 +172,7 @@ internal static class JsonWebTokenDecoderHelper
             int claimStartPosition = data.IndexOf(claim.Type);
             TextSpan span = new(claimStartPosition, claim.Type.Length);
             JsonWebTokenClaim processedClaim = new(claim.Type, claim.Value, span);
-            if (_dateFields.Contains(claim.Type) && long.TryParse(claim.Value, out long value))
+            if (_claimDateFields.Contains(claim.Type) && long.TryParse(claim.Value, out long value))
             {
                 processedClaim.Value = $"{DateTimeOffset.FromUnixTimeSeconds(value).ToLocalTime()} ({claim.Value})";
             }

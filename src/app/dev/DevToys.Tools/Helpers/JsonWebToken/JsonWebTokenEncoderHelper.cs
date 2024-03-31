@@ -1,7 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using DevToys.Tools.Helpers.Core;
 using DevToys.Tools.Models;
 using DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
 using Microsoft.Extensions.Logging;
@@ -10,18 +9,11 @@ using Microsoft.IdentityModel.Tokens;
 using static DevToys.Tools.Helpers.JsonWebToken.JsonWebTokenEncoderDecoderHelper;
 namespace DevToys.Tools.Helpers.JsonWebToken;
 
+using DevToys.Api;
 using Microsoft.IdentityModel.JsonWebTokens;
 
 internal static class JsonWebTokenEncoderHelper
 {
-    private static readonly JsonSerializerOptions options = new()
-    {
-        Converters =
-        {
-            new JsonWebTokenPayloadConverter()
-        }
-    };
-
     public static ResultInfo<JsonWebTokenResult?> GenerateToken(
         EncoderParameters encodeParameters,
         TokenParameters tokenParameters,
@@ -36,7 +28,7 @@ internal static class JsonWebTokenEncoderHelper
         try
         {
             IdentityModelEventSource.ShowPII = true;
-            Dictionary<string, object>? payload = JsonSerializer.Deserialize<Dictionary<string, object>>(tokenParameters.Payload!, options);
+            Dictionary<string, object>? payload = JsonSerializer.Deserialize<Dictionary<string, object>>(tokenParameters.Payload);
 
             ResultInfo<SigningCredentials> signingCredentials = GetSigningCredentials(tokenParameters, true);
 
@@ -55,11 +47,6 @@ internal static class JsonWebTokenEncoderHelper
 
             if (encodeParameters.HasIssuer)
             {
-                if (tokenParameters.Issuers.Count == 0)
-                {
-                    return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError);
-                }
-
                 tokenDescriptor.Issuer = string.Join(',', tokenParameters.Issuers);
 
                 if (string.IsNullOrWhiteSpace(tokenDescriptor.Issuer))
@@ -70,12 +57,8 @@ internal static class JsonWebTokenEncoderHelper
 
             if (encodeParameters.HasAudience)
             {
-                if (tokenParameters.Audiences.Count == 0)
-                {
-                    return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError);
-                }
-
                 tokenDescriptor.Audience = string.Join(',', tokenParameters.Audiences);
+
                 if (string.IsNullOrWhiteSpace(tokenDescriptor.Audience))
                 {
                     return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError);
@@ -84,13 +67,21 @@ internal static class JsonWebTokenEncoderHelper
 
             if (encodeParameters.HasExpiration)
             {
-                if (!tokenParameters.ExpirationYear.HasValue || !tokenParameters.ExpirationMonth.HasValue ||
-                    !tokenParameters.ExpirationDay.HasValue || !tokenParameters.ExpirationHour.HasValue ||
-                    !tokenParameters.ExpirationMinute.HasValue)
+                if (!tokenParameters.ExpirationYear.HasValue
+                    || !tokenParameters.ExpirationMonth.HasValue
+                    || !tokenParameters.ExpirationDay.HasValue
+                    || !tokenParameters.ExpirationHour.HasValue
+                    || !tokenParameters.ExpirationMinute.HasValue)
                 {
                     return ResultInfo<JsonWebTokenResult?>.Error(JsonWebTokenEncoderDecoder.InvalidExpiration);
                 }
-                tokenDescriptor.HandleExpiration(tokenParameters);
+
+                tokenDescriptor.Expires = DateTime.UtcNow
+                    .AddYears(tokenParameters.ExpirationYear ?? 0)
+                    .AddMonths(tokenParameters.ExpirationMonth ?? 0)
+                    .AddDays(tokenParameters.ExpirationDay ?? 0)
+                    .AddHours(tokenParameters.ExpirationHour ?? 0)
+                    .AddMinutes(tokenParameters.ExpirationMinute ?? 0);
             }
 
             var handler = new JsonWebTokenHandler
@@ -114,33 +105,6 @@ internal static class JsonWebTokenEncoderHelper
         }
 
         return tokenResult;
-    }
-
-    private static void HandleExpiration(this SecurityTokenDescriptor tokenDescriptor, TokenParameters tokenParameters)
-    {
-        DateTime expirationDate = DateTime.UtcNow;
-        if (tokenParameters.ExpirationYear.HasValue)
-        {
-            expirationDate.AddYears(tokenParameters.ExpirationYear.Value);
-        }
-        if (tokenParameters.ExpirationMonth.HasValue)
-        {
-            expirationDate.AddMonths(tokenParameters.ExpirationMonth.Value);
-        }
-        if (tokenParameters.ExpirationDay.HasValue)
-        {
-            expirationDate.AddDays(tokenParameters.ExpirationDay.Value);
-        }
-        if (tokenParameters.ExpirationHour.HasValue)
-        {
-            expirationDate.AddHours(tokenParameters.ExpirationHour.Value);
-        }
-        if (tokenParameters.ExpirationMinute.HasValue)
-        {
-            expirationDate.AddMinutes(tokenParameters.ExpirationMinute.Value);
-        }
-
-        tokenDescriptor.Expires = expirationDate;
     }
 }
 

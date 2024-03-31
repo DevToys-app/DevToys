@@ -1,5 +1,9 @@
 ﻿namespace DevToys.Tools.Helpers.JsonWebToken;
 
+using DevToys.Tools.Models;
+using DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
+using Microsoft.Extensions.Logging;
+using System.Threading;
 using Microsoft.IdentityModel.JsonWebTokens;
 
 internal static partial class JsonWebTokenHelper
@@ -39,5 +43,42 @@ internal static partial class JsonWebTokenHelper
         {
             return false;
         }
+    }
+
+    internal static Task<ResultInfo<string>> GetFormattedHeaderAsync(this JsonWebToken jwt, ILogger logger, CancellationToken cancellationToken)
+    {
+        return GetJsonWebTokenPayloadOrHeaderCore(jwt, isHeader: true, logger, cancellationToken);
+    }
+
+    internal static Task<ResultInfo<string>> GetFormattedPayloadAsync(this JsonWebToken jwt, ILogger logger, CancellationToken cancellationToken)
+    {
+        return GetJsonWebTokenPayloadOrHeaderCore(jwt, isHeader: false, logger, cancellationToken);
+    }
+
+    private static async Task<ResultInfo<string>> GetJsonWebTokenPayloadOrHeaderCore(
+        JsonWebToken jwt,
+        bool isHeader,
+        ILogger logger,
+        CancellationToken cancellationToken)
+    {
+        string decodedHeader = Base64Helper.FromBase64ToText(
+            isHeader ? jwt.EncodedHeader : jwt.EncodedPayload,
+            Base64Encoding.Utf8,
+            logger,
+            cancellationToken);
+
+        ResultInfo<string> headerResult = await JsonHelper.FormatAsync(
+            decodedHeader,
+            Indentation.TwoSpaces,
+            false,
+            logger,
+            cancellationToken);
+
+        if (!headerResult.HasSucceeded)
+        {
+            return ResultInfo<string>.Error(isHeader ? JsonWebTokenEncoderDecoder.InvalidHeader : JsonWebTokenEncoderDecoder.InvalidPayload);
+        }
+
+        return headerResult;
     }
 }
