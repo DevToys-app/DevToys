@@ -3,17 +3,16 @@ using System.Text;
 using System.Text.Json;
 using DevToys.Tools.Helpers.Core;
 using DevToys.Tools.Models;
-using DevToys.Tools.Models.JwtDecoderEncoder;
 using DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
-
+using static DevToys.Tools.Helpers.JsonWebToken.JsonWebTokenEncoderDecoderHelper;
 namespace DevToys.Tools.Helpers.JsonWebToken;
 
 using Microsoft.IdentityModel.JsonWebTokens;
 
-internal static partial class JsonWebTokenEncoderHelper
+internal static class JsonWebTokenEncoderHelper
 {
     private static readonly JsonSerializerOptions options = new()
     {
@@ -39,8 +38,8 @@ internal static partial class JsonWebTokenEncoderHelper
             IdentityModelEventSource.ShowPII = true;
             Dictionary<string, object>? payload = JsonSerializer.Deserialize<Dictionary<string, object>>(tokenParameters.Payload!, options);
 
-            ResultInfo<SigningCredentials> signingCredentials = GetSigningCredentials(tokenParameters);
-            
+            ResultInfo<SigningCredentials> signingCredentials = GetSigningCredentials(tokenParameters, true);
+
             if (!signingCredentials.HasSucceeded)
             {
                 return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(signingCredentials.ErrorMessage!, ResultInfoSeverity.Error);
@@ -117,28 +116,55 @@ internal static partial class JsonWebTokenEncoderHelper
         return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(tokenResult, ResultInfoSeverity.Success);
     }
 
+    private static void HandleExpiration(this SecurityTokenDescriptor tokenDescriptor, TokenParameters tokenParameters)
+    {
+        DateTime expirationDate = DateTime.UtcNow;
+        if (tokenParameters.ExpirationYear.HasValue)
+        {
+            expirationDate.AddYears(tokenParameters.ExpirationYear.Value);
+        }
+        if (tokenParameters.ExpirationMonth.HasValue)
+        {
+            expirationDate.AddMonths(tokenParameters.ExpirationMonth.Value);
+        }
+        if (tokenParameters.ExpirationDay.HasValue)
+        {
+            expirationDate.AddDays(tokenParameters.ExpirationDay.Value);
+        }
+        if (tokenParameters.ExpirationHour.HasValue)
+        {
+            expirationDate.AddHours(tokenParameters.ExpirationHour.Value);
+        }
+        if (tokenParameters.ExpirationMinute.HasValue)
+        {
+            expirationDate.AddMinutes(tokenParameters.ExpirationMinute.Value);
+        }
+
+        tokenDescriptor.Expires = expirationDate;
+    }
+}
+
+internal static class JsonWebTokenEncoderDecoderHelper
+{
     /// <summary>
     /// Get the Signing Credentials depending on the token Algorithm
     /// </summary>
-    private static ResultInfo<SigningCredentials> GetSigningCredentials(TokenParameters tokenParameters)
+    internal static ResultInfo<SigningCredentials> GetSigningCredentials(TokenParameters tokenParameters, bool forEncode) => tokenParameters.TokenAlgorithm switch
     {
-        return tokenParameters.TokenAlgorithm switch
-        {
-            JsonWebTokenAlgorithm.HS256 or
-            JsonWebTokenAlgorithm.HS384 or
-            JsonWebTokenAlgorithm.HS512 => GetHmacShaSigningCredentials(tokenParameters.Signature, tokenParameters.IsSignatureInBase64Format, tokenParameters.TokenAlgorithm),
-            JsonWebTokenAlgorithm.RS256 or
-            JsonWebTokenAlgorithm.RS384 or
-            JsonWebTokenAlgorithm.RS512 or
-            JsonWebTokenAlgorithm.PS256 or
-            JsonWebTokenAlgorithm.PS384 or
-            JsonWebTokenAlgorithm.PS512 => GetRsaShaSigningCredentials(tokenParameters.PrivateKey, tokenParameters.TokenAlgorithm),
-            JsonWebTokenAlgorithm.ES256 or
-            JsonWebTokenAlgorithm.ES384 or
-            JsonWebTokenAlgorithm.ES512 => GetECDsaSigningCredentials(tokenParameters.PrivateKey, tokenParameters.TokenAlgorithm),
-            _ => throw new NotSupportedException()
-        };
-    }
+        JsonWebTokenAlgorithm.HS256 or
+        JsonWebTokenAlgorithm.HS384 or
+        JsonWebTokenAlgorithm.HS512 => GetHmacShaSigningCredentials(tokenParameters.Signature, tokenParameters.IsSignatureInBase64Format, tokenParameters.TokenAlgorithm),
+        JsonWebTokenAlgorithm.RS256 or
+        JsonWebTokenAlgorithm.RS384 or
+        JsonWebTokenAlgorithm.RS512 or
+        JsonWebTokenAlgorithm.PS256 or
+        JsonWebTokenAlgorithm.PS384 or
+        JsonWebTokenAlgorithm.PS512 => GetRsaShaSigningCredentials(forEncode ? tokenParameters.PrivateKey : tokenParameters.PublicKey, tokenParameters.TokenAlgorithm),
+        JsonWebTokenAlgorithm.ES256 or
+        JsonWebTokenAlgorithm.ES384 or
+        JsonWebTokenAlgorithm.ES512 => GetECDsaSigningCredentials(forEncode ? tokenParameters.PrivateKey : tokenParameters.PublicKey, tokenParameters.TokenAlgorithm),
+        _ => throw new NotSupportedException()
+    };
 
     /// <summary>
     /// Generate a Symmetric Security Key using the token signature (base 64 or plain text)
@@ -177,176 +203,37 @@ internal static partial class JsonWebTokenEncoderHelper
         return new ResultInfo<SigningCredentials>(signingCredentials);
     }
 
-    /// <summary>
-    /// Build RSA signing credentials using the token private key
-    /// </summary>
-    /// <param name="key">Token private key</param>
-    /// <param name="jsonWebTokenAlgorithm">
-    ///     Supported Algorithm 
-    ///         RS256, 
-    ///         RS384,
-    ///         RS512,
-    ///         PS256, 
-    ///         PS384,
-    ///         PS512
-    /// </param>
-    /// <returns></returns>
-    /// <exception cref="NotSupportedException"></exception>
-    private static ResultInfo<SigningCredentials> GetRsaShaSigningCredentials(
+    private static ResultInfo<SigningCredentials> GetRsaShaSigningCredentials(string? key, JsonWebTokenAlgorithm algorithm)
+    {
+        Debug.Assert(algorithm.ToString()[..2] is "RS" or "PS");
+
+        return CreateSigningCredentials(key, algorithm, RSA.Create, x => new RsaSecurityKey(x));
+    }
+
+    private static ResultInfo<SigningCredentials> GetECDsaSigningCredentials(string? key, JsonWebTokenAlgorithm algorithm)
+    {
+        Debug.Assert(algorithm.ToString()[..2] is "ES");
+        return CreateSigningCredentials(key, algorithm, ECDsa.Create, x => new ECDsaSecurityKey(x));
+    }
+
+    private static ResultInfo<SigningCredentials> CreateSigningCredentials<TAlgorithm>(
         string? key,
-        JsonWebTokenAlgorithm jsonWebTokenAlgorithm)
+        JsonWebTokenAlgorithm jsonWebTokenAlgorithm,
+        Func<TAlgorithm> algorithmFactory,
+        Func<TAlgorithm, AsymmetricSecurityKey> securityKeyFactory) where TAlgorithm : AsymmetricAlgorithm
     {
         if (string.IsNullOrWhiteSpace(key))
         {
             return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidPrivateKey, false);
         }
 
-        var rsa = RSA.Create();
-        if (key.StartsWith(JsonWebTokenPemEnumeration.PrivateKey.PemStart))
-        {
-            byte[] keyBytes = JsonWebTokenPemEnumeration.GetBytes(JsonWebTokenPemEnumeration.PrivateKey, key);
-            rsa.ImportPkcs8PrivateKey(keyBytes, out _);
-        }
-        else if (key.StartsWith(JsonWebTokenPemEnumeration.PrivateKey.PemStart))
-        {
-            byte[] keyBytes = JsonWebTokenPemEnumeration.GetBytes(JsonWebTokenPemEnumeration.PrivateKey, key);
-            rsa.ImportPkcs8PrivateKey(keyBytes, out _);
-        }
-        else if (key.StartsWith(JsonWebTokenPemEnumeration.RsaPrivateKey.PemStart))
-        {
-            byte[] keyBytes = JsonWebTokenPemEnumeration.GetBytes(JsonWebTokenPemEnumeration.RsaPrivateKey, key);
-            rsa.ImportRSAPrivateKey(keyBytes, out _);
-        }
-        else
-        {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PrivateKeyNotSupported, false);
-        }
+        TAlgorithm ecd = algorithmFactory();
 
-        SigningCredentials signingCredentials;
-        switch (jsonWebTokenAlgorithm)
-        {
-            case JsonWebTokenAlgorithm.RS256:
-                var rs256RsaSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(rs256RsaSecurityKey, SecurityAlgorithms.RsaSha256);
-                break;
-            case JsonWebTokenAlgorithm.RS384:
-                var rs384SymmetricSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(rs384SymmetricSecurityKey, SecurityAlgorithms.RsaSha384);
-                break;
-            case JsonWebTokenAlgorithm.RS512:
-                var rs512SymmetricSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(rs512SymmetricSecurityKey, SecurityAlgorithms.RsaSha512);
-                break;
-            case JsonWebTokenAlgorithm.PS256:
-                var ps256RsaSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(ps256RsaSecurityKey, SecurityAlgorithms.RsaSsaPssSha256);
-                break;
-            case JsonWebTokenAlgorithm.PS384:
-                var ps384SymmetricSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(ps384SymmetricSecurityKey, SecurityAlgorithms.RsaSsaPssSha384);
-                break;
-            case JsonWebTokenAlgorithm.PS512:
-                var ps512SymmetricSecurityKey = new RsaSecurityKey(rsa);
-                signingCredentials = new SigningCredentials(ps512SymmetricSecurityKey, SecurityAlgorithms.RsaSsaPssSha512);
-                break;
-            default:
-                throw new NotSupportedException();
-        }
+        ecd.ImportFromPem(key);
+
+        var signingCredentials = new SigningCredentials(securityKeyFactory(ecd), jsonWebTokenAlgorithm.ToString());
+
         return new ResultInfo<SigningCredentials>(signingCredentials);
-    }
-
-    /// <summary>
-    /// Build ECDsa signing credentials using the token private key
-    /// </summary>
-    /// <param name="key">Token public key</param>
-    /// <param name="jsonWebTokenAlgorithm">
-    ///     Supported Algorithm 
-    ///         ES256, 
-    ///         ES384,
-    ///         ES512
-    /// </param>
-    /// <returns></returns>
-    /// <exception cref="NotSupportedException"></exception>
-    private static ResultInfo<SigningCredentials> GetECDsaSigningCredentials(
-        string? key,
-        JsonWebTokenAlgorithm jsonWebTokenAlgorithm)
-    {
-        if (string.IsNullOrWhiteSpace(key))
-        {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.InvalidPrivateKey, false);
-        }
-
-        ECDsa ecd;
-        if (OperatingSystem.IsWindows())
-        {
-            ecd = ECDsaCng.Create();
-        }
-        else
-        {
-            ecd = ECDsaOpenSsl.Create();
-        }
-
-        if (key.StartsWith(JsonWebTokenPemEnumeration.PrivateKey.PemStart))
-        {
-            byte[] keyBytes = JsonWebTokenPemEnumeration.GetBytes(JsonWebTokenPemEnumeration.PrivateKey, key);
-            ecd.ImportPkcs8PrivateKey(keyBytes, out _);
-        }
-        else if (key.StartsWith(JsonWebTokenPemEnumeration.ECDPrivateKey.PemStart))
-        {
-            byte[] keyBytes = JsonWebTokenPemEnumeration.GetBytes(JsonWebTokenPemEnumeration.ECDPrivateKey, key);
-            ecd.ImportECPrivateKey(keyBytes, out _);
-        }
-        else
-        {
-            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PublicKeyNotSupported, false);
-        }
-
-        SigningCredentials signingCredentials;
-        switch (jsonWebTokenAlgorithm)
-        {
-            case JsonWebTokenAlgorithm.ES256:
-                var es256RsaSecurityKey = new ECDsaSecurityKey(ecd);
-                signingCredentials = new SigningCredentials(es256RsaSecurityKey, SecurityAlgorithms.EcdsaSha256);
-                break;
-            case JsonWebTokenAlgorithm.ES384:
-                var es384SymmetricSecurityKey = new ECDsaSecurityKey(ecd);
-                signingCredentials = new SigningCredentials(es384SymmetricSecurityKey, SecurityAlgorithms.EcdsaSha384);
-                break;
-            case JsonWebTokenAlgorithm.ES512:
-                var es512SymmetricSecurityKey = new ECDsaSecurityKey(ecd);
-                signingCredentials = new SigningCredentials(es512SymmetricSecurityKey, SecurityAlgorithms.EcdsaSha512);
-                break;
-            default:
-                throw new NotSupportedException();
-        }
-        return new ResultInfo<SigningCredentials>(signingCredentials);
-    }
-
-    private static void HandleExpiration(
-        this SecurityTokenDescriptor tokenDescriptor,
-        TokenParameters tokenParameters)
-    {
-        DateTime expirationDate = DateTime.UtcNow;
-        if (tokenParameters.ExpirationYear.HasValue)
-        {
-            expirationDate.AddYears(tokenParameters.ExpirationYear.Value);
-        }
-        if (tokenParameters.ExpirationMonth.HasValue)
-        {
-            expirationDate.AddYears(tokenParameters.ExpirationMonth.Value);
-        }
-        if (tokenParameters.ExpirationDay.HasValue)
-        {
-            expirationDate.AddYears(tokenParameters.ExpirationDay.Value);
-        }
-        if (tokenParameters.ExpirationHour.HasValue)
-        {
-            expirationDate.AddYears(tokenParameters.ExpirationHour.Value);
-        }
-        if (tokenParameters.ExpirationMinute.HasValue)
-        {
-            expirationDate.AddYears(tokenParameters.ExpirationMinute.Value);
-        }
-        tokenDescriptor.Expires = expirationDate;
     }
 }
+
