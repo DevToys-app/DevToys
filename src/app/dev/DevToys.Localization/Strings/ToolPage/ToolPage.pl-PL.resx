@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Dodaj do ulubionych</value>
   </data>
   <data name="AllFileType" xml:space="preserve">
-    <value>All Files</value>
+    <value>Wszystkie pliki</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>Wyczyść</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopiuj</value>
   </data>
   <data name="NoSmartDetectedTool" xml:space="preserve">
     <value>No tool to suggest</value>
@@ -136,19 +136,19 @@
     <value>OK</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Load a file</value>
+    <value>Wczyaj plik</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Wklej</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
     <value>Pin to Start</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Usuń z ulubionych</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as...</value>
+    <value>Zapisz jako...</value>
   </data>
   <data name="SendToSmartDetection" xml:space="preserve">
     <value>Transfer to another tool</value>
@@ -157,10 +157,10 @@
     <value>Toggle keep the window on top (Ctrl+Up)</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>On</value>
+    <value>Wł.</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>Off</value>
+    <value>Wył.</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
     <value>Unable to open this file</value>
