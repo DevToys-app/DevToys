@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>O aplikacji</value>
     <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ustawienia</value>
     <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>Wygląd</value>
     <comment/>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Motyw aplikacji</value>
     <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>Wybierz motyw aplikacji</value>
     <comment/>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Zachowania</value>
     <comment/>
   </data>
   <data name="CompactMode" xml:space="preserve">
@@ -150,11 +150,11 @@
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Ciemny</value>
     <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>Taki sam jak w systemie</value>
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
@@ -166,7 +166,7 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>Edytowanie</value>
     <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
@@ -186,11 +186,11 @@
     <comment/>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Czcionka</value>
     <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Pomóż nam przetłumaczyć DevToys!</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
@@ -210,7 +210,7 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Język</value>
     <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
@@ -218,23 +218,23 @@
     <comment/>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Jasny</value>
     <comment/>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Numery linii</value>
     <comment/>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Pokazuj numery linii w edytorze tekstu</value>
     <comment/>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>Pokaż numery linii</value>
     <comment/>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Zastąp tekst podczas wklejania</value>
     <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
@@ -242,7 +242,7 @@
     <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Zastąp tekst podczas wklejania</value>
     <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
@@ -254,7 +254,7 @@
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ustawienia</value>
     <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
@@ -278,7 +278,7 @@
     <comment/>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Podgląd</value>
     <comment/>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
@@ -286,15 +286,15 @@
     <comment/>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Wersja {0}</value>
     <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Zawijaj wiersze</value>
     <comment/>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>Zawijanie wierszy</value>
     <comment/>
   </data>
 </root>
