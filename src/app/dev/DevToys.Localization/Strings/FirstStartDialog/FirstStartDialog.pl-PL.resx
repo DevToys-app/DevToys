@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys is your go-to toolbox for developers, packed with a collection of free and open-source tools. Think of it as a Swiss Army knife tailored to tackle those pesky daily tasks that slow you down.
-Here’s what you need to know:</value>
+    <value>DevToys to zestaw narzędzi dla programistów, zawierający kolekcję darmowych i otwartych narzędzi. Jest jak szwajcarski scyzoryk przystosowany do radzenia sobie z tymi pesymistycznymi codziennymi zadaniami, które Cię spowalniają.
+Oto co musisz wiedzieć:</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Kontynuuj</value>
@@ -131,7 +131,7 @@ Here’s what you need to know:</value>
     <value>Po pierwsze offline</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>Możliwości DevToys rośną wraz z rozszerzeniami, dodając moc do zestawu narzędzi. Podczas gdy zapewniamy integralność aplikacji głównej, ważne jest, abyś wiedział, że nie mamy kontroli nad tym, co rozszerzenia firm trzecich robią z Twoim komputerem i twoimi danymi. Dlatego zachęcamy Cię do zachowania ostrożności podczas instalowania rozszerzeń. Do monitorowania aktywności sieci DevToys lub dowolnego rozszerzenia można wykorzystać narzędzia takie jak Wireshark, Mały Snitch lub Fiddler do śledzenia połączeń przychodzących i wychodzących.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
     <value>Zaufaj, ale zweryfikuj</value>
