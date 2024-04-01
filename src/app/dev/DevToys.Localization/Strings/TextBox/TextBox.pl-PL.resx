@@ -127,10 +127,10 @@
     <value>Wytnij</value>
   </data>
   <data name="Decrease" xml:space="preserve">
-    <value>Decrease</value>
+    <value>Zmniejsz</value>
   </data>
   <data name="Increase" xml:space="preserve">
-    <value>Increase</value>
+    <value>Zwiększ</value>
   </data>
   <data name="Paste" xml:space="preserve">
     <value>Wklej</value>
