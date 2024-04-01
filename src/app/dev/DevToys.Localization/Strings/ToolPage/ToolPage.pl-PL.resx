@@ -151,10 +151,10 @@
     <value>Zapisz jako...</value>
   </data>
   <data name="SendToSmartDetection" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>Przenieś do innego narzędzia</value>
   </data>
   <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
-    <value>Toggle keep the window on top (Ctrl+Up)</value>
+    <value>Utrzymaj okno zawsze na górze (Ctrl+Up)</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
     <value>Wł.</value>
@@ -163,15 +163,15 @@
     <value>Wył.</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>Nie można otworzyć tego pliku</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened.</value>
+    <value>Nie można załadować pliku '{0}'. Tylko pliki tekstowe mogą zostać otwarte.</value>
   </data>
   <data name="UnableSaveFile" xml:space="preserve">
-    <value>Unable to save this file</value>
+    <value>Nie można zapisać tego pliku</value>
   </data>
   <data name="UnableSaveFileDescription" xml:space="preserve">
-    <value>Unable to save the file '{0}'. Check the logs to see the internal error.</value>
+    <value>Nie można zapisać pliku '{0}'. Sprawdź logi, aby zobaczyć błąd.</value>
   </data>
 </root>
