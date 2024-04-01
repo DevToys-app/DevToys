@@ -142,7 +142,7 @@
     <value>Zapisz jako...</value>
   </data>
   <data name="ShrinkButtonToolTip" xml:space="preserve">
-    <value>Shrink</value>
+    <value>Pomniejsz</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
     <value>Przenieś do innego narzędzia</value>
