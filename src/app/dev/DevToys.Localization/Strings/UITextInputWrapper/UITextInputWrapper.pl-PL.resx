@@ -133,7 +133,7 @@
     <value>Więcej...</value>
   </data>
   <data name="NoToolSuggested" xml:space="preserve">
-    <value>No tool to suggest</value>
+    <value>Brak narzędzia do zasugerowania</value>
   </data>
   <data name="PasteButtonText" xml:space="preserve">
     <value>Wklej</value>
@@ -145,6 +145,6 @@
     <value>Shrink</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>Przenieś do innego narzędzia</value>
   </data>
 </root>
