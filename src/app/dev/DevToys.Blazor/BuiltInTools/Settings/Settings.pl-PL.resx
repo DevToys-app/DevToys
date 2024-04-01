@@ -142,11 +142,11 @@
     <comment/>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>Kompaktowy odstęp</value>
     <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>Zmniejsz odstęp między elementami interfejsu</value>
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
@@ -174,7 +174,7 @@
     <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>Taki sam jak w wejściu (automatycznie)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
@@ -206,7 +206,7 @@
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>{0} za zaprojektowanie ikony aplikacji</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
@@ -214,7 +214,7 @@
     <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>Aplikacja musi zostać uruchomiona ponownie po wybraniu innego języka</value>
     <comment/>
   </data>
   <data name="Light" xml:space="preserve">
@@ -238,7 +238,7 @@
     <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Po kliknięciu przycisku "wklej", najpierw wyczyść tekst, a dopiero potem wklej go do aktualnej zawartości edytora tekstu.</value>
     <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
@@ -246,11 +246,11 @@
     <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Renderuj znaki niedrukowane</value>
     <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Pokaż znaki niedrukowane</value>
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
@@ -258,15 +258,15 @@
     <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Inteligentny wybór narzędzia</value>
     <comment/>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Automatycznie wykryj najlepsze narzędzie na podstawie zawartości schowka</value>
     <comment/>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Automatycznie wklej zawartość schowka po wybraniu zalecanego narzędzia</value>
     <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
