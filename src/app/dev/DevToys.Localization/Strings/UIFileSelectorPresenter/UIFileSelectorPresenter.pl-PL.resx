@@ -124,22 +124,22 @@
     <value>Przeglądaj foldery</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Przeciągnij i upuść plik tutaj</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Przeciągnij i upuść pliki tutaj</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Przeciągnij i upuść plik {0} tutaj</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Przeciągnij i upuść dowolne pliki {0} tutaj</value>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Tylko plik(i) {0} mogą być użyte.</value>
   </data>
   <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
-    <value>{0} files have been selected.</value>
+    <value>Wybrano pliki {0}.</value>
   </data>
   <data name="Or" xml:space="preserve">
     <value>lub</value>
