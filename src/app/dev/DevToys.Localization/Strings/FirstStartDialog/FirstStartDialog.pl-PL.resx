@@ -122,24 +122,24 @@
 Here’s what you need to know:</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Continue</value>
+    <value>Kontynuuj</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. We will occasionally connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys działa w trybie offline-first. Zbieramy lokalnie minimalne, anonimowe dane w celu rozwiązywania problemów. Nie przesyłamy logów do Internetu. Jeśli napotkasz błąd i zdecydujesz się go zgłosić, możemy poprosić Cię o udostępnienie nam logów. Od czasu do czasu połączymy się z Internetem, aby sprawdzić dostępność aktualizacji, zapewniając dostęp do najnowszych funkcji i aktualizacji bezpieczeństwa.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>Po pierwsze offline</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
     <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>Zaufaj, ale zweryfikuj</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>Rozumiem i zgadzam się</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>Witaj w DevToys!</value>
   </data>
 </root>
