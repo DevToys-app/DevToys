@@ -330,6 +330,7 @@ internal sealed partial class JsonWebTokenEncoderGuiTool
                         .Title(JsonWebTokenEncoderDecoder.HeaderInputTitle)
                         .Extendable()
                         .Language("json")
+                        .ReadOnly()
                         .OnTextChanged(OnTextInputChanged)
                 )
                 .WithRightPaneChild(
