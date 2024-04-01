@@ -130,7 +130,7 @@
     <value>Kopiuj</value>
   </data>
   <data name="NoSmartDetectedTool" xml:space="preserve">
-    <value>No tool to suggest</value>
+    <value>Brak narzędzia do zasugerowania</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
@@ -142,7 +142,7 @@
     <value>Wklej</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>Pin to Start</value>
+    <value>Przypnij do ekranu startowego</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>Usuń z ulubionych</value>
