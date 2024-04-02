@@ -118,38 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllFiles" xml:space="preserve">
-    <value>All {0}</value>
+    <value>Wszystkie {0}</value>
     <comment>This text is used in open file dialog and goes like "All PNG, JPG, GIF"</comment>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Open file</value>
+    <value>Otwórz plik</value>
     <comment/>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>Open</value>
+    <value>Otwórz</value>
     <comment/>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
     <comment/>
   </data>
   <data name="OpenFiles" xml:space="preserve">
-    <value>Open files</value>
+    <value>Otwórz pliki</value>
     <comment/>
   </data>
   <data name="AllFiles2" xml:space="preserve">
-    <value>All files</value>
+    <value>Wszystkie pliki</value>
     <comment/>
   </data>
   <data name="SaveFile" xml:space="preserve">
-    <value>Save file</value>
+    <value>Zapisz plik</value>
     <comment/>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
     <comment/>
   </data>
   <data name="OpenFolder" xml:space="preserve">
-    <value>Open folder</value>
+    <value>Otwórz folder</value>
   </data>
 </root>
