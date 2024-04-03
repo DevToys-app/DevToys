@@ -138,7 +138,7 @@
     <comment/>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Behaviours</value>
     <comment/>
   </data>
   <data name="CompactMode" xml:space="preserve">
@@ -198,7 +198,7 @@
     <comment/>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Change the background colour of the current line so it's more visible</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
