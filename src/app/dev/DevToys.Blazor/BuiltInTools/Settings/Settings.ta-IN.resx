@@ -122,7 +122,7 @@
     <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
+    <value>அமைப்புகள்</value>
     <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
@@ -170,7 +170,7 @@
     <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>வரி-முடிவு எழுத்து</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
@@ -186,7 +186,7 @@
     <comment/>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>எழுத்துரு</value>
     <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
@@ -210,7 +210,7 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>மொழி</value>
     <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
@@ -218,11 +218,11 @@
     <comment/>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>வெளிச்சம்</value>
     <comment/>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>வரி எண்கள்</value>
     <comment/>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
@@ -230,7 +230,7 @@
     <comment/>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>வரி எண்களை காட்டு</value>
     <comment/>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
@@ -254,7 +254,7 @@
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>அமைப்புகள்</value>
     <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
@@ -282,11 +282,11 @@
     <comment/>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>முறைமை அமைப்புகளை பயன்படுத்து</value>
     <comment/>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>பதிப்பு {0}</value>
     <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
