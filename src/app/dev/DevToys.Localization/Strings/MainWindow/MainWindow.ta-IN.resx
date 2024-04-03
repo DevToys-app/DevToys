@@ -121,7 +121,7 @@
     <value>All tools</value>
   </data>
   <data name="AllToolsDisplayTitle" xml:space="preserve">
-    <value>All tools</value>
+    <value>எல்லாக் கருவிகள்</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
@@ -148,7 +148,7 @@
     <value>Search</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>தேட, தட்டு</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>No results found</value>
