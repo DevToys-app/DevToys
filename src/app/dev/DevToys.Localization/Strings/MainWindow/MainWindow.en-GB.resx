@@ -127,10 +127,10 @@
     <value>Back</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorite tools</value>
+    <value>Favourite tools</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Favourites</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
     <value>Keep on top</value>
