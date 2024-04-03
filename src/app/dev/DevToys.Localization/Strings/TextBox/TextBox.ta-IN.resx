@@ -121,10 +121,10 @@
     <value>Clear</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>நகல் எடு</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>வெட்டு</value>
   </data>
   <data name="Decrease" xml:space="preserve">
     <value>Decrease</value>
@@ -139,6 +139,6 @@
     <value>Reveal</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>Select All</value>
+    <value>எல்லாத்தையும் தேர்ந்தெடு</value>
   </data>
 </root>
