@@ -143,7 +143,7 @@
     <value>Create an extension for DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+    <value>Okay</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
     <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
