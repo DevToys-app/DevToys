@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>பற்றி</value>
     <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
@@ -126,11 +126,11 @@
     <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>தோற்றம்</value>
     <comment/>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>நிரல் கருப்பொருள்</value>
     <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
@@ -150,7 +150,7 @@
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>இருள்</value>
     <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
