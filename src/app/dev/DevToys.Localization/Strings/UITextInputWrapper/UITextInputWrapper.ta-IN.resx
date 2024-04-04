@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ClearButtonText" xml:space="preserve">
-    <value>Clear</value>
+    <value>அழி</value>
   </data>
   <data name="CopyButtonText" xml:space="preserve">
-    <value>Copy</value>
+    <value>நகல் எடு</value>
   </data>
   <data name="ExtendButtonToolTip" xml:space="preserve">
     <value>Extend</value>
   </data>
   <data name="LoadFileButtonText" xml:space="preserve">
-    <value>Open a text document</value>
+    <value>ஒரு உரை ஆவண்த்தை திற</value>
   </data>
   <data name="MoreButtonToolTip" xml:space="preserve">
     <value>More...</value>
@@ -136,7 +136,7 @@
     <value>No tool to suggest</value>
   </data>
   <data name="PasteButtonText" xml:space="preserve">
-    <value>Paste</value>
+    <value>ஒட்டு</value>
   </data>
   <data name="SaveAsButtonText" xml:space="preserve">
     <value>Save as...</value>

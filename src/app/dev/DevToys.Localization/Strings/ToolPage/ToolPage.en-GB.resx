@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Add to favourites</value>
   </data>
   <data name="AllFileType" xml:space="preserve">
     <value>All Files</value>
@@ -133,7 +133,7 @@
     <value>No tool to suggest</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Okay</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Load a file</value>
@@ -145,7 +145,7 @@
     <value>Pin to Start</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Remove from favourites</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save as...</value>
