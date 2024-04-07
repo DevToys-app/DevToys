@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Nuke.Common;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
@@ -13,13 +13,20 @@ using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Utilities.Collections;
 using Serilog;
 using static AppVersionTask;
-using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static RestoreTask;
 using Project = Nuke.Common.ProjectModel.Project;
 
 #pragma warning disable IDE1006 // Naming Styles
+[GitHubActions(
+    name: "continuous_integration",
+    GitHubActionsImage.WindowsLatest,
+    GitHubActionsImage.UbuntuLatest,
+    GitHubActionsImage.MacOsLatest,
+    On = [GitHubActionsTrigger.Push, GitHubActionsTrigger.PullRequest],
+    InvokedTargets = [nameof(RunTests)],
+    TimeoutMinutes = 30,
+    AutoGenerate = true)]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -32,12 +39,6 @@ class Build : NukeBuild
 
     [Parameter("Configuration to build - Default is 'Release'")]
     readonly Configuration Configuration = Configuration.Release;
-
-    [Parameter("The target platform")]
-    readonly PlatformTarget[]? PlatformTargets;
-
-    [Parameter("Runs unit tests")]
-    readonly bool RunTests;
 
     [Solution]
     readonly Solution? WindowsSolution;
@@ -52,27 +53,9 @@ class Build : NukeBuild
         .Before(Clean)
         .Executes(() =>
         {
-            if (PlatformTargets == null || PlatformTargets.Length == 0)
-            {
-                Assert.Fail("Parameter `--platform-targets` is missing. Please check `build.sh --help`.");
-                return;
-            }
-
-            if (PlatformTargets.Contains(PlatformTarget.Windows) && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 0, 0))
+            if (OperatingSystem.IsWindows() && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 0, 0))
             {
                 Assert.Fail("To build Windows app, you need to run on Windows 10 or later.");
-                return;
-            }
-
-            if (PlatformTargets.Contains(PlatformTarget.MacOS) && !OperatingSystem.IsMacOS())
-            {
-                Assert.Fail("To build macOS app, you need to run on macOS Ventura 13.1 or later.");
-                return;
-            }
-
-            if (PlatformTargets.Contains(PlatformTarget.Linux) && !OperatingSystem.IsLinux())
-            {
-                Assert.Fail("To build Linux app, you need to run on Linux.");
                 return;
             }
 
@@ -126,31 +109,11 @@ class Build : NukeBuild
                         .SetVerbosity(DotNetVerbosity.quiet)));
         });
 
-    Target BuildPlugins => _ => _
+    Target RunTests => _ => _
         .DependentFor(GenerateSdkNuGet)
         .After(Restore)
         .After(SetVersion)
         .After(BuildGenerators)
-        .Executes(() =>
-        {
-            Log.Information($"Building plugins ...");
-            Project project = WindowsSolution!.GetAllProjects("DevToys.Tools").Single();
-            DotNetBuild(s => s
-                .SetProjectFile(project)
-                .SetConfiguration(Configuration)
-                .SetSelfContained(false)
-                .SetPublishTrimmed(false)
-                .SetVerbosity(DotNetVerbosity.quiet));
-        });
-
-#pragma warning disable IDE0051 // Remove unused private members
-    Target UnitTests => _ => _
-        .DependentFor(GenerateSdkNuGet)
-        .After(Restore)
-        .After(SetVersion)
-        .After(BuildGenerators)
-        .After(BuildPlugins)
-        .OnlyWhenDynamic(() => RunTests)
         .Executes(() =>
         {
             RootDirectory
@@ -161,7 +124,6 @@ class Build : NukeBuild
                     .SetConfiguration(Configuration)
                     .SetVerbosity(DotNetVerbosity.quiet)));
         });
-#pragma warning restore IDE0051 // Remove unused private members
 
     Target GenerateSdkNuGet => _ => _
         .Description("Generate the DevToys SDK NuGet package")
@@ -186,25 +148,22 @@ class Build : NukeBuild
         .DependsOn(GenerateSdkNuGet)
         .Executes(() =>
         {
-            if (PlatformTargets!.Contains(PlatformTarget.Windows))
+            if (OperatingSystem.IsWindows())
             {
                 PublishWindowsApp();
             }
 
-            if (PlatformTargets!.Contains(PlatformTarget.MacOS))
+            if (OperatingSystem.IsMacOS())
             {
                 PublishMacApp();
             }
 
-            if (PlatformTargets!.Contains(PlatformTarget.Linux))
+            if (OperatingSystem.IsLinux())
             {
                 PublishLinuxApp();
             }
 
-            if (PlatformTargets!.Contains(PlatformTarget.CLI))
-            {
-                PublishCliApp();
-            }
+            PublishCliApp();
         });
 
     void PublishWindowsApp()
@@ -309,7 +268,7 @@ class Build : NukeBuild
         string publishProject = "DevToys.CLI";
         Project project;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        if (OperatingSystem.IsMacOS())
         {
             project = MacSolution!.GetProject(publishProject);
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -321,7 +280,7 @@ class Build : NukeBuild
                 yield return new DotnetParameters(project.Path, "osx-arm64", targetFramework, portable: true);
             }
         }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        else if (OperatingSystem.IsWindows())
         {
             project = WindowsSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -336,7 +295,7 @@ class Build : NukeBuild
                 yield return new DotnetParameters(project.Path, "win-x86", targetFramework, portable: true);
             }
         }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        else if (OperatingSystem.IsLinux())
         {
             project = LinuxSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -355,7 +314,7 @@ class Build : NukeBuild
         string publishProject = "DevToys.Windows";
         Project project;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (OperatingSystem.IsWindows())
         {
             project = WindowsSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -380,7 +339,7 @@ class Build : NukeBuild
         string publishProject = "DevToys.Linux";
         Project project;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        if (OperatingSystem.IsLinux())
         {
             project = LinuxSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -403,7 +362,7 @@ class Build : NukeBuild
         string publishProject = "DevToys.MacOS";
         Project project;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        if (OperatingSystem.IsMacOS())
         {
             project = MacSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
