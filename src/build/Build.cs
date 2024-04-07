@@ -68,7 +68,9 @@ class Build : NukeBuild
         {
             if (!Debugger.IsAttached)
             {
-                RootDirectory.GlobDirectories("bin", "obj", "packages", "publish").ForEach(path => path.CreateOrCleanDirectory());
+                RootDirectory
+                    .GlobDirectories("bin", "obj", "packages", "publish")
+                    .ForEach(path => path.CreateOrCleanDirectory());
                 Log.Information("Cleaned bin, obj, packages and publish folders.");
             }
         });
@@ -111,7 +113,7 @@ class Build : NukeBuild
         });
 
     Target RunTests => _ => _
-        .DependentFor(BuildGenerators)
+        .DependentFor(GenerateSdkNuGet)
         .After(Restore)
         .After(SetVersion)
         .After(BuildGenerators)
