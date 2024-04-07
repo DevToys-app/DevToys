@@ -23,8 +23,8 @@ using Project = Nuke.Common.ProjectModel.Project;
     GitHubActionsImage.WindowsLatest,
     GitHubActionsImage.UbuntuLatest,
     GitHubActionsImage.MacOsLatest,
-    On = [GitHubActionsTrigger.Push, GitHubActionsTrigger.PullRequest],
-    InvokedTargets = [nameof(RunTests)],
+    On = [GitHubActionsTrigger.Push],
+    InvokedTargets = [nameof(PreliminaryCheck), nameof(Clean), nameof(Restore), nameof(BuildGenerators), nameof(RunTests)],
     TimeoutMinutes = 30,
     AutoGenerate = true)]
 class Build : NukeBuild
