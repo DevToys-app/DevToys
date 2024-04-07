@@ -40,13 +40,13 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Release'")]
     readonly Configuration Configuration = Configuration.Release;
 
-    [Solution]
+    [Solution(SuppressBuildProjectCheck = true)]
     readonly Solution? WindowsSolution;
 
-    [Solution]
+    [Solution(SuppressBuildProjectCheck = true)]
     readonly Solution? MacSolution;
 
-    [Solution]
+    [Solution(SuppressBuildProjectCheck = true)]
     readonly Solution? LinuxSolution;
 
     Target PreliminaryCheck => _ => _
