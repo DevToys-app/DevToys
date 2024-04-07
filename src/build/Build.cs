@@ -24,7 +24,7 @@ using Project = Nuke.Common.ProjectModel.Project;
     GitHubActionsImage.UbuntuLatest,
     GitHubActionsImage.MacOsLatest,
     On = [GitHubActionsTrigger.Push],
-    InvokedTargets = [nameof(PreliminaryCheck), nameof(Clean), nameof(Restore), nameof(BuildGenerators), nameof(RunTests)],
+    InvokedTargets = [nameof(RunTests)],
     TimeoutMinutes = 30,
     AutoGenerate = true)]
 class Build : NukeBuild
@@ -35,10 +35,10 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main() => Execute<Build>(x => x.PublishApp);
+    public static int Main() => Execute<Build>(x => x.RunTests);
 
-    [Parameter("Configuration to build - Default is 'Release'")]
-    readonly Configuration Configuration = Configuration.Release;
+    [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
+    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Solution(SuppressBuildProjectCheck = true)]
     readonly Solution? WindowsSolution;
@@ -86,7 +86,6 @@ class Build : NukeBuild
         });
 
     Target SetVersion => _ => _
-        .DependentFor(GenerateSdkNuGet)
         .After(Restore)
         .OnlyWhenDynamic(() => Configuration == Configuration.Release)
         .Executes(() =>
@@ -94,10 +93,8 @@ class Build : NukeBuild
             SetAppVersion(RootDirectory);
         });
 
-    Target BuildGenerators => _ => _
-        .DependentFor(GenerateSdkNuGet)
-        .After(Restore)
-        .After(SetVersion)
+    Target CompileGenerators => _ => _
+        .DependsOn(Restore)
         .Executes(() =>
         {
             Log.Information($"Building generators ...");
@@ -112,11 +109,38 @@ class Build : NukeBuild
                         .SetVerbosity(DotNetVerbosity.quiet)));
         });
 
+    Target Compile => _ => _
+        .DependsOn(CompileGenerators)
+        .Executes(() =>
+        {
+            Log.Information($"Building solution ...");
+
+            Solution solution;
+            if (OperatingSystem.IsMacOS())
+            {
+                solution = MacSolution!;
+            }
+            else if (OperatingSystem.IsWindows())
+            {
+                solution = WindowsSolution!;
+            }
+            else if (OperatingSystem.IsLinux())
+            {
+                solution = LinuxSolution!;
+            }
+            else
+            {
+                throw new InvalidOperationException("You must run Windows, macOS or Linux.");
+            }
+
+            DotNetBuild(s => s
+                .SetProjectFile(solution.Path)
+                .SetConfiguration(Configuration)
+                .SetVerbosity(DotNetVerbosity.quiet));
+        });
+
     Target RunTests => _ => _
-        .DependentFor(GenerateSdkNuGet)
-        .After(Restore)
-        .After(SetVersion)
-        .After(BuildGenerators)
+        .DependsOn(Compile)
         .Executes(() =>
         {
             RootDirectory
@@ -132,7 +156,7 @@ class Build : NukeBuild
         .Description("Generate the DevToys SDK NuGet package")
         .DependsOn(SetVersion)
         .DependsOn(Restore)
-        .DependsOn(BuildGenerators)
+        .DependsOn(CompileGenerators)
         .Executes(() =>
         {
             Log.Information($"Building NuGet packages ...");

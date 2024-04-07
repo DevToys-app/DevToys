@@ -32,8 +32,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: PreliminaryCheck, Clean, Restore, BuildGenerators, RunTests'
-        run: ./build.cmd PreliminaryCheck Clean Restore BuildGenerators RunTests
+      - name: 'Run: RunTests'
+        run: ./build.cmd RunTests
   ubuntu-latest:
     name: ubuntu-latest
     runs-on: ubuntu-latest
@@ -47,8 +47,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: PreliminaryCheck, Clean, Restore, BuildGenerators, RunTests'
-        run: ./build.cmd PreliminaryCheck Clean Restore BuildGenerators RunTests
+      - name: 'Run: RunTests'
+        run: ./build.cmd RunTests
   macos-latest:
     name: macos-latest
     runs-on: macos-latest
@@ -62,5 +62,5 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: PreliminaryCheck, Clean, Restore, BuildGenerators, RunTests'
-        run: ./build.cmd PreliminaryCheck Clean Restore BuildGenerators RunTests
+      - name: 'Run: RunTests'
+        run: ./build.cmd RunTests

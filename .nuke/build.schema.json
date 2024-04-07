@@ -8,7 +8,7 @@
       "properties": {
         "Configuration": {
           "type": "string",
-          "description": "Configuration to build - Default is 'Release'",
+          "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)",
           "enum": [
             "Debug",
             "Release"
@@ -80,8 +80,9 @@
           "items": {
             "type": "string",
             "enum": [
-              "BuildGenerators",
               "Clean",
+              "Compile",
+              "CompileGenerators",
               "GenerateSdkNuGet",
               "PreliminaryCheck",
               "PublishApp",
@@ -97,8 +98,9 @@
           "items": {
             "type": "string",
             "enum": [
-              "BuildGenerators",
               "Clean",
+              "Compile",
+              "CompileGenerators",
               "GenerateSdkNuGet",
               "PreliminaryCheck",
               "PublishApp",
