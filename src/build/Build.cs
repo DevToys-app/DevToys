@@ -17,7 +17,6 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static RestoreTask;
 using Project = Nuke.Common.ProjectModel.Project;
 
-#pragma warning disable IDE1006 // Naming Styles
 [GitHubActions(
     name: "ci",
     GitHubActionsImage.WindowsLatest,
@@ -49,30 +48,13 @@ class Build : NukeBuild
     [Solution(SuppressBuildProjectCheck = true)]
     readonly Solution? LinuxSolution;
 
-    Target PreliminaryCheck => _ => _
-        .Before(Clean)
-        .Executes(() =>
-        {
-            if (OperatingSystem.IsWindows() && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 0, 0))
-            {
-                Assert.Fail("To build Windows app, you need to run on Windows 10 or later.");
-                return;
-            }
-
-            Log.Information("Preliminary checks are successful.");
-        });
-
     Target Clean => _ => _
-        .DependsOn(PreliminaryCheck)
         .Executes(() =>
         {
-            if (!Debugger.IsAttached)
-            {
-                RootDirectory
+            RootDirectory
                     .GlobDirectories("bin", "obj", "packages", "publish")
                     .ForEach(path => path.CreateOrCleanDirectory());
-                Log.Information("Cleaned bin, obj, packages and publish folders.");
-            }
+            Log.Information("Cleaned bin, obj, packages and publish folders.");
         });
 
     Target Restore => _ => _
@@ -134,7 +116,7 @@ class Build : NukeBuild
             }
 
             DotNetBuild(s => s
-                .SetProjectFile(solution.Path)
+                .SetProjectFile(solution)
                 .SetConfiguration(Configuration)
                 .SetVerbosity(DotNetVerbosity.quiet));
         });
@@ -403,5 +385,4 @@ class Build : NukeBuild
             throw new NotSupportedException();
         }
     }
-#pragma warning restore IDE1006 // Naming Styles
 }
