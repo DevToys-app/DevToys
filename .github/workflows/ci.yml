@@ -9,12 +9,12 @@
 #
 #     - To trigger manual generation invoke:
 #
-#         nuke --generate-configuration GitHubActions_continuous_integration --host GitHubActions
+#         nuke --generate-configuration GitHubActions_ci --host GitHubActions
 #
 # </auto-generated>
 # ------------------------------------------------------------------------------
 
-name: continuous_integration
+name: ci
 
 on: [push]
 

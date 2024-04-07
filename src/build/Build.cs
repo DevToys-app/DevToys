@@ -19,7 +19,7 @@ using Project = Nuke.Common.ProjectModel.Project;
 
 #pragma warning disable IDE1006 // Naming Styles
 [GitHubActions(
-    name: "continuous_integration",
+    name: "ci",
     GitHubActionsImage.WindowsLatest,
     GitHubActionsImage.UbuntuLatest,
     GitHubActionsImage.MacOsLatest,
@@ -102,7 +102,7 @@ class Build : NukeBuild
         {
             Log.Information($"Building generators ...");
             RootDirectory
-                .GlobFiles("**/generators/*.csproj")
+                .GlobFiles("**/generators/**/*.csproj")
                 .ForEach(f =>
                     DotNetBuild(s => s
                         .SetProjectFile(f)
