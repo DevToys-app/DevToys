@@ -56,7 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_15.1.app
+        run: sudo xcode-select -s /Applications/Xcode_15.1.app/Contents/Developer
       - name: 'Cache: .nuke/temp, ~/.nuget/packages'
         uses: actions/cache@v3
         with:
