@@ -50,11 +50,13 @@ jobs:
       - name: 'Run: RunTests'
         run: ./build.cmd RunTests
   macos-latest:
-    name: macos-14
-    runs-on: macos-14
+    name: macos-latest
+    runs-on: macos-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.1.app
       - name: 'Cache: .nuke/temp, ~/.nuget/packages'
         uses: actions/cache@v3
         with:
