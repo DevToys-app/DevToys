@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Nuke.Common;
-using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
@@ -17,15 +16,6 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static RestoreTask;
 using Project = Nuke.Common.ProjectModel.Project;
 
-[GitHubActions(
-    name: "ci",
-    GitHubActionsImage.WindowsLatest,
-    GitHubActionsImage.UbuntuLatest,
-    GitHubActionsImage.MacOsLatest,
-    On = [GitHubActionsTrigger.Push],
-    InvokedTargets = [nameof(RunTests)],
-    TimeoutMinutes = 30,
-    AutoGenerate = true)]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
