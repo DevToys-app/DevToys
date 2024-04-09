@@ -174,11 +174,11 @@
     <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>与输入一致的行尾（自动）</value>
+    <value>与输入一致的行尾(自动)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>回车和换行（\r\n）（Windows）</value>
+    <value>回车和换行(\r\n)(Windows)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
