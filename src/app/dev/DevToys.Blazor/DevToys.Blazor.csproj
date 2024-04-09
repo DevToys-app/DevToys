@@ -51,6 +51,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Embed HTML CSS JS -->
+    <EmbeddedResource Include="Pages\**\*.js" />
+    <EmbeddedResource Include="Components\**\*.js" />
+    <EmbeddedResource Include="wwwroot\**\*" />
+
+    <!-- Remove StaticWebAsset -->
+    <StaticWebAsset Remove="\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="BuiltInGroups\Groups.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
