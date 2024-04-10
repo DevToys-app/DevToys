@@ -34,10 +34,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "desktops", "desktops", "{22EE9386-CEFA-47D8-97B2-09A63EDF7F2E}"
-	ProjectSection(SolutionItems) = preProject
-		app\dev\platforms\desktop\Directory.Build.props = app\dev\platforms\desktop\Directory.Build.props
-		app\dev\platforms\desktop\Directory.Build.targets = app\dev\platforms\desktop\Directory.Build.targets
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.CLI", "app\dev\platforms\desktop\DevToys.CLI\DevToys.CLI.csproj", "{8C72D38A-658D-4C9D-B0AD-2DA975BE7826}"
 EndProject

@@ -49,7 +49,7 @@ function loadSplitGridLibrary() {
             // Load split-grid library, if needed.
             if (!windowSplitGrid.Split) {
                 /* eslint-disable no-undef */
-                require(["_content/DevToys.Blazor/lib/split-grid/split-grid"], function (split) {
+                require(["_content/DevToys.Blazor/wwwroot/lib/split-grid/split-grid"], function (split) {
                     windowSplitGrid.Split = split;
                     resolve(null);
                 });

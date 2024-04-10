@@ -81,19 +81,5 @@
     <Content Remove="Assets.xcassets\AppIcon.appiconset\Contents.json"/>
     <BundleResource Include="Assets.xcassets\AppIcon.appiconset\Contents.json"/>
   </ItemGroup>
-
-  <Target Name="PublishStaticWebAssetsFiles" AfterTargets="_ComputePublishLocation">
-    <!-- Include the .staticwebassets.runtime.json files to the app bundle -->
-    <PropertyGroup>
-      <_AssemblyPublishDir Condition="'$(_PlatformName)' == 'iOS' Or '$(_PlatformName)' == 'tvOS' Or '$(_PlatformName)' == 'watchOS'">$(_RelativeAppBundlePath)\</_AssemblyPublishDir>
-      <_AssemblyPublishDir Condition="'$(_PlatformName)' == 'macOS' Or '$(_PlatformName)' == 'MacCatalyst'">$(_RelativeAppBundlePath)\Contents\$(_CustomBundleName)\</_AssemblyPublishDir>
-    </PropertyGroup>
-    <ItemGroup>
-      <StaticWebAssetsFiles Include="$(OutputPath)\*.staticwebassets.runtime.json"/>
-      <ResolvedFileToPublish
-        Include="@(StaticWebAssetsFiles)"
-        RelativePath="$(_AssemblyPublishDir)\%(Filename)%(Extension)" />
-    </ItemGroup>
-  </Target>
   
 </Project>

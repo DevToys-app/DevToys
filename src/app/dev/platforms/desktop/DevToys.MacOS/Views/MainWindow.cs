@@ -105,7 +105,7 @@ internal sealed class MainWindow : NSWindow
         // Create WebView and add it to NSVisualEffectView
         Guard.IsNotNull(AppDelegate.ServiceProvider);
         var webView = new BlazorWkWebView(AppDelegate.ServiceProvider, EnableDeveloperTools);
-        webView.BlazorWebViewInitialized+= OnBlazorWebViewInitialized;
+        webView.BlazorWebViewInitialized += OnBlazorWebViewInitialized;
         visualEffectView.AddSubview(webView.View);
 
         // Make the WKWebView resizing with the window and anchor it below the title bar, so we can still move the window with the title bar.

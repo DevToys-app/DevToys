@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild">
       <PrivateAssets>all</PrivateAssets>
@@ -48,6 +50,16 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\samples\json-sample.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Embed HTML CSS JS -->
+    <EmbeddedResource Include="Pages\**\*.js" />
+    <EmbeddedResource Include="Components\**\*.js" />
+    <EmbeddedResource Include="wwwroot\**\*" />
+
+    <!-- Remove StaticWebAsset -->
+    <StaticWebAsset Remove="\**\*" />
   </ItemGroup>
 
   <ItemGroup>

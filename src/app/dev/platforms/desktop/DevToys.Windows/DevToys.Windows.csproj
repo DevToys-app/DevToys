@@ -48,6 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Strings\Other\Other.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Other.Designer.cs</LastGenOutput>

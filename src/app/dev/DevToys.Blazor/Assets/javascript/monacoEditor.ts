@@ -18,7 +18,7 @@ class MonacoEditor {
     // constructor
     static {
         // this will force loading the monaco library. It happens on the app startup.
-        require.config({ paths: { "vs": "_content/DevToys.Blazor/lib/monaco-editor/min/vs" } });
+        require.config({ paths: { "vs": "_content/DevToys.Blazor/wwwroot/lib/monaco-editor/min/vs" } });
         require(["vs/editor/editor.main"]);
     }
 

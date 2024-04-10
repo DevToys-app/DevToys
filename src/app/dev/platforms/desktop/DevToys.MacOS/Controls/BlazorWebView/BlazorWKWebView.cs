@@ -1,6 +1,7 @@
 using System.Collections.Specialized;
 using System.Globalization;
 using DevToys.Api;
+using DevToys.Blazor.Core;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using WebKit;
@@ -259,7 +260,10 @@ internal sealed partial class BlazorWkWebView : IDisposable
 
     private static IFileProvider CreateFileProvider(string contentRootDir)
     {
-        return new BlazorAssetFileProvider(contentRootDir);
+        string bundleRootDir = Path.Combine(NSBundle.MainBundle.ResourcePath, contentRootDir);
+        var physicalProvider = new PhysicalFileProvider(bundleRootDir);
+        var embeddedProvider = new DevToysBlazorEmbeddedFileProvider();
+        return new CompositeFileProvider(physicalProvider, embeddedProvider);
     }
 
     [LoggerMessage(EventId = 0, Level = LogLevel.Debug, Message = "Creating file provider at content root '{contentRootDir}', using host page relative path '{hostPageRelativePath}'.")]

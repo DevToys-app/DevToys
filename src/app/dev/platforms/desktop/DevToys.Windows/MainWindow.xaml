@@ -7,6 +7,7 @@
     xmlns:devtoysblazor="clr-namespace:DevToys.Blazor;assembly=DevToys.Blazor"
     xmlns:core="clr-namespace:DevToys.Core;assembly=DevToys.Core"
     xmlns:controls="clr-namespace:DevToys.Windows.Controls"
+    xmlns:webview="clr-namespace:DevToys.Windows.Controls.WebView"
     xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
     d:DataContext="{d:DesignInstance Type=core:TitleBarInfoProvider}"
     mc:Ignorable="d"
@@ -21,14 +22,14 @@
     <Grid>
         <!-- Interestingly, on some monitors, setting a margin of 2px makes the BlazorWebView rendering a white line in diagonale.
              See https://github.com/veler/DevToys/issues/878 -->
-        <blazor:BlazorWebView
+        <webview:CustomBlazorWebView
             x:Name="blazorWebView"
             Margin="0"
             HostPage="wwwroot/index.html"
             Services="{StaticResource services}">
-            <blazor:BlazorWebView.RootComponents>
+            <webview:CustomBlazorWebView.RootComponents>
                 <blazor:RootComponent Selector="#app" ComponentType="{x:Type devtoysblazor:Main}"/>
-            </blazor:BlazorWebView.RootComponents>
-        </blazor:BlazorWebView>
+            </webview:CustomBlazorWebView.RootComponents>
+        </webview:CustomBlazorWebView>
     </Grid>
 </controls:MicaWindowWithOverlay>
