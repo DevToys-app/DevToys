@@ -1,0 +1,54 @@
+name: ci
+
+on: [push]
+
+jobs:
+  windows-latest:
+    name: windows-latest
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'Cache: .nuke/temp, ~/.nuget/packages'
+        uses: actions/cache@v3
+        with:
+          path: |
+            .nuke/temp
+            ~/.nuget/packages
+          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
+      - name: 'Restore, Build and Test'
+        run: ./build.cmd RunTests
+  ubuntu-latest:
+    name: ubuntu-latest
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'Cache: .nuke/temp, ~/.nuget/packages'
+        uses: actions/cache@v3
+        with:
+          path: |
+            .nuke/temp
+            ~/.nuget/packages
+          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
+      - name: 'Restore, Build and Test'
+        run: ./build.cmd RunTests
+  macos-latest:
+    name: macos-14
+    runs-on: macos-14
+    timeout-minutes: 30
+    steps:
+      - name: Set to use Xcode 15.1
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '15.1'
+      - uses: actions/checkout@v3
+      - name: 'Cache: .nuke/temp, ~/.nuget/packages'
+        uses: actions/cache@v3
+        with:
+          path: |
+            .nuke/temp
+            ~/.nuget/packages
+          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
+      - name: 'Restore, Build and Test'
+        run: ./build.cmd RunTests

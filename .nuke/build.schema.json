@@ -8,7 +8,7 @@
       "properties": {
         "Configuration": {
           "type": "string",
-          "description": "Configuration to build - Default is 'Release'",
+          "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)",
           "enum": [
             "Debug",
             "Release"
@@ -63,20 +63,6 @@
           "type": "boolean",
           "description": "Shows the execution plan (HTML)"
         },
-        "PlatformTargets": {
-          "type": "array",
-          "description": "The target platform",
-          "items": {
-            "type": "string",
-            "enum": [
-              "CLI",
-              "Linux",
-              "MacOS",
-              "Wasm",
-              "Windows"
-            ]
-          }
-        },
         "Profile": {
           "type": "array",
           "description": "Defines the profiles to load",
@@ -88,25 +74,20 @@
           "type": "string",
           "description": "Root directory during build execution"
         },
-        "RunTests": {
-          "type": "boolean",
-          "description": "Runs unit tests"
-        },
         "Skip": {
           "type": "array",
           "description": "List of targets to be skipped. Empty list skips all dependencies",
           "items": {
             "type": "string",
             "enum": [
-              "BuildGenerators",
-              "BuildPlugins",
               "Clean",
+              "Compile",
+              "CompileGenerators",
               "GenerateSdkNuGet",
-              "PreliminaryCheck",
               "PublishApp",
               "Restore",
-              "SetVersion",
-              "UnitTests"
+              "RunTests",
+              "SetVersion"
             ]
           }
         },
@@ -116,15 +97,14 @@
           "items": {
             "type": "string",
             "enum": [
-              "BuildGenerators",
-              "BuildPlugins",
               "Clean",
+              "Compile",
+              "CompileGenerators",
               "GenerateSdkNuGet",
-              "PreliminaryCheck",
               "PublishApp",
               "Restore",
-              "SetVersion",
-              "UnitTests"
+              "RunTests",
+              "SetVersion"
             ]
           }
         },

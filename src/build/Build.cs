@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
@@ -13,13 +12,10 @@ using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Utilities.Collections;
 using Serilog;
 using static AppVersionTask;
-using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using static RestoreTask;
 using Project = Nuke.Common.ProjectModel.Project;
 
-#pragma warning disable IDE1006 // Naming Styles
 class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -28,65 +24,27 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main() => Execute<Build>(x => x.PublishApp);
+    public static int Main() => Execute<Build>(x => x.RunTests);
 
-    [Parameter("Configuration to build - Default is 'Release'")]
-    readonly Configuration Configuration = Configuration.Release;
+    [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
+    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Parameter("The target platform")]
-    readonly PlatformTarget[]? PlatformTargets;
-
-    [Parameter("Runs unit tests")]
-    readonly bool RunTests;
-
-    [Solution]
+    [Solution(SuppressBuildProjectCheck = true)]
     readonly Solution? WindowsSolution;
 
-    [Solution]
+    [Solution(SuppressBuildProjectCheck = true)]
     readonly Solution? MacSolution;
 
-    [Solution]
+    [Solution(SuppressBuildProjectCheck = true)]
     readonly Solution? LinuxSolution;
 
-    Target PreliminaryCheck => _ => _
-        .Before(Clean)
-        .Executes(() =>
-        {
-            if (PlatformTargets == null || PlatformTargets.Length == 0)
-            {
-                Assert.Fail("Parameter `--platform-targets` is missing. Please check `build.sh --help`.");
-                return;
-            }
-
-            if (PlatformTargets.Contains(PlatformTarget.Windows) && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 0, 0))
-            {
-                Assert.Fail("To build Windows app, you need to run on Windows 10 or later.");
-                return;
-            }
-
-            if (PlatformTargets.Contains(PlatformTarget.MacOS) && !OperatingSystem.IsMacOS())
-            {
-                Assert.Fail("To build macOS app, you need to run on macOS Ventura 13.1 or later.");
-                return;
-            }
-
-            if (PlatformTargets.Contains(PlatformTarget.Linux) && !OperatingSystem.IsLinux())
-            {
-                Assert.Fail("To build Linux app, you need to run on Linux.");
-                return;
-            }
-
-            Log.Information("Preliminary checks are successful.");
-        });
-
     Target Clean => _ => _
-        .DependsOn(PreliminaryCheck)
         .Executes(() =>
         {
-            if (!Debugger.IsAttached)
-            {
-                RootDirectory.GlobDirectories("bin", "obj", "packages", "publish").ForEach(path => path.CreateOrCleanDirectory());
-            }
+            RootDirectory
+                    .GlobDirectories("bin", "obj", "packages", "publish")
+                    .ForEach(path => path.CreateOrCleanDirectory());
+            Log.Information("Cleaned bin, obj, packages and publish folders.");
         });
 
     Target Restore => _ => _
@@ -100,7 +58,6 @@ class Build : NukeBuild
         });
 
     Target SetVersion => _ => _
-        .DependentFor(GenerateSdkNuGet)
         .After(Restore)
         .OnlyWhenDynamic(() => Configuration == Configuration.Release)
         .Executes(() =>
@@ -108,15 +65,13 @@ class Build : NukeBuild
             SetAppVersion(RootDirectory);
         });
 
-    Target BuildGenerators => _ => _
-        .DependentFor(GenerateSdkNuGet)
-        .After(Restore)
-        .After(SetVersion)
+    Target CompileGenerators => _ => _
+        .DependsOn(Restore)
         .Executes(() =>
         {
             Log.Information($"Building generators ...");
             RootDirectory
-                .GlobFiles("**/generators/*.csproj")
+                .GlobFiles("**/generators/**/*.csproj")
                 .ForEach(f =>
                     DotNetBuild(s => s
                         .SetProjectFile(f)
@@ -126,31 +81,38 @@ class Build : NukeBuild
                         .SetVerbosity(DotNetVerbosity.quiet)));
         });
 
-    Target BuildPlugins => _ => _
-        .DependentFor(GenerateSdkNuGet)
-        .After(Restore)
-        .After(SetVersion)
-        .After(BuildGenerators)
+    Target Compile => _ => _
+        .DependsOn(CompileGenerators)
         .Executes(() =>
         {
-            Log.Information($"Building plugins ...");
-            Project project = WindowsSolution!.GetAllProjects("DevToys.Tools").Single();
+            Log.Information($"Building solution ...");
+
+            Solution solution;
+            if (OperatingSystem.IsMacOS())
+            {
+                solution = MacSolution!;
+            }
+            else if (OperatingSystem.IsWindows())
+            {
+                solution = WindowsSolution!;
+            }
+            else if (OperatingSystem.IsLinux())
+            {
+                solution = LinuxSolution!;
+            }
+            else
+            {
+                throw new InvalidOperationException("You must run Windows, macOS or Linux.");
+            }
+
             DotNetBuild(s => s
-                .SetProjectFile(project)
+                .SetProjectFile(solution)
                 .SetConfiguration(Configuration)
-                .SetSelfContained(false)
-                .SetPublishTrimmed(false)
                 .SetVerbosity(DotNetVerbosity.quiet));
         });
 
-#pragma warning disable IDE0051 // Remove unused private members
-    Target UnitTests => _ => _
-        .DependentFor(GenerateSdkNuGet)
-        .After(Restore)
-        .After(SetVersion)
-        .After(BuildGenerators)
-        .After(BuildPlugins)
-        .OnlyWhenDynamic(() => RunTests)
+    Target RunTests => _ => _
+        .DependsOn(Compile)
         .Executes(() =>
         {
             RootDirectory
@@ -159,15 +121,14 @@ class Build : NukeBuild
                     DotNetTest(s => s
                     .SetProjectFile(f)
                     .SetConfiguration(Configuration)
-                    .SetVerbosity(DotNetVerbosity.quiet)));
+                    .SetVerbosity(DotNetVerbosity.minimal)));
         });
-#pragma warning restore IDE0051 // Remove unused private members
 
     Target GenerateSdkNuGet => _ => _
         .Description("Generate the DevToys SDK NuGet package")
         .DependsOn(SetVersion)
         .DependsOn(Restore)
-        .DependsOn(BuildGenerators)
+        .DependsOn(CompileGenerators)
         .Executes(() =>
         {
             Log.Information($"Building NuGet packages ...");
@@ -186,25 +147,22 @@ class Build : NukeBuild
         .DependsOn(GenerateSdkNuGet)
         .Executes(() =>
         {
-            if (PlatformTargets!.Contains(PlatformTarget.Windows))
+            if (OperatingSystem.IsWindows())
             {
                 PublishWindowsApp();
             }
 
-            if (PlatformTargets!.Contains(PlatformTarget.MacOS))
+            if (OperatingSystem.IsMacOS())
             {
                 PublishMacApp();
             }
 
-            if (PlatformTargets!.Contains(PlatformTarget.Linux))
+            if (OperatingSystem.IsLinux())
             {
                 PublishLinuxApp();
             }
 
-            if (PlatformTargets!.Contains(PlatformTarget.CLI))
-            {
-                PublishCliApp();
-            }
+            PublishCliApp();
         });
 
     void PublishWindowsApp()
@@ -309,7 +267,7 @@ class Build : NukeBuild
         string publishProject = "DevToys.CLI";
         Project project;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        if (OperatingSystem.IsMacOS())
         {
             project = MacSolution!.GetProject(publishProject);
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -321,7 +279,7 @@ class Build : NukeBuild
                 yield return new DotnetParameters(project.Path, "osx-arm64", targetFramework, portable: true);
             }
         }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        else if (OperatingSystem.IsWindows())
         {
             project = WindowsSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -336,7 +294,7 @@ class Build : NukeBuild
                 yield return new DotnetParameters(project.Path, "win-x86", targetFramework, portable: true);
             }
         }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        else if (OperatingSystem.IsLinux())
         {
             project = LinuxSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -355,7 +313,7 @@ class Build : NukeBuild
         string publishProject = "DevToys.Windows";
         Project project;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (OperatingSystem.IsWindows())
         {
             project = WindowsSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -380,7 +338,7 @@ class Build : NukeBuild
         string publishProject = "DevToys.Linux";
         Project project;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        if (OperatingSystem.IsLinux())
         {
             project = LinuxSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -403,7 +361,7 @@ class Build : NukeBuild
         string publishProject = "DevToys.MacOS";
         Project project;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        if (OperatingSystem.IsMacOS())
         {
             project = MacSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
@@ -417,5 +375,4 @@ class Build : NukeBuild
             throw new NotSupportedException();
         }
     }
-#pragma warning restore IDE1006 // Naming Styles
 }
