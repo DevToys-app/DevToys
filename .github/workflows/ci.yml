@@ -1,6 +1,9 @@
 name: ci
 
-on: [push]
+on:
+  push:
+    branches:
+      - '!crowdin_main'   # excludes crowdin_main
 
 jobs:
   windows-latest:
