@@ -316,11 +316,11 @@ var devtoys = (function (exports) {
                 const selfRect = popoverContentNode.getBoundingClientRect();
                 const classList = popoverContentNode.classList;
                 const classListArray = Array.from(popoverContentNode.classList);
-                const postion = Popover.calculatePopoverPosition(classListArray, boundingRect, selfRect);
-                let left = postion.left;
-                let top = postion.top;
-                let offsetX = postion.offsetX;
-                let offsetY = postion.offsetY;
+                const position = Popover.calculatePopoverPosition(classListArray, boundingRect, selfRect);
+                let left = position.left;
+                let top = position.top;
+                let offsetX = position.offsetX;
+                let offsetY = position.offsetY;
                 if (classList.contains("popover-overflow-flip-onopen") || classList.contains("popover-overflow-flip-always")) {
                     const graceMargin = Popover.flipMargin;
                     const deltaToLeft = left + offsetX;
@@ -1105,7 +1105,7 @@ var devtoys = (function (exports) {
     // constructor
     (() => {
         // this will force loading the monaco library. It happens on the app startup.
-        require.config({ paths: { "vs": "_content/DevToys.Blazor/lib/monaco-editor/min/vs" } });
+        require.config({ paths: { "vs": "_content/DevToys.Blazor/wwwroot/lib/monaco-editor/min/vs" } });
         require(["vs/editor/editor.main"]);
     })();
     MonacoEditor.TextModel = class {

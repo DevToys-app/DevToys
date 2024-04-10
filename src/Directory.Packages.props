@@ -20,9 +20,11 @@
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.3" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
-    <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
+    <PackageVersion Include="Microsoft.Extensions.FileProviders.Abstractions" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="5.3.2" />
     <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.18-beta" />
