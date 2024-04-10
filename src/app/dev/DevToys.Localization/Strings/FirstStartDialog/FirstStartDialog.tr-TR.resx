@@ -131,7 +131,7 @@
     <value>"Önce Çevrim Dışı" Felsefesi</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>DevToys'un gücü eklentilerle artar, alet çantanızı daha güçlü kılar. Asıl uygulamanın bütünlüğünü sağlama almamıza rağmen, üçüncü parti eklentilerin bilgisayarınızla ve verinizle ne yaptığı üzerinde bir denetimimizin olmadığını bilmeniz önemlidir. Bu yüzden, sizi eklenti yüklerken dikkatli davranmaya davet ediyoruz. DevToys veya herhangi bir eklentinin ağ etkinliğini gözetlemek için Wireshark, Little Snitch ya da Fiddler gibi araçları kullanarak gelen ve giden bağlantıları takip edebilirsiniz.</value>
+    <value>DevToys'un gücü uzantılarla artar, alet çantanızı daha güçlü kılar. Asıl uygulamanın bütünlüğünü sağlama almamıza rağmen, üçüncü parti uzantıların bilgisayarınızla ve verinizle ne yaptığı üzerinde bir denetimimizin olmadığını bilmeniz önemlidir. Bu yüzden, sizi uzantı yüklerken dikkatli davranmaya davet ediyoruz. DevToys veya herhangi bir uzantının ağ etkinliğini gözetlemek için Wireshark, Little Snitch ya da Fiddler gibi araçları kullanarak gelen ve giden bağlantıları takip edebilirsiniz.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
     <value>Güven ancak Doğrula</value>

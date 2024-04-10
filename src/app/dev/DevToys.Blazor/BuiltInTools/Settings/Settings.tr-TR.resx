@@ -198,11 +198,11 @@
     <comment/>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Daha iyi görünebilmesi için mevcut satırın arka plan rengini değiştir</value>
+    <value>Daha iyi görünebilmesi için şu anki satırın arka plan rengini değiştir</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Mevcut satırı vurgula</value>
+    <value>Şu anki satırı vurgula</value>
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
