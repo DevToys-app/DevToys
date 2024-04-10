@@ -134,7 +134,7 @@
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Çevrimiçi olarak daha fazla uzantı bulun</value>
+    <value>Çevrim içi daha fazla uzantı bulun</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
     <value>Bir uzantı yükleyin</value>
@@ -152,7 +152,7 @@
     <value>Değişikliklerin etkili olması için yeniden başlatma gerekiyor</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Eklentileri yönet</value>
+    <value>Uzantıları yönet</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
     <value>Üçüncü taraf uzantılar, mevcut araçların işlevlerini değiştirebilir ve izniniz olmadan bilgisayarınıza erişebilir. Bu, verilerinizin internete girmesine veya cihazınıza istenmeyen yazılımların yüklenmesine neden olabilir. Dikkatli olmanızı ve yalnızca güvendiğiniz uzantıları yüklemenizi önemle tavsiye ederiz. DevToys yazarları, uzantılardan kaynaklanan hiçbir zarar veya kayıptan sorumlu değildir.</value>
