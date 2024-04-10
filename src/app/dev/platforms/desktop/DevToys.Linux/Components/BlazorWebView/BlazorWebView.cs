@@ -1,4 +1,6 @@
+using DevToys.Blazor.Core;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using WebKit;
 
 namespace DevToys.Linux.Components;
@@ -26,7 +28,7 @@ internal sealed class BlazorWebView : WebView
                 this,
                 serviceProvider,
                 options,
-                contentRootDir,
+                CreateFileProvider(options, contentRootDir),
                 hostPageRelativePath,
                 OnBlazorInitialized);
     }
@@ -36,5 +38,13 @@ internal sealed class BlazorWebView : WebView
     private void OnBlazorInitialized()
     {
         BlazorWebViewInitialized?.Invoke(this, EventArgs.Empty);
+    }
+
+    private static IFileProvider CreateFileProvider(BlazorWebViewOptions options, string contentRootDir)
+    {
+        string bundleRootDir = Path.Combine(options.ContentRoot, contentRootDir);
+        var physicalProvider = new PhysicalFileProvider(bundleRootDir);
+        var embeddedProvider = new DevToysBlazorEmbeddedFileProvider();
+        return new CompositeFileProvider(physicalProvider, embeddedProvider);
     }
 }

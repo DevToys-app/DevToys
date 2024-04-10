@@ -22,14 +22,14 @@ internal sealed class BlazorWebViewBridge : WebViewManager
         BlazorWebView webView,
         IServiceProvider serviceProvider,
         BlazorWebViewOptions options,
-        string contentRootRelativeToAppRoot,
+        IFileProvider fileProvider,
         string hostPageRelativePath,
         Action onBlazorInitialized)
         : base(
             serviceProvider,
             Dispatcher.CreateDefault(),
             AppOriginUri,
-            new BlazorAssetFileProvider(Path.Combine(options.ContentRoot, contentRootRelativeToAppRoot)),
+            fileProvider,
             new JSComponentConfigurationStore(),
             hostPageRelativePath)
     {
