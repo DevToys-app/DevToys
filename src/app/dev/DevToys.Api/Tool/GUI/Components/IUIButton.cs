@@ -126,6 +126,9 @@ internal sealed class UIButton : UIElement, IUIButton
     public event EventHandler? IconGlyphChanged;
 }
 
+/// <summary>
+/// Provides a set of extension methods for various UI components.
+/// </summary>
 public static partial class GUI
 {
     /// <summary>

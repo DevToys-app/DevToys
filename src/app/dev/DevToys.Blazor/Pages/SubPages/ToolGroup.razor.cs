@@ -76,8 +76,10 @@ public partial class ToolGroup : MefComponentBase, IFocusable
         CommandLineLauncherService.LaunchTool(item.InternalComponentName);
     }
 
+#pragma warning disable CA1822 // Mark members as static
     private void OnSuggestToolIdeaClick()
     {
         OSHelper.OpenFileInShell("https://github.com/veler/DevToys/issues/new/choose");
     }
+#pragma warning restore CA1822 // Mark members as static
 }

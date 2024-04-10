@@ -9,8 +9,10 @@ public sealed partial class FontService
     private readonly ILogger _logger;
     private readonly IJSRuntime _jsRuntime;
 
+#pragma warning disable IDE0044 // Add readonly modifier
     [ImportMany]
     private IEnumerable<Lazy<IResourceAssemblyIdentifier, ResourceAssemblyIdentifierMetadata>> _resourceAssemblyIdentifiers = default!;
+#pragma warning restore IDE0044 // Add readonly modifier
 
     public FontService(IMefProvider mefProvider, IJSRuntime jsRuntime)
     {

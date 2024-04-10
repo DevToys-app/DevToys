@@ -232,6 +232,7 @@ public partial class NavBar<TElement, TSearchElement>
 
     private Task OnBuildingContextMenuAsync(ListBoxItemBuildingContextMenuEventArgs args)
     {
+        Guard.IsNotNull(args.ItemValue);
         Guard.IsAssignableToType<TElement>(args.ItemValue);
         return OnBuildingContextMenu.InvokeAsync(args);
     }

@@ -256,7 +256,7 @@ public partial class UIImageViewerPresenter : MefComponentBase
             IsImageDisplayed = false;
             // Swallow
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             IsImageDisplayed = false;
             // TODO: Log this. Also, maybe display a message to the user that the image cannot be displayed?
