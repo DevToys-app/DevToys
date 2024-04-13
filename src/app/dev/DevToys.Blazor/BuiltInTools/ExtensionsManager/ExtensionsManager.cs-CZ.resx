@@ -124,46 +124,46 @@
     <value>Přidat a spravovat rozšíření třetích stran v DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>Rozšíření "{0}" je již nainstalováno. Pokud se snažíte aktualizovat rozšíření, které je již nainstalováno, nejprve odinstalujte starší verzi.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>Nelze nainstalovat toto rozšíření</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>Najít další rozšíření online</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>Nainstalovat rozšíření</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>Vytvořit rozšíření pro DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>Zavřete prosím všechna okna DevToys a restartujte aplikaci, aby došlo k úpravám.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>Je vyžadováno restartování, aby se změny projevily</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>Spravovat rozšíření</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Rozšíření třetích stran mohou měnit funkce stávajících nástrojů a přistupovat k vašemu počítači bez vašeho svolení. To může vést k odhalení vašich dat na internetu nebo k instalaci nežádoucího softwaru do vašeho zařízení. Důrazně doporučujeme dbát zvýšené opatrnosti a instalovat pouze rozšíření, kterým důvěřujete. Autoři DevToys nenesou odpovědnost za případné škody nebo ztráty způsobené rozšířeními.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>Rozumím</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>Podmínky a ustanovení</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Varování</value>
   </data>
 </root>
