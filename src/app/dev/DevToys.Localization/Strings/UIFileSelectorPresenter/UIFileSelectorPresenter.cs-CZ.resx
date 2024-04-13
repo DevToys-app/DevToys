@@ -136,15 +136,15 @@
     <value>Drag &amp; drop any {0} files here</value>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Lze použít pouze {0} soubor/y/ů.</value>
   </data>
   <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
-    <value>{0} files have been selected.</value>
+    <value>{0} souborů bylo vybráno.</value>
   </data>
   <data name="Or" xml:space="preserve">
-    <value>or</value>
+    <value>nebo</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Vložit</value>
   </data>
 </root>
