@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>Spravovat rozšíření v DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manager third-party extensions in DevToys</value>
+    <value>Přidat a spravovat rozšíření třetích stran v DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
     <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
