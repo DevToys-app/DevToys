@@ -12,6 +12,8 @@
     <LinkMode>None</LinkMode>
 
     <ApplicationId>com.devtoys</ApplicationId>
+
+    <AssemblyName>DevToys</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(_IsPublishing) == ''">

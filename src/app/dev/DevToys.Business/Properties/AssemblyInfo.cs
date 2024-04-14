@@ -4,3 +4,4 @@
 [assembly: InternalsVisibleTo("DevToys.Windows")]
 [assembly: InternalsVisibleTo("DevToys.MacOS")]
 [assembly: InternalsVisibleTo("DevToys.Linux")]
+[assembly: InternalsVisibleTo("DevToys")]
