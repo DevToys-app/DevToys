@@ -8,11 +8,11 @@ SCRIPT_DIR="${SCRIPT_DIR}/"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Required to build macOS app. See https://stackoverflow.com/questions/55320965/resource-fork-finder-information-or-similar-detritus-not-allowed-error-when
-    xattr -cr ./src/
+    xattr -cr "$SCRIPT_DIR/src/"
 fi
 
 # Install .NET
-. "./tools/Install-DotNet.sh" "$SCRIPT_DIR"
+. "$SCRIPT_DIR/tools/Install-DotNet.sh" "$SCRIPT_DIR"
 
 # Install .NET workloads
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -23,9 +23,9 @@ fi
 # Restore NuGet solution dependencies
 echo "Restoring all dependencies"
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    SOLUTIONS=$(find ./src/ -iname "*DevToys-MacOS.sln" -print)
+    SOLUTIONS=$(find "$SCRIPT_DIR/src/" -iname "*DevToys-MacOS.sln" -print)
 else
-    SOLUTIONS=$(find ./src/ -iname "*DevToys-Linux.sln" -print)
+    SOLUTIONS=$(find "$SCRIPT_DIR/src/" -iname "*DevToys-Linux.sln" -print)
 fi
 
 for SOLUTION_FILE in $SOLUTIONS
@@ -39,7 +39,7 @@ echo "---------------------------------------"
 
 # Restore Monaco Editor
 echo "Restoring Monaco Editor"
-. "./tools/Restore-MonacoEditor.sh" "$SCRIPT_DIR"
+. "$SCRIPT_DIR/tools/Restore-MonacoEditor.sh" "$SCRIPT_DIR"
 
 echo "Done."
 echo "---------------------------------------"
