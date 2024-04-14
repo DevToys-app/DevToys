@@ -10,6 +10,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <ApplicationIcon>$(RepoRoot)\assets\logo\Icon-Windows.ico</ApplicationIcon>
+
+    <RootNamespace>DevToys.Windows</RootNamespace>
+    <AssemblyName>DevToys</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(_IsPublishing) == ''">
