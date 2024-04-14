@@ -73,7 +73,6 @@
 
   <ItemGroup>
     <Content Include="$(RepoRoot)\src\app\dev\platforms\desktop\DevToys.Windows\wwwroot\index.html" Link="wwwroot\index.html"/>
-    <BundleResource Include="$(PluginsInstallationFolder)\**\*" Link="Plugins\%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>
 
     <!-- Workaround for an error "The path .. would result in a file outside the App Bundle and cannot be used"
      See https://stackoverflow.com/a/16939385 -->
