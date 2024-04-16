@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>DevToys में Extensions प्रबंधित करें</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manager third-party extensions in DevToys</value>
+    <value>DevToys में third-party Extension जोड़ें और प्रबंधित करें</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>Extension '{0}' पहले से इंस्टॉल है. यदि आप किसी ऐसे एक्सटेंशन को अपडेट करने का प्रयास कर रहे हैं जो पहले से इंस्टॉल है, तो कृपया पहले पुराने संस्करण को अनइंस्टॉल करें।</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>यह एक्सटेंशन इंस्टॉल करने में असमर्थ</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
