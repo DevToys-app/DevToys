@@ -133,18 +133,18 @@
     <value>Více...</value>
   </data>
   <data name="NoToolSuggested" xml:space="preserve">
-    <value>No tool to suggest</value>
+    <value>Žádný nástroj k navržení</value>
   </data>
   <data name="PasteButtonText" xml:space="preserve">
-    <value>Paste</value>
+    <value>Vložit</value>
   </data>
   <data name="SaveAsButtonText" xml:space="preserve">
-    <value>Save as...</value>
+    <value>Uložit jako...</value>
   </data>
   <data name="ShrinkButtonToolTip" xml:space="preserve">
-    <value>Shrink</value>
+    <value>Zmenšit</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>Přesunout na jiný nástroj</value>
   </data>
 </root>
