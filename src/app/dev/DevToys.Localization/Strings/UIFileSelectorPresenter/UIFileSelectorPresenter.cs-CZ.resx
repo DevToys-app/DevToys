@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Procházet soubory</value>
   </data>
   <data name="BrowserFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Procházet složky</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Sem přetáhněte libovolný soubor</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Sem přetáhněte libovolné soubory</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Sem přetáhněte soubor typu {0}</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Sem přetáhněte soubory typu {0}</value>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
     <value>Lze použít pouze {0} soubor/y/ů.</value>
