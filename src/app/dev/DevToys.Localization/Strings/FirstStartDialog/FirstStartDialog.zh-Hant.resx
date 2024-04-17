@@ -118,17 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys is your go-to toolbox for developers, packed with a collection of free and open-source tools. Think of it as a Swiss Army knife tailored to tackle those pesky daily tasks that slow you down.
-Here’s what you need to know:</value>
+    <value>DevToys 是開發人員的首選工具箱，包含一系列免費和開源的工具。你可以將其視為一把瑞士軍刀，專為解決那些讓你放慢腳步的煩人的日常任務而量身定制。
+以下是你需要瞭解的內容：</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>繼續</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. We will occasionally connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys 以離線優先的形式運作。我們在本地收集最少的匿名資料以用於故障排除。我們不會將紀錄上載到互聯網。如果你遇到錯誤並選擇報告它，我們可能會要求你與我們分享紀錄。我們偶爾會連接到互聯網來檢查更新，以確保你能夠存取最新的功能和安全性增強功能。</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>離線優先的形式</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
     <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
