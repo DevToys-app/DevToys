@@ -234,7 +234,7 @@
     <comment/>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>貼上時取代文字</value>
     <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
@@ -270,7 +270,7 @@
     <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>特別鳴謝</value>
     <comment/>
   </data>
   <data name="TextEditor" xml:space="preserve">
