@@ -154,7 +154,7 @@
     <value>未找到結果</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Toggle Navigation</value>
+    <value>切換導航欄顯示</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
