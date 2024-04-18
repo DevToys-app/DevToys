@@ -122,7 +122,7 @@
 Here’s what you need to know:</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Continue</value>
+    <value>Продолжить</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
     <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. We will occasionally connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
