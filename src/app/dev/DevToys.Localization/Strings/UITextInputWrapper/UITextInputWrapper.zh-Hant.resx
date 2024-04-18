@@ -127,13 +127,13 @@
     <value>展開</value>
   </data>
   <data name="LoadFileButtonText" xml:space="preserve">
-    <value>Open a text document</value>
+    <value>開啟一個文字檔案</value>
   </data>
   <data name="MoreButtonToolTip" xml:space="preserve">
     <value>更多…</value>
   </data>
   <data name="NoToolSuggested" xml:space="preserve">
-    <value>No tool to suggest</value>
+    <value>沒有工具可以建議</value>
   </data>
   <data name="PasteButtonText" xml:space="preserve">
     <value>貼上</value>
@@ -145,6 +145,6 @@
     <value>收縮</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>轉移至另一個工具</value>
   </data>
 </root>
