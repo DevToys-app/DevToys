@@ -130,16 +130,16 @@
     <value>將任何檔案拖曳至此處</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>將 {0} 檔案拖曳至此處</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>將任何 {0} 檔案拖曳至此處</value>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>只能使用 {0} 檔案。</value>
   </data>
   <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
-    <value>{0} files have been selected.</value>
+    <value>已選擇 {0} 個檔案。</value>
   </data>
   <data name="Or" xml:space="preserve">
     <value>或</value>
