@@ -130,7 +130,7 @@
     <value>複製</value>
   </data>
   <data name="NoSmartDetectedTool" xml:space="preserve">
-    <value>No tool to suggest</value>
+    <value>沒有工具可以建議</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>好的</value>
@@ -142,7 +142,7 @@
     <value>貼上</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>Pin to Start</value>
+    <value>固定至開始選單</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>從最愛中移除</value>
@@ -154,7 +154,7 @@
     <value>轉移至另一個工具</value>
   </data>
   <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
-    <value>Toggle keep the window on top (Ctrl+Up)</value>
+    <value>切換將視窗保持在最上層顯示（Ctrl + 方向鍵上）</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
     <value>開</value>
