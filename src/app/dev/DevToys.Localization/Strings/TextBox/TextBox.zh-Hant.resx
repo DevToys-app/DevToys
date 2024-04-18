@@ -136,9 +136,9 @@
     <value>貼上</value>
   </data>
   <data name="RevealPassword" xml:space="preserve">
-    <value>Reveal</value>
+    <value>顯示</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>Select All</value>
+    <value>選擇全部</value>
   </data>
 </root>
