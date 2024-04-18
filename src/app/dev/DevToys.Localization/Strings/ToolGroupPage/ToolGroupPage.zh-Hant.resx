@@ -121,7 +121,7 @@
     <value>找不到你想要的東西？</value>
   </data>
   <data name="NotFindingToolOpenFeatureRequest" xml:space="preserve">
-    <value>Open a feature request on GitHub</value>
+    <value>在 GitHub 上提出功能請求</value>
   </data>
   <data name="NotFindingToolSuggestIdea" xml:space="preserve">
     <value>提出建議</value>
