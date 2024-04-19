@@ -161,9 +161,9 @@
     <value>أنا أفهم</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>الأحكام والشروط</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>تحذير</value>
   </data>
 </root>
