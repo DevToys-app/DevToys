@@ -126,7 +126,7 @@
     <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>表示設定</value>
+    <value>言語と外観</value>
     <comment/>
   </data>
   <data name="AppTheme" xml:space="preserve">
@@ -134,7 +134,7 @@
     <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>表示するアプリ テーマを選択します</value>
+    <value>アプリに表示される色を変更します</value>
     <comment/>
   </data>
   <data name="Behaviors" xml:space="preserve">
@@ -146,7 +146,7 @@
     <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>UIのスペースを縮小します</value>
+    <value>UI のスペースを縮小します</value>
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
@@ -194,15 +194,15 @@
     <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>選択行を強調する</value>
+    <value>カーソル行を強調</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>現在の行の背景色を変更する</value>
+    <value>カーソルがある行の背景色を変更する</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>選択された行のハイライト</value>
+    <value>現在行を強調</value>
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
