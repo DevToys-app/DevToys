@@ -33,7 +33,7 @@
     <PackageVersion Include="NuGet.Packaging" Version="6.9.1" />
     <PackageVersion Include="Nuke.Common" Version="8.0.0" />
     <PackageVersion Include="OneOf" Version="3.0.263" />
-    <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.3" />
+    <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.4" />
     <PackageVersion Include="System.Text.Json" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
