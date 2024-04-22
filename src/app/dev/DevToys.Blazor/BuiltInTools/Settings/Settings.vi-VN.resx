@@ -154,11 +154,11 @@
     <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>Sử dụng giao diện hệ thống</value>
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Tùy chỉnh giao diện DevToys</value>
     <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">

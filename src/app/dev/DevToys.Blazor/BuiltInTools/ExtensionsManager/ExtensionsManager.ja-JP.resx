@@ -146,7 +146,7 @@
     <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>変更を適用するには、すべての DevToys のウィンドウを閉じて再起動してください。</value>
+    <value>行った変更は、すべての DevToys ウィンドウを閉じた終了後に適用されます。</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
     <value>変更の内容は再起動後に適用されます。</value>
@@ -158,7 +158,7 @@
     <value>サードパーティ製の拡張機能は、既存のツールの機能を変更、または、許可なしにデバイスにアクセスする可能性があります。 これにより、データがインターネットに公開されたり、デバイスに不要なソフトウェアがインストールされる可能性があります。これらのリスクに注意し、信頼できる拡張機能のみをインストールすることを強くお勧めします。 DevToys の作者は、拡張機能によって生じた損害や損失に対して責任を負いません。</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>了解しました</value>
+    <value>内容を読み、リスクを理解しました</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
     <value>利用規約</value>

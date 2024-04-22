@@ -158,12 +158,12 @@
     <value>Сторонние расширения могут изменять функционал существующих инструментов и иметь доступ к вашему компьютеру без разрешения. Это может привести к раскрытию ваших данных в интернете и установке нежеланного ПО на ваш компьютер. Мы настоятельно рекомендуем вам устанавливать только доверенные расширения. Команда DevToys не несёт ответственность за любые потери по вине авторов расширений.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>Я понимаю</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>Пользовательское соглашение</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Внимание</value>
   </data>
 </root>

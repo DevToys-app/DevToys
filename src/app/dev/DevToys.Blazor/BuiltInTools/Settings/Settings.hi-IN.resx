@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>ऐप के बारे में</value>
     <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
+    <value>सेटिंग्स</value>
     <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>रंगरूप</value>
     <comment/>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>ऐप थीम</value>
     <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>सलेक्ट करें कि कौन-सी ऐप थीम दिखानी है।</value>
     <comment/>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>व्यवहार</value>
     <comment/>
   </data>
   <data name="CompactMode" xml:space="preserve">
@@ -146,59 +146,59 @@
     <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>यूआई तत्वों के बीच स्थान कम करें</value>
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>डार्क</value>
     <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>सिस्टम के समान</value>
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>DevToys के रूप और अनुभव को अनुकूलित करें</value>
     <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>{0} DevToysMac विकास शुरू करने के लिए</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>एडिटिंग</value>
     <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>पंक्ति का अंत वर्ण</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>इनपुट के समान पंक्ति का अंत (स्वचालित)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+    <value>कैरिज रिटर्न और लाइन फ़ीड (\r\n) (विंडोज़)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
+    <value>लाइन फ़ीड (\n) (यूनिक्स)</value>
     <comment/>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>फ़ॉन्ट</value>
     <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>DevToys का अनुवाद करने में हमारी सहायता करें!</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>वर्तमान लाइन को हाइलाइट करें</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>वर्तमान लाइन की पृष्ठभूमि का रंग बदलें ताकि यह अधिक दिखाई दे</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
@@ -206,47 +206,47 @@
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>{0} ऐप आइकन डिज़ाइन करने के लिए</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>भाषा</value>
     <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>किसी अन्य भाषा का चयन करते समय ऐप को Restart करने की आवश्यकता होती है</value>
     <comment/>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>रोशनी</value>
     <comment/>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>पंक्ति क्रमांक</value>
     <comment/>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>टेक्स्ट एडिटर में लाइन नंबर प्रदर्शित करें</value>
     <comment/>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>पंक्ति क्रमांक दिखाएँ</value>
     <comment/>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>पेस्ट करते समय टेक्स्ट बदलें</value>
     <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>पेस्ट बटन पर क्लिक करते समय, मौजूदा टेक्स्ट एडिटर सामग्री में जोड़ने के बजाय पेस्ट करने से पहले टेक्स्ट को साफ़ करें।</value>
     <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>पेस्ट करते समय टेक्स्ट बदलें</value>
     <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>सफेद स्थान प्रस्तुत करें</value>
     <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
