@@ -124,10 +124,10 @@
     <value>DevToys'ta üçüncü taraf uzantıları ekleyin ve yönetin</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>'{0}' uzantısı zaten yüklü. Zaten yüklü olan bir uzantıyı güncellemeye çalışıyorsanız lütfen önce eski sürümü kaldırın.</value>
+    <value>'{0}' uzantısı zaten kurulu. Zaten kurulu olan bir uzantıyı güncellemeye çalışıyorsanız lütfen önce eski sürümü kaldırın.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Bu uzantı yüklenemiyor</value>
+    <value>Bu uzantı kurulamıyor</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
@@ -137,7 +137,7 @@
     <value>Çevrim içi daha fazla uzantı bulun</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Bir uzantı yükleyin</value>
+    <value>Bir uzantı kurun</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
     <value>DevToys için bir uzantı oluşturun</value>
@@ -161,7 +161,7 @@
     <value>Anladım</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Şartlar ve koşullar</value>
+    <value>Şartlar ve Koşullar</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
     <value>Uyarı</value>
