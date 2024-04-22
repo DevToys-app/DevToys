@@ -118,52 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>管理 DevToys 中的擴充功能</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manager third-party extensions in DevToys</value>
+    <value>在 DevToys 中新增和管理第三方擴充功能</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>擴充功能「{0}」已經安裝。如果你在嘗試更新已經安裝的擴充功能，請先解除安裝舊版本。</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>無法安裝此擴充功能</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>在網路上尋找更多擴充功能</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>安裝擴充功能</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>為 DevToys 建立擴充功能</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+    <value>好的</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>請關閉所有 DevToys 視窗並重新啟動應用程式以套用修改。</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>需要重新啟動才能使變更生效</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>管理擴充功能</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>第三方擴充功能可以修改現有工具的功能並在未經你許可的情況下存取你的電腦。這可能會將你的資料暴露在網路上，或在你的裝置上安裝不需要的軟體。我們強烈建議你謹慎行事，只安裝你信任的擴充功能。DevToys 作者對擴充功能所造成的任何損害或損失不承擔任何責任。</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>我明白</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>條款及細則</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>警告</value>
   </data>
 </root>

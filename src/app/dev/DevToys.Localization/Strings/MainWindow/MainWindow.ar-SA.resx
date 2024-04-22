@@ -118,43 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllToolsAccessibleName" xml:space="preserve">
-    <value>All tools</value>
+    <value>كل الأدوات</value>
   </data>
   <data name="AllToolsDisplayTitle" xml:space="preserve">
-    <value>All tools</value>
+    <value>كل الأدوات</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>رجوع</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorite tools</value>
+    <value>الأدوات المفضلة</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
+    <value>المفضلة</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
-    <value>Keep on top</value>
+    <value>أبق على الأعلى</value>
   </data>
   <data name="PictureInPictureExpand" xml:space="preserve">
-    <value>Back to full view</value>
+    <value>الرجوع إلى العرض الكامل</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
-    <value>Recents</value>
+    <value>الحديثة</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>أكتب للبحث لأدوات...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>بحث</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>اضغط للبحث</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>لم نجد أي نتيجة</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Toggle Navigation</value>
+    <value>حوِّل الملاحة</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

@@ -118,183 +118,183 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>عن</value>
     <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
+    <value>الإعدادات</value>
     <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>المظهر</value>
     <comment/>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>سمة البرنامَج</value>
     <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>حدد أي سمة البرنامَج للعرض</value>
     <comment/>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>السلوكيات</value>
     <comment/>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>تباعد مدمج</value>
     <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>قلل المسافة بين عناصر الشاشة</value>
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>داكن</value>
     <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>نفس النظام</value>
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>عدل منظر و مشعر DevToys</value>
     <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>{0} لبدأ لتطوير DevToysMac</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>تحرير</value>
     <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>حرف نهاية الصف</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>نفس نهاية الصف كما المدخل (تلقائياً)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+    <value>إرجاع الحمل و خلاصة الصف (\r\n) (ويندوز)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
+    <value>خلاصة الصف (\n) (Unix)</value>
     <comment/>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>خط النص</value>
     <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>ساعدنا نترجم DevToys!</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>عَلِّن صف الحالي</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>غيّر لون خلفية الصف الحالي لتكون واضحة أكثر</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>عَلِّن صف الحالي</value>
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>{0} لتصميم أيقونة البرنامَج</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>اللغة</value>
     <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>البرنامَج يحتاج إلى إعادة تشغيل عند إختيار لغة أخرى</value>
     <comment/>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>فاتح</value>
     <comment/>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>أرقام الصف</value>
     <comment/>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>إظهار أرقام الصف في محرر النص</value>
     <comment/>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>أظهر أرقام الصف</value>
     <comment/>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>غيّر النص عند اللصق</value>
     <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>عند الضغط على زر اللصق, أمح النص قبل اللصق بدل الإلحاق إلى محتوى محرر النص الموجود.</value>
     <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>غيّر النص عند اللصق</value>
     <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>جَبِّس فضاء أبيض</value>
     <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>أظهر فضاء ابيض</value>
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>الإعدادات</value>
     <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>الكشف الذكي</value>
     <comment/>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>أكشف على أفضل أداة على أساس محتوى الحافظة تلقائيا</value>
     <comment/>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>ألصق محتوى الحافظة عند اختيار أداة موصى به تِلْقائيًا</value>
     <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>شكر جزيل إلى</value>
     <comment/>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>محرر النص</value>
     <comment/>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>معاينة</value>
     <comment/>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>أستخدم إعدادات النظام</value>
     <comment/>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>نسخة {0}</value>
     <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>كلمة التفاف</value>
     <comment/>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>كلمة التفاف</value>
     <comment/>
   </data>
 </root>
