@@ -121,7 +121,7 @@
     <value>Gestiona components a DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Afegeix i gestiona components de tercers a DevToys</value>
+    <value>Add and manage third-party extensions in DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
     <value>El component '{0}' ja està instal·lat. Si el que vols és actualitzar un component que ja està instal·lat, si us plau, desinstal·la la versió antiga abans.</value>
