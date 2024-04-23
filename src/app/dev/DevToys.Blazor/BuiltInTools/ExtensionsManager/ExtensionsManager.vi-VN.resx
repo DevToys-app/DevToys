@@ -121,7 +121,7 @@
     <value>Quản lý tiện ích mở rộng</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Thêm và quản lý tiện ích mở rộng của bên thứ ba</value>
+    <value>Add and manage third-party extensions in DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
     <value>Tiện ích '{0}' đã được cài đặt. Nếu bạn muốn cập nhật tiện ích đã được cài đặt, hãy gỡ cài đặt phiên bản cũ.</value>
