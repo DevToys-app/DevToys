@@ -121,7 +121,7 @@
     <value>管理 DevToys 扩展</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>在 DevToys 中添加和管理第三方扩展</value>
+    <value>Add and manage third-party extensions in DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
     <value>扩展“{0}”已安装。如果您正尝试更新已安装的扩展，请先卸载旧版本。</value>
