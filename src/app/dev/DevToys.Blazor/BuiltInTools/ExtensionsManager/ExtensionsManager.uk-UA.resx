@@ -121,7 +121,7 @@
     <value>Керування розширеннями в DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manage third-party extensions in DevToys</value>
+    <value>Додавання та керування сторонніми розширеннями DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
     <value>Розширення '{0}' вже встановлено. Якщо ви намагаєтеся оновити розширення, яке вже встановлено, спочатку видаліть стару версію.</value>
