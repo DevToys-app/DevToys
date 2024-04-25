@@ -150,7 +150,7 @@
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Σκούρο</value>
     <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
@@ -202,7 +202,7 @@
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>Επισήμανση της τρέχουσας γραμμής</value>
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
@@ -254,7 +254,7 @@
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ρυθμίσεις</value>
     <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
