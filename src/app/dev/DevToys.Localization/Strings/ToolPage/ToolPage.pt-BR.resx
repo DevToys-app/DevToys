@@ -142,7 +142,7 @@
     <value>Colar</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>Fixar no início</value>
+    <value>Fixar no Início</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>Remover dos favoritos</value>
@@ -154,7 +154,7 @@
     <value>Transferir para outra ferramenta</value>
   </data>
   <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
-    <value>Mostrar/esconder mantém a janela no topo (Ctrl+Up)</value>
+    <value>Ativa/desativa manter a janela no topo (Ctrl+Acima)</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
     <value>Ligado</value>
@@ -172,6 +172,6 @@
     <value>Não foi possível salvar este arquivo</value>
   </data>
   <data name="UnableSaveFileDescription" xml:space="preserve">
-    <value>Não foi possível salvar o arquivo '{0}'. Verifique os logs para conferir o erro interno.</value>
+    <value>Não foi possível salvar o arquivo '{0}'. Verifique os logs para ver o erro interno.</value>
   </data>
 </root>
