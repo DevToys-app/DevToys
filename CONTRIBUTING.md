@@ -119,80 +119,10 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 
 # Internationalization and localization
 
-There are two possibilities offered:
+Please use Crowdin to translate DevToys and its tools. Crowdin is a localization management platform that helps individuals to translate a project without having to be familiar with its repository.
 
-## Use Crowdin (preferred)
-
-* Go on [DevToy's Crowdin project](https://crowdin.com/project/devtoys). Crowdin is a localization management platform that helps individuals to translate a project without having to be familiar with its repository.
+* Go on [DevToy's Crowdin project](https://crowdin.com/project/devtoys).
 * Log in or create an account. Join the DevToys project.
 * Select the language of your choice in the list of existing supported language and let yourself guided by the website to translate the app.
 * If you want to add a new language, please create a new discussion on Crowdin's website or on GitHub. We will be happy to add your language to the list.
 * When your translation is done, it will be synchronized with our GitHub repository within 1 hour and create a pull request.
-
-## Change the translations in the repository yourself 
-
-This approach is more complex but has the advantage that it allows you to test your changes on your local machine.
-
-* After following `How to Build and Run DevToys from source`, close Visual Studio, if any instance is running.
-* In File Explorer, copy the folder `dev/impl/DevToys/Strings/en-US` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
-* Open `src/DevToys.sln` with Visual Studio.
-* Open each `.resw` file from the language folder you created and translate the text.
-* Build and Run the app and test your changes.
-
-# Coding
-
-## Main architecture
-
-// TODO
-
-## Develop a tool
-
-// TODO
-
-## Iconography
-
-Icons in the UI of a tool or in the main UI of DevToys uses [Fluent System Icons](https://github.com/microsoft/fluentui-system-icons).
-For the icons of the tools, a custom font is used. See [documentation](https://github.com/veler/DevToys/blob/main/assets/font/README.md) here for modifying it (or ask us for help!).
-
-## Sample
-
-// TODO
-
-## Things to keep in mind
-
-We try to avoid at maximum any Microsoft Store app capability/permission like `internet`, `camera`, `location`...etc. The reason why is that this app is designed to be a tool that we can **trust** when pasting sensitive data inside.
-Therefore, when making changes to DevToys, please try at maximum to avoid any capability requirement.
-
-## Code Style
-
-1. DO use `PascalCase`:
-- class names
-- method names
-- const names
-
-2. DO use `camelCase`:
-- method arguments
-- local variables
-- private fields
-
-4. DO NOT use Hungarian notation.
-
-5. DO NOT use underscores, hyphens, or any other non-alphanumeric characters.
-
-6. DO NOT use Caps for any names.
-
-7. DO use predefined type names like `int`, `string` etc. instead of `Int32`, `String`.
-
-8. DO use `_` prefix for private field names.
-
-9. DO use the `I` prefix for Interface names.
-
-10. DO vertically align curly brackets.
-
-11. DO NOT use `Enum` or `Flag(s)` suffix for Enum names.
-
-12. DO use prefix `Is`, `Has`, `Have`, `Any`, `Can` or similar keywords for Boolean names.
-
-13. DO use curly brackets for single line `if`, `for` and `foreach` statements.
-
-14. DO use nullable reference type by adding `#nullable enable` at the top of every C# file.

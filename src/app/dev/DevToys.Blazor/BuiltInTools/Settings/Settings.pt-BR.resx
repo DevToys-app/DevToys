@@ -146,7 +146,7 @@
     <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Diminuir espaço entre elementos da UI</value>
+    <value>Diminuir espaço entre elementos da interface</value>
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
@@ -158,7 +158,7 @@
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Personalizar o look &amp; feel do DevToys</value>
+    <value>Personalizar o visual do DevToys</value>
     <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">
@@ -178,11 +178,11 @@
     <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Retorno de carro e nova linha (\r\n) (Windows)</value>
+    <value>Retorno de carro (CR) e nova linha (LF) (\r\n) (Windows)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Nova linha (\n) (Unix)</value>
+    <value>Nova linha (LF) (\n) (Unix)</value>
     <comment/>
   </data>
   <data name="Font" xml:space="preserve">
@@ -190,7 +190,7 @@
     <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Ajude-nos a traduzit o DevToys!</value>
+    <value>Ajude-nos a traduzir o DevToys!</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
@@ -202,7 +202,7 @@
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>Realçar a linha atual</value>
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">

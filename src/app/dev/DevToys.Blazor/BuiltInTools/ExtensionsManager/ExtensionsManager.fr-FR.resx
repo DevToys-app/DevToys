@@ -121,7 +121,7 @@
     <value>Gérer les extensions dans DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Ajouter et gérer des extensions dans DevToys</value>
+    <value>Ajouter et administrer les extensions tierces avec DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
     <value>L'extension '{0}' est déjà installée. Si vous essayez de mettre à jour une extension qui est déjà installée, désinstallez d'abord l'ancienne version.</value>
