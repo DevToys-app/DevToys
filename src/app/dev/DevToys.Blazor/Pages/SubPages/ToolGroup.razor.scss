@@ -10,12 +10,6 @@
     }
 }
 
-@keyframes hero-title-shade {
-    to {
-        background-position: 100% 0;
-    }
-}
-
 .hero {
     height: 250px;
     width: 100%;
@@ -53,14 +47,6 @@
     &-title {
         display: flex;
         font-weight: 900 !important;
-
-        & span:last-of-type {
-            display: inline-block;
-            background: var(--hero-title-color);
-            background-clip: text;
-            color: transparent;
-            animation: hero-title-shade 10s infinite linear;
-        }
     }
 }
 
