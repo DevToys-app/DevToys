@@ -34,6 +34,14 @@ public partial class Dialog : JSStyledComponentBase, IFocusable
     [Parameter]
     public EventCallback OnDismissed { get; set; }
 
+    /// <summary>
+    /// Raised when the dialog got closed.
+    /// </summary>
+    [Parameter]
+    public EventCallback OnClosed { get; set; }
+
+    internal event EventHandler? Closed;
+
     public ValueTask<bool> FocusAsync()
     {
         return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", Element);
@@ -51,12 +59,39 @@ public partial class Dialog : JSStyledComponentBase, IFocusable
         return IsOpen;
     }
 
+    public Task WaitUntilClosedAsync()
+    {
+        if (!IsOpen)
+        {
+            return Task.CompletedTask;
+        }
+
+        var tcs = new TaskCompletionSource();
+        EventHandler handler = null!;
+        handler = (sender, e) =>
+        {
+            Closed -= handler;
+            tcs.SetResult();
+        };
+
+        Closed += handler;
+
+        return tcs.Task;
+    }
+
     internal void Close()
     {
         IsOpen = false;
         _isOpen = false;
         _session?.Dispose();
+
         StateHasChanged();
+
+        Closed?.Invoke(this, EventArgs.Empty);
+        if (OnClosed.HasDelegate)
+        {
+            OnClosed.InvokeAsync();
+        }
     }
 
     public override ValueTask DisposeAsync()

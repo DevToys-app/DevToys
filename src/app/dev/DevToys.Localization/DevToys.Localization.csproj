@@ -71,6 +71,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>UITextInputWrapper.resx</DependentUpon>
     </Compile>
+    <Compile Update="Strings\WhatsNewDialog\WhatsNewDialog.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WhatsNewDialog.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="**\*.resx" />

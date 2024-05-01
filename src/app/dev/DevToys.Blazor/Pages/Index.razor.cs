@@ -1,7 +1,7 @@
-﻿using DevToys.Blazor.Components;
+﻿using System.Reflection;
+using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
 using DevToys.Blazor.Pages.Dialogs;
-using DevToys.Blazor.Pages.SubPages;
 using DevToys.Business.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
@@ -28,6 +28,7 @@ public partial class Index : MefComponentBase
     private const int TitleBarMarginLeftWhenNavBarNotHidden = 47;
 
     private FirstStartDialog _firstStartDialog = default!;
+    private WhatsNewDialog _whatsNewDialog = default!;
     private NavBar<INotifyPropertyChanged, GuiToolViewItem> _navBar = default!;
     private IFocusable? _contentPage;
 
@@ -210,6 +211,30 @@ public partial class Index : MefComponentBase
         }
     }
 
+    private async Task<bool> ShowFirstStartAndOrWhatsNewDialogsAsync()
+    {
+        bool openedDialog = false;
+        if (SettingsProvider.GetSetting(PredefinedSettings.IsFirstStart))
+        {
+            await _firstStartDialog.OpenAsync();
+            openedDialog = true;
+        }
+
+        var assemblyInformationalVersion = (AssemblyInformationalVersionAttribute)Assembly.GetExecutingAssembly().GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute))!;
+        string currentVersion = assemblyInformationalVersion.InformationalVersion;
+        string? lastVersion = SettingsProvider.GetSetting(PredefinedSettings.LastVersionRan);
+        bool showChangelog = !string.Equals(currentVersion, lastVersion, StringComparison.OrdinalIgnoreCase);
+
+        if (showChangelog)
+        {
+            SettingsProvider.SetSetting(PredefinedSettings.LastVersionRan, currentVersion);
+            await _whatsNewDialog.OpenAsync();
+            openedDialog = true;
+        }
+
+        return openedDialog;
+    }
+
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
@@ -219,13 +244,18 @@ public partial class Index : MefComponentBase
             // Focus on the Search Box.
             _navBar.TryFocusSearchBoxAsync();
 
-            if (SettingsProvider.GetSetting(PredefinedSettings.IsFirstStart))
-            {
-                _firstStartDialog.Open();
-            }
+            // Show First Start and/or What's New Dialogs
+            ShowFirstStartAndOrWhatsNewDialogsAsync()
+                .ContinueWith(async (task) =>
+                {
+                    bool openedAnyDialog = await task;
 
-            // Start Smart Detection
-            ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode, GlobalDialogService.IsDialogOpened).Forget();
+                    // Start Smart Detection, if no dialog was displayed.
+                    if (!openedAnyDialog)
+                    {
+                        await ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode, GlobalDialogService.IsDialogOpened);
+                    }
+                });
         }
 
         if (IsTransitioning)

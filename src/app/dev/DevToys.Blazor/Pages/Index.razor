@@ -15,6 +15,8 @@
         <FirstStartDialog @ref=_firstStartDialog />
     }
 
+    <WhatsNewDialog @ref=_whatsNewDialog />
+
     @if (UIDialogService.IsDialogOpened)
     {
         <Dialog IsOpen="@UIDialogService.IsDialogOpened"

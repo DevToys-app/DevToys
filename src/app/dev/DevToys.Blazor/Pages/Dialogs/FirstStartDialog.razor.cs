@@ -12,9 +12,10 @@ public partial class FirstStartDialog : MefComponentBase
     [Import]
     private ISettingsProvider SettingsProvider { get; set; } = default!;
 
-    internal void Open()
+    internal Task OpenAsync()
     {
         _dialog.TryOpen();
+        return _dialog.WaitUntilClosedAsync();
     }
 
     protected override void OnAfterRender(bool firstRender)

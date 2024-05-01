@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" />
@@ -46,6 +47,7 @@
     <EmbeddedResource Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf" Link="Assets\fonts\DevToys-Tools-Icons.ttf">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </EmbeddedResource>
+    <EmbeddedResource Include="Assets\changelog.md" />
     <EmbeddedResource Include="Assets\fonts\FluentSystemIcons-Regular.ttf">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </EmbeddedResource>

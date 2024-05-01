@@ -46,6 +46,15 @@ public static class PredefinedSettings
             defaultValue: true);
 
     /// <summary>
+    /// Equals to the last version the app runs. This setting is used to determine whether the user started the app
+    /// for the first time after an update
+    /// </summary>
+    public static readonly SettingDefinition<string> LastVersionRan
+        = new(
+            name: nameof(LastVersionRan),
+            defaultValue: string.Empty);
+
+    /// <summary>
     /// The language to use for the texts in the user interface.
     /// </summary>
     public static readonly SettingDefinition<string> Language
