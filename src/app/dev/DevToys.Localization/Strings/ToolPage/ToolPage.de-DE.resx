@@ -157,10 +157,10 @@
     <value>Toggle keep the window on top (Ctrl+Up)</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>On</value>
+    <value>An</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>Off</value>
+    <value>Aus</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
     <value>Unable to open this file</value>
@@ -172,6 +172,6 @@
     <value>Unable to save this file</value>
   </data>
   <data name="UnableSaveFileDescription" xml:space="preserve">
-    <value>Unable to save the file '{0}'. Check the logs to see the internal error.</value>
+    <value>Die Datei {0} konnte nicht gespeichert werden. Überprüfe die Logs, um den Fehler zu sehen.</value>
   </data>
 </root>

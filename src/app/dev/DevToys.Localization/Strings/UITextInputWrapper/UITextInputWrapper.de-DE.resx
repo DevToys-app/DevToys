@@ -130,7 +130,7 @@
     <value>Open a text document</value>
   </data>
   <data name="MoreButtonToolTip" xml:space="preserve">
-    <value>More...</value>
+    <value>Mehr...</value>
   </data>
   <data name="NoToolSuggested" xml:space="preserve">
     <value>No tool to suggest</value>
