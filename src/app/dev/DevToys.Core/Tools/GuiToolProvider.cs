@@ -649,7 +649,11 @@ public sealed partial class GuiToolProvider
 
     private static SettingDefinition<bool> CreateIsToolFavoriteSettingDefinition(GuiToolInstance guiToolInstance)
     {
-        return new SettingDefinition<bool>($"{guiToolInstance.InternalComponentName}_IsFavorite", defaultValue: false);
+        // TODO: あとで Tools.ExampleSoft.MyExtension というキーで問題が無いか確認する
+        //       Fav.ExampleSoft.MyExtension=true の方が通りが良いかもしれない
+        return new SettingDefinition<bool>(
+            $"Tools.{guiToolInstance.InternalComponentName}.isFavorite",
+            defaultValue: false);
     }
 
     private static void SearchTool(string[] searchQueries, GuiToolInstance tool, out TextSpan[] matchedSpans, out double weight)

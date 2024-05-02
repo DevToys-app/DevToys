@@ -20,7 +20,7 @@ public partial class Index : MefComponentBase
     /// </summary>
     private static readonly SettingDefinition<NavBarSidebarStates> UserPreferredNavBarState
         = new(
-            name: nameof(UserPreferredNavBarState),
+            name: $"DevToys.{nameof(UserPreferredNavBarState)}",
             defaultValue: NavBarSidebarStates.Expanded);
 
     private const int TitleBarMarginLeftWhenCompactOverlayMode = 0;
@@ -222,12 +222,12 @@ public partial class Index : MefComponentBase
 
         var assemblyInformationalVersion = (AssemblyInformationalVersionAttribute)Assembly.GetExecutingAssembly().GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute))!;
         string currentVersion = assemblyInformationalVersion.InformationalVersion;
-        string? lastVersion = SettingsProvider.GetSetting(PredefinedSettings.LastVersionRan);
+        string? lastVersion = SettingsProvider.GetSetting(PredefinedSettings.LastVersionRun);
         bool showChangelog = !string.Equals(currentVersion, lastVersion, StringComparison.OrdinalIgnoreCase);
 
         if (showChangelog)
         {
-            SettingsProvider.SetSetting(PredefinedSettings.LastVersionRan, currentVersion);
+            SettingsProvider.SetSetting(PredefinedSettings.LastVersionRun, currentVersion);
             await _whatsNewDialog.OpenAsync();
             openedDialog = true;
         }

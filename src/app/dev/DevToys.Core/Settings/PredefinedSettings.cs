@@ -42,16 +42,16 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> IsFirstStart
         = new(
-            name: nameof(IsFirstStart),
+            name: $"DevToys.{nameof(IsFirstStart)}",
             defaultValue: true);
 
     /// <summary>
     /// Equals to the last version the app runs. This setting is used to determine whether the user started the app
     /// for the first time after an update
     /// </summary>
-    public static readonly SettingDefinition<string> LastVersionRan
+    public static readonly SettingDefinition<string> LastVersionRun
         = new(
-            name: nameof(LastVersionRan),
+            name: $"DevToys.{nameof(LastVersionRun)}",
             defaultValue: string.Empty);
 
     /// <summary>
@@ -59,7 +59,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<string> Language
         = new(
-            name: nameof(Language),
+            name: $"DevToys.{nameof(Language)}",
             defaultValue: "default");
 
     /// <summary>
@@ -67,7 +67,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<AvailableApplicationTheme> Theme
         = new(
-            name: nameof(Theme),
+            name: $"DevToys.{nameof(Theme)}",
             defaultValue: AvailableApplicationTheme.Default);
 
     /// <summary>
@@ -75,7 +75,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<string> RecentTool1
         = new(
-            name: nameof(RecentTool1),
+            name: $"DevToys.{nameof(RecentTool1)}",
             defaultValue: string.Empty);
 
     /// <summary>
@@ -83,7 +83,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<string> RecentTool2
         = new(
-            name: nameof(RecentTool2),
+            name: $"DevToys.{nameof(RecentTool2)}",
             defaultValue: string.Empty);
 
     /// <summary>
@@ -91,7 +91,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<string> RecentTool3
         = new(
-            name: nameof(RecentTool3),
+            name: $"DevToys.{nameof(RecentTool3)}",
             defaultValue: string.Empty);
 
     /// <summary>
@@ -99,7 +99,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> SmartDetection
         = new(
-            name: nameof(SmartDetection),
+            name: $"DevToys.{nameof(SmartDetection)}",
             defaultValue: true);
 
     /// <summary>
@@ -107,7 +107,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> SmartDetectionPaste
         = new(
-            name: nameof(SmartDetectionPaste),
+            name: $"DevToys.{nameof(SmartDetectionPaste)}",
             defaultValue: true);
 
     /// <summary>
@@ -115,7 +115,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> CompactMode
         = new(
-            name: nameof(CompactMode),
+            name: $"DevToys.{nameof(CompactMode)}",
             defaultValue: false);
 
     /// <summary>
@@ -123,7 +123,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<string> TextEditorFont
         = new(
-            name: nameof(TextEditorFont),
+            name: $"DevToys.{nameof(TextEditorFont)}",
             defaultValue: string.Empty); // Default value will be defined by the app depending on the operating system.
 
     /// <summary>
@@ -131,7 +131,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> TextEditorTextWrapping
         = new(
-            name: nameof(TextEditorTextWrapping),
+            name: $"DevToys.{nameof(TextEditorTextWrapping)}",
             defaultValue: false);
 
     /// <summary>
@@ -139,7 +139,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> TextEditorLineNumbers
         = new(
-            name: nameof(TextEditorLineNumbers),
+            name: $"DevToys.{nameof(TextEditorLineNumbers)}",
             defaultValue: true);
 
     /// <summary>
@@ -147,7 +147,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> TextEditorHighlightCurrentLine
         = new(
-            name: nameof(TextEditorHighlightCurrentLine),
+            name: $"DevToys.{nameof(TextEditorHighlightCurrentLine)}",
             defaultValue: true);
 
     /// <summary>
@@ -155,7 +155,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> TextEditorRenderWhitespace
         = new(
-            name: nameof(TextEditorRenderWhitespace),
+            name: $"DevToys.{nameof(TextEditorRenderWhitespace)}",
             defaultValue: false);
 
     /// <summary>
@@ -163,7 +163,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<UITextEndOfLinePreference> TextEditorEndOfLinePreference
         = new(
-            name: nameof(TextEditorEndOfLinePreference),
+            name: $"DevToys.{nameof(TextEditorEndOfLinePreference)}",
             defaultValue: UITextEndOfLinePreference.TextDefault);
 
     /// <summary>
@@ -171,7 +171,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> TextEditorPasteClearsText
         = new(
-            name: nameof(TextEditorPasteClearsText),
+            name: $"DevToys.{nameof(TextEditorPasteClearsText)}",
             defaultValue: true);
 
     /// <summary>
@@ -179,7 +179,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<Rectangle?> MainWindowBounds
         = new(
-            name: nameof(MainWindowBounds),
+            name: $"DevToys.{nameof(MainWindowBounds)}",
             defaultValue: null,
             serialize: SerializeRectangle,
             deserialize: DeserializeRectangle);
@@ -189,7 +189,7 @@ public static class PredefinedSettings
     /// </summary>
     public static readonly SettingDefinition<bool> MainWindowMaximized
         = new(
-            name: nameof(MainWindowMaximized),
+            name: $"DevToys.{nameof(MainWindowMaximized)}",
             defaultValue: false);
 
     internal static string SerializeRectangle(Rectangle? rectangle)
