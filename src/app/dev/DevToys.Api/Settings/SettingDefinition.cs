@@ -39,12 +39,7 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
     {
         Guard.IsNotNullOrWhiteSpace(name);
 
-        if (name.Length > 255)
-        {
-            // Come one! Make it shorter!
-            ThrowHelper.ThrowArgumentOutOfRangeException(nameof(name), "Setting name is limited to 255 characters.");
-        }
-        else if (name.Contains('='))
+        if (name.Contains('='))
         {
             // For portable apps, settings are stored in a .ini file where the format is "setting_name=value".
             // Therefore, the setting name shouldn't contain "=".
@@ -154,10 +149,15 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
                 && assembly is not null
                 && assembly != currentAssembly)
             {
-                string className = type.Name;
-                string? namespaceName = type.Namespace;
                 string? callingAssemblyName = assembly.GetName().Name;
-                return $"[{callingAssemblyName}]{namespaceName}.{className}.{baseName}";
+                string settingName = $"{callingAssemblyName}.{baseName}";
+
+                if (settingName.Length > 255)
+                {
+                    ThrowHelper.ThrowArgumentOutOfRangeException(nameof(settingName), "Setting name is limited to 255 characters.");
+                }
+
+                return settingName;
             }
         }
 
