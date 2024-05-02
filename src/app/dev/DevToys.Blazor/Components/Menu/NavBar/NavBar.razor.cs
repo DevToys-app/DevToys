@@ -75,6 +75,12 @@ public partial class NavBar<TElement, TSearchElement>
     public RenderFragment? HeaderRight { get; set; }
 
     /// <summary>
+    /// Gets or sets the footer to be rendered inside the component.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? Footer { get; set; }
+
+    /// <summary>
     /// Raised when the NavBar goes and leave the hidden state.
     /// </summary>
     [Parameter]
@@ -116,6 +122,11 @@ public partial class NavBar<TElement, TSearchElement>
     public bool IsHiddenMode => _sidebarState.IsHidden;
 
     /// <summary>
+    /// Gets whether the <see cref="NavBar{TElement, TSearchElement}"/>'s side bar is collapsed or not.
+    /// </summary>
+    public bool IsCollapsedMode => _sidebarState.IsCollapsed;
+
+    /// <summary>
     /// Gets or sets the user preferred side bar state.
     /// </summary>
     internal NavBarSidebarStates UserPreferredState
@@ -129,7 +140,7 @@ public partial class NavBar<TElement, TSearchElement>
 
     public NavBar()
     {
-        _sidebarState.IsHiddenChanged += SidebarState_IsHiddenChanged;
+        _sidebarState.OnStateChanged += SidebarState_OnStateChanged;
     }
 
     internal ValueTask<bool> TryFocusSearchBoxAsync()
@@ -171,7 +182,7 @@ public partial class NavBar<TElement, TSearchElement>
 
     public override ValueTask DisposeAsync()
     {
-        _sidebarState.IsHiddenChanged -= SidebarState_IsHiddenChanged;
+        _sidebarState.OnStateChanged -= SidebarState_OnStateChanged;
         return base.DisposeAsync();
     }
 
@@ -237,7 +248,7 @@ public partial class NavBar<TElement, TSearchElement>
         return OnBuildingContextMenu.InvokeAsync(args);
     }
 
-    private void SidebarState_IsHiddenChanged(object? sender, EventArgs e)
+    private void SidebarState_OnStateChanged(object? sender, EventArgs e)
     {
         if (OnHiddenStateChanged.HasDelegate)
         {

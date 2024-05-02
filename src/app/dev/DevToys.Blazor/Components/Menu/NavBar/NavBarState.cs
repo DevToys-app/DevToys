@@ -15,7 +15,7 @@ internal sealed class NavBarState
 
     internal NavBarSidebarStates UserPreferredState { get; set; } = NavBarSidebarStates.Expanded;
 
-    internal event EventHandler? IsHiddenChanged;
+    internal event EventHandler? OnStateChanged;
 
     internal bool WidthUpdated(int width, int hiddenThreshold, int collapsedThreshold)
     {
@@ -163,6 +163,6 @@ internal sealed class NavBarState
         IsExpandedOverlay = userRequestExpandOverlay;
         IsCollapsed = isCollapsed;
         IsHidden = _widthBasedState == NavBarSidebarStates.Hidden;
-        IsHiddenChanged?.Invoke(this, EventArgs.Empty);
+        OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -95,6 +95,14 @@ public static class PredefinedSettings
             defaultValue: string.Empty);
 
     /// <summary>
+    /// Whether the app should automatically check for updates.
+    /// </summary>
+    public static readonly SettingDefinition<bool> CheckForUpdate
+        = new(
+            name: nameof(CheckForUpdate),
+            defaultValue: true);
+
+    /// <summary>
     /// Whether the application should automatically detect the best tool to use based on the clipboard content.
     /// </summary>
     public static readonly SettingDefinition<bool> SmartDetection

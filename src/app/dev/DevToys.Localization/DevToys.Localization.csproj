@@ -89,4 +89,9 @@
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Update="Strings\MainWindow\MainWindow.resx">
+      <LastGenOutput>MainWindow.Designer.cs</LastGenOutput>
+    </AdditionalFiles>
+  </ItemGroup>
 </Project>

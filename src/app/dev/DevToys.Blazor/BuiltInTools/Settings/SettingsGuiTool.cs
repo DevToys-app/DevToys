@@ -114,6 +114,14 @@ internal sealed class SettingsGuiTool : IGuiTool
                     .WithChildren(
 
                         Label().Text(Settings.Behaviors),
+                        Setting("update-setting")
+                            .Icon("FluentSystemIcons", '\uF150')
+                            .Title(Settings.CheckForUpdate)
+                            .Description(Settings.CheckForUpdateDescription)
+                            .Handle(
+                                _settingsProvider,
+                                PredefinedSettings.CheckForUpdate),
+
                         SettingGroup("smart-detection-settings")
                             .Icon("FluentSystemIcons", '\uF4D5')
                             .Title(Settings.SmartDetection)

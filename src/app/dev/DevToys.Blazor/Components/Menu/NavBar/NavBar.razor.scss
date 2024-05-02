@@ -99,6 +99,11 @@ $sidebar-top-bar-height: 48px;
         .sidebar-footer {
             grid-area: sidebar-footer;
             padding-bottom: 4px;
+
+            .custom-footer {
+                padding-left: 4px;
+                padding-right: 4px;
+            }
         }
 
         .sidebar-items {
