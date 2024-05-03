@@ -242,15 +242,15 @@
     <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Sostituisci il testo incollando</value>
     <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Visualizza spazi bianchi</value>
     <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Mostra spazi bianchi</value>
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
