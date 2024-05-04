@@ -249,12 +249,6 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
                 .Icon("FluentSystemIcons", '\uE47B')
                 .OnClick(() => OnUninstallExtensionButtonClick(extensionInstallationPath));
         actionBuilder.Add(uninstallButton);
-        if (!extensionInstallationPath.StartsWith(ExtensionInstallationManager.PreferredExtensionInstallationFolder))
-        {
-            // We might not be able to uninstall the extension if it is installed in a different location because
-            // it may require admin privileges(e.g.Program Files).
-            uninstallButton.Disable();
-        }
 
         // Create the item.
         return Item(

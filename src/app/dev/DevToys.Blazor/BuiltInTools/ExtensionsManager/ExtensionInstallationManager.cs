@@ -48,7 +48,7 @@ public static class ExtensionInstallationManager
                     }
                     catch (Exception ex)
                     {
-                        logger.LogError(ex, "Unable to uninstall extension '{extensionInstallationPath}'", extensionInstallationPath);
+                        logger.LogError(ex, "Unable to uninstall extension '{extensionInstallationPath}'. Try to start the app with administrator rights.", extensionInstallationPath);
                     }
                 }
 
