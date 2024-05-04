@@ -2,11 +2,8 @@ name: ci
 
 on:
   push:
-    branches:
-      - '!crowdin_main'   # excludes crowdin_main
-  pull_request:
-    branches:
-      - main
+    branches-ignore:
+      - crowdin_main
 
 jobs:
   windows-latest:
