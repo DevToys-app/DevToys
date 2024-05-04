@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - '!crowdin_main'   # excludes crowdin_main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   windows-latest:
