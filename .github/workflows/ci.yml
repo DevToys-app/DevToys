@@ -7,7 +7,7 @@ on:
 
 jobs:
   windows-latest:
-    name: windows-latest
+    name: Windows
     runs-on: windows-latest
     timeout-minutes: 30
     steps:
@@ -22,7 +22,7 @@ jobs:
       - name: 'Restore, Build and Test'
         run: ./build.cmd RunTests
   ubuntu-latest:
-    name: ubuntu-latest
+    name: Ubuntu
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -37,7 +37,7 @@ jobs:
       - name: 'Restore, Build and Test'
         run: ./build.cmd RunTests
   macos-latest:
-    name: macos-14
+    name: macOS
     runs-on: macos-14
     timeout-minutes: 30
     steps:
