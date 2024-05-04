@@ -124,13 +124,13 @@
     <value>All tools</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Zurück</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorite tools</value>
+    <value>Favorisierte Tools</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Favoriten</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
     <value>Keep on top</value>
@@ -145,13 +145,13 @@
     <value>Type to search for tools...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>Suche</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>Klicke zum Suchen</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Keine Ergebnisse gefunden</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
     <value>Toggle Navigation</value>

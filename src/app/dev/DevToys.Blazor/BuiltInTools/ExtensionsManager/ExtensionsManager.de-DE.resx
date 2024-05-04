@@ -124,38 +124,38 @@
     <value>Drittanbieter-Erweiterungen in DevToys hinzufügen und verwalten</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>Die Erweiterung {0} ist bereits installiert. Wenn du versuchst, die Erweiterung zu updaten, wenn die Erweiterung bereits installiert ist, deinstalliere die ältere Version zuerst.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>Die Erweiterung konnte nicht installiert werden</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>Finde mehr Erweiterungen Online</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
     <value>Erweiterung installieren</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>Erstelle eine Erweiterung für DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
     <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>Ein Neustart wird benötigt bevor die Änderung wirksam werden</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>Verwalte deine Erweiterungen</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Erweiterung von Drittanbierter können die Funktionität von bereits existierenden Tools verändern und könnten zugriff auf deinen Computer bekommen ohne deine Erlaubnis. Das kann dazu führen das deine Daten ins Internet gelangen könnten oder das ungewollt Software auf ihren Computer installiert werden kann. Wir empfhelen das du große Vorsicht walten lässt und das du nur Erweiterungen installierst dennen du Vertrauen kannst. Die DevToys Authoren sind nicht verantwortlich für jeden schaden oder verluste die bei Erweiterungen ausgelöst werden.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
     <value>I understand</value>
@@ -164,6 +164,6 @@
     <value>Terms and Conditions</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Warnung</value>
   </data>
 </root>

@@ -186,7 +186,7 @@
     <comment/>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Schriftart</value>
     <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
@@ -270,15 +270,15 @@
     <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>Besonderen Dank an</value>
     <comment/>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Text Editor</value>
     <comment/>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Vorschau</value>
     <comment/>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
