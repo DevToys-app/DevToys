@@ -210,47 +210,47 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Lingua</value>
     <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>È necessario riavviare l'applicazione quando si seleziona un'altra lingua</value>
     <comment/>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Chiaro</value>
     <comment/>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Numeri di riga</value>
     <comment/>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Visualizza i numeri di riga nell'editor di testo</value>
     <comment/>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>Mostra i numeri di riga</value>
     <comment/>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Sostituisci il testo quando si incolla</value>
     <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Al click del pulsante Incolla, cancella il testo prima d'incollarlo invece di aggiungerlo al contenuto esistente.</value>
     <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Sostituisci il testo incollando</value>
     <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Visualizza spazi bianchi</value>
     <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Mostra spazi bianchi</value>
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
