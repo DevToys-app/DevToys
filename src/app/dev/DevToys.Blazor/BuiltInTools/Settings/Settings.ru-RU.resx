@@ -136,10 +136,10 @@
     <value>Поведение</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Обновить</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Автоматическое обновление при запуске DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Компактное расстояние</value>
