@@ -115,6 +115,24 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for update.
+        /// </summary>
+        internal static string CheckForUpdate {
+            get {
+                return ResourceManager.GetString("CheckForUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically check for updates when DevToys starts.
+        /// </summary>
+        internal static string CheckForUpdateDescription {
+            get {
+                return ResourceManager.GetString("CheckForUpdateDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compact spacing.
         /// </summary>
         internal static string CompactMode {

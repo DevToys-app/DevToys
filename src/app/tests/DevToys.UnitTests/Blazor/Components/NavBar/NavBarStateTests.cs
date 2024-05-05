@@ -8,11 +8,11 @@ public class NavBarStateTests
     private const int NavBarWidthSidebarHiddenThreshold = 640;
     private const int NavBarWidthSidebarCollapseThreshold = 1008;
     private readonly NavBarState _state = new();
-    private int _isHiddenChangedInvokeCount;
+    private int _onStateChangedInvokeCount;
 
     public NavBarStateTests()
     {
-        _state.IsHiddenChanged += NavBarState_IsHiddenChanged;
+        _state.OnStateChanged += NavBarState_OnStateChanged;
     }
 
     [Fact]
@@ -22,7 +22,7 @@ public class NavBarStateTests
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
-        _isHiddenChangedInvokeCount.Should().Be(0);
+        _onStateChangedInvokeCount.Should().Be(0);
     }
 
     [Fact]
@@ -30,19 +30,19 @@ public class NavBarStateTests
     public void FromHiddenToCollapsed()
     {
         _state.WidthUpdated(NavBarWidthSidebarHiddenThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(1);
+        _onStateChangedInvokeCount.Should().Be(1);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeTrue();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeTrue();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarHiddenThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(3);
+        _onStateChangedInvokeCount.Should().Be(3);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
@@ -53,19 +53,19 @@ public class NavBarStateTests
     public void FromCollapsedToHidden()
     {
         _state.WidthUpdated(NavBarWidthSidebarHiddenThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(1);
+        _onStateChangedInvokeCount.Should().Be(1);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeTrue();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarHiddenThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(3);
+        _onStateChangedInvokeCount.Should().Be(3);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeTrue();
         _state.IsCollapsed.Should().BeTrue();
@@ -76,19 +76,19 @@ public class NavBarStateTests
     public void FromCollapsedToExpanded()
     {
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(1);
+        _onStateChangedInvokeCount.Should().Be(1);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(3);
+        _onStateChangedInvokeCount.Should().Be(3);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
@@ -99,19 +99,19 @@ public class NavBarStateTests
     public void FromExpandedToCollapsed()
     {
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(1);
+        _onStateChangedInvokeCount.Should().Be(1);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
 
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(3);
+        _onStateChangedInvokeCount.Should().Be(3);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
@@ -122,19 +122,19 @@ public class NavBarStateTests
     public void FromExpandedToCollapsedExplicitly()
     {
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(1);
+        _onStateChangedInvokeCount.Should().Be(1);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
 
         _state.ToggleSidebar();
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.ToggleSidebar();
-        _isHiddenChangedInvokeCount.Should().Be(3);
+        _onStateChangedInvokeCount.Should().Be(3);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
@@ -146,14 +146,14 @@ public class NavBarStateTests
     {
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
         _state.ToggleSidebar();
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(4);
+        _onStateChangedInvokeCount.Should().Be(4);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
@@ -164,19 +164,19 @@ public class NavBarStateTests
     public void FromCollapsedToExpandedOverlay()
     {
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(1);
+        _onStateChangedInvokeCount.Should().Be(1);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.ToggleSidebar();
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeTrue();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
 
         _state.ToggleSidebar();
-        _isHiddenChangedInvokeCount.Should().Be(3);
+        _onStateChangedInvokeCount.Should().Be(3);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
@@ -188,19 +188,19 @@ public class NavBarStateTests
     {
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
         _state.ToggleSidebar();
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeTrue();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
 
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold - 2, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(3);
+        _onStateChangedInvokeCount.Should().Be(3);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(4);
+        _onStateChangedInvokeCount.Should().Be(4);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
@@ -212,19 +212,19 @@ public class NavBarStateTests
     {
         _state.WidthUpdated(NavBarWidthSidebarHiddenThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
         _state.ToggleSidebar();
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeTrue();
         _state.IsHidden.Should().BeTrue();
         _state.IsCollapsed.Should().BeFalse();
 
         _state.WidthUpdated(NavBarWidthSidebarHiddenThreshold - 2, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(3);
+        _onStateChangedInvokeCount.Should().Be(3);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeTrue();
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarHiddenThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(4);
+        _onStateChangedInvokeCount.Should().Be(4);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
@@ -237,7 +237,7 @@ public class NavBarStateTests
         Default();
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
         _state.ToggleSidebar();
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeTrue();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
@@ -248,7 +248,7 @@ public class NavBarStateTests
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(4);
+        _onStateChangedInvokeCount.Should().Be(4);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeTrue();
@@ -260,7 +260,7 @@ public class NavBarStateTests
     {
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold - 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
         _state.ToggleSidebar();
-        _isHiddenChangedInvokeCount.Should().Be(2);
+        _onStateChangedInvokeCount.Should().Be(2);
         _state.IsExpandedOverlay.Should().BeTrue();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
@@ -271,14 +271,14 @@ public class NavBarStateTests
         _state.IsCollapsed.Should().BeTrue();
 
         _state.WidthUpdated(NavBarWidthSidebarCollapseThreshold + 1, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        _isHiddenChangedInvokeCount.Should().Be(4);
+        _onStateChangedInvokeCount.Should().Be(4);
         _state.IsExpandedOverlay.Should().BeFalse();
         _state.IsHidden.Should().BeFalse();
         _state.IsCollapsed.Should().BeFalse();
     }
 
-    private void NavBarState_IsHiddenChanged(object sender, EventArgs e)
+    private void NavBarState_OnStateChanged(object sender, EventArgs e)
     {
-        _isHiddenChangedInvokeCount++;
+        _onStateChangedInvokeCount++;
     }
 }

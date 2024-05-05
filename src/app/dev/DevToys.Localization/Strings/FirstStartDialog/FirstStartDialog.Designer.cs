@@ -71,6 +71,15 @@ namespace DevToys.Localization.Strings.FirstStartDialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for updates when DevToys starts.
+        /// </summary>
+        public static string CheckForUpdate {
+            get {
+                return ResourceManager.GetString("CheckForUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue.
         /// </summary>
         public static string Continue {
@@ -80,7 +89,7 @@ namespace DevToys.Localization.Strings.FirstStartDialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. We will occasionally connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements..
+        ///   Looks up a localized string similar to DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements..
         /// </summary>
         public static string OfflineFirstDescription {
             get {
