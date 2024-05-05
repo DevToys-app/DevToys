@@ -122,13 +122,13 @@
 Here’s what you need to know:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for updates when DevToys starts</value>
+    <value>Controlla gli aggiornamenti all'avvio di DevToys</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Continue</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys opera con una mentalità offline-first. Raccogliamo i dati minimi anonimizzati localmente per scopi di risoluzione dei problemi. Non caricamo i log su Internet. Se riscontri un bug e scegli di segnalarlo, potremmo chiederti di condividere i log con noi. Con il vostro consenso, ci connetteremo a internet per verificare la ricerca di aggiornamenti, garantendo di avere accesso alle ultime funzionalità e miglioramenti di sicurezza.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>Offline First Philosophy</value>
