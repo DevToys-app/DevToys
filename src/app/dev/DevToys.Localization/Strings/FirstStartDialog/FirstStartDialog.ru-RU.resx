@@ -122,7 +122,7 @@
 Вот что вам нужно знать:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for updates when DevToys starts</value>
+    <value>Проверка обновлений при запуске DevToys</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Продолжить</value>
