@@ -136,10 +136,10 @@
     <value>Azioni</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Controlla aggiornamenti</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Controlla automaticamente gli aggiornamenti all'avvio di DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Spazio compatto</value>
