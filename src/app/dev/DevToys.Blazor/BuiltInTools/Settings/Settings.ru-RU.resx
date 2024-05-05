@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -119,47 +119,42 @@
   </resheader>
   <data name="About" xml:space="preserve">
     <value>О программе</value>
-    <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
     <value>Параметры</value>
-    <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
     <value>Оформление</value>
-    <comment/>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>Тема приложения</value>
-    <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Выберите тему приложения для отображения</value>
-    <comment/>
   </data>
   <data name="Behaviors" xml:space="preserve">
     <value>Поведение</value>
-    <comment/>
+  </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check for update</value>
+  </data>
+  <data name="CheckForUpdateDescription" xml:space="preserve">
+    <value>Automatically check for updates when DevToys starts</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Компактное расстояние</value>
-    <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
     <value>Уменьшить пространство между элементами интерфейса</value>
-    <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Темная</value>
-    <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Тот же, что и в системе</value>
-    <comment/>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Настройте внешний вид DevToys</value>
-    <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">
     <value>{0} для запуска разработки DevToysMac</value>
@@ -167,43 +162,33 @@
   </data>
   <data name="Editing" xml:space="preserve">
     <value>Редактирование</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
     <value>Символ окончания строки</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
     <value>Тот же конец строки, что и ввод (автоматически)</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
     <value>Возврат и перевод строки (\r\n) (Windows)</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
     <value>Лента строк (\n) (Unix)</value>
-    <comment/>
   </data>
   <data name="Font" xml:space="preserve">
     <value>Шрифт</value>
-    <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>Помогите нам перевести DevToys!</value>
-    <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Подсвечивать текущую строку</value>
-    <comment/>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
     <value>Улучшение видимости текущей строки за счет изменения цвета фона</value>
-    <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>Higlight the current line</value>
-    <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
     <value>{0} для создания иконки приложения</value>
@@ -211,90 +196,68 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Язык</value>
-    <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>Для применения другого языка необходим перезапуск приложения</value>
-    <comment/>
   </data>
   <data name="Light" xml:space="preserve">
     <value>Светлая</value>
-    <comment/>
   </data>
   <data name="LineNumbers" xml:space="preserve">
     <value>Нумерация строк</value>
-    <comment/>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
     <value>Отображение нумерации строк в текстовом редакторе</value>
-    <comment/>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
     <value>Показывать номера строк</value>
-    <comment/>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Заменить текст при вставке</value>
-    <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
     <value>При нажатии на кнопку Вставить, очистите текст перед вставкой вместо добавления в существующее содержимое текстового редактора.</value>
-    <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>Заменить текст при вставке</value>
-    <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Отображение пространства отступа</value>
-    <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
     <value>Показать пробелы</value>
-    <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>Настройки</value>
-    <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Умное обнаружение</value>
-    <comment/>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
     <value>Автоматическое определение инструмента на основе содержимого буфера обмена</value>
-    <comment/>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>Автоматически вставлять содержимое буфера обмена при выборе инструмента</value>
-    <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Особая благодарность</value>
-    <comment/>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>Текстовый редактор</value>
-    <comment/>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
     <value>Предварительный просмотр</value>
-    <comment/>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Использовать системные настройки</value>
-    <comment/>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Версия {0}</value>
-    <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>Переносить слова</value>
-    <comment/>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>Перенос слов</value>
-    <comment/>
   </data>
 </root>
