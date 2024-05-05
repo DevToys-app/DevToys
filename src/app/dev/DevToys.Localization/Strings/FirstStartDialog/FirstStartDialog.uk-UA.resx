@@ -121,11 +121,14 @@
     <value>DevToys - це набір інструментів для розробників, наповнений колекцією безкоштовних засобів з відкритим вихідним кодом. Вважайте, що це швейцарський армійський ніж, пристосований для вирішення тих надокучливих повсякденних завдань, які сповільнюють вашу роботу.
 Ось що потрібно знати:</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check for updates when DevToys starts</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Продовжити</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys працює з орієнтацією на роботу в режимі офлайн. Ми збираємо якомога менше анонімних локальних даних для діагностики несправностей. Ми не вивантажуємо журнали в інтернет. Якщо ви зіткнулися з помилкою і вирішили повідомити про неї, ми можемо попросити вас поділитися з нами журналами. Час від часу ми будемо підключатися до інтернету, щоб перевірити наявність оновлень, гарантуючи вам доступ до найновіших функцій і поліпшень безпеки.</value>
+    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>Філософія офлайн передусім</value>
