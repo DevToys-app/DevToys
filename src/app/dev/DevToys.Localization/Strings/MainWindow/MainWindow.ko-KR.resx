@@ -157,7 +157,7 @@
     <value>Toggle Navigation</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
-    <value>Update available</value>
+    <value>업데이트 사용 가능</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
