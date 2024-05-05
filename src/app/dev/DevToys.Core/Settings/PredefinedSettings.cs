@@ -100,7 +100,7 @@ public static class PredefinedSettings
     public static readonly SettingDefinition<bool> CheckForUpdate
         = new(
             name: nameof(CheckForUpdate),
-            defaultValue: true);
+            defaultValue: false);
 
     /// <summary>
     /// Whether the application should automatically detect the best tool to use based on the clipboard content.
