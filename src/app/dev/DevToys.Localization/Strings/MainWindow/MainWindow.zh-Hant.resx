@@ -156,6 +156,9 @@
   <data name="ToggleNavigation" xml:space="preserve">
     <value>切換導航欄顯示</value>
   </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Update available</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>
