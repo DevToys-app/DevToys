@@ -172,6 +172,6 @@
     <value>Impossible salvare il file</value>
   </data>
   <data name="UnableSaveFileDescription" xml:space="preserve">
-    <value>Impossibile salvare il file '{0}'. Controllare il log per vedere l'errore.</value>
+    <value>Impossibile salvare il file '{0}'. Controllare il log file per vedere l'errore.</value>
   </data>
 </root>
