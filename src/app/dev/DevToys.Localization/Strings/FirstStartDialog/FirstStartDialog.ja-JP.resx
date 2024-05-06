@@ -122,13 +122,13 @@
 利用を開始する前に、以下の内容をご確認ください。</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for updates when DevToys starts</value>
+    <value>DevToys の起動時に更新を確認する</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>利用を開始</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys はオフラインファーストの考えで開発されています。不具合の解決を目的とした、最小限の匿名化されたログデータをローカルに保存します。ログは自動的にアップロードされることはありません。不具合の解決のためにログの共有を依頼することがあります。また、使用者の同意を得た上でネットワーク接続による更新確認を行い、アプリの機能追加とセキュリティ強化のための更新を行います。</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>オフラインファーストの理念</value>
