@@ -176,7 +176,7 @@
     <value>Line Feed (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>글꼴</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>Help us translating DevToys!</value>
@@ -195,7 +195,7 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>언어</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>The app needs to be restarted when selecting another language</value>
@@ -228,7 +228,7 @@
     <value>Show whitespace</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>설정</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Smart detection</value>
@@ -243,21 +243,21 @@
     <value>Special thanks to</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>텍스트 편집기</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>미리보기</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>시스템 설정 사용</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>버전 {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>Wrap word</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>줄 바꿈</value>
   </data>
 </root>
