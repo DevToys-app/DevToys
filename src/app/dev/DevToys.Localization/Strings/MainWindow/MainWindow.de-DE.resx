@@ -118,53 +118,53 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllToolsAccessibleName" xml:space="preserve">
-    <value>All tools</value>
+    <value>Alle Werkzeuge</value>
   </data>
   <data name="AllToolsDisplayTitle" xml:space="preserve">
-    <value>All tools</value>
+    <value>Alle Werkzeuge</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Zurück</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorisierte Tools</value>
+    <value>Bevorzugte Werkzeuge</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
     <value>Favoriten</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
-    <value>Keep on top</value>
+    <value>Oben bleiben</value>
   </data>
   <data name="PictureInPictureExpand" xml:space="preserve">
-    <value>Back to full view</value>
+    <value>Zurück zur Vollansicht</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
-    <value>Recents</value>
+    <value>Aktuelles</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>Eingeben, um nach Werkzeugen zu suchen...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
     <value>Suche</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Klicke zum Suchen</value>
+    <value>Klicken, um zu suchen</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>Keine Ergebnisse gefunden</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Toggle Navigation</value>
+    <value>Navigation umschalten</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>
   <data name="WindowTitleInSystem" xml:space="preserve">
     <value>{0} - DevToys</value>
-    <comment>{0} is a tool name.</comment>
+    <comment>{0} ist ein Werkzeugname.</comment>
   </data>
   <data name="WindowTitleWithToolName" xml:space="preserve">
     <value>DevToys - {0}</value>
-    <comment>{0} is a tool name.</comment>
+    <comment>{0} ist ein Werkzeugname.</comment>
   </data>
 </root>

@@ -126,19 +126,19 @@
     <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Darstellung</value>
+    <value>Erscheinung</value>
     <comment/>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Farbschema</value>
+    <value>App-Thema</value>
     <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Wähle aus, welches Farbschema verwendet werden soll</value>
+    <value>Wähle das anzuzeigende App-Thema aus</value>
     <comment/>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Verhaltensweise</value>
+    <value>Verhaltensweisen</value>
     <comment/>
   </data>
   <data name="CompactMode" xml:space="preserve">
@@ -146,7 +146,7 @@
     <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Abstand zwischen den UI-Elementen verringern</value>
+    <value>Abstand zwischen UI-Elementen verkleinern</value>
     <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
@@ -154,35 +154,35 @@
     <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>System</value>
+    <value>Dasselbe wie das System</value>
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>DevToys Erscheinungsbild anpassen &amp; feel</value>
     <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} für den Start der Entwicklung von DevToysMac</value>
-    <comment>{0} will be replaced by a name</comment>
+    <value>{0} zum Starten der DevToysMac-Entwicklung</value>
+    <comment>{0} wird durch einen Namen ersetzt</comment>
   </data>
   <data name="Editing" xml:space="preserve">
     <value>Bearbeitung</value>
     <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>Zeilenendzeichen</value>
+    <value>Zeilenendezeichen</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>Gleiches Zeilenende wie bei der Eingabe (automatisch)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+    <value>Wagenrücklauf und Zeilenvorschub (\r\n) (Windows)</value>
     <comment/>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
+    <value>Zeilenvorschub (\n) (Unix)</value>
     <comment/>
   </data>
   <data name="Font" xml:space="preserve">
@@ -190,7 +190,7 @@
     <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Helfen Sie uns, DevToys zu übersetzen!</value>
+    <value>Hilf uns beim Übersetzen von DevToys!</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
@@ -198,23 +198,23 @@
     <comment/>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Ändert die Hintergrundfarbe der aktuellen Zeile, sodass sie sichtbarer wird</value>
+    <value>Ändere die Hintergrundfarbe der aktuellen Zeile, damit sie besser sichtbar ist</value>
     <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>Die aktuelle Zeile hervorheben</value>
     <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} für das Design des App-Symbols</value>
-    <comment>{0} will be replaced by a name</comment>
+    <value>{0} für die Gestaltung des App-Symbols</value>
+    <comment>{0} wird durch einen Namen ersetzt</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Sprache</value>
+    <value>Language</value>
     <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>Die App muss bei der Auswahl einer anderen Sprache neu gestartet werden</value>
+    <value>Die App muss neu gestartet werden, wenn eine andere Sprache ausgewählt wird </value>
     <comment/>
   </data>
   <data name="Light" xml:space="preserve">
@@ -238,7 +238,7 @@
     <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>Beim Einfügen Text löschen, statt ihn an den vorhandenen Inhalt anzuhängen.</value>
+    <value>Beim Klicken auf die Schaltfläche "Einfügen", den Text vor dem Einfügen löschen, anstatt ihn an den vorhandenen Texteditor-Inhalt anzuhängen.</value>
     <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
@@ -246,11 +246,11 @@
     <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Leerraum/Leerzeichen rendern</value>
     <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Leerraum/Leerzeichen anzeigen</value>
     <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
@@ -262,11 +262,11 @@
     <comment/>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Erkennt automatisch das beste Werkzeug für den aktuellen Inhalt in der Zwischenablage</value>
+    <value>Automatisches Erkennen des besten Werkzeugs anhand des Inhalts der Zwischenablage</value>
     <comment/>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Automatisches Einfügen des Inhalts der Zwischenablage bei Auswahl eines empfohlenen Werkzeugs</value>
     <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
@@ -274,7 +274,7 @@
     <comment/>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text Editor</value>
+    <value>Texteditor</value>
     <comment/>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
@@ -282,7 +282,7 @@
     <comment/>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Systemeinstellungen verwenden</value>
     <comment/>
   </data>
   <data name="Version" xml:space="preserve">
@@ -290,11 +290,11 @@
     <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Wort umbrechen</value>
     <comment/>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>Zeilenumbruch</value>
     <comment/>
   </data>
 </root>
