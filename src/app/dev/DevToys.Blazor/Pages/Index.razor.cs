@@ -76,6 +76,7 @@ public partial class Index : MefComponentBase
         UIDialogService.IsDialogOpenedChanged += DialogService_IsDialogOpenedChanged;
         ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
         ViewModel.SelectedMenuItem ??= ViewModel.HeaderAndBodyToolViewItems[0];
+        ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
         WindowService.WindowActivated += WindowService_WindowActivated;
         WindowService.WindowDeactivated += WindowService_WindowDeactivated;
@@ -84,6 +85,14 @@ public partial class Index : MefComponentBase
 
         TitleBarInfoProvider.TitleBarMarginRight = 40;
         WindowHasFocus = true;
+    }
+
+    private void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(ViewModel.UpdateAvailable))
+        {
+            InvokeAsync(StateHasChanged);
+        }
     }
 
     private void DialogService_IsDialogOpenedChanged(object? sender, EventArgs e)
@@ -209,6 +218,11 @@ public partial class Index : MefComponentBase
                 ViewModel.GoBack();
             }
         }
+    }
+
+    private void OnUpdateAvailableButtonClick()
+    {
+        OSHelper.OpenFileInShell("https://github.com/DevToys-app/DevToys/releases");
     }
 
     private async Task<bool> ShowFirstStartAndOrWhatsNewDialogsAsync()

@@ -14,3 +14,12 @@
         grid-area: title;
     }
 }
+
+
+// Compact mode
+div[data-compactmode] {
+    .sidebar-footer-button {
+        min-block-size: 32px !important;
+        padding-block: 4px 6px !important;
+    }
+}

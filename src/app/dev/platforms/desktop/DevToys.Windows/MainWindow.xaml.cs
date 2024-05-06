@@ -124,6 +124,8 @@ public partial class MainWindow : MicaWindowWithOverlay
 
     private void BlazorWebView_BlazorWebViewInitialized(object? sender, BlazorWebViewInitializedEventArgs e)
     {
+        LogWebViewVersion(blazorWebView.WebView.CoreWebView2.Environment.BrowserVersionString);
+
         if (!Debugger.IsAttached)
         {
             blazorWebView.WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
@@ -269,5 +271,10 @@ public partial class MainWindow : MicaWindowWithOverlay
     private void LogUiLoadTime(double duration)
     {
         _logger?.LogInformation(3, "App main window's UI loaded in {duration} ms", duration);
+    }
+
+    private void LogWebViewVersion(string version)
+    {
+        _logger?.LogInformation(4, "Running Windows with WebView {version}", version);
     }
 }

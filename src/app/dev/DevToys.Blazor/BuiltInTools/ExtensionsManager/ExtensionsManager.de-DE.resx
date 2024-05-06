@@ -131,7 +131,7 @@
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
-    <comment>Example: "DevToys.Tools - 1.0.0"</comment>
+    <comment>Beispiel: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
     <value>Weitere Erweiterungen online finden</value>
@@ -143,7 +143,7 @@
     <value>Eine Erweiterung für DevToys erstellen</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
     <value>Bitte schließe alle DevToys-Fenster und starte die Anwendung neu, um die Änderungen zu übernehmen.</value>

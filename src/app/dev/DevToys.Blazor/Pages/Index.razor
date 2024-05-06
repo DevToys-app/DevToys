@@ -124,7 +124,7 @@
                 </div>
             </div>
         </SearchResultItemTemplate>
-    
+
         <!-- Item design -->
         <NavBarItemIconTemplate Context="item">
             @{
@@ -140,11 +140,11 @@
                     iconGlyph = groupViewItem.IconGlyph;
                     iconFontFamily = groupViewItem.IconFontName;
                 }
-    
+
                 <FontIcon FontFamily="@iconFontFamily" Glyph="@iconGlyph" />
             }
         </NavBarItemIconTemplate>
-    
+
         <NavBarItemTitleTemplate Context="item">
             @{
                 var title = string.Empty;
@@ -156,7 +156,7 @@
                 {
                     title = groupViewItem.DisplayTitle;
                 }
-    
+
                 <div style="display: flex;">
                     <TextBlock NoWrap="true"
                                Text="@title"
@@ -172,7 +172,25 @@
                 </div>
             }
         </NavBarItemTitleTemplate>
-    
+
+        <Footer>
+            @if (ViewModel.UpdateAvailable)
+            {
+                <Button Appearance="ButtonAppearance.Hyperlink"
+                        Class="sidebar-footer-button"
+                        @onclick="OnUpdateAvailableButtonClick">
+                    @if (_navBar.IsCollapsedMode)
+                    {
+                        <FontIcon Glyph="@('\uF150')" Height="16" Width="16" />
+                    }
+                    else
+                    {
+                        <TextBlock Text="@MainWindow.UpdateAvailable" NoWrap="true" />
+                    }
+                </Button>
+            }
+        </Footer>
+
         <!-- Content of the NavBar-->
         <Content>
             @if (!IsTransitioning)
