@@ -121,11 +121,14 @@
     <value>DevToys to zestaw narzędzi dla programistów, zawierający kolekcję darmowych i otwartych narzędzi. Jest jak szwajcarski scyzoryk przystosowany do radzenia sobie z tymi pesymistycznymi codziennymi zadaniami, które Cię spowalniają.
 Oto co musisz wiedzieć:</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check for updates when DevToys starts</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Kontynuuj</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys działa w trybie offline-first. Zbieramy lokalnie minimalne, anonimowe dane w celu rozwiązywania problemów. Nie przesyłamy logów do Internetu. Jeśli napotkasz błąd i zdecydujesz się go zgłosić, możemy poprosić Cię o udostępnienie nam logów. Od czasu do czasu połączymy się z Internetem, aby sprawdzić dostępność aktualizacji, zapewniając dostęp do najnowszych funkcji i aktualizacji bezpieczeństwa.</value>
+    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>Po pierwsze offline</value>

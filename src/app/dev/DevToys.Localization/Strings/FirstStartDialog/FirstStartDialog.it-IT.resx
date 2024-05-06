@@ -118,28 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys is your go-to toolbox for developers, packed with a collection of free and open-source tools. Think of it as a Swiss Army knife tailored to tackle those pesky daily tasks that slow you down.
-Here’s what you need to know:</value>
+    <value>DevToys è la cassetta degli attrezzi per gli sviluppatori, ricco di una collezione di strumenti gratuiti e open-source. Pensatelo come un coltellino svizzero su misura per affrontare quei fastidiosi compiti quotidiani che vi rallentano.
+Ecco quello che devi sapere:</value>
+  </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Controlla automaticamente gli aggiornamenti all'avvio di DevToys</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Continue</value>
+    <value>Successivo</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. We will occasionally connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys opera con una mentalità offline-first. Raccogliamo i dati minimi anonimizzati localmente per scopi di risoluzione dei problemi. Non caricamo i log su Internet. Se riscontri un bug e scegli di segnalarlo, potremmo chiederti di condividere i log con noi. Con il vostro consenso, ci connetteremo a internet per verificare la ricerca di aggiornamenti, garantendo di avere accesso alle ultime funzionalità e miglioramenti di sicurezza.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>Filosofia Offline First</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>La potenza di DevToys cresce con le estensioni, aggiungendo più funzioni alla vostra cassetta degli strumenti. Mentre assicuriamo l'integrità dell'app principale, è importante sapere che non abbiamo alcun controllo su ciò che le estensioni di terze parti fanno con il computer e i dati. Pertanto, vi invitiamo a praticare cautela durante l'installazione di estensioni. Per monitorare DevToys o qualsiasi estensione attività di rete, strumenti come Wireshark, Little Snitch, o Fiddler possono essere utilizzati per monitorare le connessioni in entrata e in uscita.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>Fidati ma verifica</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>Ho capito e acconsento</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>Benvenuto in DevToys!</value>
   </data>
 </root>

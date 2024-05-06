@@ -121,6 +121,9 @@
     <value>DevToys ist dein Werkzeugkasten für Entwickler, vollgepackt mit einer Sammlung kostenloser und quelloffenen Werkzeugen. Betrachte es als ein Schweizer Taschenmesser, das darauf zugeschnitten ist, die lästigen täglichen Aufgaben zu bewältigen, die dich ausbremsen.
 Folgendes musst du wissen::</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Beim Start von DevToys auf Updates prüfen</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Weiter</value>
   </data>

@@ -156,6 +156,9 @@
   <data name="ToggleNavigation" xml:space="preserve">
     <value>ナビゲーションの切り替え</value>
   </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>DevToys を更新</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>

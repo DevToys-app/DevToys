@@ -121,11 +121,14 @@
     <value>DevToys 是開發人員的首選工具箱，包含一系列免費和開源的工具。你可以將其視為一把瑞士軍刀，專為解決那些讓你放慢腳步的煩人的日常任務而量身定制。
 以下是你需要瞭解的內容：</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check for updates when DevToys starts</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>繼續</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys 以離線優先的形式運作。我們在本地收集最少的匿名資料以用於故障排除。我們不會將紀錄上載到互聯網。如果你遇到錯誤並選擇報告它，我們可能會要求你與我們分享紀錄。我們偶爾會連接到互聯網來檢查更新，以確保你能夠存取最新的功能和安全性增強功能。</value>
+    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>離線優先的形式</value>

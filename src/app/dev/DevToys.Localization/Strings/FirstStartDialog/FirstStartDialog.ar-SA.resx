@@ -121,11 +121,14 @@
     <value>DevToys هو صندوق الأدوات الذي يستخدمه المطورون، وهو مزود بمجموعة من الأدوات المجانية ومفتوحة المصدر. فكر في الأمر كسكين الجيش السويسري المصمم للتعامل مع تلك المهام اليومية المزعجة التي تبطئك.
 إليك ما تحتاج إلى معرفته:</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check for updates when DevToys starts</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>أستمرر</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>تعمل DevToys بعقلية غير متصلة بالإنترنت أولاً. نقوم بجمع الحد الأدنى من البيانات مجهولة المصدر محليًا لأغراض استكشاف الأخطاء وإصلاحها. نحن لا نقوم بتحميل السجلات على شبكة الإنترنت. إذا واجهت خطأ ما واخترت الإبلاغ عنه، فقد نطلب منك مشاركة السجلات معنا. سنقوم أحيانًا بالاتصال بالإنترنت للتحقق من وجود تحديثات، مما يضمن حصولك على أحدث الميزات والتحسينات الأمنية.</value>
+    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>الفلسفة الأولى غير متصل بالشبكة</value>

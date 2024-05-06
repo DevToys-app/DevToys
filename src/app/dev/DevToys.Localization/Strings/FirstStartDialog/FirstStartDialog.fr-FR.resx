@@ -120,11 +120,14 @@
   <data name="AppDescription" xml:space="preserve">
     <value>DevToys est votre boîte à outils pour développeur, regroupant une collection d’outils gratuits et open-source. Pensez-y comme à un couteau suisse conçu pour s’attaquer à ces tâches quotidiennes ennuyeuses qui vous ralentissent. Voici ce que vous devez savoir :</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check for updates when DevToys starts</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Continuer</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys fonctionne avec une mentalité privilégiant le hors-ligne. Nous collectons quelques données anonymisées localement à des fins de dépannage. Nous ne les envoyons pas sur internet. Si vous rencontrez un bug et choisissez de le signaler, nous pourrions vous demander de partager les logs avec nous. Nous nous connecterons occasionnellement à internet pour vérifier les mises à jour, vous assurant ainsi l’accès aux dernières fonctionnalités et améliorations de sécurité.</value>
+    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>Philosophie du “Offline First”</value>

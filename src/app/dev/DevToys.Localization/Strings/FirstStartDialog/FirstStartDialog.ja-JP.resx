@@ -121,12 +121,14 @@
     <value>DevToys は開発者が愛用できるオープンソースツールが詰め込まれたツールボックスアプリです。多機能ナイフだと考えてください。あなたの日常業務や作業で遭遇する面倒な処理をスマートに解決するための機能をご用意しました。
 利用を開始する前に、以下の内容をご確認ください。</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>DevToys の起動時に更新を確認する</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>利用を開始</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys はオフラインファーストの考えで開発されています。不具合の解決を目的とした、最小限の匿名化されたログデータをローカルに保存します。ログは自動的にアップロードされることはありませんが、問題の解決のためにログの提出を依頼することがあります。
-また、アプリの機能追加とセキュリティの強化を目的とした、アップデート確認を行います。</value>
+    <value>DevToys はオフラインファーストの考えで開発されています。不具合の解決を目的とした、最小限の匿名化されたログデータをローカルに保存します。ログは自動的にアップロードされることはありません。不具合の解決のためにログの共有を依頼することがあります。また、使用者の同意を得た上でネットワーク接続による更新確認を行い、アプリの機能追加とセキュリティ強化のための更新を行います。</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>オフラインファーストの理念</value>
