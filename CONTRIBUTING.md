@@ -1,19 +1,19 @@
 # How to Contribute:
 
 You can contribute to DevToys app by:
-- Report issues and bugs [here](https://github.com/veler/DevToys/issues/new?template=bug_report.md).
-- Submit feature requests [here](https://github.com/veler/DevToys/issues/new?template=feature_request.md).
+- Report issues and bugs [here](https://github.com/DevToys-app/DevToys/issues/new?template=bug_report.md).
+- Submit feature requests [here](https://github.com/DevToys-app/DevToys/issues/new?template=feature_request.md).
 - Creating a pull request.
 - Internationalization and localization:
     * See instructions below.
 
-# How to Build and Run DevToys from source:
+# How to Build and Run DevToys and DevToys CLI (without tools) from source:
 
 ## From Windows
 
 ### Prerequisites
 1. Make sure your machine is running on Windows 10 1903 (19h1) or later.
-1. Install [Visual Studio 2022 17.3 or later](https://visualstudio.microsoft.com/vs/) installed with the following Workloads, or import the [vs2022.vsconfig](vs2022.vsconfig) file.
+1. Install [**Visual Studio 2022 17.3 or later**](https://visualstudio.microsoft.com/vs/) installed with the following Workloads, or import the [vs2022.vsconfig](vs2022.vsconfig) file.
     * ASP.NET and web development
     * Node.js development
     * .NET desktop development
@@ -116,6 +116,10 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 #### If you are using Visual Studio Code:
 1. Open the repository in Visual Studio Code to edit the code.
 1. In `Run and Debug`, select `DevToys Linux` or `DevToys CLI` and press Start.
+
+# How to Build and Run DevToys and DevToys CLI with default tools from source:
+
+See [DevToys.Tools's CONTRIBUTING.md](https://github.com/DevToys-app/DevToys.Tools/blob/main/CONTRIBUTING.md) file.
 
 # Internationalization and localization
 
