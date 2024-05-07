@@ -136,10 +136,10 @@
     <value>Comportements</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Vérifier les mises à jour</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Rechercher automatiquement les mises à jour au démarrage de DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Espacement compact</value>
@@ -188,7 +188,7 @@
     <value>Changer la couleur d'arrière-plan de la ligne actuelle pour qu'elle soit plus visible</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>Mettre en surbrillance la ligne actuelle</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
     <value>{0} pour la conception de l'icône de l'application</value>
