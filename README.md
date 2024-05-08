@@ -98,4 +98,9 @@ DevToys is using a license that permits redistribution of the app as trialware o
 
 ### Designers
 
+[Zee-Al-Eid](https://twitter.com/zeealeid)
 [Jakub](https://github.com/AlurDesign)
+
+### DevToysMac developer
+
+[ObuchiYuki](https://twitter.com/obuchi_yuki)
