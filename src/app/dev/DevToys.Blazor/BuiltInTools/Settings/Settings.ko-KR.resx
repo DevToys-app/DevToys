@@ -213,7 +213,7 @@
     <value>Show line numbers</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>로그 열기</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Replace text when pasting</value>
@@ -252,22 +252,22 @@
     <value>미리보기</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>유용한 링크</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>라이선스</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>개인정보 보호정책</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>문제 보고</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>소스 코드</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>타사 라이선스</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>시스템 설정 사용</value>
