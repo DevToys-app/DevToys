@@ -212,6 +212,9 @@
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
     <value>வரி எண்களை காட்டு</value>
   </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>Open logs</value>
+  </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Replace text when pasting</value>
   </data>
@@ -247,6 +250,24 @@
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
     <value>Preview</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Useful links</value>
+  </data>
+  <data name="UsefulLinksLicense" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="UsefulLinksReportProblem" xml:space="preserve">
+    <value>Report a problem</value>
+  </data>
+  <data name="UsefulLinksSourceCode" xml:space="preserve">
+    <value>Source code</value>
+  </data>
+  <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
+    <value>Third party licenses</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>முறைமை அமைப்புகளை பயன்படுத்து</value>
