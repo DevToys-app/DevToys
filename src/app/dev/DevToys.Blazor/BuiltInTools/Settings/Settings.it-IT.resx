@@ -213,7 +213,7 @@
     <value>Mostra i numeri di riga</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Apri registri</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Sostituisci il testo quando si incolla</value>
@@ -252,22 +252,22 @@
     <value>Anteprima</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Link utili</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Licenza</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Informativa sulla privacy</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Segnala un problema</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Codice sorgente</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Licenze di terze parti</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Usa le impostazioni di sistema</value>
