@@ -131,14 +131,12 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
 
     private void OnFindMoreExtensionsOnlineButtonClick()
     {
-        // TODO: Open documentation online
-        OSHelper.OpenFileInShell("http://url");
+        OSHelper.OpenFileInShell("https://www.nuget.org/packages?q=Tags%3A%22devtoys-app%22");
     }
 
     private void OnLearnDevelopExtensionButtonClick()
     {
-        // TODO: Open documentation online
-        OSHelper.OpenFileInShell("http://url");
+        OSHelper.OpenFileInShell("http://devtoys.app/doc");
     }
 
     private async ValueTask OnInstallExtensionButtonClickAsync()

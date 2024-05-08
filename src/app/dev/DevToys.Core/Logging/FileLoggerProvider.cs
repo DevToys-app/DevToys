@@ -4,9 +4,9 @@ using Microsoft.Extensions.Logging;
 namespace DevToys.Core.Logging;
 
 [ProviderAlias("File")]
-internal sealed class FileLoggerProvider : ILoggerProvider
+public sealed class FileLoggerProvider : ILoggerProvider
 {
-    private const string LogFolderName = "Logs";
+    public const string LogFolderName = "Logs";
 
     private readonly ConcurrentDictionary<string, FileLogger> _loggers = new();
     private readonly BlockingCollection<string> _entryQueue = new(1024);
