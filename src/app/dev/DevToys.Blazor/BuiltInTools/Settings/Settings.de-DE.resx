@@ -213,7 +213,7 @@
     <value>Zeilennummern anzeigen</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Logs öffnen</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Text beim Einfügen ersetzen</value>
@@ -252,22 +252,22 @@
     <value>Vorschau</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Nützliche Links</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Lizenz</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Datenschutzbestimmungen</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Problem melden</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Quellcode</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Drittanbieter-Lizenzen</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Systemeinstellungen verwenden</value>
