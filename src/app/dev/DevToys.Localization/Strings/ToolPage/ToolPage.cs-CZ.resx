@@ -120,58 +120,10 @@
   <data name="AddToFavorites" xml:space="preserve">
     <value>Přidat k oblíbeným</value>
   </data>
-  <data name="AllFileType" xml:space="preserve">
-    <value>Všechny soubory</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Vymazat</value>
-  </data>
-  <data name="Copy" xml:space="preserve">
-    <value>Kopírovat</value>
-  </data>
-  <data name="NoSmartDetectedTool" xml:space="preserve">
-    <value>Žádný nástroj k navržení</value>
-  </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="OpenFile" xml:space="preserve">
-    <value>Načíst soubor</value>
-  </data>
-  <data name="Paste" xml:space="preserve">
-    <value>Vložit</value>
-  </data>
-  <data name="PinToStart" xml:space="preserve">
-    <value>Připnout na Start</value>
-  </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>Odebrat z oblíbených</value>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Uložit jako...</value>
-  </data>
-  <data name="SendToSmartDetection" xml:space="preserve">
-    <value>Přesunout na jiný nástroj</value>
-  </data>
-  <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
-    <value>Přepnout ponechání okna navrchu (Ctrl+Up)</value>
-  </data>
-  <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>Zapnuto</value>
-  </data>
-  <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>Vypnuto</value>
-  </data>
-  <data name="UnableOpenFile" xml:space="preserve">
-    <value>Soubor nelze otevřít</value>
-  </data>
-  <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Nelze načíst soubor "{0}". Lze otevřít pouze textové soubory.</value>
-  </data>
-  <data name="UnableSaveFile" xml:space="preserve">
-    <value>Soubor nelze uložit</value>
-  </data>
-  <data name="UnableSaveFileDescription" xml:space="preserve">
-    <value>Nelze uložit soubor "{0}". Zkontrolujte záznamy pro zobrazení interní chyby.</value>
   </data>
 </root>

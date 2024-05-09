@@ -118,167 +118,167 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Om</value>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Indstillinger</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>Udseende</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Applikationstema</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>Vælg hvilket applikationstema, der skal vises</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Adfærd</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Søg efter opdateringer</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Søg efter opdateringer, når DevToys starter atuomatisk</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>Kompakte mellemrum</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>Mindre mellemrum mellem UI-elementer</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Mørk</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>Brug computerindstilling</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Tilpas DevToys udseende og følelse</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>{0} for at starte DevToyMac-udvikling</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>Redigering</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>Ende af linjetegn</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>Samme end af linje som imput (automatisk)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+    <value>Vognretur og Linjeskift (\r\n) (Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
+    <value>Linjeskift (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Skrifttype</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Hjælp os med at oversætte DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>Vælg den nuværende linje</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Ændr baggrundsfarve på den valgt linje for at gøre den mere synlig</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>Vælg den nuværende linje</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>{0} for at designe applikationsikonet</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Sprog</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>DevToys-applikationen skal genstartes, når der vælges et andet sprog</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Lys</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Linjenumre</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Vis linjenumre i teksteditoren</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>Vis linjenumre</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Åbe logfiler</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Erstat tekst ved indsætning</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Når du klikker på indsæt-knappen, skal du slette teksten, før du indsætter den, i stedet for at føje den til det eksisterende teksteditorindhold.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Erstat tekst ved indsætning</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Gengive af hvidt mellemrumstegn</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Vis hvid mellemrumstegn</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Indstillinger</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Smart detektion</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Automatisk find det bedste værktøj baseret på udklipsholdernes indhold</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Automatisk indsæt udklipsholdernes indhold, når du vælger et anbefalet værktøj</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>En særlig tak til</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Teksteditor</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Forhåndsvisning</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Nyttige links</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Licens</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Privatlivspolitik</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Rapportér et problem</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Kildekode</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Tredjepartslicenser</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Brug systemindstillinger</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Ordombrydning</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>Ordombrydning</value>
   </data>
 </root>
