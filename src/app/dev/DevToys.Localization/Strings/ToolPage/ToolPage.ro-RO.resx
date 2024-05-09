@@ -120,58 +120,10 @@
   <data name="AddToFavorites" xml:space="preserve">
     <value>Adaugă la favorite</value>
   </data>
-  <data name="AllFileType" xml:space="preserve">
-    <value>Toate Fisierele</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Șterge</value>
-  </data>
-  <data name="Copy" xml:space="preserve">
-    <value>Copiere</value>
-  </data>
-  <data name="NoSmartDetectedTool" xml:space="preserve">
-    <value>Nici un instrument de sugerat</value>
-  </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="OpenFile" xml:space="preserve">
-    <value>Încarcă un fişier</value>
-  </data>
-  <data name="Paste" xml:space="preserve">
-    <value>Inserează</value>
-  </data>
-  <data name="PinToStart" xml:space="preserve">
-    <value>Fixează la Start</value>
-  </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>Elimină din favorite</value>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Salvare ca...</value>
-  </data>
-  <data name="SendToSmartDetection" xml:space="preserve">
-    <value>Transfer către o altă unealtă</value>
-  </data>
-  <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
-    <value>Comută menținerea ferestrei în partea de sus (Ctrl+Up)</value>
-  </data>
-  <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>Activat</value>
-  </data>
-  <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>Dezactivat</value>
-  </data>
-  <data name="UnableOpenFile" xml:space="preserve">
-    <value>Fisierul nu se poate deschide</value>
-  </data>
-  <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Imposibil de încărcat fișierul '{0}'. Numai fișierele textuale pot fi deschise.</value>
-  </data>
-  <data name="UnableSaveFile" xml:space="preserve">
-    <value>Imposibil de salvat acest fişier</value>
-  </data>
-  <data name="UnableSaveFileDescription" xml:space="preserve">
-    <value>Imposibil de salvat fișierul '{0}'. Verificați jurnalele pentru a vedea eroarea internă.</value>
   </data>
 </root>
