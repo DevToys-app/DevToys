@@ -15,7 +15,8 @@
     {
         UIDialogService.DialogContent = (__builder) =>
         {
-            @if (ViewModel.ToolView?.CurrentOpenedDialog is not null)
+            @if (ViewModel.ToolView?.CurrentOpenedDialog is not null
+                   && ViewModel.ToolView?.CurrentOpenedDialog.DialogContent is not null)
             {
                 <UIElementPresenter UIElement="@ViewModel.ToolView.CurrentOpenedDialog.DialogContent" />
             }
@@ -25,7 +26,19 @@
         {
             @if (ViewModel.ToolView?.CurrentOpenedDialog is not null)
             {
-                <UIElementPresenter UIElement="@ViewModel.ToolView.CurrentOpenedDialog.FooterContent" />
+                if (ViewModel.ToolView?.CurrentOpenedDialog.FooterContent is not null)
+                {
+                    <UIElementPresenter UIElement="@ViewModel.ToolView.CurrentOpenedDialog.FooterContent" />
+                }
+                else
+                {
+                    <StackPanel Orientation="UIOrientation.Horizontal" HorizontalAlignment="UIHorizontalAlignment.Right">
+                        <Button Appearance="ButtonAppearance.Accent"
+                                @onclick="@ViewModel.ToolView!.CurrentOpenedDialog.Close">
+                            <TextBlock Text="@Localization.Strings.ToolPage.ToolPage.Ok" />
+                        </Button>
+                    </StackPanel>
+                }
             }
         };
 

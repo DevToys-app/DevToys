@@ -70,42 +70,6 @@ namespace DevToys.Localization.Strings.ToolPage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All Files.
-        /// </summary>
-        public static string AllFileType {
-            get {
-                return ResourceManager.GetString("AllFileType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Clear.
-        /// </summary>
-        public static string Clear {
-            get {
-                return ResourceManager.GetString("Clear", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copy.
-        /// </summary>
-        public static string Copy {
-            get {
-                return ResourceManager.GetString("Copy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No tool to suggest.
-        /// </summary>
-        public static string NoSmartDetectedTool {
-            get {
-                return ResourceManager.GetString("NoSmartDetectedTool", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string Ok {
@@ -115,119 +79,11 @@ namespace DevToys.Localization.Strings.ToolPage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load a file.
-        /// </summary>
-        public static string OpenFile {
-            get {
-                return ResourceManager.GetString("OpenFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Paste.
-        /// </summary>
-        public static string Paste {
-            get {
-                return ResourceManager.GetString("Paste", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pin to Start.
-        /// </summary>
-        public static string PinToStart {
-            get {
-                return ResourceManager.GetString("PinToStart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Remove from favorites.
         /// </summary>
         public static string RemoveFromFavorites {
             get {
                 return ResourceManager.GetString("RemoveFromFavorites", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save as....
-        /// </summary>
-        public static string SaveAs {
-            get {
-                return ResourceManager.GetString("SaveAs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Transfer to another tool.
-        /// </summary>
-        public static string SendToSmartDetection {
-            get {
-                return ResourceManager.GetString("SendToSmartDetection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Toggle keep the window on top (Ctrl+Up).
-        /// </summary>
-        public static string ToggleCompactOverlayTooltip {
-            get {
-                return ResourceManager.GetString("ToggleCompactOverlayTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to On.
-        /// </summary>
-        public static string ToggleSwitchOff {
-            get {
-                return ResourceManager.GetString("ToggleSwitchOff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Off.
-        /// </summary>
-        public static string ToggleSwitchOn {
-            get {
-                return ResourceManager.GetString("ToggleSwitchOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to open this file.
-        /// </summary>
-        public static string UnableOpenFile {
-            get {
-                return ResourceManager.GetString("UnableOpenFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to load the file &apos;{0}&apos;. Only textual files can be opened..
-        /// </summary>
-        public static string UnableOpenFileDescription {
-            get {
-                return ResourceManager.GetString("UnableOpenFileDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to save this file.
-        /// </summary>
-        public static string UnableSaveFile {
-            get {
-                return ResourceManager.GetString("UnableSaveFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to save the file &apos;{0}&apos;. Check the logs to see the internal error..
-        /// </summary>
-        public static string UnableSaveFileDescription {
-            get {
-                return ResourceManager.GetString("UnableSaveFileDescription", resourceCulture);
             }
         }
     }
