@@ -147,34 +147,16 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
 
         for (int i = 0; i < nugetPackages.Length; i++)
         {
-            using SandboxedFileReader nugetPackage = nugetPackages[i];
-            using Stream nugetPackageStream = await nugetPackage.GetNewAccessToFileContentAsync(CancellationToken.None);
-            using var reader = new PackageArchiveReader(nugetPackageStream);
+            ExtensionInstallationResult result = await ExtensionInstallationManager.InstallExtensionAsync(nugetPackages[i]);
 
-            NuspecReader nuspec = reader.NuspecReader;
-
-            for (int j = 0; j < ExtensionInstallationManager.ExtensionInstallationFolders.Length; j++)
+            if (result.AlreadyInstalled)
             {
-                string potentialExtensionInstallationPath = Path.Combine(ExtensionInstallationManager.ExtensionInstallationFolders[j], nuspec.GetId());
-                if (Directory.Exists(potentialExtensionInstallationPath))
-                {
-                    // Extension is already installed.
-                    await ShowExtensionAlreadyInstalledMessageBoxAsync(nuspec.GetTitle());
-                    return;
-                }
+                // Extension is already installed.
+                await ShowExtensionAlreadyInstalledMessageBoxAsync(result.NuspecReader.GetTitle());
+                return;
             }
 
-            string extensionInstallationPath
-                = Path.Combine(ExtensionInstallationManager.PreferredExtensionInstallationFolder, nuspec.GetId());
-
-            // Unzip the extension.
-            Directory.CreateDirectory(extensionInstallationPath);
-            foreach (string? packagedFile in reader.GetFiles())
-            {
-                reader.ExtractFile(packagedFile, Path.Combine(extensionInstallationPath, packagedFile), null);
-            }
-
-            _extensionList.Items.Add(CreateExtensionListItem(nuspec, extensionInstallationPath));
+            _extensionList.Items.Add(CreateExtensionListItem(result.NuspecReader, result.ExtensionInstallationPath));
 
             _restartRequiredInfoBar.Open();
         }
