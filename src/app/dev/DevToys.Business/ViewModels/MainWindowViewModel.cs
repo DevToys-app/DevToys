@@ -200,7 +200,11 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
 
         try
         {
-            using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(2));
+            using var cancellationTokenSource
+                = new CancellationTokenSource(
+                    Debugger.IsAttached ? TimeSpan.FromHours(1) : TimeSpan.FromSeconds(2));
+
+            CancellationToken cancellationToken = cancellationTokenSource.Token;
             INotifyPropertyChanged? selectedMenuBeforeSmartDetection = SelectedMenuItem;
             Guard.IsNotNull(selectedMenuBeforeSmartDetection);
 
@@ -208,14 +212,14 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             object? rawClipboardData = await _clipboard.GetClipboardDataAsync();
 
             // If the clipboard content has changed since the last time
-            if (!cancellationTokenSource.Token.IsCancellationRequested && !AreOldAndNewClipboardDataEqual(_oldRawClipboardData, rawClipboardData))
+            if (!cancellationToken.IsCancellationRequested && !AreOldAndNewClipboardDataEqual(_oldRawClipboardData, rawClipboardData))
             {
                 // Reset recommended tools.
                 _guiToolProvider.ForEachToolViewItem(toolViewItem => toolViewItem.IsRecommended = false);
 
                 // Detect tools to recommend.
                 IReadOnlyList<SmartDetectedTool> detectedTools
-                    = await _smartDetectionService.DetectAsync(rawClipboardData, strict: true, cancellationTokenSource.Token)
+                    = await _smartDetectionService.DetectAsync(rawClipboardData, strict: true, cancellationToken)
                         .ConfigureAwait(true);
 
                 GuiToolViewItem? firstToolViewItem = null;

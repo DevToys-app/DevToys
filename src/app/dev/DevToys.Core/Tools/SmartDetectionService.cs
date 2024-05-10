@@ -22,7 +22,7 @@ public sealed partial class SmartDetectionService
         _detectorHierarchy = BuildDetectorNodeHierarchy(dataTypeDetectors);
 
         // Create a map of data types to tools.
-        _dataTypeToToolInstanceMap = BuildDataTypeToToolInstanceMap(guiToolProvider);
+        _dataTypeToToolInstanceMap = BuildDataTypeToToolInstanceMap(guiToolProvider, dataTypeDetectors);
     }
 
     /// <summary>
@@ -231,8 +231,11 @@ public sealed partial class SmartDetectionService
     /// Builds a dictionary that maps data types to a list of GUI tool instances that accept them.
     /// </summary>
     /// <param name="guiToolProvider">The GUI tool provider.</param>
+    /// <param name="detectors">The collection of detectors.</param>
     /// <returns>A dictionary that maps data types to a list of GUI tool instances that accept them.</returns>
-    private static Dictionary<string, List<GuiToolInstance>> BuildDataTypeToToolInstanceMap(GuiToolProvider guiToolProvider)
+    private Dictionary<string, List<GuiToolInstance>> BuildDataTypeToToolInstanceMap(
+        GuiToolProvider guiToolProvider,
+        IEnumerable<Lazy<IDataTypeDetector, DataTypeDetectorMetadata>> dataTypeDetectors)
     {
         // Create a new dictionary with case-insensitive string keys
         var dataTypeToToolInstanceMap = new Dictionary<string, List<GuiToolInstance>>(StringComparer.OrdinalIgnoreCase);
@@ -246,13 +249,24 @@ public sealed partial class SmartDetectionService
             for (int j = 0; j < tool.AcceptedDataTypeNames.Count; j++)
             {
                 string dataType = tool.AcceptedDataTypeNames[j];
-                if (!dataTypeToToolInstanceMap.TryGetValue(dataType, out List<GuiToolInstance>? toolList))
-                {
-                    toolList = new();
-                    dataTypeToToolInstanceMap[dataType] = toolList;
-                }
 
-                toolList.Add(tool);
+                if (!string.IsNullOrWhiteSpace(dataType))
+                {
+                    if (dataTypeDetectors.Any(detector => string.Equals(detector.Metadata.DataTypeName, dataType, StringComparison.CurrentCultureIgnoreCase)))
+                    {
+                        if (!dataTypeToToolInstanceMap.TryGetValue(dataType, out List<GuiToolInstance>? toolList))
+                        {
+                            toolList = new();
+                            dataTypeToToolInstanceMap[dataType] = toolList;
+                        }
+
+                        toolList.Add(tool);
+                    }
+                    else
+                    {
+                        LogDataDetectorNotFound(tool.InternalComponentName, dataType);
+                    }
+                }
             }
         }
 
@@ -264,6 +278,9 @@ public sealed partial class SmartDetectionService
 
     [LoggerMessage(1, LogLevel.Error, $"Error while building data detectors.")]
     partial void LogBuildDetectorNodeHierarchyError(Exception ex);
+
+    [LoggerMessage(2, LogLevel.Warning, "Unable to find the data type detector '{dataTypeName}' for the tool '{toolName}'.")]
+    partial void LogDataDetectorNotFound(string toolName, string dataTypeName);
 
     private sealed class DetectorNode
     {
