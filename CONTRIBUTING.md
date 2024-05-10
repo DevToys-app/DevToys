@@ -5,7 +5,7 @@ You can contribute to DevToys app by:
 - Submit feature requests [here](https://github.com/DevToys-app/DevToys/issues/new?template=feature_request.md).
 - Creating a pull request.
 - Internationalization and localization:
-    * See instructions below.
+    * See instructions [here](#internationalization-and-localization).
 
 # How to Build and Run DevToys and DevToys CLI (without tools) from source:
 

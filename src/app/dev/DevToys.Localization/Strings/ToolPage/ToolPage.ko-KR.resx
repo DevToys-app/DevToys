@@ -120,58 +120,10 @@
   <data name="AddToFavorites" xml:space="preserve">
     <value>즐겨찾기에 추가</value>
   </data>
-  <data name="AllFileType" xml:space="preserve">
-    <value>모든 파일</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>지우기</value>
-  </data>
-  <data name="Copy" xml:space="preserve">
-    <value>복사</value>
-  </data>
-  <data name="NoSmartDetectedTool" xml:space="preserve">
-    <value>제안할 도구 없음</value>
-  </data>
   <data name="Ok" xml:space="preserve">
     <value>확인</value>
   </data>
-  <data name="OpenFile" xml:space="preserve">
-    <value>파일 불러오기</value>
-  </data>
-  <data name="Paste" xml:space="preserve">
-    <value>붙여넣기</value>
-  </data>
-  <data name="PinToStart" xml:space="preserve">
-    <value>시작 화면에 고정</value>
-  </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>즐겨찾기에서 제거</value>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>다른 이름으로 저장...</value>
-  </data>
-  <data name="SendToSmartDetection" xml:space="preserve">
-    <value>다른 도구로 전송</value>
-  </data>
-  <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
-    <value>창을 맨 위에 유지 전환 (Ctrl+Up)</value>
-  </data>
-  <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>켜기</value>
-  </data>
-  <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>끄기</value>
-  </data>
-  <data name="UnableOpenFile" xml:space="preserve">
-    <value>이 파일을 열 수 없습니다</value>
-  </data>
-  <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>파일 '{0}'을(를) 불러올 수 없습니다. 텍스트 파일만 열 수 있습니다.</value>
-  </data>
-  <data name="UnableSaveFile" xml:space="preserve">
-    <value>이 파일을 저장할 수 없습니다</value>
-  </data>
-  <data name="UnableSaveFileDescription" xml:space="preserve">
-    <value>파일 '{0}'을(를) 저장할 수 없습니다. 로그를 확인하여 내부 오류를 확인하세요.</value>
   </data>
 </root>
