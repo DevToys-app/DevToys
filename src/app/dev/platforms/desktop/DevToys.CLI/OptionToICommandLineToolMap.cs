@@ -4,11 +4,13 @@ using System.Reflection;
 using System.Resources;
 using DevToys.Api;
 using DevToys.CLI.Core;
+using Microsoft.Extensions.Logging;
 
 namespace DevToys.CLI;
 
-internal sealed class OptionToICommandLineToolMap
+internal sealed partial class OptionToICommandLineToolMap
 {
+    private readonly ILogger _logger;
     private static readonly Type optionType = typeof(Option<>);
 
     private readonly ICommandLineTool _commandLineTool;
@@ -24,6 +26,7 @@ internal sealed class OptionToICommandLineToolMap
         Guard.IsNotNull(property);
         Guard.IsNotNull(commandLineOptionAttribute);
 
+        _logger = this.Log();
         _property = property;
         _commandLineTool = commandLineTool;
 
@@ -59,7 +62,7 @@ internal sealed class OptionToICommandLineToolMap
         _property.SetValue(_commandLineTool, value);
     }
 
-    private static string? GetOptionDescription(ICommandLineTool commandLineTool, CommandLineOptionAttribute commandLineOptionAttribute, ResourceManager? parentResourceManager)
+    private string? GetOptionDescription(ICommandLineTool commandLineTool, CommandLineOptionAttribute commandLineOptionAttribute, ResourceManager? parentResourceManager)
     {
         string? optionDescription = null;
         if (!string.IsNullOrWhiteSpace(commandLineOptionAttribute.DescriptionResourceName))
@@ -77,6 +80,12 @@ internal sealed class OptionToICommandLineToolMap
             if (optionResourceManager is not null)
             {
                 optionDescription = optionResourceManager.GetString(commandLineOptionAttribute.DescriptionResourceName);
+            }
+
+            if (optionDescription is null)
+            {
+                LogGetMetadataStringFailed(commandLineOptionAttribute.DescriptionResourceName);
+                optionDescription = $"[Unable to find '{commandLineOptionAttribute.DescriptionResourceName}' in '{commandLineOptionAttribute.ResourceManagerBaseName}']";
             }
         }
 
@@ -223,4 +232,7 @@ internal sealed class OptionToICommandLineToolMap
         result.ErrorMessage = result.LocalizationResources.ArgumentConversionCannotParse(result.ToString(), typeof(OneOfOption));
         return null;
     }
+
+    [LoggerMessage(0, LogLevel.Error, "Unable to get the string for '{metadataName}'.")]
+    partial void LogGetMetadataStringFailed(string metadataName);
 }
