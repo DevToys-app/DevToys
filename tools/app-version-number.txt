@@ -1,3 +1,0 @@
-// A version like "2.0.0.+" will increment automatically.
-app:2.0.0.+
-sdk:2.0.0-pre.+
