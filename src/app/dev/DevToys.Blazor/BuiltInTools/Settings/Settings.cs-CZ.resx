@@ -136,10 +136,10 @@
     <value>Chování</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Zkontrolovat aktualizace</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Automaticky zkontrolovat aktualizace při spuštění DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Kompaktní odsazování</value>
@@ -213,7 +213,7 @@
     <value>Zobrazit čísla řádků</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Otevřít záznamy</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Nahradit text při vložení</value>
@@ -252,22 +252,22 @@
     <value>Náhled</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Užitečné odkazy</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Licence</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Zásady ochrany osobních údajů</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Nahlásit chybu</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Zdrojový kód</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Licence třetích stran</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Použít systémové nastavení</value>
