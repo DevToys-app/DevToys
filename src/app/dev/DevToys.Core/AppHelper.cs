@@ -112,10 +112,16 @@ public static class AppHelper
                     string currentVersion
                         = assemblyInformationalVersion.InformationalVersion
                             .TrimStart('v')
+                            .Replace("-alpha", string.Empty)
+                            .Replace("-beta", string.Empty)
+                            .Replace("-preview", string.Empty)
                             .Replace("-pre", string.Empty);
                     string? releaseVersion
                         = potentialRelease.Name?
                             .TrimStart('v')
+                            .Replace("-alpha", string.Empty)
+                            .Replace("-beta", string.Empty)
+                            .Replace("-preview", string.Empty)
                             .Replace("-pre", string.Empty);
 
                     if (!string.IsNullOrEmpty(releaseVersion) && !string.IsNullOrEmpty(currentVersion))
