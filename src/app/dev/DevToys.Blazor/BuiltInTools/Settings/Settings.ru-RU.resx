@@ -213,7 +213,7 @@
     <value>Показывать номера строк</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Открыть логи</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Заменить текст при вставке</value>
@@ -252,22 +252,22 @@
     <value>Предварительный просмотр</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Полезные ссылки</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Лицензия</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Политика конфиденциальности</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Сообщить о проблеме</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Исходный код</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Сторонние лицензии</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Использовать системные настройки</value>
