@@ -136,10 +136,10 @@
     <value>行為</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>檢查更新</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>DevToys 啟動時自動檢查更新</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>緊湊間距</value>
@@ -213,7 +213,7 @@
     <value>顯示行號</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>開啟記錄檔</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>貼上時取代文字</value>
@@ -252,13 +252,13 @@
     <value>預覽</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>實用連結</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>授權</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>隱私政策</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
     <value>Report a problem</value>
