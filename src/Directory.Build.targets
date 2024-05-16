@@ -10,6 +10,6 @@
 
     <Warning
       Condition="'$(registry:HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem@LongPathsEnabled)'!='1'"
-      Text="LongPath is not enabled, you may experience build errors. You can avoid these by enabling LongPath. You can enable it by running `tools/enable-long-paths.reg`."/>
+      Text="LongPath is not enabled, you may experience build errors. You can avoid these by enabling LongPath. You can enable it by running `tools/enable-long-paths.reg`. More information on https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=powershell#enable-long-paths-in-windows-10-version-1607-and-later"/>
   </Target>
 </Project>

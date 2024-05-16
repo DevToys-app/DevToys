@@ -10,7 +10,7 @@ $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 # Forked from https://github.com/dotnet/roslyn/blob/c8eecdb9563127988b3cb564a493eae9ef254a88/eng/build.ps1#L607
 $regKeyProperty = Get-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem -Name "LongPathsEnabled" -ErrorAction Ignore
 if (($null -eq $regKeyProperty) -or ($regKeyProperty.LongPathsEnabled -ne 1)) {
-  Write-Host -ForegroundColor Yellow "Warning: LongPath is not enabled, you may experience build errors. You can avoid these by enabling LongPath. You can enable it by running `"tools/enable-long-paths.reg`""
+  Write-Host -ForegroundColor Yellow "Warning: LongPath is not enabled, you may experience build errors. You can avoid these by enabling LongPath. You can enable it by running `"tools/enable-long-paths.reg`". More information on https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=powershell#enable-long-paths-in-windows-10-version-1607-and-later"
 }
 
 # Install .NET
