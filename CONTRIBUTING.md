@@ -78,9 +78,9 @@ You can contribute to DevToys app by:
 #### Special note for `DevToys.MacOS`
 Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to access the Safari developer tools with macOS to debug the HTML/CSS/JS of the Blazor app, you might need to follow the following instructions:
 1. Open desktop Safari.
-2. Select the Safari > Preferences > Advanced > Show Develop menu in the menu bar checkbox.
+2. Select the Safari > Preferences > Advanced > Show features for web developers in the menu bar checkbox.
 3. Run the `DevToys.MacOS` app in macOS.
-4. Return to Safari. Select Develop > {REMOTE INSPECTION TARGET} > 0.0.0.0, where the {REMOTE INSPECTION TARGET} placeholder is either the devices's plain name (for example, MacBook Pro) or the device's serial number (for example XMVM7VFF10). If multiple entries for 0.0.0.0 are present, select the entry that highlights the BlazorWebView. The BlazorWebView is highlighted in blue in macOS when the correct 0.0.0.0 entry is selected.
+4. Return to Safari. On the main menu, select Develop > {REMOTE INSPECTION TARGET} > 0.0.0.0, where the {REMOTE INSPECTION TARGET} placeholder is either the devices's plain name (for example, MacBook Pro) or the device's serial number (for example XMVM7VFF10). If multiple entries for 0.0.0.0 are present, select the entry that highlights the BlazorWebView. The BlazorWebView is highlighted in blue in macOS when the correct 0.0.0.0 entry is selected.
 5. The Web Inspector window appears for the BlazorWebView.
 
 ## From Linux

@@ -16,7 +16,7 @@
             "preLaunchTask": "Build DevToys MacOS",
             "type": "coreclr",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net8.0-macos/osx-arm64/DevToys.MacOS.app/Contents/MacOS/DevToys.MacOS",
+            "program": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net8.0-macos/osx-arm64/DevToys.app/Contents/MacOS/DevToys",
             "args": [],
             "cwd": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MacOS",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -28,7 +28,7 @@
             "preLaunchTask": "Build DevToys MacOS",
             "type": "coreclr",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net8.0-macos/osx-x64/DevToys.MacOS.app/Contents/MacOS/DevToys.MacOS",
+            "program": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net8.0-macos/osx-x64/DevToys.app/Contents/MacOS/DevToys",
             "args": [],
             "cwd": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MacOS",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
