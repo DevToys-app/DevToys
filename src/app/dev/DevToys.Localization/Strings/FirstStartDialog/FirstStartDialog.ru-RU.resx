@@ -128,7 +128,7 @@
     <value>Продолжить</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>Dev Toys работает в автономном режиме. Мы собираем минимум анонимных данных локально для устранения неполадок. Мы не загружаем журналы в Интернет. Если вы обнаружите ошибку и решите сообщить о ней, мы можем попросить вас поделиться с нами журналами. С вашего согласия мы будем подключаться к интернету для проверки обновлений, чтобы обеспечить вам доступ к последним функциям и улучшениям безопасности.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>Первая оффлайн философия</value>

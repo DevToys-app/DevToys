@@ -122,13 +122,13 @@
 以下是您需要了解的事情：</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for updates when DevToys starts</value>
+    <value>DevToys 启动时自动检查更新</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>继续</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys 的运作倾向于离线优先。为了排除故障，我们在本地收集最低限度的匿名数据，不会将日志上传到互联网。如果您遇到错误并选择报告，我们才会需要您分享日志。我们将偶尔连接到互联网来检查更新，确保您能访问最新功能并增强安全性。</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>离线优先哲学</value>

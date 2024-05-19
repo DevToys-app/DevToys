@@ -136,10 +136,10 @@
     <value>行为</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>检查更新</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>DevToys 启动时自动检查更新</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>紧凑间距</value>
@@ -213,7 +213,7 @@
     <value>显示行号</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>打开日志</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>粘贴时替换文本</value>
@@ -252,22 +252,22 @@
     <value>预览</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>实用链接</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>许可证</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>隐私政策</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>反馈问题</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>源代码</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>第三方许可证</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>跟随系统</value>
