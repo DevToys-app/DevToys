@@ -45,7 +45,7 @@ internal class MainWindow
         _blazorGtkWebView.BlazorWebViewInitialized += OnBlazorWebViewInitialized;
 
         // Make web view transparent
-        _blazorGtkWebView.SetBackgroundColor(new Gdk.RGBA(Gdk.Internal.RGBAManagedHandle.Create(new Gdk.Internal.RGBAData { Red = 0, Blue = 0, Green = 0, Alpha = 0 })));
+        _blazorGtkWebView.SetBackgroundColor(new Gdk.RGBA { Red = 0, Blue = 0, Green = 0, Alpha = 0 });
 
         // Allow opening developer tools
         Settings webViewSettings = _blazorGtkWebView.GetSettings();

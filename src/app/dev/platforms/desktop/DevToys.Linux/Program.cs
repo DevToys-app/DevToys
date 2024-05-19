@@ -7,7 +7,7 @@ internal partial class Program
     private static int Main(string[] args)
     {
         linuxProgram = new LinuxProgram();
-        linuxProgram.Application.Run();
+        linuxProgram.Application.Run(0, null);
 
         return 0;
     }
