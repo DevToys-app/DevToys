@@ -136,10 +136,10 @@
     <value>Comportamiento</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Buscar actualizaciones</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Buscar actualizaciones automáticamente al iniciar DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Tema compacto</value>
@@ -213,7 +213,7 @@
     <value>Mostrar números de líneas</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Abrir registro</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Reemplazar texto al pegar</value>
@@ -252,22 +252,22 @@
     <value>Vista previa</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Links útiles</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Licencia</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Política de privacidad</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Reportar un problema</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Código fuente</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Licencias de terceros</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Usar la configuración del sistema</value>
