@@ -261,13 +261,13 @@
     <value>隱私政策</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>回報問題</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>原始碼</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>第三方授權條款</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>使用系統設定</value>

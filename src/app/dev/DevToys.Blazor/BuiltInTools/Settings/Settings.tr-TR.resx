@@ -136,10 +136,10 @@
     <value>Davranışlar</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Güncellemeleri kontrol et</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>DevToys başlatıldığında güncellemeleri otomatik olarak kontrol et</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Sıkışık espas</value>
@@ -213,7 +213,7 @@
     <value>Satır numaralarını göster</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Günlükleri aç</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Yapıştırırken metni silip yerine koy</value>
@@ -252,22 +252,22 @@
     <value>Önizleme</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Kullanışlı bağlantılar</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Lisans</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Gizlilik politikası</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Bir sorun bildir</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Kaynak kodu</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Üçüncü parti lisanslar</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Sistem ayarlarını kullan</value>

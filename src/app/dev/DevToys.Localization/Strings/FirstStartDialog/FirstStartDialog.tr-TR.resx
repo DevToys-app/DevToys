@@ -122,13 +122,13 @@
 İşte bilmeniz gerekenler:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for updates when DevToys starts</value>
+    <value>DevToys başlatıldığında güncellemeleri kontrol et</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Devam et</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys, "önce çevrim dışı" zihniyetiyle işler. Asgari miktarda anonimleştirilmiş veriyi yerelde sorun çözme amacıyla toplarız. Günlükleri İnternet'e yüklemeyiz. Eğer bir hata görür ve bildirmek isterseniz, sizden günlükleri bizimle paylaşmanızı rica edebiliriz. Rızanız ile, size en son özellikleri ve güvenlik iyileştirmelerini ulaştırmak amacıyla güncellemeleri denetlerken İnternet'e bağlanabiliriz.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>"Önce Çevrim Dışı" Felsefesi</value>
