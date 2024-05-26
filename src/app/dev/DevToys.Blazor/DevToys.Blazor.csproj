@@ -7,6 +7,10 @@
     <TypeScriptTarget>ES6</TypeScriptTarget>
   </PropertyGroup>
 
+  <PropertyGroup Condition="$(DefineConstants) == '__MACOS__'">
+    <PrepareForBuildDependsOn>CompileTypeScript;GetTypeScriptOutputForPublishing;$(PrepareForBuildDependsOn)</PrepareForBuildDependsOn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" />
