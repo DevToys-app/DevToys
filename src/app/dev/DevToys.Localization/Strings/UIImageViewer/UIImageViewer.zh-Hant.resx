@@ -121,7 +121,7 @@
     <value>複製</value>
   </data>
   <data name="SaveAsButtonTooltip" xml:space="preserve">
-    <value>儲存為</value>
+    <value>另存新檔</value>
   </data>
   <data name="UnknownImage" xml:space="preserve">
     <value>未知的圖片</value>
