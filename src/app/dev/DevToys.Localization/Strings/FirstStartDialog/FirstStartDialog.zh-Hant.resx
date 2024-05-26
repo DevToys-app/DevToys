@@ -118,23 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys 是開發人員的首選工具箱，包含一系列免費和開源的工具。你可以將其視為一把瑞士軍刀，專為解決那些讓你放慢腳步的煩人的日常任務而量身定制。
-以下是你需要瞭解的內容：</value>
+    <value>DevToys 是專為開發人員設計的工具箱，內含一系列免費且開放原始碼的工具。可將其視為量身訂製的瑞士刀，用來處理那些讓您感到棘手的日常任務。
+以下是您需要了解的事項:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for updates when DevToys starts</value>
+    <value>啟動 DevToys 時自動檢查更新</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>繼續</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys 以離線優先的形式執行。我們會在本機收集匿名資料以用於排除故障，並不會將記錄檔上傳至網路。如果您遇到錯誤並選擇回報問題，我們可能會請您與我們分享記錄檔。經過您的同意，我們也會連線至網路以檢查更新，確保您可以存取最新的功能與安全性增強功能。</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>離線優先的形式</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>DevToys 的功能隨著擴充功能而增強，為你的工具箱增添更多功能。雖然我們確保核心應用程式的完整性，但重要的是要知道我們無法控制第三方擴充功能對你的電腦和資料所進行的操作。因此，我們鼓勵你在安裝擴充功能時要謹慎行事。要監視 DevToys 或任何擴充功能的網路活動，可以使用 Wireshark、Little Snitch 或 Fiddler 等工具來追蹤傳入和傳出的連接。</value>
+    <value>DevToys 的功能隨著擴充功能而增強，為你的工具箱增添更多功能。雖然我們確保核心應用程式的完整性，但重要的是要知道我們無法控制第三方擴充功能對您的電腦和資料所進行的操作。因此，我們鼓勵您在安裝擴充功能時要謹慎行事。要監視 DevToys 或任何擴充功能的網路活動，可以使用 Wireshark、Little Snitch 或 Fiddler 等工具來追蹤傳入和傳出的連線。</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
     <value>信任但要驗證</value>
