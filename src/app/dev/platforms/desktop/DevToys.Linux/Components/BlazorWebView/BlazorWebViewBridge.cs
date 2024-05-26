@@ -78,7 +78,9 @@ internal sealed class BlazorWebViewBridge : WebViewManager
                 };
             """,
             injectedFrames: UserContentInjectedFrames.AllFrames,
-            injectionTime: UserScriptInjectionTime.Start)
+            injectionTime: UserScriptInjectionTime.Start,
+            allowList: null,
+            blockList: null)
         );
 
         UserContentManager.ScriptMessageReceivedSignal.Connect(

@@ -115,6 +115,24 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for update.
+        /// </summary>
+        internal static string CheckForUpdate {
+            get {
+                return ResourceManager.GetString("CheckForUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically check for updates when DevToys starts.
+        /// </summary>
+        internal static string CheckForUpdateDescription {
+            get {
+                return ResourceManager.GetString("CheckForUpdateDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compact spacing.
         /// </summary>
         internal static string CompactMode {
@@ -322,6 +340,15 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open logs.
+        /// </summary>
+        internal static string OpenLogs {
+            get {
+                return ResourceManager.GetString("OpenLogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Replace text when pasting.
         /// </summary>
         internal static string PasteClearsText {
@@ -426,6 +453,60 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         internal static string TextEditorPreview {
             get {
                 return ResourceManager.GetString("TextEditorPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Useful links.
+        /// </summary>
+        internal static string UsefulLinks {
+            get {
+                return ResourceManager.GetString("UsefulLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License.
+        /// </summary>
+        internal static string UsefulLinksLicense {
+            get {
+                return ResourceManager.GetString("UsefulLinksLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Privacy policy.
+        /// </summary>
+        internal static string UsefulLinksPrivacyPolicy {
+            get {
+                return ResourceManager.GetString("UsefulLinksPrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report a problem.
+        /// </summary>
+        internal static string UsefulLinksReportProblem {
+            get {
+                return ResourceManager.GetString("UsefulLinksReportProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source code.
+        /// </summary>
+        internal static string UsefulLinksSourceCode {
+            get {
+                return ResourceManager.GetString("UsefulLinksSourceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Third party licenses.
+        /// </summary>
+        internal static string UsefulLinksThirdPartyLicenses {
+            get {
+                return ResourceManager.GetString("UsefulLinksThirdPartyLicenses", resourceCulture);
             }
         }
         

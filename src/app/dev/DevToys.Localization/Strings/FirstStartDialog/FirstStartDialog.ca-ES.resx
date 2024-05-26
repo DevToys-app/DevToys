@@ -120,11 +120,14 @@
   <data name="AppDescription" xml:space="preserve">
     <value>DevToys és la vostra caixa d'eines de referència per a desenvolupadors, una col·lecció d'eines gratuïtes i de codi obert. Penseu-hi com una navalla suïssa adaptada per fer front a aquelles tasques diàries molestes que us frenen. Aquí teniu el que necessiteu saber:</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check for updates when DevToys starts</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Continuar</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys opera amb una mentalitat de prioritat al funcionament sense connexió. Recopilem dades anònimes mínimes localment per a fins de solució de problemes. No pugem els registres a internet. Si us trobeu amb un error i trieu informar-nos, podríem demanar-vos que compartiu els registres amb nosaltres. Ocasionalment, ens connectarem a internet per comprovar actualitzacions, assegurant que tingueu accés a les últimes característiques i millores de seguretat.</value>
+    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>Prioritat al funcionament sense connexió</value>

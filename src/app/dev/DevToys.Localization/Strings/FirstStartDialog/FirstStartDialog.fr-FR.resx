@@ -120,6 +120,9 @@
   <data name="AppDescription" xml:space="preserve">
     <value>DevToys est votre boîte à outils pour développeur, regroupant une collection d’outils gratuits et open-source. Pensez-y comme à un couteau suisse conçu pour s’attaquer à ces tâches quotidiennes ennuyeuses qui vous ralentissent. Voici ce que vous devez savoir :</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Vérifier les mises à jour quand DevToys démarre</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Continuer</value>
   </data>

@@ -70,7 +70,7 @@ namespace DevToys.Blazor.BuiltInTools.ExtensionsManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add and manager third-party extensions in DevToys.
+        ///   Looks up a localized string similar to Add and manage third-party extensions in DevToys.
         /// </summary>
         internal static string Description {
             get {

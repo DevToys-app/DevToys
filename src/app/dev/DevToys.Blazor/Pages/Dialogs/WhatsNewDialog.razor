@@ -1,0 +1,25 @@
+@namespace DevToys.Blazor.Pages.Dialogs
+@inherits StyledComponentBase
+
+<Dialog @ref=_dialog
+        Dismissible="true">
+    <Content>
+        <StackPanel Orientation="UIOrientation.Vertical"
+                    Spacing="16">
+            <TextBlock Appearance="@TextBlockAppearance.Title" Text="@(string.Format(DevToys.Localization.Strings.WhatsNewDialog.WhatsNewDialog.Title, Version))" />
+            <div class="changelog">
+                @((MarkupString)ReleaseNotesHtml)
+            </div>
+        </StackPanel>
+    </Content>
+    <Footer>
+        <StackPanel Orientation="UIOrientation.Horizontal"
+                    HorizontalAlignment="UIHorizontalAlignment.Right"
+                    Spacing="16">
+            <Button Appearance="@ButtonAppearance.Accent"
+                    @onclick="@OnContinueButtonClick">
+                @DevToys.Localization.Strings.WhatsNewDialog.WhatsNewDialog.Ok
+            </Button>
+        </StackPanel>
+    </Footer>
+</Dialog>

@@ -6,15 +6,17 @@ namespace DevToys.Blazor.Pages.Dialogs;
 
 public partial class FirstStartDialog : MefComponentBase
 {
+    private CheckBox _checkUpdateCheckBox = default!;
     private Button _continueButton = default!;
     private Dialog _dialog = default!;
 
     [Import]
     private ISettingsProvider SettingsProvider { get; set; } = default!;
 
-    internal void Open()
+    internal Task OpenAsync()
     {
         _dialog.TryOpen();
+        return _dialog.WaitUntilClosedAsync();
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -35,6 +37,7 @@ public partial class FirstStartDialog : MefComponentBase
 
     private void OnContinueButtonClick(MouseEventArgs ev)
     {
+        SettingsProvider.SetSetting(PredefinedSettings.CheckForUpdate, _checkUpdateCheckBox.IsChecked);
         SettingsProvider.SetSetting(PredefinedSettings.IsFirstStart, false);
         _dialog.Close();
     }

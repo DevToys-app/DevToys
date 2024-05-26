@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FileNotFound" xml:space="preserve">
-    <value>The file '{0}' doesn't exist.</value>
+    <value>Soubor "{0}" neexistuje.</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>Neplatná cesta k souboru. Soubor by měl mít jednu z následujících přípon: {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>Zadejte relativní nebo absolutní cestu k souboru, který chcete načíst (nebo stiskněte klávesu Enter pro zrušení):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>Zadejte jednu nebo více relativních nebo absolutních cest k souborům, které chcete načíst, oddělených čárkou (nebo stiskněte Enter pro zrušení):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>Zadejte relativní nebo absolutní cestu ke složce (nebo stiskněte klávesu Enter pro zrušení):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>Zadejte relativní nebo absolutní cestu k souboru, do kterého chcete zapisovat (nebo stiskněte klávesu Enter pro zrušení):</value>
   </data>
 </root>

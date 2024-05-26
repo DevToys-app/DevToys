@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NotFindingTool" xml:space="preserve">
-    <value>Not finding what you're looking for?</value>
+    <value>원하는 것을 찾지 못하셨나요?</value>
   </data>
   <data name="NotFindingToolOpenFeatureRequest" xml:space="preserve">
-    <value>Open a feature request on GitHub</value>
+    <value>GitHub에서 기능 요청 열기</value>
   </data>
   <data name="NotFindingToolSuggestIdea" xml:space="preserve">
-    <value>Suggest an idea</value>
+    <value>아이디어 제안</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
-    <value>Open in a new window</value>
+    <value>새 창에서 열기</value>
   </data>
   <data name="WelcomeTo" xml:space="preserve">
-    <value>Welcome to</value>
+    <value>환영합니다</value>
   </data>
 </root>

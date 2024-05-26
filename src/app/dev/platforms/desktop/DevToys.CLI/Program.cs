@@ -54,6 +54,11 @@ internal partial class Program
 
         LogAppShuttingDown(logger);
         loggerFactory.Dispose();
+
+        if (Debugger.IsAttached)
+        {
+            Console.ReadKey();
+        }
     }
 
     private static async Task MainAsync(string[] args)

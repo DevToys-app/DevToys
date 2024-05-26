@@ -131,14 +131,12 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
 
     private void OnFindMoreExtensionsOnlineButtonClick()
     {
-        // TODO: Open documentation online
-        OSHelper.OpenFileInShell("http://url");
+        OSHelper.OpenFileInShell("https://www.nuget.org/packages?q=Tags%3A%22devtoys-app%22");
     }
 
     private void OnLearnDevelopExtensionButtonClick()
     {
-        // TODO: Open documentation online
-        OSHelper.OpenFileInShell("http://url");
+        OSHelper.OpenFileInShell("http://devtoys.app/doc");
     }
 
     private async ValueTask OnInstallExtensionButtonClickAsync()
@@ -149,34 +147,16 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
 
         for (int i = 0; i < nugetPackages.Length; i++)
         {
-            using SandboxedFileReader nugetPackage = nugetPackages[i];
-            using Stream nugetPackageStream = await nugetPackage.GetNewAccessToFileContentAsync(CancellationToken.None);
-            using var reader = new PackageArchiveReader(nugetPackageStream);
+            ExtensionInstallationResult result = await ExtensionInstallationManager.InstallExtensionAsync(nugetPackages[i]);
 
-            NuspecReader nuspec = reader.NuspecReader;
-
-            for (int j = 0; j < ExtensionInstallationManager.ExtensionInstallationFolders.Length; j++)
+            if (result.AlreadyInstalled)
             {
-                string potentialExtensionInstallationPath = Path.Combine(ExtensionInstallationManager.ExtensionInstallationFolders[j], nuspec.GetId());
-                if (Directory.Exists(potentialExtensionInstallationPath))
-                {
-                    // Extension is already installed.
-                    await ShowExtensionAlreadyInstalledMessageBoxAsync(nuspec.GetTitle());
-                    return;
-                }
+                // Extension is already installed.
+                await ShowExtensionAlreadyInstalledMessageBoxAsync(result.NuspecReader.GetTitle());
+                return;
             }
 
-            string extensionInstallationPath
-                = Path.Combine(ExtensionInstallationManager.PreferredExtensionInstallationFolder, nuspec.GetId());
-
-            // Unzip the extension.
-            Directory.CreateDirectory(extensionInstallationPath);
-            foreach (string? packagedFile in reader.GetFiles())
-            {
-                reader.ExtractFile(packagedFile, Path.Combine(extensionInstallationPath, packagedFile), null);
-            }
-
-            _extensionList.Items.Add(CreateExtensionListItem(nuspec, extensionInstallationPath));
+            _extensionList.Items.Add(CreateExtensionListItem(result.NuspecReader, result.ExtensionInstallationPath));
 
             _restartRequiredInfoBar.Open();
         }
@@ -249,12 +229,6 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
                 .Icon("FluentSystemIcons", '\uE47B')
                 .OnClick(() => OnUninstallExtensionButtonClick(extensionInstallationPath));
         actionBuilder.Add(uninstallButton);
-        if (!extensionInstallationPath.StartsWith(ExtensionInstallationManager.PreferredExtensionInstallationFolder))
-        {
-            // We might not be able to uninstall the extension if it is installed in a different location because
-            // it may require admin privileges(e.g.Program Files).
-            uninstallButton.Disable();
-        }
 
         // Create the item.
         return Item(

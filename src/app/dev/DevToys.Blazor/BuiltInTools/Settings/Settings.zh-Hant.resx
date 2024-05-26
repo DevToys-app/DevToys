@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -118,183 +118,167 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
-    <comment/>
+    <value>關於</value>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
-    <comment/>
+    <value>設定</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
-    <comment/>
+    <value>外觀</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
-    <comment/>
+    <value>應用程式主題</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
-    <comment/>
+    <value>選擇要顯示的應用程式主題</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
-    <comment/>
+    <value>行為</value>
+  </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>檢查更新</value>
+  </data>
+  <data name="CheckForUpdateDescription" xml:space="preserve">
+    <value>DevToys 啟動時自動檢查更新</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
-    <comment/>
+    <value>緊湊間距</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
-    <comment/>
+    <value>減少介面元素之間的空間</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
-    <comment/>
+    <value>深色</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
-    <comment/>
+    <value>與系統相同</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
-    <comment/>
+    <value>自訂 DevToys 的外觀</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>由 {0} 開始 DevToysMac 的開發</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
-    <comment/>
+    <value>編輯中</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
-    <comment/>
+    <value>行尾字元</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
-    <comment/>
+    <value>與輸入一致的行尾（自動）</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
-    <comment/>
+    <value>回車和換行（\r\n）（Windows）</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
-    <comment/>
+    <value>換行（\n）（Unix）</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
-    <comment/>
+    <value>字型</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
-    <comment/>
+    <value>幫助我們翻譯 DevToys！</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
-    <comment/>
+    <value>突出顯示目前行</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
-    <comment/>
+    <value>變更目前所在行的背景顏色以使其更加明顯</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>Higlight the current line</value>
-    <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>由 {0} 設計應用程式圖示</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
-    <comment/>
+    <value>語言</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
-    <comment/>
+    <value>選擇其他語言時需要重新啟動應用程式</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
-    <comment/>
+    <value>淺色</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
-    <comment/>
+    <value>行號</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
-    <comment/>
+    <value>在文字編輯器中顯示行號</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
-    <comment/>
+    <value>顯示行號</value>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>開啟記錄檔</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
-    <comment/>
+    <value>貼上時取代文字</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
-    <comment/>
+    <value>當按下「貼上」按鈕時，會在貼上之前清除文字，而不是附加到現有文字編輯器的內容。</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
-    <comment/>
+    <value>貼上時取代文字</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
-    <comment/>
+    <value>轉譯空白字元</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
-    <comment/>
+    <value>顯示空白字元</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
-    <comment/>
+    <value>設定</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
-    <comment/>
+    <value>智慧偵測</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
-    <comment/>
+    <value>根據剪貼簿的內容自動偵測最佳工具</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
-    <comment/>
+    <value>選擇建議工具時自動貼上剪貼簿的內容</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
-    <comment/>
+    <value>特別鳴謝</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
-    <comment/>
+    <value>文字編輯器</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
-    <comment/>
+    <value>預覽</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>實用連結</value>
+  </data>
+  <data name="UsefulLinksLicense" xml:space="preserve">
+    <value>授權</value>
+  </data>
+  <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
+    <value>隱私政策</value>
+  </data>
+  <data name="UsefulLinksReportProblem" xml:space="preserve">
+    <value>回報問題</value>
+  </data>
+  <data name="UsefulLinksSourceCode" xml:space="preserve">
+    <value>原始碼</value>
+  </data>
+  <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
+    <value>第三方授權條款</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
-    <comment/>
+    <value>使用系統設定</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
-    <comment/>
+    <value>版本 {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
-    <comment/>
+    <value>文字換行</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
-    <comment/>
+    <value>文字換行</value>
   </data>
 </root>

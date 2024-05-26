@@ -1,4 +1,7 @@
-﻿namespace DevToys.Api;
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
+
+namespace DevToys.Api;
 
 /// <summary>
 /// Represents the definition of a setting in the application.
@@ -36,19 +39,14 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
     {
         Guard.IsNotNullOrWhiteSpace(name);
 
-        if (name.Length > 255)
-        {
-            // Come one! Make it shorter!
-            ThrowHelper.ThrowArgumentOutOfRangeException(nameof(name), "Setting name is limited to 255 characters.");
-        }
-        else if (name.Contains('='))
+        if (name.Contains('='))
         {
             // For portable apps, settings are stored in a .ini file where the format is "setting_name=value".
             // Therefore, the setting name shouldn't contain "=".
             ThrowHelper.ThrowArgumentException(nameof(name), "Setting name cannot contain '='.");
         }
 
-        Name = name;
+        Name = GenerateName(name);
         DefaultValue = defaultValue;
     }
 
@@ -125,5 +123,44 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
     public static bool operator !=(SettingDefinition<T> left, SettingDefinition<T> right)
     {
         return !(left == right);
+    }
+
+    /// <summary>
+    /// Generates the name of the setting by using the calling assembly, namespace, and class name.
+    /// This is used to prevent collision between various extensions that may use the same setting name.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static string GenerateName(string baseName)
+    {
+        // Using Stack Trace might not give us the right information in AOT scenarios as the call stack may be different.
+        // Good thing is: as DevToys use MEF, we don't use AOT. So, we are good to go.
+        // But this is something we may need to revisit in the future.
+        var stackTrace = new StackTrace();
+        StackFrame[] stackFrames = stackTrace.GetFrames();
+        var currentAssembly = Assembly.GetExecutingAssembly();
+
+        foreach (StackFrame frame in stackFrames)
+        {
+            MethodBase? method = frame.GetMethod();
+            Type? type = method?.ReflectedType;
+            Assembly? assembly = type?.Assembly;
+
+            if (type is not null
+                && assembly is not null
+                && assembly != currentAssembly)
+            {
+                string? callingAssemblyName = assembly.GetName().Name;
+                string settingName = $"{callingAssemblyName}.{baseName}";
+
+                if (settingName.Length > 255)
+                {
+                    ThrowHelper.ThrowArgumentOutOfRangeException(nameof(settingName), "Setting name is limited to 255 characters.");
+                }
+
+                return settingName;
+            }
+        }
+
+        return baseName;
     }
 }

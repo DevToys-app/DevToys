@@ -121,18 +121,18 @@
     <value>'{0}' が見つかりません。</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>パスまたはファイル名が無効です。ファイルは、次のいずれかの拡張子が利用できます : {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>読み込むファイルの相対パスまたは絶対パス (Enter でキャンセル) :</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>読み込むファイルの相対パスまたは絶対パス (カンマで複数指定。Enter でキャンセル) :</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>フォルダの相対パスまたは絶対パス (Enter でキャンセル) :</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>ファイルの保存先の相対パスまたは絶対パス (Enter でキャンセル) :</value>
   </data>
 </root>

@@ -118,38 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllFiles" xml:space="preserve">
-    <value>All {0}</value>
+    <value>所有 {0}</value>
     <comment>This text is used in open file dialog and goes like "All PNG, JPG, GIF"</comment>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Open file</value>
+    <value>開啟檔案</value>
     <comment/>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>Open</value>
+    <value>開啟</value>
     <comment/>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
     <comment/>
   </data>
   <data name="OpenFiles" xml:space="preserve">
-    <value>Open files</value>
+    <value>開啟檔案</value>
     <comment/>
   </data>
   <data name="AllFiles2" xml:space="preserve">
-    <value>All files</value>
+    <value>所有檔案</value>
     <comment/>
   </data>
   <data name="SaveFile" xml:space="preserve">
-    <value>Save file</value>
+    <value>儲存檔案</value>
     <comment/>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>儲存</value>
     <comment/>
   </data>
   <data name="OpenFolder" xml:space="preserve">
-    <value>Open folder</value>
+    <value>開啟資料夾</value>
   </data>
 </root>

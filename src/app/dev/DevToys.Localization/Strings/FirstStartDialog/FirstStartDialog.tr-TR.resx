@@ -121,17 +121,20 @@
     <value>DevToys, geliştiriciler için gözde bir alet çantası olup, özgür ve açık kaynakları araçların bir koleksiyonunu içerir. Bunu, sizi yavaşlatan sinir bozucu günlük görevleri ele almak için özel olarak tasarlanmış bir İsviçre çakısı gibi düşünebilirsiniz.
 İşte bilmeniz gerekenler:</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>DevToys başlatıldığında güncellemeleri kontrol et</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Devam et</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys, "önce çevrim dışı" zihniyetiyle işler. Asgari miktarda anonimleştirilmiş veriyi yerelde sorun çözme amacıyla toplarız. Günlükleri İnternet'e yüklemeyiz. Eğer bir hata görür ve bildirmek isterseniz, sizden günlükleri bizimle paylaşmanızı rica edebiliriz. Size en son özellikleri ve güvenlik iyileştirmelerini ulaştırmak amacıyla güncellemeleri denetlerken zaman zaman İnternet'e bağlanabiliriz.</value>
+    <value>DevToys, "önce çevrim dışı" zihniyetiyle işler. Asgari miktarda anonimleştirilmiş veriyi yerelde sorun çözme amacıyla toplarız. Günlükleri İnternet'e yüklemeyiz. Eğer bir hata görür ve bildirmek isterseniz, sizden günlükleri bizimle paylaşmanızı rica edebiliriz. Rızanız ile, size en son özellikleri ve güvenlik iyileştirmelerini ulaştırmak amacıyla güncellemeleri denetlerken İnternet'e bağlanabiliriz.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>"Önce Çevrim Dışı" Felsefesi</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>DevToys'un gücü uzantılarla artar, alet çantanızı daha güçlü kılar. Asıl uygulamanın bütünlüğünü sağlama almamıza rağmen, üçüncü parti uzantıların bilgisayarınızla ve verinizle ne yaptığı üzerinde bir denetimimizin olmadığını bilmeniz önemlidir. Bu yüzden, sizi uzantı yüklerken dikkatli davranmaya davet ediyoruz. DevToys veya herhangi bir uzantının ağ etkinliğini gözetlemek için Wireshark, Little Snitch ya da Fiddler gibi araçları kullanarak gelen ve giden bağlantıları takip edebilirsiniz.</value>
+    <value>DevToys'un gücü uzantılarla artar, alet çantanızı daha güçlü kılar. Asıl uygulamanın bütünlüğünü sağlama almamıza rağmen, üçüncü taraf uzantıların bilgisayarınızla ve verinizle ne yaptığı üzerinde bir denetimimizin olmadığını bilmeniz önemlidir. Bu yüzden, sizi uzantı kurarken dikkatli davranmaya davet ediyoruz. DevToys veya herhangi bir uzantının ağ etkinliğini gözetlemek için Wireshark, Little Snitch ya da Fiddler gibi araçları kullanarak gelen ve giden bağlantıları takip edebilirsiniz.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
     <value>Güven ancak Doğrula</value>

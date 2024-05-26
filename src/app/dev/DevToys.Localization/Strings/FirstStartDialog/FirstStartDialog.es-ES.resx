@@ -121,11 +121,14 @@
     <value>DevToys es su caja de herramientas para desarrolladores, repleta de una colección de herramientas gratuitas y de código abierto. Piense en ello como un cuchillo del Ejército suizo adaptado a las pesadas tareas diarias que te ralentizan.
 Esto es lo que necesitas saber:</value>
   </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Buscar actualizaciones al iniciar DevToys</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Siguiente</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys opera con una primera mentalidad fuera de línea. Recopilamos datos anónimos mínimos localmente para solucionar problemas. No subimos registros a Internet. Si encuentra un error y decide reportarlo, podemos pedirle que comparta los registros con nosotros. De vez en cuando nos conectaremos a Internet para comprobar si hay actualizaciones, asegurándonos de tener acceso a las últimas características y mejoras de seguridad.</value>
+    <value>DevToys opera con una primera mentalidad fuera de línea. Recopilamos datos anónimos mínimos localmente para solucionar problemas. No subimos registros a Internet. Si encuentra un error y decide reportarlo, podemos pedirle que comparta los registros con nosotros. Con su consentimiento, nos conectaremos a Internet para comprobar si hay actualizaciones, asegurándote de tener acceso a las últimas características y mejoras de seguridad.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>Filosofía Offline primero</value>

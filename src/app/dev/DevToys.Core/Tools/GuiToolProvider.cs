@@ -440,7 +440,7 @@ public sealed partial class GuiToolProvider
             Assembly? resourceManagerAssembly = null;
             if (!string.IsNullOrEmpty(guiToolDefinition.Metadata.ResourceManagerAssemblyIdentifier))
             {
-                resourceManagerAssembly = GetResourceManagerAssembly(guiToolDefinition.Metadata.ResourceManagerAssemblyIdentifier);
+                resourceManagerAssembly = GetResourceManagerAssembly(guiToolDefinition.Metadata);
             }
 
             // Create the tool instance and store it in a menu placement list.
@@ -584,8 +584,8 @@ public sealed partial class GuiToolProvider
 
             if (toolGroup is null)
             {
-                ThrowHelper.ThrowInvalidDataException($"Unable to find the group named '{tool.GroupName}' that the tool '{tool.InternalComponentName}' is pointing to.");
-                return null;
+                LogGroupNotFound(tool.GroupName, tool.InternalComponentName);
+                continue;
             }
 
             // Create a group view presentation, if needed.
@@ -619,17 +619,18 @@ public sealed partial class GuiToolProvider
         return groups.Values.Select(g => g.Value);
     }
 
-    private Assembly GetResourceManagerAssembly(string resourceManagerAssemblyIdentifier)
+    private Assembly? GetResourceManagerAssembly(GuiToolMetadata guiToolMetadata)
     {
         foreach (Lazy<IResourceAssemblyIdentifier, ResourceAssemblyIdentifierMetadata> item in _resourceAssemblyIdentifiers)
         {
-            if (string.Equals(item.Metadata.InternalComponentName, resourceManagerAssemblyIdentifier, StringComparison.Ordinal))
+            if (string.Equals(item.Metadata.InternalComponentName, guiToolMetadata.ResourceManagerAssemblyIdentifier, StringComparison.Ordinal))
             {
                 return item.Value.GetType().Assembly;
             }
         }
 
-        throw new InvalidDataException($"Unable to find the {nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier)} '{resourceManagerAssemblyIdentifier}'.");
+        LogResourceManagerAssemblyIdentifierFound(guiToolMetadata.InternalComponentName, guiToolMetadata.ResourceManagerAssemblyIdentifier);
+        return null;
     }
 
     private GroupViewItem CreateFavoriteGroupViewItem(IReadOnlyList<GuiToolViewItem> favoriteTools)
@@ -777,4 +778,10 @@ public sealed partial class GuiToolProvider
 
     [LoggerMessage(3, LogLevel.Information, "Instantiated {toolCount} tools in {duration}ms")]
     partial void LogToolInstancesCreated(int toolCount, double duration);
+
+    [LoggerMessage(4, LogLevel.Error, "Unable to find the group named '{groupName}' that the tool '{toolName}' is pointing to.")]
+    partial void LogGroupNotFound(string groupName, string toolName);
+
+    [LoggerMessage(5, LogLevel.Error, "Unable to find the ResourceManagerAssemblyIdentifier '{resourceManagerAssemblyIdentifier}' that the tool '{toolName}' is pointing to.")]
+    partial void LogResourceManagerAssemblyIdentifierFound(string toolName, string resourceManagerAssemblyIdentifier);
 }

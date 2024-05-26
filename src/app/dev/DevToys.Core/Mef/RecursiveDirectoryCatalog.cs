@@ -95,28 +95,52 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
             Changing?.Invoke(o, e);
         };
 
-        foreach (string file in files)
+        string pluginFolderName = Path.GetFileName(path);
+        string hypotheticalPluginMainDllFile = $"{pluginFolderName}.dll";
+        bool foundMefPartInMainDllFile = false;
+        string? pluginMainDllFile = files.FirstOrDefault(f => f.EndsWith(hypotheticalPluginMainDllFile, StringComparison.OrdinalIgnoreCase));
+        if (!string.IsNullOrEmpty(pluginMainDllFile) && File.Exists(pluginMainDllFile))
         {
-            try
-            {
-                AssemblyCount++;
-                var asmCat = new AssemblyCatalog(file);
+            // Perf: If the main plugin DLL is found, try to load it first.
+            // This is to avoid loading all the other DLLs in the directory, which slows down the app's startup.
+            foundMefPartInMainDllFile = AddLibraryToMefCatalog(pluginMainDllFile);
+        }
 
-                // Force MEF to load the plugin and figure out if there are any exports
-                // good assemblies will not throw the RTLE exception and can be added to the catalog
-                if (asmCat.Parts.Any())
-                {
-                    _aggregateCatalog.Catalogs.Add(asmCat);
-                }
-            }
-            catch (ReflectionTypeLoadException ex)
+        if (!foundMefPartInMainDllFile)
+        {
+            foreach (string file in files)
             {
-                LogLoadLibraryFault(ex, file);
-            }
-            catch (BadImageFormatException)
-            {
+                AddLibraryToMefCatalog(file);
             }
         }
+    }
+
+    private bool AddLibraryToMefCatalog(string filePath)
+    {
+        Guard.IsNotNull(_aggregateCatalog);
+
+        try
+        {
+            AssemblyCount++;
+            var asmCat = new AssemblyCatalog(filePath);
+
+            // Force MEF to load the plugin and figure out if there are any exports
+            // good assemblies will not throw the RTLE exception and can be added to the catalog
+            if (asmCat.Parts.Any())
+            {
+                _aggregateCatalog.Catalogs.Add(asmCat);
+                return true;
+            }
+        }
+        catch (ReflectionTypeLoadException ex)
+        {
+            LogLoadLibraryFault(ex, filePath);
+        }
+        catch (BadImageFormatException)
+        {
+        }
+
+        return false;
     }
 
     private string GetDisplayName()

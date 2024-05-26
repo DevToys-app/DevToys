@@ -1,0 +1,10 @@
+.changelog {
+    line-height: 20px;
+    letter-spacing: 0.3px;
+
+    font: {
+        weight: var(--text-weight-normal);
+        size: var(--font-size-body);
+        family: var(--font-family-text)
+    }
+}

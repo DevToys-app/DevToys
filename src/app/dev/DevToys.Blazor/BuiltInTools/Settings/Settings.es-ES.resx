@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -119,47 +119,42 @@
   </resheader>
   <data name="About" xml:space="preserve">
     <value>Acerca de</value>
-    <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
     <value>Configuración</value>
-    <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
     <value>Apariencia</value>
-    <comment/>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>Tema de la aplicación</value>
-    <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Elije con que tema mostrar la aplicación</value>
-    <comment/>
   </data>
   <data name="Behaviors" xml:space="preserve">
     <value>Comportamiento</value>
-    <comment/>
+  </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Buscar actualizaciones</value>
+  </data>
+  <data name="CheckForUpdateDescription" xml:space="preserve">
+    <value>Buscar actualizaciones automáticamente al iniciar DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Tema compacto</value>
-    <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
     <value>Disminuir el espacio entre elementos de la interfaz</value>
-    <comment/>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Oscuro</value>
-    <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Igual que el sistema</value>
-    <comment/>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Personalizar apariencia de DevToys</value>
-    <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">
     <value>{0} para iniciar el desarrollo de DevToysMac</value>
@@ -167,43 +162,33 @@
   </data>
   <data name="Editing" xml:space="preserve">
     <value>Editar</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
     <value>Carácter de final de línea</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
     <value>Mismo fin de línea que el origen(automático)</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
     <value>Devolución de transporte y alimentación de línea (\r\n) (Windows)</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
     <value>Alimento de línea (\n) (Unix)</value>
-    <comment/>
   </data>
   <data name="Font" xml:space="preserve">
     <value>Fuente</value>
-    <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>¡Ayúdanos a traducir DevToys!</value>
-    <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Resaltar la línea actual</value>
-    <comment/>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
     <value>Resaltar el color de fondo de la línea actual para hacerla más visible</value>
-    <comment/>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>Resalta la línea actual</value>
-    <comment/>
   </data>
   <data name="IconDesigner" xml:space="preserve">
     <value>{0} para diseñar el icono de la aplicación</value>
@@ -211,90 +196,89 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Idioma</value>
-    <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>Es necesario reiniciar la aplicación para usar otro lenguaje</value>
-    <comment/>
   </data>
   <data name="Light" xml:space="preserve">
     <value>Claro</value>
-    <comment/>
   </data>
   <data name="LineNumbers" xml:space="preserve">
     <value>Número de línea</value>
-    <comment/>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
     <value>Mostrar los números de línea en el editor de texto</value>
-    <comment/>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
     <value>Mostrar números de líneas</value>
-    <comment/>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>Abrir registro</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Reemplazar texto al pegar</value>
-    <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
     <value>Al hacer clic en el botón Pegar, borre el texto antes de pegar en lugar de añadir al contenido del editor de texto existente.</value>
-    <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>Reemplazar texto al pegar</value>
-    <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Renderizar espacio en blanco</value>
-    <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
     <value>Mostrar espacio en blanco</value>
-    <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>Configuración</value>
-    <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Detección inteligente</value>
-    <comment/>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
     <value>Detecta automaticamente la mejor herramienta en base a los contenidos del portapapeles</value>
-    <comment/>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>Pega automáticamente el contenido del portapapeles al seleccionar una herramienta recomendada</value>
-    <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Agradecimientos especiales a</value>
-    <comment/>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>Editor de Texto</value>
-    <comment/>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
     <value>Vista previa</value>
-    <comment/>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Links útiles</value>
+  </data>
+  <data name="UsefulLinksLicense" xml:space="preserve">
+    <value>Licencia</value>
+  </data>
+  <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
+    <value>Política de privacidad</value>
+  </data>
+  <data name="UsefulLinksReportProblem" xml:space="preserve">
+    <value>Reportar un problema</value>
+  </data>
+  <data name="UsefulLinksSourceCode" xml:space="preserve">
+    <value>Código fuente</value>
+  </data>
+  <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
+    <value>Licencias de terceros</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Usar la configuración del sistema</value>
-    <comment/>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versión {0}</value>
-    <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>Ajuste de líneas</value>
-    <comment/>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>Ajuste de línea</value>
-    <comment/>
   </data>
 </root>

@@ -24,6 +24,6 @@ internal sealed partial class FontProvider : IFontProvider
             return fonts.Order().ToArray();
         }
 
-        return Array.Empty<string>(); // TODO: Implement.
+        return Array.Empty<string>();
     }
 }

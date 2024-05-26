@@ -4,7 +4,6 @@
     <TargetFramework>$(NetMacOS)</TargetFramework>
     <SupportedOSPlatformVersion>12.0</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DevToys.MacOS</RootNamespace>
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
     <DefineConstants>$(DefineConstants);__MACOS__</DefineConstants>
 
@@ -13,6 +12,7 @@
 
     <ApplicationId>com.devtoys</ApplicationId>
 
+    <RootNamespace>DevToys.MacOS</RootNamespace>
     <AssemblyName>DevToys</AssemblyName>
   </PropertyGroup>
 

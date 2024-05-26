@@ -3,11 +3,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Api;
+using DevToys.Core;
 using DevToys.Core.Models;
 using DevToys.Core.Settings;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
-using DevToys.Localization.Strings.MainWindow;
+using DevToys.Core.Version;
+using DevToys.Core.Web;
 using Microsoft.Extensions.Logging;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
@@ -22,6 +24,8 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     private readonly SmartDetectionService _smartDetectionService;
     private readonly IClipboard _clipboard;
     private readonly ISettingsProvider _settingsProvider;
+    private readonly IWebClientService _webClientService;
+    private readonly IVersionService _versionService;
     private readonly Stack<INotifyPropertyChanged> _navigationHistory = new();
 
     private IReadOnlyList<SmartDetectedTool>? _oldSmartDetectedTools;
@@ -35,14 +39,23 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         GuiToolProvider guiToolProvider,
         SmartDetectionService smartDetectionService,
         IClipboard clipboard,
-        ISettingsProvider settingsProvider)
+        ISettingsProvider settingsProvider,
+        IWebClientService webClientService,
+        IVersionService versionService)
     {
         _logger = this.Log();
         _guiToolProvider = guiToolProvider;
         _smartDetectionService = smartDetectionService;
         _clipboard = clipboard;
         _settingsProvider = settingsProvider;
+        _webClientService = webClientService;
+        _versionService = versionService;
         Messenger.Register<MainWindowViewModel, ChangeSelectedMenuItemMessage>(this, OnChangeSelectedMenuItemMessageReceived);
+
+        if (_settingsProvider.GetSetting(PredefinedSettings.CheckForUpdate))
+        {
+            CheckForUpdateAsync().ForgetSafely();
+        }
     }
 
     /// <summary>
@@ -150,10 +163,10 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     private ObservableCollection<GuiToolViewItem> _searchResults = new();
 
     /// <summary>
-    /// Gets or sets the list of search results from the <see cref="SearchQuery"/>.
+    /// Gets or sets whether an update for the app is available online.
     /// </summary>
     [ObservableProperty]
-    private string _windowTitle = string.Empty;
+    private bool _updateAvailable = false;
 
     /// <summary>
     /// Navigates back to the previous <see cref="SelectedMenuItem"/>.
@@ -172,36 +185,6 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     }
 
     /// <summary>
-    /// Updates <see cref="WindowTitle"/> accordingly to the compact mode state.
-    /// </summary>
-    internal void UpdateWindowTitle(bool isInCompactOverlayMode)
-    {
-        if (isInCompactOverlayMode)
-        {
-            if (SelectedMenuItem is GuiToolViewItem guiToolViewItem)
-            {
-                WindowTitle = string.Format(MainWindow.WindowTitleWithToolName, guiToolViewItem.ToolInstance.LongOrShortDisplayTitle);
-            }
-            else if (SelectedMenuItem is GuiToolInstance instance)
-            {
-                WindowTitle = string.Format(MainWindow.WindowTitleWithToolName, instance.LongOrShortDisplayTitle);
-            }
-            else if (SelectedMenuItem is GroupViewItem group)
-            {
-                WindowTitle = string.Format(MainWindow.WindowTitleWithToolName, group.DisplayTitle);
-            }
-            else
-            {
-                WindowTitle = MainWindow.WindowTitle;
-            }
-        }
-        else
-        {
-            WindowTitle = MainWindow.WindowTitle;
-        }
-    }
-
-    /// <summary>
     /// Get the data from the clipboard and try to detect tools that can accept the clipboard data as an input.
     /// </summary>
     internal async Task RunSmartDetectionAsync(bool isInCompactOverlayMode, bool isDialogOpened)
@@ -217,7 +200,11 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
 
         try
         {
-            using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(2));
+            using var cancellationTokenSource
+                = new CancellationTokenSource(
+                    Debugger.IsAttached ? TimeSpan.FromHours(1) : TimeSpan.FromSeconds(2));
+
+            CancellationToken cancellationToken = cancellationTokenSource.Token;
             INotifyPropertyChanged? selectedMenuBeforeSmartDetection = SelectedMenuItem;
             Guard.IsNotNull(selectedMenuBeforeSmartDetection);
 
@@ -225,14 +212,14 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             object? rawClipboardData = await _clipboard.GetClipboardDataAsync();
 
             // If the clipboard content has changed since the last time
-            if (!cancellationTokenSource.Token.IsCancellationRequested && !AreOldAndNewClipboardDataEqual(_oldRawClipboardData, rawClipboardData))
+            if (!cancellationToken.IsCancellationRequested && !AreOldAndNewClipboardDataEqual(_oldRawClipboardData, rawClipboardData))
             {
                 // Reset recommended tools.
                 _guiToolProvider.ForEachToolViewItem(toolViewItem => toolViewItem.IsRecommended = false);
 
                 // Detect tools to recommend.
                 IReadOnlyList<SmartDetectedTool> detectedTools
-                    = await _smartDetectionService.DetectAsync(rawClipboardData, strict: true, cancellationTokenSource.Token)
+                    = await _smartDetectionService.DetectAsync(rawClipboardData, strict: true, cancellationToken)
                         .ConfigureAwait(true);
 
                 GuiToolViewItem? firstToolViewItem = null;
@@ -364,6 +351,15 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             // Send the data to the tool.
             message.Value.PassSmartDetectedData(message.SmartDetectionInfo.DataTypeName, message.SmartDetectionInfo.ParsedData);
         }
+    }
+
+    private async Task CheckForUpdateAsync()
+    {
+        using CancellationTokenSource cancellationTokenSource = new();
+        cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
+        CancellationToken token = cancellationTokenSource.Token;
+
+        UpdateAvailable = await AppHelper.CheckForUpdateAsync(_webClientService, _versionService, token);
     }
 
     private static bool AreOldAndNewClipboardDataEqual(object? oldData, object? newData)

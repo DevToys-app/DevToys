@@ -178,6 +178,15 @@ namespace DevToys.Localization.Strings.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update available.
+        /// </summary>
+        public static string UpdateAvailable {
+            get {
+                return ResourceManager.GetString("UpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DevToys.
         /// </summary>
         public static string WindowTitle {

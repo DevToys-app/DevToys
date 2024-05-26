@@ -47,12 +47,15 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
     {
         Guard.IsNotNull(guiToolViewItem);
 
-        // Add the tool to most recent ones.
-        _guiToolProvider.SetMostRecentUsedTool(guiToolViewItem.ToolInstance);
+        if (_guiToolViewItem != guiToolViewItem)
+        {
+            // Add the tool to most recent ones.
+            _guiToolProvider.SetMostRecentUsedTool(guiToolViewItem.ToolInstance);
 
-        _guiToolViewItem = guiToolViewItem;
+            _guiToolViewItem = guiToolViewItem;
 
-        HeaderText = guiToolViewItem.ToolInstance.LongOrShortDisplayTitle;
+            HeaderText = guiToolViewItem.ToolInstance.LongOrShortDisplayTitle;
+        }
     }
 
     /// <summary>

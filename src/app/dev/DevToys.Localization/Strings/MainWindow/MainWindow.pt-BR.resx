@@ -136,7 +136,7 @@
     <value>Manter no topo</value>
   </data>
   <data name="PictureInPictureExpand" xml:space="preserve">
-    <value>Retornar a visão completa</value>
+    <value>Retornar à visão completa</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
     <value>Recentes</value>
@@ -155,6 +155,9 @@
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
     <value>Mostrar/esconder navegação</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Update available</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

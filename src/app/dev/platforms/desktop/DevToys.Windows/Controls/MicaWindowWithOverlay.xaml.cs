@@ -37,7 +37,7 @@ public abstract partial class MicaWindowWithOverlay : Window
     {
         _resourceDictionary = new ResourceDictionary
         {
-            Source = new Uri("/DevToys.Windows;component/Controls/MicaWindowWithOverlay.xaml", UriKind.RelativeOrAbsolute)
+            Source = new Uri("/DevToys;component/Controls/MicaWindowWithOverlay.xaml", UriKind.RelativeOrAbsolute)
         };
 
         Style = _resourceDictionary["MicaWindowWithOverlayStyle"] as Style;
@@ -371,13 +371,13 @@ public abstract partial class MicaWindowWithOverlay : Window
         string themeResourceDictionaryToRemovePath;
         if (_themeListener.ActualAppTheme == ApplicationTheme.Dark)
         {
-            themeResourceDictionaryPath = "/DevToys.Windows;component/Themes/Dark.xaml";
-            themeResourceDictionaryToRemovePath = "/DevToys.Windows;component/Themes/Light.xaml";
+            themeResourceDictionaryPath = "/DevToys;component/Themes/Dark.xaml";
+            themeResourceDictionaryToRemovePath = "/DevToys;component/Themes/Light.xaml";
         }
         else
         {
-            themeResourceDictionaryPath = "/DevToys.Windows;component/Themes/Light.xaml";
-            themeResourceDictionaryToRemovePath = "/DevToys.Windows;component/Themes/Dark.xaml";
+            themeResourceDictionaryPath = "/DevToys;component/Themes/Light.xaml";
+            themeResourceDictionaryToRemovePath = "/DevToys;component/Themes/Dark.xaml";
         }
 
         var resourceDictionary = new ResourceDictionary

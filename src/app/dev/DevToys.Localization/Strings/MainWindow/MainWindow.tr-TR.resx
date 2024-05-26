@@ -156,6 +156,9 @@
   <data name="ToggleNavigation" xml:space="preserve">
     <value>Navigasyonu Aç/Kapa</value>
   </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Güncelleme mevcut</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>

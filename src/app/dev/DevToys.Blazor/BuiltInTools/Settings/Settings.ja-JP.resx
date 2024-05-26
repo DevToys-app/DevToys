@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -119,47 +119,42 @@
   </resheader>
   <data name="About" xml:space="preserve">
     <value>アプリについて</value>
-    <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
     <value>設定</value>
-    <comment/>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>表示設定</value>
-    <comment/>
+    <value>言語と外観</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>アプリのテーマ</value>
-    <comment/>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>表示するアプリ テーマを選択します</value>
-    <comment/>
+    <value>アプリに表示される色を変更します</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
     <value>動作</value>
-    <comment/>
+  </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>更新の確認</value>
+  </data>
+  <data name="CheckForUpdateDescription" xml:space="preserve">
+    <value>DevToys の起動時に更新を確認する</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>間隔を詰める</value>
-    <comment/>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>UIのスペースを縮小します</value>
-    <comment/>
+    <value>UI のスペースを縮小します</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>ダーク</value>
-    <comment/>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>システム設定を使用する</value>
-    <comment/>
   </data>
   <data name="Description" xml:space="preserve">
     <value>DevToys をカスタマイズする</value>
-    <comment/>
   </data>
   <data name="DevToysMac" xml:space="preserve">
     <value>DevToysMac の開発 : {0}</value>
@@ -167,43 +162,33 @@
   </data>
   <data name="Editing" xml:space="preserve">
     <value>エディタ</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
     <value>改行コード</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
     <value>入力された内容に合わせる (自動判別)</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
     <value>CR+LF (\r\n) (Windows)</value>
-    <comment/>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
     <value>LF (\n) (Unix)</value>
-    <comment/>
   </data>
   <data name="Font" xml:space="preserve">
     <value>フォント</value>
-    <comment/>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>DevToys の翻訳にご協力ください！</value>
-    <comment/>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>選択行を強調する</value>
-    <comment/>
+    <value>カーソル行を強調</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>現在の行の背景色を変更する</value>
-    <comment/>
+    <value>カーソルがある行の背景色を変更する</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>選択された行のハイライト</value>
-    <comment/>
+    <value>行を強調</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
     <value>アプリアイコン : {0}</value>
@@ -211,90 +196,89 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>言語</value>
-    <comment/>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>The app needs to be restarted when selecting another language. (要再起動)</value>
-    <comment/>
   </data>
   <data name="Light" xml:space="preserve">
     <value>ライト</value>
-    <comment/>
   </data>
   <data name="LineNumbers" xml:space="preserve">
     <value>行番号</value>
-    <comment/>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
     <value>テキストエディターで行番号を表示する</value>
-    <comment/>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
     <value>行番号を表示</value>
-    <comment/>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>ログを開く</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>置換貼り付け</value>
-    <comment/>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
     <value>クリップボードから貼り付ける際に、入力されていた内容を消去して置き換えます</value>
-    <comment/>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>貼り付け時に整形</value>
-    <comment/>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>空白文字を表示</value>
-    <comment/>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
     <value>空白文字を表示</value>
-    <comment/>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>設定</value>
-    <comment/>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>スマート検出</value>
-    <comment/>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
     <value>クリップボードの内容から最適なツールを自動的に検出します</value>
-    <comment/>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>推奨ツールを選択するときにクリップボードの内容を自動的に貼り付けます</value>
-    <comment/>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Special thanks to</value>
-    <comment/>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>テキストエディター</value>
-    <comment/>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
     <value>プレビュー</value>
-    <comment/>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>関連するリンク</value>
+  </data>
+  <data name="UsefulLinksLicense" xml:space="preserve">
+    <value>ライセンス</value>
+  </data>
+  <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
+    <value>プライバシーポリシー</value>
+  </data>
+  <data name="UsefulLinksReportProblem" xml:space="preserve">
+    <value>問題を報告</value>
+  </data>
+  <data name="UsefulLinksSourceCode" xml:space="preserve">
+    <value>ソースコード</value>
+  </data>
+  <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
+    <value>サードパーティ ライセンス</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>システムの言語に合わせる</value>
-    <comment/>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version {0}</value>
-    <comment/>
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>文字列を端で折り返す</value>
-    <comment/>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>折り返す</value>
-    <comment/>
   </data>
 </root>

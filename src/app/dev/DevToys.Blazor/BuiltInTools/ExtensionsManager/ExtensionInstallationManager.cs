@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Runtime.InteropServices;
+using Microsoft.Extensions.Logging;
+using NuGet.Packaging;
 
 namespace DevToys.Blazor.BuiltInTools.ExtensionsManager;
 
@@ -48,7 +50,7 @@ public static class ExtensionInstallationManager
                     }
                     catch (Exception ex)
                     {
-                        logger.LogError(ex, "Unable to uninstall extension '{extensionInstallationPath}'", extensionInstallationPath);
+                        logger.LogError(ex, "Unable to uninstall extension '{extensionInstallationPath}'. Try to start the app with administrator rights.", extensionInstallationPath);
                     }
                 }
 
@@ -64,7 +66,7 @@ public static class ExtensionInstallationManager
         logger.LogInformation("Finished uninstalling {uninstalledExtensions} extensions in {elapsedMilliseconds}ms", uninstalledExtensions, elapsedMilliseconds);
     }
 
-    public static void ScheduleExtensionToBeUninstalled(string extensionInstallationPath)
+    internal static void ScheduleExtensionToBeUninstalled(string extensionInstallationPath)
     {
         if (!Directory.Exists(PreferredExtensionInstallationFolder))
         {
@@ -79,5 +81,130 @@ public static class ExtensionInstallationManager
 
         File.AppendAllLines(scheduledForUninstallFilePath, new[] { extensionInstallationPath });
         logger.LogInformation("Scheduled to uninstall extension '{extensionInstallationPath}' next time the app start.", extensionInstallationPath);
+    }
+
+    internal static async Task<ExtensionInstallationResult> InstallExtensionAsync(SandboxedFileReader nugetPackageFile)
+    {
+        using Stream nugetPackageStream = await nugetPackageFile.GetNewAccessToFileContentAsync(CancellationToken.None);
+        using var reader = new PackageArchiveReader(nugetPackageStream);
+
+        NuspecReader nuspecReader = reader.NuspecReader;
+
+        for (int j = 0; j < ExtensionInstallationFolders.Length; j++)
+        {
+            string potentialExtensionInstallationPath = Path.Combine(ExtensionInstallationFolders[j], nuspecReader.GetId());
+            if (Directory.Exists(potentialExtensionInstallationPath))
+            {
+                // Extension is already installed.
+                return new(AlreadyInstalled: true, nuspecReader, ExtensionInstallationPath: string.Empty);
+            }
+        }
+
+        string extensionInstallationPath
+            = Path.Combine(PreferredExtensionInstallationFolder, nuspecReader.GetId());
+
+        // Unzip the extension.
+        string[] pathToExclude = GetPathToExclude().ToArray();
+        Directory.CreateDirectory(extensionInstallationPath);
+        foreach (string? packagedFile in reader.GetFiles())
+        {
+            if (!pathToExclude.Any(path => packagedFile.Contains(path, StringComparison.CurrentCultureIgnoreCase)))
+            {
+                reader.ExtractFile(packagedFile, Path.Combine(extensionInstallationPath, packagedFile), null);
+            }
+        }
+
+        return new(AlreadyInstalled: false, nuspecReader, extensionInstallationPath);
+    }
+
+    private static IEnumerable<string> GetPathToExclude()
+    {
+        if (OperatingSystem.IsWindows())
+        {
+            yield return "runtimes/osx/";
+            yield return "runtimes/osx-x86/";
+            yield return "runtimes/osx-x64/";
+            yield return "runtimes/osx-arm64/";
+            yield return "runtimes/linux/";
+            yield return "runtimes/linux-x86/";
+            yield return "runtimes/linux-x64/";
+            yield return "runtimes/linux-arm64/";
+            switch (RuntimeInformation.ProcessArchitecture)
+            {
+                case Architecture.X86:
+                    yield return "runtimes/win-x64/";
+                    yield return "runtimes/win-arm64/";
+                    break;
+                case Architecture.X64:
+                    yield return "runtimes/win-x86/";
+                    yield return "runtimes/win-arm64/";
+                    break;
+                case Architecture.Arm:
+                case Architecture.Arm64:
+                    yield return "runtimes/win-x86/";
+                    yield return "runtimes/win-x64/";
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
+        {
+            yield return "runtimes/osx/";
+            yield return "runtimes/osx-x86/";
+            yield return "runtimes/osx-x64/";
+            yield return "runtimes/osx-arm64/";
+            yield return "runtimes/win/";
+            yield return "runtimes/win-x86/";
+            yield return "runtimes/win-x64/";
+            yield return "runtimes/win-arm64/";
+            switch (RuntimeInformation.ProcessArchitecture)
+            {
+                case Architecture.X86:
+                    yield return "runtimes/linux-x64/";
+                    yield return "runtimes/linux-arm64/";
+                    break;
+                case Architecture.X64:
+                    yield return "runtimes/linux-x86/";
+                    yield return "runtimes/linux-arm64/";
+                    break;
+                case Architecture.Arm:
+                case Architecture.Arm64:
+                    yield return "runtimes/linux-x86/";
+                    yield return "runtimes/linux-x64/";
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            yield return "runtimes/linux/";
+            yield return "runtimes/linux-x86/";
+            yield return "runtimes/linux-x64/";
+            yield return "runtimes/linux-arm64/";
+            yield return "runtimes/win/";
+            yield return "runtimes/win-x86/";
+            yield return "runtimes/win-x64/";
+            yield return "runtimes/win-arm64/";
+            switch (RuntimeInformation.ProcessArchitecture)
+            {
+                case Architecture.X86:
+                    yield return "runtimes/osx-x64/";
+                    yield return "runtimes/osx-arm64/";
+                    break;
+                case Architecture.X64:
+                    yield return "runtimes/osx-x86/";
+                    yield return "runtimes/osx-arm64/";
+                    break;
+                case Architecture.Arm:
+                case Architecture.Arm64:
+                    yield return "runtimes/osx-x86/";
+                    yield return "runtimes/osx-x64/";
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ public sealed partial class MefComposer : IDisposable
     public const string ExtraPluginEnvironmentVariableName = "EXTRAPLUGIN";
 
     private readonly ILogger _logger;
+    private readonly Dictionary<string, Assembly> _loadedAssemblies = new();
     private readonly Assembly[] _assemblies;
     private readonly string[]? _pluginFolders;
     private readonly string? _extraPlugin;
@@ -26,6 +27,9 @@ public sealed partial class MefComposer : IDisposable
     {
         _logger = this.Log();
 
+        AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += CurrentAppDomain_AssemblyResolve;
+        AppDomain.CurrentDomain.AssemblyResolve += CurrentAppDomain_AssemblyResolve;
+
         _extraPlugin = Environment.GetEnvironmentVariable(ExtraPluginEnvironmentVariableName);
 
         _assemblies = assemblies ?? Array.Empty<Assembly>();
@@ -37,8 +41,43 @@ public sealed partial class MefComposer : IDisposable
         ((MefProvider)Provider).ExportProvider = ExportProvider;
     }
 
+    private Assembly? CurrentAppDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
+    {
+        // Try to resolve the assembly from the list loaded assemblies.
+        // We need to do this because when we load an assembly from MEF, the assembly may reference other assemblies
+        // that isn't part of the folder where the assembly is, such as "DevToys.API" (extensions generally don't have it in their folder).
+
+        string searchedAssemblyName = new AssemblyName(args.Name).Name!;
+
+        if (_loadedAssemblies.TryGetValue(searchedAssemblyName, out Assembly? assembly))
+        {
+            return assembly;
+        }
+
+        Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+        for (int i = 0; i < assemblies.Length; i++)
+        {
+            assembly = assemblies[i];
+            string? assemblyName = assembly.GetName().Name;
+
+            if (!string.IsNullOrEmpty(assemblyName))
+            {
+                _loadedAssemblies[assemblyName] = assembly;
+                if (string.Equals(assemblyName, searchedAssemblyName, StringComparison.CurrentCulture))
+                {
+                    return assembly;
+                }
+            }
+        }
+
+        return null;
+    }
+
     public void Dispose()
     {
+        AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve -= CurrentAppDomain_AssemblyResolve;
+        AppDomain.CurrentDomain.AssemblyResolve -= CurrentAppDomain_AssemblyResolve;
         ExportProvider?.Dispose();
 
         _isExportProviderDisposed = true;

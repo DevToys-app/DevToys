@@ -71,6 +71,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>UITextInputWrapper.resx</DependentUpon>
     </Compile>
+    <Compile Update="Strings\WhatsNewDialog\WhatsNewDialog.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WhatsNewDialog.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="**\*.resx" />
@@ -83,5 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Update="Strings\MainWindow\MainWindow.resx">
+      <LastGenOutput>MainWindow.Designer.cs</LastGenOutput>
+    </AdditionalFiles>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Core;
+using DevToys.Core.Logging;
 using DevToys.Core.Settings;
 
 namespace DevToys.Blazor.BuiltInTools.Settings;
@@ -26,6 +27,7 @@ internal sealed class SettingsGuiTool : IGuiTool
     private readonly ISettingsProvider _settingsProvider;
     private readonly IClipboard _clipboard;
     private readonly IFontProvider _fontProvider;
+    private readonly IFileStorage _fileStorage;
     private readonly IUIDropDownListItem[] _availableLanguages;
     private readonly IUIDropDownListItem _currentLanguage;
     private readonly IUIDropDownListItem[] _availableFonts;
@@ -35,11 +37,16 @@ internal sealed class SettingsGuiTool : IGuiTool
     private readonly string _previewJsonText;
 
     [ImportingConstructor]
-    public SettingsGuiTool(ISettingsProvider settingsProvider, IFontProvider fontProvider, IClipboard clipboard)
+    public SettingsGuiTool(
+        ISettingsProvider settingsProvider,
+        IFontProvider fontProvider,
+        IClipboard clipboard,
+        IFileStorage fileStorage)
     {
         _settingsProvider = settingsProvider;
         _fontProvider = fontProvider;
         _clipboard = clipboard;
+        _fileStorage = fileStorage;
 
         // Load available languages and current language.
         (IUIDropDownListItem[] availableLanguagesItems, IUIDropDownListItem currentLanguageItem) = LoadLanguages();
@@ -114,6 +121,14 @@ internal sealed class SettingsGuiTool : IGuiTool
                     .WithChildren(
 
                         Label().Text(Settings.Behaviors),
+                        Setting("update-setting")
+                            .Icon("FluentSystemIcons", '\uF150')
+                            .Title(Settings.CheckForUpdate)
+                            .Description(Settings.CheckForUpdateDescription)
+                            .Handle(
+                                _settingsProvider,
+                                PredefinedSettings.CheckForUpdate),
+
                         SettingGroup("smart-detection-settings")
                             .Icon("FluentSystemIcons", '\uF4D5')
                             .Title(Settings.SmartDetection)
@@ -237,7 +252,47 @@ internal sealed class SettingsGuiTool : IGuiTool
                                             .HyperlinkAppearance()
                                             .AlignHorizontally(UIHorizontalAlignment.Left)
                                             .Text(string.Format(Settings.DevToysMac, "ObuchiYuki"))
-                                            .OnClick(OnDevToysMacAuthorButtonClick))))));
+                                            .OnClick(OnDevToysMacAuthorButtonClick))),
+
+                        SettingGroup("useful-links-settings")
+                            .Icon("FluentSystemIcons", '\uF4E4')
+                            .Title(Settings.UsefulLinks)
+                            .WithChildren(
+
+                                Wrap()
+                                    .WithChildren(
+                                        Button("link-source-code")
+                                            .HyperlinkAppearance()
+                                            .Text(Settings.UsefulLinksSourceCode)
+                                            .OnClick(OnSourceCodeButtonClick),
+
+                                        Button("link-privacy-policy")
+                                            .HyperlinkAppearance()
+                                            .Text(Settings.UsefulLinksPrivacyPolicy)
+                                            .OnClick(OnPrivacyPolicyButtonClick),
+
+                                        Button("link-license")
+                                            .HyperlinkAppearance()
+                                            .Text(Settings.UsefulLinksLicense)
+                                            .OnClick(OnLicenseButtonClick),
+
+                                        Button("link-third-party-license")
+                                            .HyperlinkAppearance()
+                                            .Text(Settings.UsefulLinksThirdPartyLicenses)
+                                            .OnClick(OnThirdPartyLicenseButtonClick),
+
+                                        Button("link-report-a-problem")
+                                            .HyperlinkAppearance()
+                                            .Text(Settings.UsefulLinksReportProblem)
+                                            .OnClick(OnReportProblemButtonClick))),
+
+                        Setting("logs-settings")
+                            .Icon("FluentSystemIcons", '\uE4F0')
+                            .Title(Settings.OpenLogs)
+                            .InteractiveElement(
+                                Button("open-logs")
+                                    .Icon("FluentSystemIcons", '\uF418')
+                                    .OnClick(OnOpenLogsButtonClick)))));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
@@ -362,5 +417,36 @@ internal sealed class SettingsGuiTool : IGuiTool
     private void OnDevToysMacAuthorButtonClick()
     {
         OSHelper.OpenFileInShell("https://twitter.com/obuchi_yuki");
+    }
+
+    private void OnSourceCodeButtonClick()
+    {
+        OSHelper.OpenFileInShell("https://github.com/DevToys-app/DevToys");
+    }
+
+    private void OnPrivacyPolicyButtonClick()
+    {
+        OSHelper.OpenFileInShell("https://github.com/DevToys-app/DevToys/blob/main/PRIVACY-POLICY.md");
+    }
+
+    private void OnLicenseButtonClick()
+    {
+        OSHelper.OpenFileInShell("https://github.com/DevToys-app/DevToys/blob/main/LICENSE.md");
+    }
+
+    private void OnThirdPartyLicenseButtonClick()
+    {
+        OSHelper.OpenFileInShell("https://github.com/DevToys-app/DevToys/blob/main/THIRD-PARTY-NOTICES.md");
+    }
+
+    private void OnReportProblemButtonClick()
+    {
+        OSHelper.OpenFileInShell("https://github.com/DevToys-app/DevToys/issues");
+    }
+
+    private void OnOpenLogsButtonClick()
+    {
+        string logsFolder = Path.Combine(_fileStorage.AppCacheDirectory, FileLoggerProvider.LogFolderName);
+        OSHelper.OpenFileInShell(logsFolder);
     }
 }

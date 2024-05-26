@@ -130,7 +130,7 @@
     <value>Không thể cài đặt tiện ích</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
-    <value>{0} - {1}</value>
+    <value>{0} + {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">

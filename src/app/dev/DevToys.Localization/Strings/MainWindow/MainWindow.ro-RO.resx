@@ -124,7 +124,7 @@
     <value>All tools</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Înapoi</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
     <value>Favorite tools</value>
@@ -155,6 +155,9 @@
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
     <value>Toggle Navigation</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Update available</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

@@ -1,19 +1,19 @@
 # How to Contribute:
 
 You can contribute to DevToys app by:
-- Report issues and bugs [here](https://github.com/veler/DevToys/issues/new?template=bug_report.md).
-- Submit feature requests [here](https://github.com/veler/DevToys/issues/new?template=feature_request.md).
+- Report issues and bugs [here](https://github.com/DevToys-app/DevToys/issues/new?template=bug_report.md).
+- Submit feature requests [here](https://github.com/DevToys-app/DevToys/issues/new?template=feature_request.md).
 - Creating a pull request.
 - Internationalization and localization:
-    * See instructions below.
+    * See instructions [here](#internationalization-and-localization).
 
-# How to Build and Run DevToys from source:
+# How to Build and Run DevToys and DevToys CLI (without tools) from source:
 
 ## From Windows
 
 ### Prerequisites
 1. Make sure your machine is running on Windows 10 1903 (19h1) or later.
-1. Install [Visual Studio 2022 17.3 or later](https://visualstudio.microsoft.com/vs/) installed with the following Workloads, or import the [vs2022.vsconfig](vs2022.vsconfig) file.
+1. Install [**Visual Studio 2022 17.3 or later**](https://visualstudio.microsoft.com/vs/) installed with the following Workloads, or import the [vs2022.vsconfig](vs2022.vsconfig) file.
     * ASP.NET and web development
     * Node.js development
     * .NET desktop development
@@ -78,9 +78,9 @@ You can contribute to DevToys app by:
 #### Special note for `DevToys.MacOS`
 Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to access the Safari developer tools with macOS to debug the HTML/CSS/JS of the Blazor app, you might need to follow the following instructions:
 1. Open desktop Safari.
-2. Select the Safari > Preferences > Advanced > Show Develop menu in the menu bar checkbox.
+2. Select the Safari > Preferences > Advanced > Show features for web developers in the menu bar checkbox.
 3. Run the `DevToys.MacOS` app in macOS.
-4. Return to Safari. Select Develop > {REMOTE INSPECTION TARGET} > 0.0.0.0, where the {REMOTE INSPECTION TARGET} placeholder is either the devices's plain name (for example, MacBook Pro) or the device's serial number (for example XMVM7VFF10). If multiple entries for 0.0.0.0 are present, select the entry that highlights the BlazorWebView. The BlazorWebView is highlighted in blue in macOS when the correct 0.0.0.0 entry is selected.
+4. Return to Safari. On the main menu, select Develop > {REMOTE INSPECTION TARGET} > 0.0.0.0, where the {REMOTE INSPECTION TARGET} placeholder is either the devices's plain name (for example, MacBook Pro) or the device's serial number (for example XMVM7VFF10). If multiple entries for 0.0.0.0 are present, select the entry that highlights the BlazorWebView. The BlazorWebView is highlighted in blue in macOS when the correct 0.0.0.0 entry is selected.
 5. The Web Inspector window appears for the BlazorWebView.
 
 ## From Linux
@@ -117,82 +117,16 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 1. Open the repository in Visual Studio Code to edit the code.
 1. In `Run and Debug`, select `DevToys Linux` or `DevToys CLI` and press Start.
 
+# How to Build and Run DevToys and DevToys CLI with default tools from source:
+
+See [DevToys.Tools's CONTRIBUTING.md](https://github.com/DevToys-app/DevToys.Tools/blob/main/CONTRIBUTING.md) file.
+
 # Internationalization and localization
 
-There are two possibilities offered:
+Please use Crowdin to translate DevToys and its tools. Crowdin is a localization management platform that helps individuals to translate a project without having to be familiar with its repository.
 
-## Use Crowdin (preferred)
-
-* Go on [DevToy's Crowdin project](https://crowdin.com/project/devtoys). Crowdin is a localization management platform that helps individuals to translate a project without having to be familiar with its repository.
+* Go on [DevToy's Crowdin project](https://crowdin.com/project/devtoys).
 * Log in or create an account. Join the DevToys project.
 * Select the language of your choice in the list of existing supported language and let yourself guided by the website to translate the app.
 * If you want to add a new language, please create a new discussion on Crowdin's website or on GitHub. We will be happy to add your language to the list.
 * When your translation is done, it will be synchronized with our GitHub repository within 1 hour and create a pull request.
-
-## Change the translations in the repository yourself 
-
-This approach is more complex but has the advantage that it allows you to test your changes on your local machine.
-
-* After following `How to Build and Run DevToys from source`, close Visual Studio, if any instance is running.
-* In File Explorer, copy the folder `dev/impl/DevToys/Strings/en-US` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
-* Open `src/DevToys.sln` with Visual Studio.
-* Open each `.resw` file from the language folder you created and translate the text.
-* Build and Run the app and test your changes.
-
-# Coding
-
-## Main architecture
-
-// TODO
-
-## Develop a tool
-
-// TODO
-
-## Iconography
-
-Icons in the UI of a tool or in the main UI of DevToys uses [Fluent System Icons](https://github.com/microsoft/fluentui-system-icons).
-For the icons of the tools, a custom font is used. See [documentation](https://github.com/veler/DevToys/blob/main/assets/font/README.md) here for modifying it (or ask us for help!).
-
-## Sample
-
-// TODO
-
-## Things to keep in mind
-
-We try to avoid at maximum any Microsoft Store app capability/permission like `internet`, `camera`, `location`...etc. The reason why is that this app is designed to be a tool that we can **trust** when pasting sensitive data inside.
-Therefore, when making changes to DevToys, please try at maximum to avoid any capability requirement.
-
-## Code Style
-
-1. DO use `PascalCase`:
-- class names
-- method names
-- const names
-
-2. DO use `camelCase`:
-- method arguments
-- local variables
-- private fields
-
-4. DO NOT use Hungarian notation.
-
-5. DO NOT use underscores, hyphens, or any other non-alphanumeric characters.
-
-6. DO NOT use Caps for any names.
-
-7. DO use predefined type names like `int`, `string` etc. instead of `Int32`, `String`.
-
-8. DO use `_` prefix for private field names.
-
-9. DO use the `I` prefix for Interface names.
-
-10. DO vertically align curly brackets.
-
-11. DO NOT use `Enum` or `Flag(s)` suffix for Enum names.
-
-12. DO use prefix `Is`, `Has`, `Have`, `Any`, `Can` or similar keywords for Boolean names.
-
-13. DO use curly brackets for single line `if`, `for` and `foreach` statements.
-
-14. DO use nullable reference type by adding `#nullable enable` at the top of every C# file.
