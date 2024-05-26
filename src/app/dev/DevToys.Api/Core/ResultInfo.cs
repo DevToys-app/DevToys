@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace DevToys.Api;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// Record to contain both whether the task was a success and the resulting data

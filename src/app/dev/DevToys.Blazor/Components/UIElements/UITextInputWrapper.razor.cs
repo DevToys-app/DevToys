@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Core.Models;
 using DevToys.Core.Settings;
 using DevToys.Core.Tools;
