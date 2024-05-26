@@ -169,7 +169,13 @@ public sealed partial class SmartDetectionService
     {
         try
         {
-            return await detector.TryDetectDataAsync(rawData, resultFromBaseDetector, cancellationToken) ?? DataDetectionResult.Unsuccessful;
+            ValueTask<DataDetectionResult> detectionTask = detector.TryDetectDataAsync(rawData, resultFromBaseDetector, cancellationToken);
+
+            // Wait for the detection task to complete or the cancellation token to be triggered.
+            await Task.WhenAny(detectionTask.AsTask(), cancellationToken.AsTask());
+            cancellationToken.ThrowIfCancellationRequested();
+
+            return await detectionTask ?? DataDetectionResult.Unsuccessful;
         }
         catch (Exception ex) when (ex is not OperationCanceledException)
         {

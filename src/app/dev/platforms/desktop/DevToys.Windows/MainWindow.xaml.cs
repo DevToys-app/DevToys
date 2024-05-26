@@ -183,6 +183,7 @@ public partial class MainWindow : MicaWindowWithOverlay
         serviceCollection.AddScoped<GlobalDialogService, GlobalDialogService>();
         serviceCollection.AddScoped<UIDialogService, UIDialogService>();
         serviceCollection.AddScoped<FontService, FontService>();
+        serviceCollection.AddScoped<MonacoLanguageService, MonacoLanguageService>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 

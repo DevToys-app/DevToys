@@ -11,10 +11,12 @@
                   IsVisible="@UIMultiLineTextInput.IsVisible"
                   IsEnabled="@(UIMultiLineTextInput.IsEnabled && IsActuallyEnabled)"
                   WrapMode="@UIMultiLineTextInput.WrapMode"
+                  LineNumberMode="@UIMultiLineTextInput.LineNumberMode"
                   ConstructionOptions="@OnMonacoConstructionOptions"
                   OnDidChangeModelContent="OnMonacoEditorTextChangedAsync"
                   OnTextModelInitializationRequested="OnMonacoTextModelInitializationRequestedAsync"
                   OnDidInit="OnMonacoEditorInitializedAsync"
-                  OnDidChangeCursorSelection="OnMonacoEditorSelectionChanged"
+                  OnDidChangeCursorSelection="OnMonacoEditorSelectionChangedAsync"
+                  OnDidScrollChange="OnMonacoEditorScrollChangedAsync"
                   ParentComponent="_textInputWrapper"/>
 </UITextInputWrapper>
