@@ -26,3 +26,10 @@ ExecSafe { & $PSScriptRoot\tools\Restore-MonacoEditor.ps1 -RootFolder $PSScriptR
 
 Write-Host "Done."
 Write-Output "---------------------------------------"
+
+# Install nodes modules
+Write-Host "Installing node modules"
+Get-ChildItem $PSScriptRoot\src\ -rec |? { $_.FullName.EndsWith('DevToys.Blazor.csproj') } |% {
+    Write-Host "Installing node modules for $($_)..."
+    ExecSafe { & npm install $_.Directory  }
+}

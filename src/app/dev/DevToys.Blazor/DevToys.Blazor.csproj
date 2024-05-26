@@ -5,9 +5,6 @@
     <RootNamespace>DevToys.Blazor</RootNamespace>
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
     <TypeScriptTarget>ES6</TypeScriptTarget>
-
-    <!-- Only needed on Mac? -->
-    <PrepareForBuildDependsOn>CompileTypeScript;GetTypeScriptOutputForPublishing;$(PrepareForBuildDependsOn)</PrepareForBuildDependsOn>
   </PropertyGroup>
 
   <ItemGroup>
