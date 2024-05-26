@@ -55,7 +55,7 @@ public sealed partial class GuiToolInstance : ObservableObject, IDisposable
 
     public string LongDisplayTitle => _longDisplayTitle.Value;
 
-    public string LongOrShortDisplayTitle => string.IsNullOrWhiteSpace(_longDisplayTitle.Value) ? ShortDisplayTitle : _longDisplayTitle.Value;
+    public string LongOrShortDisplayTitle => string.IsNullOrWhiteSpace(LongDisplayTitle) ? ShortDisplayTitle : LongDisplayTitle;
 
     public string Description => _descriptionDisplayTitle.Value;
 
@@ -164,9 +164,25 @@ public sealed partial class GuiToolInstance : ObservableObject, IDisposable
 
     private string GetDisplayString(string resourceName)
     {
-        return _resourceManager.Value is not null && !string.IsNullOrWhiteSpace(resourceName)
-            ? _resourceManager.Value.GetString(resourceName) ?? string.Empty
-            : string.Empty;
+        if (_resourceManager.Value is null)
+        {
+            LogGetMetadataStringFailed(resourceName, InternalComponentName);
+            return $"[Unable to get the text for '{resourceName}', " +
+                $"likely because we couldn't find a proper '{nameof(IResourceAssemblyIdentifier)}' " +
+                $"for the tool '{_guiToolDefinition.Metadata.InternalComponentName}'.]";
+        }
+
+        try
+        {
+            return _resourceManager.Value is not null && !string.IsNullOrWhiteSpace(resourceName)
+                ? _resourceManager.Value.GetString(resourceName) ?? $"[Unable to find '{resourceName}' in '{_guiToolDefinition.Metadata.ResourceManagerBaseName}']"
+                : string.Empty;
+        }
+        catch
+        {
+            LogGetMetadataStringFailed(resourceName, InternalComponentName);
+            return $"[Unable to find '{resourceName}' in '{_guiToolDefinition.Metadata.ResourceManagerBaseName}']";
+        }
     }
 
     [LoggerMessage(0, LogLevel.Information, "Initialized '{toolName}' tool instance manager.")]
@@ -183,4 +199,7 @@ public sealed partial class GuiToolInstance : ObservableObject, IDisposable
 
     [LoggerMessage(4, LogLevel.Error, "Unexpectedly failed to dispose '{toolName}'.")]
     partial void LogDisposingToolFailed(Exception ex, string toolName);
+
+    [LoggerMessage(5, LogLevel.Error, "Unable to get the string for '{metadataName}' for the tool '{toolName}'.")]
+    partial void LogGetMetadataStringFailed(string metadataName, string toolName);
 }

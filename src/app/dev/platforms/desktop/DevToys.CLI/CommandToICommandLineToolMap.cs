@@ -2,15 +2,20 @@
 using System.Reflection;
 using System.Resources;
 using DevToys.Api;
+using Microsoft.Extensions.Logging;
 
 namespace DevToys.CLI;
 
-internal sealed class CommandToICommandLineToolMap
+internal sealed partial class CommandToICommandLineToolMap
 {
+    private readonly ILogger _logger;
+
     internal CommandToICommandLineToolMap(ICommandLineTool commandLineTool, CommandLineToolMetadata metadata)
     {
         Guard.IsNotNull(commandLineTool);
         Guard.IsNotNull(metadata);
+
+        _logger = this.Log();
 
         // Get the resource manager, if possible.
         ResourceManager? resourceManager = GetResourceManager(commandLineTool, metadata);
@@ -61,13 +66,31 @@ internal sealed class CommandToICommandLineToolMap
         return resourceManager;
     }
 
-    private static string GetCommandDescription(ResourceManager? resourceManager, CommandLineToolMetadata metadata)
+    private string GetCommandDescription(ResourceManager? resourceManager, CommandLineToolMetadata metadata)
     {
-        string? commandDescription
-            = resourceManager is not null && !string.IsNullOrWhiteSpace(metadata.DescriptionResourceName)
-            ? resourceManager.GetString(metadata.DescriptionResourceName) ?? string.Empty
-            : string.Empty;
+        if (resourceManager is null)
+        {
+            LogGetMetadataStringFailed(metadata.DescriptionResourceName, metadata.InternalComponentName);
+            return $"[Unable to get the text for '{metadata.DescriptionResourceName}', " +
+                $"likely because we couldn't find a proper '{nameof(IResourceAssemblyIdentifier)}' " +
+                $"for the tool '{metadata.InternalComponentName}'.]";
+        }
 
-        return commandDescription;
+        try
+        {
+            string? commandDescription
+                = !string.IsNullOrWhiteSpace(metadata.DescriptionResourceName)
+                ? resourceManager.GetString(metadata.DescriptionResourceName) ?? $"[Unable to find '{metadata.DescriptionResourceName}' in '{metadata.ResourceManagerBaseName}']"
+                : string.Empty;
+            return commandDescription;
+        }
+        catch
+        {
+            LogGetMetadataStringFailed(metadata.DescriptionResourceName, metadata.InternalComponentName);
+            return $"[Unable to find '{metadata.DescriptionResourceName}' in '{metadata.ResourceManagerBaseName}']";
+        }
     }
+
+    [LoggerMessage(0, LogLevel.Error, "Unable to get the string for '{metadataName}' for the tool '{toolName}'.")]
+    partial void LogGetMetadataStringFailed(string metadataName, string toolName);
 }
