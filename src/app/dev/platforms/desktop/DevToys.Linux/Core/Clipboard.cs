@@ -89,26 +89,7 @@ internal sealed partial class Clipboard : IClipboard
         try
         {
             Gdk.Clipboard clipboard = Gdk.Display.GetDefault()!.GetClipboard();
-            var tcs = new TaskCompletionSource<string?>();
-
-            Gdk.Internal.Clipboard.ReadTextAsync(
-                clipboard.Handle,
-                IntPtr.Zero,
-                new Gio.Internal.AsyncReadyCallbackAsyncHandler(
-                    (_, args, _) =>
-                    {
-                        string? result
-                            = Gdk.Internal.Clipboard.ReadTextFinish(
-                                clipboard.Handle,
-                                args.Handle,
-                                out GLib.Internal.ErrorOwnedHandle error)
-                            .ConvertToString();
-
-                        tcs.SetResult(result);
-                    }).NativeCallback, IntPtr.Zero);
-
-            string? clipboardContent = await tcs.Task;
-            return clipboardContent;
+            return await clipboard.ReadTextAsync();
         }
         catch (Exception ex)
         {
