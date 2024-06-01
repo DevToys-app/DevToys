@@ -2,7 +2,7 @@
 
 namespace DevToys.Blazor.BuiltInTools.SupportDevelopment;
 
-[Export(typeof(IGuiTool))]
+//[Export(typeof(IGuiTool))]
 [Name("SupportDevelopment")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",

@@ -292,8 +292,7 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
 
         void OnTermsConditionsDialogButtonClick()
         {
-            // TODO: Open the terms and conditions page.
-            OSHelper.OpenFileInShell("https://url");
+            OSHelper.OpenFileInShell("https://github.com/DevToys-app/DevToys/blob/main/EXTENSIONS-TERM-AND-CONDITIONS.md");
         }
 
         void OnIUnderstandDialogButtonClick()
