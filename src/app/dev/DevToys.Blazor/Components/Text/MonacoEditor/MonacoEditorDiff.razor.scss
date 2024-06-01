@@ -1,3 +1,11 @@
 .monaco-sash {
     background-color: var(--subtle-fill-secondary);
 }
+
+.editor-widget {
+    &.suggest-widget {
+        .monaco-sash {
+            background-color: var(--subtle-fill-transparent) !important;
+        }
+    }
+}

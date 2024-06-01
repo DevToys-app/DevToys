@@ -39,6 +39,9 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     [Parameter]
     public UITextWrapMode? WrapMode { get; set; }
 
+    [Parameter]
+    public UITextLineNumber? LineNumberMode { get; set; }
+
     private bool ShowLoading { get; set; }
 
     protected override void OnInitialized()
@@ -90,10 +93,10 @@ public partial class MonacoEditor : RicherMonacoEditorBase
 
             // Apply global user settings
             options.FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
-            options.LineNumbers = SettingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off";
             options.RenderLineHighlight = SettingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none";
             options.RenderWhitespace = SettingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none";
             ApplyWordWrapOption(options);
+            ApplyLineNumberOption(options);
 
             // Create the editor
             await MonacoEditorHelper.CreateMonacoEditorInstanceAsync(JSRuntime, Id, options, null, Reference);
@@ -160,12 +163,12 @@ public partial class MonacoEditor : RicherMonacoEditorBase
             var options = new EditorUpdateOptions()
             {
                 FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont),
-                LineNumbers = SettingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off",
                 RenderLineHighlight = SettingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none",
                 RenderWhitespace = SettingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none",
             };
 
             ApplyWordWrapOption(options);
+            ApplyLineNumberOption(options);
 
             UpdateOptionsAsync(options).Forget();
         }
@@ -220,6 +223,24 @@ public partial class MonacoEditor : RicherMonacoEditorBase
                 break;
             case UITextWrapMode.NoWrap:
                 editorOptions.WordWrap = "off";
+                break;
+            default:
+                throw new NotSupportedException();
+        }
+    }
+
+    private void ApplyLineNumberOption(EditorOptions editorOptions)
+    {
+        switch (LineNumberMode)
+        {
+            case UITextLineNumber.Auto:
+                editorOptions.LineNumbers = SettingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off";
+                break;
+            case UITextLineNumber.Show:
+                editorOptions.LineNumbers = "on";
+                break;
+            case UITextLineNumber.Hide:
+                editorOptions.LineNumbers = "off";
                 break;
             default:
                 throw new NotSupportedException();

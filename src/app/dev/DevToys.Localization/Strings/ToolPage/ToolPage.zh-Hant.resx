@@ -121,7 +121,7 @@
     <value>加入最愛</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>好的</value>
+    <value>確定</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>從最愛中移除</value>

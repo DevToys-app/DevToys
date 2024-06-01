@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Components.Monaco.Editor;
@@ -582,13 +581,13 @@ public class RicherMonacoEditorBase : MonacoEditorBase
     /// <summary>
     /// Change the scrollLeft of the editor's viewport.
     /// </summary>
-    internal ValueTask<bool> SetScrollLeftAsync(int newScrollLeft, ScrollType? scrollType = null)
+    internal ValueTask<bool> SetScrollLeftAsync(double newScrollLeft, ScrollType? scrollType = null)
         => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setScrollLeft", Id, newScrollLeft, scrollType);
 
     /// <summary>
     /// Change the scrollTop of the editor's viewport.
     /// </summary>
-    internal ValueTask<bool> SetScrollTopAsync(int newScrollTop, ScrollType? scrollType = null)
+    internal ValueTask<bool> SetScrollTopAsync(double newScrollTop, ScrollType? scrollType = null)
         => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setScrollTop", Id, newScrollTop, scrollType);
 
     /// <summary>
