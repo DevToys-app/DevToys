@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using DevToys.Core.Tools;
+using DevToys.Core.Tools.Metadata;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Blazor.Core.Services;

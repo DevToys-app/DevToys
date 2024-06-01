@@ -130,6 +130,7 @@ internal partial class LinuxProgram
         _serviceCollection.AddScoped<GlobalDialogService, GlobalDialogService>();
         _serviceCollection.AddScoped<UIDialogService, UIDialogService>();
         _serviceCollection.AddScoped<FontService, FontService>();
+        _serviceCollection.AddScoped<MonacoLanguageService, MonacoLanguageService>();
 
         ServiceProvider serviceProvider = _serviceCollection.BuildServiceProvider();
 

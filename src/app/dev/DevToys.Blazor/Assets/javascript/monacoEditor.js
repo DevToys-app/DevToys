@@ -26,6 +26,8 @@ class MonacoEditor {
         if (typeof monaco === "undefined") {
             throw new Error("Error : Monaco Editor library isn't loaded.");
         }
+        // Enable semantic tokens provider
+        options["semanticHighlighting.enabled"] = true;
         const newEditor = monaco.editor.create(document.getElementById(id), options, override);
         MonacoEditor.editors.push({
             id: id,

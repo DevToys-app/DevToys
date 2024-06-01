@@ -16,6 +16,11 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     IReadOnlyList<UIHoverTooltip> HoverTooltips { get; }
 
     /// <summary>
+    /// Gets the text input to synchronize the scroll bar with.
+    /// </summary>
+    IUIMultiLineTextInput? TextInputToSynchronizeScrollBarWith { get; }
+
+    /// <summary>
     /// Gets the programming language name to use when colorizing the text in the control.
     /// </summary>
     string SyntaxColorizationLanguageName { get; }
@@ -34,6 +39,11 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     UITextWrapMode WrapMode { get; }
 
     /// <summary>
+    /// Gets how the line number should be displayed in the text editor. Default is <see cref="UITextLineNumber.Auto"/>.
+    /// </summary>
+    UITextLineNumber LineNumberMode { get; }
+
+    /// <summary>
     /// Gets the primary selection of the text control. When the selection length is 0, the span indicates the caret position.
     /// </summary>
     TextSpan Selection { get; }
@@ -47,6 +57,11 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     /// Raised when <see cref="HighlightedSpans"/> is changed.
     /// </summary>
     event EventHandler? HighlightedSpansChanged;
+
+    /// <summary>
+    /// Raised when <see cref="TextInputToSynchronizeScrollBarWith"/> is changed.
+    /// </summary>
+    event EventHandler? TextInputToSynchronizeScrollBarWithChanged;
 
     /// <summary>
     /// Raised when <see cref="SyntaxColorizationLanguageName"/> is changed.
@@ -64,6 +79,11 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     event EventHandler? WrapModeChanged;
 
     /// <summary>
+    /// Raised when <see cref="LineNumberMode"/> is changed.
+    /// </summary>
+    event EventHandler? LineNumberModeChanged;
+
+    /// <summary>
     /// Raised when <see cref="Selection"/> is changed.
     /// </summary>
     event EventHandler? SelectionChanged;
@@ -74,9 +94,11 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
 {
     private IReadOnlyList<UIHoverTooltip>? _hoverTooltip;
     private IReadOnlyList<UIHighlightedTextSpan>? _highlightedSpans;
+    private IUIMultiLineTextInput? _textInputToSynchronizeScrollBarWith;
     private string? _syntaxColorizationLanguageName;
     private bool _isExtendableToFullScreen;
     private UITextWrapMode _wrapMode = UITextWrapMode.Auto;
+    private UITextLineNumber _lineNumberMode = UITextLineNumber.Auto;
     private TextSpan? _selection;
 
     internal UIMultilineTextInput(string? id)
@@ -96,6 +118,24 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
         internal set => SetPropertyValue(ref _hoverTooltip, value, HoverTooltipChanged);
     }
 
+    public IUIMultiLineTextInput? TextInputToSynchronizeScrollBarWith
+    {
+        get => _textInputToSynchronizeScrollBarWith;
+        internal set
+        {
+            if (value is null && _textInputToSynchronizeScrollBarWith is not null)
+            {
+                ((UIMultilineTextInput)_textInputToSynchronizeScrollBarWith).TextInputToSynchronizeScrollBarWith = null;
+            }
+
+            if (SetPropertyValue(ref _textInputToSynchronizeScrollBarWith, value, TextInputToSynchronizeScrollBarWithChanged)
+                && value is not null)
+            {
+                ((UIMultilineTextInput)value).TextInputToSynchronizeScrollBarWith = this;
+            }
+        }
+    }
+
     public string SyntaxColorizationLanguageName
     {
         get => _syntaxColorizationLanguageName ?? string.Empty;
@@ -112,6 +152,12 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
     {
         get => _wrapMode;
         internal set => SetPropertyValue(ref _wrapMode, value, WrapModeChanged);
+    }
+
+    public UITextLineNumber LineNumberMode
+    {
+        get => _lineNumberMode;
+        internal set => SetPropertyValue(ref _lineNumberMode, value, LineNumberModeChanged);
     }
 
     public TextSpan Selection
@@ -141,9 +187,11 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
 
     public event EventHandler? HoverTooltipChanged;
     public event EventHandler? HighlightedSpansChanged;
+    public event EventHandler? TextInputToSynchronizeScrollBarWithChanged;
     public event EventHandler? SyntaxColorizationLanguageNameChanged;
     public event EventHandler? IsExtendableToFullScreenChanged;
     public event EventHandler? WrapModeChanged;
+    public event EventHandler? LineNumberModeChanged;
     public event EventHandler? SelectionChanged;
 }
 
@@ -179,7 +227,14 @@ public static partial class GUI
     /// This component is powered by Monaco Editor.
     /// </remarks>
     /// <param name="id">An optional unique identifier for this UI element.</param>
-    /// <param name="programmingLanguageName">the programming language name to use to colorize the text in the control.</param>
+    /// <param name="programmingLanguageName">
+    /// <para>
+    /// The programming language name to use to colorize the text in the control.
+    /// </para>
+    /// <para>
+    /// Many languages are supported by default, such as JSON or XML. You can create a custom language support using <see cref="ILanguageService"/>.
+    /// </para>
+    /// </param>
     public static IUIMultiLineTextInput MultiLineTextInput(string? id, string programmingLanguageName)
     {
         return new UIMultilineTextInput(id).Language(programmingLanguageName);
@@ -200,6 +255,20 @@ public static partial class GUI
     public static IUIMultiLineTextInput HoverTooltip(this IUIMultiLineTextInput element, params UIHoverTooltip[] tooltips)
     {
         ((UIMultilineTextInput)element).HoverTooltips = tooltips;
+        return element;
+    }
+
+    /// <summary>
+    /// Synchronizes the scroll bars of the given element with the scroll bars of the other element.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Many languages are supported by default, such as JSON or XML. You can create a custom language support using <see cref="ILanguageService"/>.
+    /// </para>
+    /// </remarks>
+    public static IUIMultiLineTextInput SynchronizeScrollBarWith(this IUIMultiLineTextInput element, IUIMultiLineTextInput? otherElement)
+    {
+        ((UIMultilineTextInput)element).TextInputToSynchronizeScrollBarWith = otherElement;
         return element;
     }
 
@@ -257,6 +326,33 @@ public static partial class GUI
     public static IUIMultiLineTextInput NeverWrap(this IUIMultiLineTextInput element)
     {
         ((UIMultilineTextInput)element).WrapMode = UITextWrapMode.NoWrap;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the line number should be automatically shown or hidden depending on the user's settings.
+    /// </summary>
+    public static IUIMultiLineTextInput AutoLineNumber(this IUIMultiLineTextInput element)
+    {
+        ((UIMultilineTextInput)element).LineNumberMode = UITextLineNumber.Auto;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the line number should always be displayed in the editor.
+    /// </summary>
+    public static IUIMultiLineTextInput AlwaysShowLineNumber(this IUIMultiLineTextInput element)
+    {
+        ((UIMultilineTextInput)element).LineNumberMode = UITextLineNumber.Show;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the line number should never be displayed in the editor.
+    /// </summary>
+    public static IUIMultiLineTextInput NeverShowLineNumber(this IUIMultiLineTextInput element)
+    {
+        ((UIMultilineTextInput)element).LineNumberMode = UITextLineNumber.Hide;
         return element;
     }
 

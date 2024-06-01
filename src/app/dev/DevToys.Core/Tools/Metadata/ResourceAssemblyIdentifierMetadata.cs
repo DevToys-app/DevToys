@@ -1,4 +1,4 @@
-﻿namespace DevToys.Core.Tools;
+﻿namespace DevToys.Core.Tools.Metadata;
 
 [DebuggerDisplay($"InternalComponentName = {{{nameof(InternalComponentName)}}}")]
 public sealed class ResourceAssemblyIdentifierMetadata

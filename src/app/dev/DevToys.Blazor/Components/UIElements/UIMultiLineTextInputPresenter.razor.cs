@@ -1,5 +1,6 @@
 ﻿using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Components.Monaco.Editor;
+using DevToys.Blazor.Core.Services;
 using Range = DevToys.Blazor.Components.Monaco.Range;
 
 namespace DevToys.Blazor.Components.UIElements;
@@ -13,15 +14,22 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
     private UITextInputWrapper _textInputWrapper = default!;
     private bool _ignoreChangeComingFromUIMultiLineTextInput;
     private bool _ignoreSelectionComingFromUIMultiLineTextInput;
-    private string _modelName = string.Empty;
+
+    internal string TextModelName { get; private set; } = string.Empty;
 
     [Parameter]
     public IUIMultiLineTextInput UIMultiLineTextInput { get; set; } = default!;
 
+    [Inject]
+    internal MonacoLanguageService MonacoLanguageService { get; set; } = default!;
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        _modelName = Id + "-text-model";
+        TextModelName = Id + "-text-model";
+
+        UIMultilineTextInputHelper.RegisterMultiLineTextInputPresenter(this);
+
         UIMultiLineTextInput.SyntaxColorizationLanguageNameChanged += UIMultiLineTextInput_SyntaxColorizationLanguageNameChanged;
         UIMultiLineTextInput.TextChanged += UIMultiLineTextInput_TextChanged;
         UIMultiLineTextInput.IsReadOnlyChanged += UIMultiLineTextInput_IsReadOnlyChanged;
@@ -38,6 +46,8 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         UIMultiLineTextInput.SelectionChanged -= UIMultiLineTextInput_SelectionChanged;
         UIMultiLineTextInput.HighlightedSpansChanged -= UIMultiLineTextInput_HighlightedSpansChanged;
         UIMultiLineTextInput.HoverTooltipChanged -= UIMultiLineTextInput_HoverTooltipChanged;
+
+        UIMultilineTextInputHelper.UnregisterMultiLineTextInputPresenter(this);
 
         return base.DisposeAsync();
     }
@@ -58,6 +68,9 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
     {
         await _monacoInitializationAwaiter.Task;
         await _monacoEditor.SetLanguageAsync(UIMultiLineTextInput.SyntaxColorizationLanguageName);
+
+        // Start the language service, if necessary.
+        await MonacoLanguageService.RegisterLanguageAsync(UIMultiLineTextInput.SyntaxColorizationLanguageName);
     }
 
     private async void UIMultiLineTextInput_IsReadOnlyChanged(object? sender, EventArgs e)
@@ -123,7 +136,7 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
     private async Task OnMonacoTextModelInitializationRequestedAsync()
     {
         // Get or create the text model
-        TextModel textModel = await MonacoEditorHelper.GetModelAsync(JSRuntime, uri: _modelName);
+        TextModel textModel = await MonacoEditorHelper.GetModelAsync(JSRuntime, uri: TextModelName);
         if (textModel == null)
         {
             textModel
@@ -131,10 +144,13 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
                     JSRuntime,
                     UIMultiLineTextInput.Text,
                     language: UIMultiLineTextInput.SyntaxColorizationLanguageName,
-                    uri: _modelName);
+                    uri: TextModelName);
 
             // Set the editor model
             await _monacoEditor.SetModelAsync(textModel);
+
+            // Start the language service, if necessary.
+            await MonacoLanguageService.RegisterLanguageAsync(UIMultiLineTextInput.SyntaxColorizationLanguageName);
         }
 
         // Set the text of model
@@ -148,7 +164,7 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         await ApplyAllDecorationsAsync();
     }
 
-    private async Task OnMonacoEditorSelectionChanged(CursorSelectionChangedEvent newSelection)
+    private async Task OnMonacoEditorSelectionChangedAsync(CursorSelectionChangedEvent newSelection)
     {
         await _monacoInitializationAwaiter.Task;
         TextModel model = await _monacoEditor.GetModelAsync();
@@ -179,6 +195,29 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
             finally
             {
                 _ignoreSelectionComingFromUIMultiLineTextInput = false;
+            }
+        }
+    }
+
+    private async Task OnMonacoEditorScrollChangedAsync(ScrollEvent scrollEvent)
+    {
+        if (scrollEvent.ScrollTopChanged && UIMultiLineTextInput.TextInputToSynchronizeScrollBarWith is not null)
+        {
+            await _monacoInitializationAwaiter.Task;
+
+            // Synchronize scroll bars between 2 editors.
+            IUIMultiLineTextInput? textInputToSynchronizeScrollBarWith = UIMultiLineTextInput.TextInputToSynchronizeScrollBarWith;
+            if (textInputToSynchronizeScrollBarWith is not null)
+            {
+                UIMultiLineTextInputPresenter? synchronizedEditor = UIMultilineTextInputHelper.GetPresenter(textInputToSynchronizeScrollBarWith);
+                if (synchronizedEditor is not null)
+                {
+                    await synchronizedEditor._monacoInitializationAwaiter.Task;
+
+                    await synchronizedEditor._monacoEditor.SetScrollTopAsync(
+                        await _monacoEditor.GetScrollTopAsync(),
+                        ScrollType.Immediate);
+                }
             }
         }
     }
