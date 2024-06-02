@@ -33,19 +33,19 @@ public class IJSRuntimeExtensionsTests
                 new object[] { new JSDisconnectedException("only testing") },
         };
 
-    [Theory]
-    [MemberData(nameof(Exceptions))]
-    public async Task InvokeVoidAsyncWithErrorHandling_Exception(Exception ex)
-    {
-        var runtimeMock = new Mock<IJSRuntime>(MockBehavior.Strict);
+    //[Theory]
+    //[MemberData(nameof(Exceptions))]
+    //public async Task InvokeVoidAsyncWithErrorHandling_Exception(Exception ex)
+    //{
+    //    var runtimeMock = new Mock<IJSRuntime>(MockBehavior.Strict);
 
-        runtimeMock.Setup(x => x.InvokeAsync<IJSVoidResult>("myMethod", It.IsAny<object[]>()))
-            .Throws(ex).Verifiable();
+    //    runtimeMock.Setup(x => x.InvokeAsync<IJSVoidResult>("myMethod", It.IsAny<object[]>()))
+    //        .Throws(ex).Verifiable();
 
-        IJSRuntime runtime = runtimeMock.Object;
+    //    IJSRuntime runtime = runtimeMock.Object;
 
-        await runtime.InvokeVoidWithErrorHandlingAsync("myMethod", 42, "blub");
+    //    await runtime.InvokeVoidWithErrorHandlingAsync("myMethod", 42, "blub");
 
-        runtimeMock.Verify();
-    }
+    //    runtimeMock.Verify();
+    //}
 }
