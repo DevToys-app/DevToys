@@ -33,7 +33,7 @@
     <None Include="$(AssemblyName).targets" Pack="true" PackagePath="build" />
     <None Include="README.md" Pack="true" PackagePath="\" />
     <None Include="$(RepoRoot)LICENSE.md" Link="LICENSE.md" Pack="true" PackagePath="\" />
-    <None Include="$(RepoRoot)assets\logo\Icon-Windows-Linux.png" Link="Icon-Windows-Linux.png" Pack="true" PackagePath="" />
+    <None Include="$(RepoRoot)assets\logo\Windows-Linux\Stable\Icon-Windows-Linux.png" Link="Icon-Windows-Linux.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>

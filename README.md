@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="128" align="center" src="/assets/logo/Icon-Windows-Linux.png">
+  <img width="128" align="center" src="/assets/logo/Windows-Linux/Stable/Icon-Windows-Linux.png">
 </p>
 <h1 align="center">
   DevToys
@@ -21,44 +21,18 @@
 
 ## Introduction
 
-DevToys helps with daily development tasks like formatting JSON, comparing text, and testing RegExp. No need to use many untrustworthy websites to do simple tasks with your data. With Smart Detection, DevToys can detect the best tool to use for the data copied to the Windows clipboard. Compact overlay lets you keep the app small and on top of other windows. Multiple instances of the app can be used at once.
+DevToys helps with daily development tasks by offering a bundle of tiny tools designed to do quick, specific tiny tasks. No need to use many untrustworthy websites to simply decode a text or compress and image. With Smart Detection, the app intuitively selects the best tool for the data on your clipboard.
 
-Many tools are available.
+DevToys 2.0 comes 30 default tools:
+- **Converters**: JSON <> YAML, Date, Number bases...
+- **Encoders/Decoders**: HTML, URLs, Base64, GZip, JWT, QR Code...
+- **Formatters**: JSON, SQL, XML...
+- **Generators**: Hash & Checksum, Lorem Ipsum, Password...
+- **Graphics Tools**: Color Blindness Simulator, PNG/JPEG Compressor...
+- **Testers**: JSONPath, RegEx, XML...
+- **Text Utilities**: Markdown Preview, Text Comparer, Analyzer & Utilities...
 
-- Converters
-  - JSON <> YAML
-  - Timestamp
-  - Number Base
-  - Cron Parser
-- Encoders / Decoders
-  - HTML
-  - URL
-  - Base64 Text & Image
-  - GZip
-  - JWT Decoder
-- Formatters
-  - JSON
-  - SQL
-  - XML
-- Generators
-  - Hash (MD5, SHA1, SHA256, SHA512)
-  - UUID 1 and 4
-  - Lorem Ipsum
-  - Checksum
-- Text
-  - Escape / Unescape
-  - Inspector & Case Converter
-  - Regex Tester
-  - Text Comparer
-  - XML Validator
-  - Markdown Preview
-- Graphic
-  - Color Blindness Simulator
-  - Color Picker & Contrast
-  - PNG / JPEG Compressor
-  - Image Converter
-
-... and more are coming!
+More tools are available through extensions, and you can [develop your own](http://devtoys.app/doc).
 
 ![DevToys](/assets/hero-screenshot.png)
 
@@ -81,10 +55,6 @@ See [ThirdPartyNotices](THIRD-PARTY-NOTICES.md)
 ## License
 
 See [LICENSE](LICENSE.md)
-
-### A few words regarding the license
-
-DevToys is using a license that permits redistribution of the app as trialware or shareware without changes. However, the authors [Etienne BAUDOUX](https://github.com/veler) and [BenjaminT](https://github.com/btiteux) would prefer you not. If you believe you have a strong reason to do so, kindly reach out to discuss with us first.
 
 ## Special Thanks
 
