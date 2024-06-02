@@ -9,7 +9,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
-    <ApplicationIcon>$(RepoRoot)\assets\logo\Icon-Windows.ico</ApplicationIcon>
+    <ApplicationIcon>$(RepoRoot)\assets\logo\Windows-Linux\Preview\Icon-Windows-Preview.ico</ApplicationIcon>
 
     <RootNamespace>DevToys.Windows</RootNamespace>
     <AssemblyName>DevToys</AssemblyName>
