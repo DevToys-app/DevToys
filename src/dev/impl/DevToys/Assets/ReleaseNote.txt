@@ -1,11 +1,5 @@
-﻿🎉 New Features
-  • Password Generator tool!
-👏 Improvements
-  • General improvements to JWT Encoder / Decoder
-  • Show X.509 extensions in Certificate Encoder / Decoder
-  • CRON Parser shows description of the CRON expression
-  • Text Inspector can now sort lines
-  • Many tool's output can now be expanded
-  • Many translations improved
-🐛 Bug Fixes
-  • Many bug fixes in JWT Encoder / Decoder
+﻿  • It is cross-platform
+  • It supports extensions
+  • There are new tools
+  • There are new features
+  • It is still free and open source

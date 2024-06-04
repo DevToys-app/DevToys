@@ -735,25 +735,25 @@ namespace DevToys.ViewModels
 
             if (!_settingsProvider.GetSetting(PredefinedSettings.FirstTimeStart) && currentVersion != lastVersion)
             {
-                _notificationService.ShowInAppNotification(
-                    Strings.GetFormattedNotificationReleaseNoteTitle(currentVersion),
-                    Strings.NotificationReleaseNoteActionableActionText,
-                    () =>
-                    {
-                        ThreadHelper.ThrowIfNotOnUIThread();
-                        Launcher.LaunchUriAsync(new Uri("https://github.com/veler/DevToys/releases")).AsTask().Forget();
-                    },
-                    await AssetsHelper.GetReleaseNoteAsync());
+                //_notificationService.ShowInAppNotification(
+                //    Strings.GetFormattedNotificationReleaseNoteTitle(currentVersion),
+                //    Strings.NotificationReleaseNoteActionableActionText,
+                //    () =>
+                //    {
+                //        ThreadHelper.ThrowIfNotOnUIThread();
+                //        Launcher.LaunchUriAsync(new Uri("https://github.com/veler/DevToys/releases")).AsTask().Forget();
+                //    },
+                //    await AssetsHelper.GetReleaseNoteAsync());
 
                 _notificationService.ShowInAppNotification(
-                    Strings.SurveyTitle,
-                    Strings.SurveyYesButton,
+                    "DevToys 2.0 Preview is available",
+                    "Download DevToys Preview now...",
                     () =>
                     {
                         ThreadHelper.ThrowIfNotOnUIThread();
-                        Launcher.LaunchUriAsync(new Uri("https://forms.office.com/r/eh27t4Z4nB")).AsTask().Forget();
+                        Launcher.LaunchUriAsync(new Uri("https://devtoys.app/download")).AsTask().Forget();
                     },
-                    Strings.SurveyDescription);
+                    await AssetsHelper.GetReleaseNoteAsync());
 
                 _marketingService.NotifyAppJustUpdated();
             }
