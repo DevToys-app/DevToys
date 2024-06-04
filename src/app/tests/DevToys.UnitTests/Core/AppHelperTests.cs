@@ -31,7 +31,7 @@ public class AppHelperTests
                 {
                     Draft = true,
                     PreRelease = true,
-                    Name = "v10.9.0-pre.3"
+                    Name = "v10.9.0"
                 },
                 new GitHubRelease
                 {
@@ -43,13 +43,13 @@ public class AppHelperTests
                 {
                     Draft = false,
                     PreRelease = true,
-                    Name = "v10.9.0-pre.2"
+                    Name = "v10.9.2"
                 },
                 new GitHubRelease
                 {
                     Draft = false,
                     PreRelease = true,
-                    Name = "v10.9.0-pre.1"
+                    Name = "v10.9.1"
                 }
               ];
         string releasesJson = JsonSerializer.Serialize(releases);
@@ -77,7 +77,7 @@ public class AppHelperTests
                 {
                     Draft = true,
                     PreRelease = true,
-                    Name = "v10.9.0-pre.3"
+                    Name = "v10.9.3"
                 },
                 new GitHubRelease
                 {
@@ -145,7 +145,7 @@ public class AppHelperTests
                 {
                     Draft = false,
                     PreRelease = true,
-                    Name = "v10.8.0-pre.0"
+                    Name = "v10.8.0"
                 }
               ];
         string releasesJson = JsonSerializer.Serialize(releases);
