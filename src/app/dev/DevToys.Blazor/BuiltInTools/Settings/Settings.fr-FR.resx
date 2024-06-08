@@ -219,7 +219,7 @@
     <value>Remplacer le texte lors du collage</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>Lorsque vous cliquez sur le bouton Coller, effacez le texte de l'éditeur avant de coller le contenu du presse-papiers.</value>
+    <value>Lorsque vous cliquez sur le bouton Coller, effacez le texte existant avant de coller le nouveau texte.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>Remplacer le texte lors du collage</value>
