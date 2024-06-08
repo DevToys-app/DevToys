@@ -127,13 +127,13 @@
     <value>Glissez et déposez n'importe quel fichier ici</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Glissez et déposez un ou des fichiers ici</value>
+    <value>Glissez et déposez des fichiers ici</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
     <value>Glissez et déposez un fichier {0} ici</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Glisser-déposer un ou des fichiers {0} ici</value>
+    <value>Glissez et déposez tous les fichiers {0} ici</value>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
     <value>Seuls les fichiers {0} peuvent être utilisés.</value>
