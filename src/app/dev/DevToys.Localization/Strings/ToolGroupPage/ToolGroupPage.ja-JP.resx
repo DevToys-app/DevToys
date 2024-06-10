@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NotFindingTool" xml:space="preserve">
-    <value>必要なツールが見つかりませんか？</value>
+    <value>お探しのツールが見つかりませんか？</value>
   </data>
   <data name="NotFindingToolOpenFeatureRequest" xml:space="preserve">
-    <value>GitHub で欲しいツールを提案する</value>
+    <value>GitHub で欲しい機能をリクエストする</value>
   </data>
   <data name="NotFindingToolSuggestIdea" xml:space="preserve">
     <value>アイディアを投稿</value>
