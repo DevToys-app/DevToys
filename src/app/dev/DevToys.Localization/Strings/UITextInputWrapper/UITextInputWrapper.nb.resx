@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ClearButtonText" xml:space="preserve">
-    <value>Clear</value>
+    <value>Tøm</value>
   </data>
   <data name="CopyButtonText" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopier</value>
   </data>
   <data name="ExtendButtonToolTip" xml:space="preserve">
-    <value>Extend</value>
+    <value>Vis mer</value>
   </data>
   <data name="LoadFileButtonText" xml:space="preserve">
-    <value>Open a text document</value>
+    <value>Åpne et tekstdokument</value>
   </data>
   <data name="MoreButtonToolTip" xml:space="preserve">
-    <value>More...</value>
+    <value>Mer...</value>
   </data>
   <data name="NoToolSuggested" xml:space="preserve">
-    <value>No tool to suggest</value>
+    <value>Ingen verktøy for å foreslå</value>
   </data>
   <data name="PasteButtonText" xml:space="preserve">
-    <value>Paste</value>
+    <value>Lim inn</value>
   </data>
   <data name="SaveAsButtonText" xml:space="preserve">
-    <value>Save as...</value>
+    <value>Lagre som...</value>
   </data>
   <data name="ShrinkButtonToolTip" xml:space="preserve">
-    <value>Shrink</value>
+    <value>Gjør mindre</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>Overfør til et annet verktøy</value>
   </data>
 </root>
