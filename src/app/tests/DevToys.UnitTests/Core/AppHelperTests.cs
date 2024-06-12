@@ -103,6 +103,34 @@ public class AppHelperTests
     }
 
     [Fact]
+    public async Task CheckForUpdate_Preview_NoUpdate2_Async()
+    {
+        GitHubRelease[] releases
+            = [
+                new GitHubRelease
+                {
+                    Draft = false,
+                    PreRelease = true,
+                    Name = "v0.0.0"
+                },
+              ];
+        string releasesJson = JsonSerializer.Serialize(releases);
+
+        var mockWebClientService = new Mock<IWebClientService>();
+        mockWebClientService
+            .Setup(service => service.SafeGetStringAsync(It.IsAny<Uri>(), CancellationToken.None))
+            .ReturnsAsync(releasesJson);
+
+        var mockVersionService = new Mock<IVersionService>();
+        mockVersionService
+            .Setup(service => service.IsPreviewVersion())
+            .Returns(true);
+
+        bool result = await AppHelper.CheckForUpdateAsync(mockWebClientService.Object, mockVersionService.Object, CancellationToken.None);
+        result.Should().BeFalse();
+    }
+
+    [Fact]
     public async Task CheckForUpdate_StableAsync()
     {
         GitHubRelease[] releases

@@ -109,14 +109,14 @@ public static class AppHelper
                             .GetExecutingAssembly()
                             .GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute))!;
 
-                    string currentVersion
+                    string currentVersionString
                         = assemblyInformationalVersion.InformationalVersion
                             .TrimStart('v')
                             .Replace("-alpha", string.Empty)
                             .Replace("-beta", string.Empty)
                             .Replace("-preview", string.Empty)
                             .Replace("-pre", string.Empty);
-                    string? releaseVersion
+                    string? gitHubVersionString
                         = potentialRelease.Name?
                             .TrimStart('v')
                             .Replace("-alpha", string.Empty)
@@ -124,9 +124,14 @@ public static class AppHelper
                             .Replace("-preview", string.Empty)
                             .Replace("-pre", string.Empty);
 
-                    if (!string.IsNullOrEmpty(releaseVersion) && !string.IsNullOrEmpty(currentVersion))
+                    if (!string.IsNullOrEmpty(gitHubVersionString) && !string.IsNullOrEmpty(currentVersionString))
                     {
-                        if (new System.Version(releaseVersion) > new System.Version(currentVersion))
+                        var gitHubReleaseVersion = new System.Version(gitHubVersionString);
+                        var currentVersion = new System.Version(currentVersionString);
+
+                        if (gitHubReleaseVersion.Major > currentVersion.Major
+                            || (gitHubReleaseVersion.Major == currentVersion.Major && gitHubReleaseVersion.Minor > currentVersion.Minor)
+                            || (gitHubReleaseVersion.Major == currentVersion.Major && gitHubReleaseVersion.Minor == currentVersion.Minor && gitHubReleaseVersion.Build > currentVersion.Build))
                         {
                             return true;
                         }
