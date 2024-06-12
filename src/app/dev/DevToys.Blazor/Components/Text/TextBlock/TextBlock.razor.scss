@@ -34,8 +34,7 @@
 
         &caption {
             line-height: 16px;
-            letter-spacing: 0.3px;
-            color: var(--text-fill-color-secondary);
+                        color: var(--text-fill-color-secondary);
 
             font: {
                 size: var(--font-size-caption);
@@ -48,8 +47,7 @@
         &body-strong,
         &body-large {
             line-height: 20px;
-            letter-spacing: 0.3px;
-
+            
             font: {
                 weight: var(--text-weight-normal);
                 size: var(--font-size-body);
