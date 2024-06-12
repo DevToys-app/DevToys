@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Gerenciar extensões no DevToys</value>
+    <value>Gerir extensões no DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Adicionar e gerenciar extensões de terceiros no DevToys</value>
+    <value>Adicionar e gerir extensões de terceiros no DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>A extensão '{0}' já está instalada. Se você está tentando atualizar uma extensão que já está instalada, desinstale a versão mais antiga primeiro.</value>
+    <value>A extensão '{0}' já está instalada. Se você está a tentar atualizar uma extensão que já está instalada, desinstale a versão mais antiga primeiro.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Não é possível instalar essa extensão</value>
+    <value>Não foi possível instalar esta extensão</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
@@ -137,7 +137,7 @@
     <value>Encontre mais extensões on-line</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Instalar extensão</value>
+    <value>Instale uma extensão</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
     <value>Criar uma extensão para DevToys</value>
@@ -146,24 +146,24 @@
     <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>Por favor, feche todas as janelas do DevToys e reinicie o aplicativo para aplicar as alterações.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>Reiniciar é necessário para que as alterações entrem em vigor</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>Gerir extensões</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Extensões de terceiros podem modificar a funcionalidade das ferramentas existentes e aceder ao seu computador sem sua permissão. Isso pode expor seus dados à internet ou instalar softwares indesejados no seu dispositivo. Recomendamos vivamente que você exerça cuidado e instale apenas extensões em que confia. Os autores dos DevToys não são responsáveis por quaisquer danos ou perdas causados por extensões.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>Eu compreendo</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>Termos e Condições</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Atenção</value>
   </data>
 </root>
