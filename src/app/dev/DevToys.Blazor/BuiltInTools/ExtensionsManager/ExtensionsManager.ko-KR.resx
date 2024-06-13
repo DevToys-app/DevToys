@@ -121,10 +121,10 @@
     <value>DevToy에서 확장 관리</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manage third-party extensions in DevToys</value>
+    <value>DevToy에서 타사 확장 추가 및 관리</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>'{0}' 확장은 이미 설치되어 있습니다. 만약 이미 설치한 확장을 업데이트하려면, 먼저 기존 버전을 제거해야 합니다.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
     <value>이 확장을 설치할 수 없습니다</value>
