@@ -124,7 +124,7 @@
     <value>名前を付けて保存</value>
   </data>
   <data name="UnknownImage" xml:space="preserve">
-    <value>プレビューを表示できません</value>
+    <value>画像が見つかりません</value>
   </data>
   <data name="ViewButtonText" xml:space="preserve">
     <value>アプリで開く</value>
