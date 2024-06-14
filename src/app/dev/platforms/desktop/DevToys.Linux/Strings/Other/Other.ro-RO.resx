@@ -122,7 +122,7 @@
     <comment>This text is used in open file dialog and goes like "All PNG, JPG, GIF"</comment>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Open file</value>
+    <value>Deschidere fișier</value>
     <comment/>
   </data>
   <data name="Open" xml:space="preserve">
@@ -130,11 +130,11 @@
     <comment/>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anulare</value>
     <comment/>
   </data>
   <data name="OpenFiles" xml:space="preserve">
-    <value>Open files</value>
+    <value>Deschide fișiere</value>
     <comment/>
   </data>
   <data name="AllFiles2" xml:space="preserve">
@@ -142,14 +142,14 @@
     <comment/>
   </data>
   <data name="SaveFile" xml:space="preserve">
-    <value>Save file</value>
+    <value>Salvează fișierul</value>
     <comment/>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Salvează</value>
     <comment/>
   </data>
   <data name="OpenFolder" xml:space="preserve">
-    <value>Open folder</value>
+    <value>Deschidere folder</value>
   </data>
 </root>
