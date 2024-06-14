@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Automation.Provider;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Dwm;
 using Windows.Win32.UI.Controls;
+using Windows.Win32.UI.WindowsAndMessaging;
 using Application = System.Windows.Application;
 using Button = System.Windows.Controls.Button;
 using Color = System.Windows.Media.Color;
@@ -333,6 +335,36 @@ public abstract partial class MicaWindowWithOverlay : Window
             int parameter = DwmValues.True;
             NativeMethods.SetWindowAttribute(windowHandle, (DWMWINDOWATTRIBUTE)DWMWINDOWATTRIBUTE_EXTENDED.DWMWA_MICA_EFFECT, ref parameter);
         }
+        else
+        {
+            uint gradientColor = 0xFF202020;
+            if (_themeListener.ActualAppTheme == ApplicationTheme.Light)
+            {
+                gradientColor = 0xFFFFFFFF;
+            }
+
+            // Effect for Windows 10
+            var accentPolicy = new AccentPolicy
+            {
+                AccentState = AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND,
+                GradientColor = gradientColor
+            };
+
+            int accentStructSize = Marshal.SizeOf(accentPolicy);
+            nint accentPtr = Marshal.AllocHGlobal(accentStructSize);
+            Marshal.StructureToPtr(accentPolicy, accentPtr, false);
+
+            var data = new WindowCompositionAttributeData
+            {
+                Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY,
+                SizeOfData = accentStructSize,
+                Data = accentPtr
+            };
+
+            NativeMethods.SetWindowCompositionAttribute(windowHandle, ref data);
+
+            Marshal.FreeHGlobal(accentPtr);
+        }
     }
 
     private void ApplyResizeBorderThickness()
@@ -393,14 +425,6 @@ public abstract partial class MicaWindowWithOverlay : Window
         dictionaries.Remove(resourceDictionaryToRemove);
         dictionaries.Add(resourceDictionary);
         UpdateLayout();
-
-        bool isWindow10_17763_OrLower = Environment.OSVersion.Version < new Version(10, 0, 17763);
-
-        // If Windows 10 17763 or lower
-        if (isWindow10_17763_OrLower)
-        {
-            // Todo: Based on the app theme, apply a Background color to the Window.
-        }
     }
 
     private nint ShowSnapLayout(nint lParam, ref bool handled)
