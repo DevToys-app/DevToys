@@ -11,8 +11,10 @@
         -apple-system, /* San Francisco in Safari (on Mac OS X and iOS); Neue Helvetica and Lucida Grande on older versions of Mac OS X. */
         BlinkMacSystemFont, /* Equivalent of -apple-system, for Chrome on Mac OS X. */
         "Segoe UI", /* Windows (Vista+) and Windows Phone. */
+        "Cantarell", /* GNOME-based Linux desktops, not preinstalled in the out-of-the-box Ubuntu experience. */
+        "Ubuntu", /* All versions of Ubuntu. */
+        "Noto Sans", /* Fallback, DE-neutral system font for Linux, also the default for KDE and XDG (standard sans-serif replacing the old DejaVu Sans). */
         "Roboto", /* Android (Ice Cream Sandwich (4.0)+) and Chrome OS. */
-        "Ubuntu", /* all versions of Ubuntu. */
         system-ui, /* Default UI font on a given platform. */
         'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fallback */
     --font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text", var(--font-family-fallback);
