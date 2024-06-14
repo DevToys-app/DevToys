@@ -66,7 +66,7 @@ You can contribute to DevToys app by:
     ```
 
 ### Build, Run & Debug
-#### If you are using JetBains Rider:
+#### If you are using JetBrains Rider:
 1. Open `src/DevToys-MacOS.sln` with JetBrains Rider.
 1. Set `app/dev/platforms/desktop/DevToys.MacOS` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
 1. Now you should be able to build and run DevToys on your machine.
@@ -108,7 +108,7 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
     ```
 
 ### Build, Run & Debug
-#### If you are using JetBains Rider:
+#### If you are using JetBrains Rider:
 1. Open `src/DevToys-Linux.sln` with JetBrains Rider.
 1. Set `app/dev/platforms/desktop/DevToys.Linux` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
 1. Now you should be able to build and run DevToys on your machine.
