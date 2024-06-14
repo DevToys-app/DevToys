@@ -121,7 +121,7 @@
     <value>Gestionează extensii în DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manage third-party extensions in DevToys</value>
+    <value>Adăugați și gestionați extensii terțe în DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
     <value>Extensia{0}' este deja instalată. Dacă încercați să actualizați o extensie care este deja instalată, dezinstalați mai întâi versiunea mai veche.</value>
@@ -164,6 +164,6 @@
     <value>Termeni și condiții</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Atenționare</value>
   </data>
 </root>
