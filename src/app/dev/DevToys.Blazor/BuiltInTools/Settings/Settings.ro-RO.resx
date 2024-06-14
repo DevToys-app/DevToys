@@ -136,10 +136,10 @@
     <value>Comportament</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Verificare actualizări</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Verificare automată a actualizărilor la pornirea DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Spațiu compact</value>
@@ -213,7 +213,7 @@
     <value>Arată numerele rândurilor</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Deschide jurnalele</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Înlocuiește textul la inserție</value>
@@ -228,16 +228,16 @@
     <value>Randare spațiu alb</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Arata spatiile albe</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>Setări</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Detectare inteligentă</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Detectează automat cel mai bun instrument în funcție de conținutul clipboard-ului</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>Automatically paste the clipboard content when selecting a recommended tool</value>
