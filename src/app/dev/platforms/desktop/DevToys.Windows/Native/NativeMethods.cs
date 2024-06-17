@@ -58,4 +58,14 @@ internal static partial class NativeMethods
         PInvoke.EnableMenuItem(systemMenuHandle, (uint)PInvoke.SC_MINIMIZE, MENU_ITEM_FLAGS.MF_BYCOMMAND | MENU_ITEM_FLAGS.MF_ENABLED);
 #pragma warning restore CA1416 // Validate platform compatibility
     }
+
+    /// <summary>
+    /// Sets various information regarding DWM window attributes
+    /// </summary>
+    /// <param name="hwnd">The window handle whose information is to be changed</param>
+    /// <param name="data">Pointer to a structure which both specifies and delivers the attribute data</param>
+    /// <returns>Nonzero on success, zero otherwise.</returns>
+    [DllImport("user32.dll")]
+    internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
+
 }
