@@ -213,13 +213,13 @@
     <value>Afficher les numéros de ligne</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Ouvrir les logs</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Remplacer le texte lors du collage</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>Lors d'un clic sur le bouton Coller, effacer le texte de l'éditeur avant de coller le contenu du presse-papiers.</value>
+    <value>Lorsque vous cliquez sur le bouton Coller, effacez le texte existant avant de coller le nouveau texte.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>Remplacer le texte lors du collage</value>
@@ -231,13 +231,13 @@
     <value>Afficher les espaces blanc</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Paramètres</value>
+    <value>Réglages</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Détection intelligente</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Détecter automatiquement le meilleur outil en fonction du contenu du presse-papiers</value>
+    <value>Détecter automatiquement le meilleur outil basé sur le contenu du presse-papiers</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>Coller automatiquement le contenu du presse-papier lors de la sélection d'un outil recommandé</value>
@@ -252,25 +252,25 @@
     <value>Aperçu</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Liens utiles</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Licence</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Politique de confidentialité</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Signaler un problème</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Code source</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Licences tierces</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Utiliser les paramètres du système</value>
+    <value>Utiliser les paramètres système</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version {0}</value>

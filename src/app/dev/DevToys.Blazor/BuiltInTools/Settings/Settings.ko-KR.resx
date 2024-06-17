@@ -170,22 +170,22 @@
     <value>입력과 동일한 줄 끝(자동)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+    <value>캐리지 리턴 포함 개행 사용(\r\n) (윈도우용)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
+    <value>일반 개행 (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
     <value>글꼴</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>DevToys 의 번역을 도와주세요!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>현재 줄 강조</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>선택한 줄을 잘 보일 만한 배경색으로 바꿉니다.</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>현재 줄 강조</value>

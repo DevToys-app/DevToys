@@ -146,7 +146,7 @@
     <value>Tamam</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Lütfen tüm DevToys pencerelerini kapatın ve değişiklikleri uygulamak için uygulamayı yeniden başlatın.</value>
+    <value>Değişiklikleri uygulamak için lütfen tüm DevToys pencerelerini kapatın ve uygulamayı yeniden başlatın.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
     <value>Değişikliklerin etkili olması için yeniden başlatma gerekiyor</value>
