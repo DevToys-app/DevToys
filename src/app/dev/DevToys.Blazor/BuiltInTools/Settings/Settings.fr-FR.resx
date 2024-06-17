@@ -231,13 +231,13 @@
     <value>Afficher les espaces blanc</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Paramètres</value>
+    <value>Réglages</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Détection intelligente</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Détecter automatiquement le meilleur outil en fonction du contenu du presse-papiers</value>
+    <value>Détecter automatiquement le meilleur outil basé sur le contenu du presse-papiers</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>Coller automatiquement le contenu du presse-papier lors de la sélection d'un outil recommandé</value>
@@ -270,7 +270,7 @@
     <value>Licences tierces</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Utiliser les paramètres du système</value>
+    <value>Utiliser les paramètres système</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version {0}</value>
