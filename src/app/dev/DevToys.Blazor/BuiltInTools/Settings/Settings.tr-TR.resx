@@ -195,7 +195,7 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Lisan</value>
+    <value>Dil</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>Uygulama, başka bir dil seçildiğinde yeniden başlatılmalıdır</value>
@@ -243,7 +243,7 @@
     <value>Tavsiye edilen bir araç seçerken pano içeriğini otomatik olarak yapıştır</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Müteşekkir olduklarımız</value>
+    <value>Özel teşekkürler</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>Metin düzenleyici</value>

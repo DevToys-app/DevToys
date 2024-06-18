@@ -122,7 +122,7 @@
 Here’s what you need to know:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for updates when DevToys starts</value>
+    <value>Verificați dacă există actualizări atunci când DevToys pornește</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Continuă</value>
@@ -131,18 +131,18 @@ Here’s what you need to know:</value>
     <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>Filozofie offline in primul rand</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
     <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>Ai incredere dar verifica</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>Înțeleg și sunt de acord</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>Bine ați venit la DevToys!</value>
   </data>
 </root>

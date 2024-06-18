@@ -88,4 +88,4 @@ body:
 
         Tip: You can attach image(s) or log file(s) by clicking this area to highlight it and then dragging files in.
       placeholder: |
-        To upload the log, access it from Settings -> About -> Open log location
+        To upload the log, access it from Settings -> About -> Open log location. But if the app doesn't start, you can find it on your hard drive. See https://devtoys.app/doc/articles/sysadmin/logs.html

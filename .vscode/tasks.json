@@ -84,6 +84,51 @@
             },
             // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "Run DevToys Linux",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "src/app/dev/platforms/desktop/DevToys.Linux",
+            ],
+            "group": {
+                "kind": "none",
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "Run DevToys MacOS",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "src/app/dev/platforms/desktop/DevToys.MacOS",
+            ],
+            "group": {
+                "kind": "none",
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "Run DevToys Windows",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "src/app/dev/platforms/desktop/DevToys.Windows",
+            ],
+            "group": {
+                "kind": "none",
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": ["$msCompile"]
         }
     ]
 }

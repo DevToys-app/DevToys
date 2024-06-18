@@ -124,7 +124,7 @@
     <value>Einstellungen</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Erscheinung</value>
+    <value>Darstellung</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>App-Thema</value>
@@ -198,7 +198,7 @@
     <value>Sprache</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>Die App muss neu gestartet werden, wenn eine andere Sprache ausgewählt wird </value>
+    <value>Die App muss neu gestartet werden, wenn eine andere Sprache ausgewählt wird</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>Hell</value>
@@ -213,7 +213,7 @@
     <value>Zeilennummern anzeigen</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Logs öffnen</value>
+    <value>Protokolle öffnen</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Text beim Einfügen ersetzen</value>
@@ -225,10 +225,10 @@
     <value>Text beim Einfügen ersetzen</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Leerraum/Leerzeichen rendern</value>
+    <value>Leerraum rendern</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Leerraum/Leerzeichen anzeigen</value>
+    <value>Leerraum anzeigen</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>Einstellungen</value>

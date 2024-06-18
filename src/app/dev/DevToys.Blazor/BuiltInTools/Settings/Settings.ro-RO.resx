@@ -136,10 +136,10 @@
     <value>Comportament</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Verificare actualizări</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Verificare automată a actualizărilor la pornirea DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Spațiu compact</value>
@@ -213,7 +213,7 @@
     <value>Arată numerele rândurilor</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Deschide jurnalele</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Înlocuiește textul la inserție</value>
@@ -228,57 +228,57 @@
     <value>Randare spațiu alb</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Arata spatiile albe</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>Setări</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Detectare inteligentă</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Detectează automat cel mai bun instrument în funcție de conținutul clipboard-ului</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Inserează automat conținutul clipboard-ului când selectați un instrument recomandat</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>Mulțumim în special</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Editor de text</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Previzualizare</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Link-uri utile</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Licenţă</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Politică de confidențialitate</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Raportează o problemă</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Cod sursă</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Licențe terță parte</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Folosește setările sistemului</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versiunea {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Încadrează cuvinte</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>Încadrează textul</value>
   </data>
 </root>
