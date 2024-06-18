@@ -121,12 +121,12 @@
     <value>Copiere</value>
   </data>
   <data name="SaveAsButtonTooltip" xml:space="preserve">
-    <value>Save as</value>
+    <value>Salvează ca</value>
   </data>
   <data name="UnknownImage" xml:space="preserve">
-    <value>Unknown image</value>
+    <value>Imagine necunoscută</value>
   </data>
   <data name="ViewButtonText" xml:space="preserve">
-    <value>View</value>
+    <value>Vizualizează</value>
   </data>
 </root>

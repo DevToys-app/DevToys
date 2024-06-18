@@ -10,6 +10,9 @@
 
     <key>CFBundleSpokenName</key>
     <string>Dev Toys</string>
+
+    <key>NSHumanReadableCopyright</key>
+    <string>DevToys © 2024</string>
     
 	<key>CFBundleIdentifier</key>
 	<string>com.devtoys</string>

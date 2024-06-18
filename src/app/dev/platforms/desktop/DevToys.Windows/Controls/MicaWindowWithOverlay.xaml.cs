@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Automation.Provider;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Dwm;
 using Windows.Win32.UI.Controls;
+using Windows.Win32.UI.WindowsAndMessaging;
 using Application = System.Windows.Application;
 using Button = System.Windows.Controls.Button;
 using Color = System.Windows.Media.Color;
@@ -32,6 +34,8 @@ public abstract partial class MicaWindowWithOverlay : Window
     private Button? _maximizeButton;
     private Button? _minimizeButton;
     private StackPanel? _windowStateButtonsStackPanel;
+    private bool _isMouseButtonDownOnDraggableTitleBarArea;
+    private Point _mouseDownPositionOnDraggableTitleBarArea;
 
     protected MicaWindowWithOverlay()
     {
@@ -127,7 +131,9 @@ public abstract partial class MicaWindowWithOverlay : Window
         _restoreButton.Click += RestoreButton_Click;
         _maximizeButton.Click += MaximizeButton_Click;
         draggableTitleBarArea.MouseLeftButtonDown += DraggableTitleBarArea_MouseLeftButtonDown;
+        draggableTitleBarArea.MouseLeftButtonUp += DraggableTitleBarArea_MouseLeftButtonUp;
         draggableTitleBarArea.MouseRightButtonUp += DraggableTitleBarArea_MouseRightButtonUp;
+        draggableTitleBarArea.MouseMove += DraggableTitleBarArea_MouseMove;
         this.PreviewKeyDown += MicaWindowWithOverlay_PreviewKeyDown;
         overlayControl.WndProc = WndProc;
     }
@@ -218,12 +224,65 @@ public abstract partial class MicaWindowWithOverlay : Window
                 {
                     SystemCommands.MaximizeWindow(this);
                 }
+
+                return;
             }
         }
         else
         {
-            // Move the window.
-            DragMove();
+            if (WindowState == WindowState.Maximized)
+            {
+                _isMouseButtonDownOnDraggableTitleBarArea = true;
+                _mouseDownPositionOnDraggableTitleBarArea = e.GetPosition(this);
+            }
+            else
+            {
+                try
+                {
+                    DragMove();
+                }
+                catch
+                {
+                }
+            }
+        }
+    }
+
+    private void DraggableTitleBarArea_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+    {
+        _isMouseButtonDownOnDraggableTitleBarArea = false;
+    }
+
+    private void DraggableTitleBarArea_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+    {
+        if (_isMouseButtonDownOnDraggableTitleBarArea
+            && e.LeftButton == MouseButtonState.Pressed
+            && WindowState == WindowState.Maximized)
+        {
+            Point position = e.GetPosition(this);
+            Point screenPosition = PointToScreen(position);
+
+            Vector vector = _mouseDownPositionOnDraggableTitleBarArea - position;
+
+            if (vector.Length > 1)
+            {
+                double relativeDistance = position.X / ActualWidth;
+
+                WindowState = WindowState.Normal;
+
+                double actualDistance = ActualWidth * relativeDistance;
+
+                try
+                {
+                    Top = screenPosition.Y - position.Y;
+                    Left = screenPosition.X - actualDistance;
+
+                    DragMove();
+                }
+                catch
+                {
+                }
+            }
         }
     }
 
@@ -333,6 +392,36 @@ public abstract partial class MicaWindowWithOverlay : Window
             int parameter = DwmValues.True;
             NativeMethods.SetWindowAttribute(windowHandle, (DWMWINDOWATTRIBUTE)DWMWINDOWATTRIBUTE_EXTENDED.DWMWA_MICA_EFFECT, ref parameter);
         }
+        else
+        {
+            uint gradientColor = 0xFF202020;
+            if (_themeListener.ActualAppTheme == ApplicationTheme.Light)
+            {
+                gradientColor = 0xFFFFFFFF;
+            }
+
+            // Effect for Windows 10
+            var accentPolicy = new AccentPolicy
+            {
+                AccentState = AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND,
+                GradientColor = gradientColor
+            };
+
+            int accentStructSize = Marshal.SizeOf(accentPolicy);
+            nint accentPtr = Marshal.AllocHGlobal(accentStructSize);
+            Marshal.StructureToPtr(accentPolicy, accentPtr, false);
+
+            var data = new WindowCompositionAttributeData
+            {
+                Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY,
+                SizeOfData = accentStructSize,
+                Data = accentPtr
+            };
+
+            NativeMethods.SetWindowCompositionAttribute(windowHandle, ref data);
+
+            Marshal.FreeHGlobal(accentPtr);
+        }
     }
 
     private void ApplyResizeBorderThickness()
@@ -393,14 +482,6 @@ public abstract partial class MicaWindowWithOverlay : Window
         dictionaries.Remove(resourceDictionaryToRemove);
         dictionaries.Add(resourceDictionary);
         UpdateLayout();
-
-        bool isWindow10_17763_OrLower = Environment.OSVersion.Version < new Version(10, 0, 17763);
-
-        // If Windows 10 17763 or lower
-        if (isWindow10_17763_OrLower)
-        {
-            // Todo: Based on the app theme, apply a Background color to the Window.
-        }
     }
 
     private nint ShowSnapLayout(nint lParam, ref bool handled)
