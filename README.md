@@ -11,9 +11,6 @@
   <a title="Crowdin" target="_blank" href="https://crowdin.com/project/devtoys">
     <img src="https://badges.crowdin.net/devtoys/localized.svg">
   </a>
-  <a style="text-decoration:none" href="https://github.com/DevToys-app/DevToys/releases" target="_blank">
-    <img src="https://img.shields.io/github/release/DevToys-app/DevToys.svg?label=Latest%20version" alt="Latest version" />
-  </a>
   <a style="text-decoration:none" href="https://devtoys.app" target="_blank">
     <img src="https://img.shields.io/badge/Website-devtoys.app-blue" alt="Website" />
   </a>
