@@ -139,7 +139,7 @@
     <value>Controleren op updates</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Automatisch controleren op updates wanneer DevToys start</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Compact spacing</value>
@@ -148,20 +148,20 @@
     <value>Decrease space between UI elements</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Donker</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>Hetzelfde als het systeem</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Personaliseer DevToys uiterlijk</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>{0} voor het starten van DevToysMac ontwikkeling</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>Bewerken</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
     <value>End Of Line character</value>
