@@ -7,6 +7,7 @@ with two spaces following by a star and a space. The current file should respect
   * Slightly improved startup time
   * Reduced CPU usage on "All Tools" page
   * Added DPI awareness on Windows
+  * Added a missing dependency to Debian package
   * Fixed an issue where DevToys was wrongly indicating an update was available
   * Fixed an internal error when copy and pasting on macOS
   * Fixed a theming issue on Windows 10
