@@ -130,7 +130,7 @@
     <value>アプリのテーマ</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>アプリに表示される色を変更します</value>
+    <value>アプリで表示されるテーマを変更します</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
     <value>動作</value>
@@ -142,7 +142,7 @@
     <value>DevToys の起動時に更新を確認する</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>間隔を詰める</value>
+    <value>コンパクト表示</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
     <value>UI のスペースを縮小します</value>
@@ -191,23 +191,23 @@
     <value>行を強調</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>アプリアイコン : {0}</value>
+    <value>アプリアイコンデザイン：{0}</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
     <value>言語</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language. (要再起動)</value>
+    <value>選択した言語を適用するには、アプリを再起動する必要があります。</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>ライト</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>行番号</value>
+    <value>行番号の表示</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>テキストエディターで行番号を表示する</value>
+    <value>テキストエディターに行番号を表示します</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
     <value>行番号を表示</value>
@@ -216,13 +216,13 @@
     <value>ログを開く</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>置換貼り付け</value>
+    <value>貼り付け時にテキストを置き換え</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>クリップボードから貼り付ける際に、入力されていた内容を消去して置き換えます</value>
+    <value>クリップボードから貼り付けるとき、入力されていた内容を消去して置き換えます。</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>貼り付け時に整形</value>
+    <value>貼り付け時に整形する</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>空白文字を表示</value>
@@ -237,13 +237,13 @@
     <value>スマート検出</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>クリップボードの内容から最適なツールを自動的に検出します</value>
+    <value>クリップボードの内容から最適なツールを自動的に検出します。</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>推奨ツールを選択するときにクリップボードの内容を自動的に貼り付けます</value>
+    <value>推奨ツールを選択するとき、クリップボードの内容を自動的に貼り付けます。</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>スペシャルサンクス</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>テキストエディター</value>
@@ -252,7 +252,7 @@
     <value>プレビュー</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>関連するリンク</value>
+    <value>関連リンク</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
     <value>ライセンス</value>

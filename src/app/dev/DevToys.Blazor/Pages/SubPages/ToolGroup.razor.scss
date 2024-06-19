@@ -2,11 +2,17 @@
     0% {
         background-position: 0px 196px; // The height of the hero image
     }
+    100% {
+        background-position: 0px 150px;
+    }
 }
 
 @keyframes hero-bg-scrolling {
     0% {
         background-position: 0px 196px; // The height of the hero image
+    }
+    100% {
+        background-position: 0px 150px;
     }
 }
 
@@ -38,10 +44,12 @@
         transform: rotateX(15deg) rotateZ(-15deg) skewX(15deg);
         transform-style: preserve-3d;
         // Animation
-        -webkit-animation: hero-bg-scrolling 20s infinite;
-        animation: hero-bg-scrolling 20s infinite;
-        -webkit-animation-timing-function: linear;
-        animation-timing-function: linear;
+        -webkit-animation: hero-bg-scrolling 2s;
+        animation: hero-bg-scrolling 2s;
+        -webkit-animation-timing-function: cubic-bezier(.7,1,.8,1);
+        animation-timing-function: cubic-bezier(.7,1,.8,1);
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
     }
 
     &-title {

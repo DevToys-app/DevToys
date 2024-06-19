@@ -127,7 +127,7 @@
     <value>拡張機能 '{0}' は既にインストールされています。インストール済みの拡張機能を更新する場合、先に古いバージョンをアンインストールしてください。</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>この拡張機能をインストールする事ができません</value>
+    <value>この拡張機能をインストールできません</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
@@ -146,10 +146,10 @@
     <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>行った変更は、すべての DevToys ウィンドウを閉じた終了後に適用されます。</value>
+    <value>変更を適用するには、すべての DevToys のウィンドウを閉じて再起動してください。</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>変更の内容は再起動後に適用されます。</value>
+    <value>変更した内容は再起動後に適用されます。</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>拡張機能を管理</value>

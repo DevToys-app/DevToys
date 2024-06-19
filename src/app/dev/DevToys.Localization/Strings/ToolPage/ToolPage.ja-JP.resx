@@ -124,6 +124,6 @@
     <value>OK</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>お気に入りの解除</value>
+    <value>お気に入りから削除</value>
   </data>
 </root>

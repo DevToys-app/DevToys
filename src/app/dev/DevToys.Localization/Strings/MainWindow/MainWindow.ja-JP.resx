@@ -139,25 +139,25 @@
     <value>全画面で表示</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
-    <value>最近使用</value>
+    <value>最近使用したアイテム</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>ツールを検索 ...</value>
+    <value>ツールを検索</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
     <value>検索</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>クリックして検索</value>
+    <value>ここをクリックして検索</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>(見つかりません)</value>
+    <value>結果が見つかりませんでした</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
     <value>ナビゲーションの切り替え</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
-    <value>DevToys を更新</value>
+    <value>アップデートあり</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
