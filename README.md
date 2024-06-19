@@ -18,7 +18,7 @@
 
 ## Introduction
 
-DevToys helps with daily development tasks by offering a bundle of tiny tools designed to do quick, specific tiny tasks. No need to use many untrustworthy websites to simply decode a text or compress and image. With Smart Detection, the app intuitively selects the best tool for the data on your clipboard.
+DevToys helps with daily development tasks by offering a bundle of tiny tools designed to do quick, specific tiny tasks. No need to use many untrustworthy websites to simply decode a text or compress an image. With Smart Detection, the app intuitively selects the best tool for the data on your clipboard.
 
 DevToys 2.0 comes with 30 default tools:
 - **Converters**: JSON <> YAML, Date, Number bases...
