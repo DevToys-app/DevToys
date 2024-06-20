@@ -145,6 +145,6 @@
     <value>축소</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>다른 도구로 전송</value>
   </data>
 </root>
