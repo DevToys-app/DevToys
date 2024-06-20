@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys is your go-to toolbox for developers, packed with a collection of free and open-source tools. Think of it as a Swiss Army knife tailored to tackle those pesky daily tasks that slow you down.
-Here’s what you need to know:</value>
+    <value>DevToys는 개발자를 위한 무료 오픈소스 도구 모음으로 가득한 툴박스입니다. 개발 속도를 늦추는 귀찮은 일상 작업을 처리하기 위해 맞춤 제작된 스위스 군용 칼이라고 생각하세요.
+알아두어야 할 사항은 다음과 같습니다:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
     <value>DevToy 시작 시 업데이트 확인</value>
@@ -131,18 +131,18 @@ Here’s what you need to know:</value>
     <value>DevToys는 오프라인 우선의 사고방식으로 운영됩니다. 저희는 문제 해결을 위해 최소한의 익명화된 데이터를 현지에서 수집합니다. 저희는 로그를 인터넷에 업로드하지 않습니다. 버그가 발생하여 보고하기로 선택한 경우 로그를 공유하도록 요청할 수 있습니다. 귀하의 동의 하에 인터넷에 연결하여 업데이트를 확인하고 최신 기능과 보안 향상에 액세스할 수 있도록 보장합니다.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>오프라인 우선 원칙</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>DevToys의 힘은 툴박스에 더 많은 확장 프로그램을 설치함에 따라 증가합니다. 우리는 앱의 핵심기능의 무결성은 보장하지만, 타사 확장 프로그램이 사용자의 컴퓨터와 데이터에 대해 수행하는 작업을 제어할 수 없다는 점을 알아두셔야만 합니다. 그러므로 확장 프로그램을 설치할 때 주의를 기울이시기 바랍니다. DevToys 또는 확장 프로그램의 네트워크 활동을 모니터링하기 위해 Wireshark, Little Snitch 또는 Fiddler와 같은 도구를 사용하여 수신 및 발신 연결을 추적할 수 있습니다.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>신뢰하되 검증하세요</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>이를 이해하고 동의합니다.</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>DevToys에 오신것을 환영합니다!</value>
   </data>
 </root>
