@@ -201,10 +201,10 @@
     <value>The app needs to be restarted when selecting another language</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>밝은</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>줄 번호</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
     <value>Display line numbers in the text editor</value>
