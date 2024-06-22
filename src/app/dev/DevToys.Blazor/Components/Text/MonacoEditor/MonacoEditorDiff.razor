@@ -29,10 +29,6 @@
             <div class="monaco-editor-standalone-container @(IsActuallyEnabled ? string.Empty : "disabled")"
                  @ref=Element>
 
-                <ProgressRing id="@($"{Id}-loading")"
-                              IsIndeterminate="@ShowLoading"
-                              IsVisible="@ShowLoading" />
-
                 <div id="@Id" class="monaco-editor-standalone-instance"></div>
 
                 <div class="monaco-editor-standalone-underline" />

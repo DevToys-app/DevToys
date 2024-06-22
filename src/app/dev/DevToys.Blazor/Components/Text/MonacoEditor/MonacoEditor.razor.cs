@@ -42,8 +42,6 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     [Parameter]
     public UITextLineNumber? LineNumberMode { get; set; }
 
-    private bool ShowLoading { get; set; }
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -67,8 +65,6 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     {
         if (firstRender)
         {
-            InvokeAsync(DisplayLoadingIfSlowLoadingAsync).Forget();
-
             // Get desired options
             StandaloneEditorConstructionOptions options = ConstructionOptions?.Invoke(this) ?? new();
 
@@ -145,7 +141,6 @@ public partial class MonacoEditor : RicherMonacoEditorBase
         lock (_lock)
         {
             _isLoaded = true;
-            ShowLoading = false;
 
             if (SettingsProvider is not null)
             {
@@ -188,27 +183,6 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     {
         Guard.IsNotNull(_themeListener);
         return _themeListener.ActualAppTheme == ApplicationTheme.Dark ? BuiltinTheme.VsDark : BuiltinTheme.Vs;
-    }
-
-    private async Task DisplayLoadingIfSlowLoadingAsync()
-    {
-        // Let's not show the progress ring during the first 100ms. We know customers tends to perceive anything
-        // faster than 100ms as "instant", so no need to bother the user with a very shortly displayed progress ring
-        // if we succeed to load within 100ms.
-        // https://psychology.stackexchange.com/questions/1664/what-is-the-threshold-where-actions-are-perceived-as-instant
-
-        const int Delay = 100;
-
-        await Task.Delay(Delay);
-
-        lock (_lock)
-        {
-            if (!_isLoaded)
-            {
-                ShowLoading = true;
-                StateHasChanged();
-            }
-        }
     }
 
     private void ApplyWordWrapOption(EditorOptions editorOptions)
