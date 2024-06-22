@@ -6,7 +6,6 @@ namespace DevToys.Blazor.Components;
 public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
 {
     private readonly object _lock = new();
-    private bool _isLoaded;
     private bool _oldIsActuallyEnabled;
     private bool _oldReadOnlyState;
 
@@ -129,7 +128,6 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
         base.OnEditorLoaded();
         lock (_lock)
         {
-            _isLoaded = true;
             StateHasChanged();
         }
     }
