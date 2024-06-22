@@ -24,6 +24,8 @@ internal sealed class MainWindow : NSWindow
     private readonly TitleBarInfoProvider _titleBarInfoProvider;
     private readonly ISettingsProvider _settingsProvider;
     private readonly CommandLineLauncherService _commandLineLauncherService;
+
+    private BlazorWkWebView? _webView;
     private bool _isInitialized;
 
     internal static MainWindow Instance { get; } = new();
@@ -104,13 +106,13 @@ internal sealed class MainWindow : NSWindow
 
         // Create WebView and add it to NSVisualEffectView
         Guard.IsNotNull(AppDelegate.ServiceProvider);
-        var webView = new BlazorWkWebView(AppDelegate.ServiceProvider, EnableDeveloperTools);
-        webView.BlazorWebViewInitialized += OnBlazorWebViewInitialized;
-        visualEffectView.AddSubview(webView.View);
+        _webView = new BlazorWkWebView(AppDelegate.ServiceProvider, EnableDeveloperTools);
+        _webView.BlazorWebViewInitialized += OnBlazorWebViewInitialized;
+        visualEffectView.AddSubview(_webView.View);
 
         // Make the WKWebView resizing with the window and anchor it below the title bar, so we can still move the window with the title bar.
-        webView.View.AutoresizingMask = NSViewResizingMask.HeightSizable | NSViewResizingMask.WidthSizable;
-        webView.View.Frame
+        _webView.View.AutoresizingMask = NSViewResizingMask.HeightSizable | NSViewResizingMask.WidthSizable;
+        _webView.View.Frame
             = new CGRect(
                 visualEffectView.Bounds.X,
                 visualEffectView.Bounds.Y,
@@ -118,8 +120,8 @@ internal sealed class MainWindow : NSWindow
                 visualEffectView.Bounds.Height - titleBar.Bounds.Height);
 
         // Navigate to our Blazor webpage.
-        webView.RootComponents.Add(new RootComponent { Selector = "#app", ComponentType = typeof(Main) });
-        webView.HostPage = "wwwroot/index.html";
+        _webView.RootComponents.Add(new RootComponent { Selector = "#app", ComponentType = typeof(Main) });
+        _webView.HostPage = "wwwroot/index.html";
     }
 
     private async ValueTask SetPositionAndSizeAsync()

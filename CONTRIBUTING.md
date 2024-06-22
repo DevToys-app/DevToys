@@ -100,11 +100,11 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 1. Open a Terminal command prompt in the root folder of this repository.
 1. Install Nuke.Build command line tooling with the following command from the command prompt:
     ```
-    sudo dotnet tool install Nuke.GlobalTool --global
+    dotnet tool install Nuke.GlobalTool --global
     ```
 1. Restore all the dependencies with the following command:
     ```
-    sudo bash init.sh
+    bash init.sh
     ```
 
 ### Build, Run & Debug

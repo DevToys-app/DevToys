@@ -223,8 +223,7 @@ public partial class BlazorWebViewManager : WebViewManager
             decisionHandler(WKNavigationActionPolicy.Allow);
         }
 
-        public override void DidReceiveServerRedirectForProvisionalNavigation(WKWebView webView,
-            WKNavigation navigation)
+        public override void DidReceiveServerRedirectForProvisionalNavigation(WKWebView webView, WKNavigation navigation)
         {
             // We need to intercept the redirects to the app scheme because Safari will block them.
             // We will handle these redirects through the Navigation Manager.
