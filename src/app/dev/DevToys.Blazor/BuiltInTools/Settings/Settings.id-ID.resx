@@ -127,7 +127,7 @@
     <value>Tampilan</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Tema aplikasi</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Select which app theme to display</value>
@@ -148,20 +148,20 @@
     <value>Decrease space between UI elements</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Gelap</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>Sama seperti sistem</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Sesuaikan tampilan dan nuansa DevToys</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
     <value>{0} for starting DevToysMac development</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>Pengeditan</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
     <value>End Of Line character</value>
@@ -243,10 +243,10 @@
     <value>Automatically paste the clipboard content when selecting a recommended tool</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>Terima kasih khusus kepada</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Editor teks</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
     <value>Preview</value>
