@@ -130,22 +130,22 @@
     <value>Tema aplikasi</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>Pilih tema aplikasi mana yang ingin digunakan</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Perilaku</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Periksa untuk pembaruan</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Periksa pembaruan secara otomatis saat DevToys dimulai</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Compact spacing</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>Kurangi ruang antar elemen UI</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Gelap</value>
@@ -157,14 +157,14 @@
     <value>Sesuaikan tampilan dan nuansa DevToys</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>{0} untuk memulai pengembangan DevToysMac</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
     <value>Pengeditan</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>Akhir karakter baris</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
     <value>Same end of line as input (automatic)</value>
@@ -173,7 +173,7 @@
     <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
+    <value>Umpan Baris (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
     <value>Fon</value>
@@ -191,7 +191,7 @@
     <value>Sorot baris saat ini</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>{0} untuk mendesain ikon aplikasi</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
@@ -216,31 +216,31 @@
     <value>Buka log</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Ganti teks saat menyalin</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Saat mengklik tombol Tempel, hapus teks sebelum menempelkannya alih-alih menambahkan ke konten editor teks yang sudah ada.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Ganti teks saat menyalin</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Render spasi putih</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Tampilkan tempat kosong</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Pengaturan</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Deteksi pintar</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Secara otomatis mendeteksi alat terbaik berdasarkan konten clipboard</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Tempel konten clipboard secara otomatis saat memilih alat yang direkomendasikan</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Terima kasih khusus kepada</value>
@@ -249,7 +249,7 @@
     <value>Editor teks</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Tampilan</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
     <value>Tautan yang berguna</value>
@@ -279,6 +279,6 @@
     <value>Bungkus kata</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>Pembungkus kata</value>
   </data>
 </root>
