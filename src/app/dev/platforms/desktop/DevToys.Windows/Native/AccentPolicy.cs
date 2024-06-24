@@ -6,7 +6,7 @@ namespace DevToys.Windows.Native;
 internal struct AccentPolicy
 {
     public AccentState AccentState;
-    public int AccentFlags;
+    public AccentFlag AccentFlags;
     public uint GradientColor;
     public int AnimationId;
 }
