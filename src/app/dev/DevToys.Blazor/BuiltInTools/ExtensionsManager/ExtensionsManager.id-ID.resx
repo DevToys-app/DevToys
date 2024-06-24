@@ -155,7 +155,7 @@
     <value>Kelola ekstensi</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Ekstensi pihak ketiga dapat mengubah fungsi alat yang ada dan mengakses komputer Anda tanpa izin Anda. Hal ini dapat memaparkan data Anda ke internet atau menginstal perangkat lunak yang tidak diinginkan pada perangkat Anda. Kami sangat menyarankan agar Anda berhati-hati dan hanya memasang ekstensi yang Anda percayai. Penulis DevToys tidak bertanggung jawab atas segala kerusakan atau kerugian yang disebabkan oleh ekstensi.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
     <value>Saya mengerti</value>
