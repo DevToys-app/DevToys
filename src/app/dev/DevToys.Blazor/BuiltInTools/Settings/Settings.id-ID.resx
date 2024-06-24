@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Tentang</value>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Pengaturan</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Appearance</value>
+    <value>Tampilan</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>App theme</value>
@@ -176,44 +176,44 @@
     <value>Line Feed (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Fon</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Bantu kami menerjemahkan DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>Sorot baris saat ini</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Ubah warna latar belakang garis saat ini agar lebih terlihat</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>Sorot baris saat ini</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
     <value>{0} for designing the app icon</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Bahasa</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>Aplikasi perlu dimulai ulang saat memilih bahasa lain</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Terang</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Nomor baris</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Tampilkan nomor baris di editor teks</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>Tampilkan nomor baris</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Buka log</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Replace text when pasting</value>
@@ -252,31 +252,31 @@
     <value>Preview</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Tautan yang berguna</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Lisensi</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Kebijakan privasi</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Laporkan masalah</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Kode Sumber</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Lisensi pihak ketiga</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Gunakan pengaturan sistem</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versi {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Bungkus kata</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>Word wrap</value>
