@@ -133,7 +133,7 @@
     <value>Favorit</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
-    <value>Keep on top</value>
+    <value>Sematkan di atas</value>
   </data>
   <data name="PictureInPictureExpand" xml:space="preserve">
     <value>Kembali ke tampilan penuh</value>
