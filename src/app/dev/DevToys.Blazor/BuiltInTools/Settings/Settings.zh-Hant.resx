@@ -170,10 +170,10 @@
     <value>與輸入一致的行尾（自動）</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>回車和換行（\r\n）（Windows）</value>
+    <value>回到行首並換行 (\r\n) (Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>換行（\n）（Unix）</value>
+    <value>換行 (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
     <value>字型</value>
@@ -225,10 +225,10 @@
     <value>貼上時取代文字</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>轉譯空白字元</value>
+    <value>轉譯空格</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>顯示空白字元</value>
+    <value>顯示空格</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>設定</value>
