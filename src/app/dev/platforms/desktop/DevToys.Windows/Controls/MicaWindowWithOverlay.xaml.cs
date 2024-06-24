@@ -397,7 +397,7 @@ public abstract partial class MicaWindowWithOverlay : Window
             uint gradientColor = 0xFF202020;
             if (_themeListener.ActualAppTheme == ApplicationTheme.Light)
             {
-                gradientColor = 0xFFFFFFFF;
+                gradientColor = 0xFFF3F3F3;
             }
 
             // Effect for Windows 10
