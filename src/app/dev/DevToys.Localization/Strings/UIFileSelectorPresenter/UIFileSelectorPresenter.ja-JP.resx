@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BrowseFiles" xml:space="preserve">
-    <value>ファイルを選択</value>
+    <value>ファイルを参照</value>
   </data>
   <data name="BrowserFolders" xml:space="preserve">
-    <value>フォルダーの選択</value>
+    <value>フォルダを参照</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>ここにファイルをドラッグ</value>
+    <value>ここにファイルをドラッグ &amp; ドロップ</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>ここにファイルをドラッグ</value>
+    <value>ここにファイルをドラッグ &amp; ドロップ</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>ここに {0} ファイルをドラッグ</value>
+    <value>ここに {0} ファイルをドラッグ &amp; ドロップ</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>ここに {0} ファイルをドラッグ</value>
+    <value>ここに {0} ファイルをドラッグ &amp; ドロップ</value>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
     <value>{0} が利用できます。</value>
   </data>
   <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
-    <value>{0} 個のファイルが選択されています</value>
+    <value>{0} 個のファイルを選択中</value>
   </data>
   <data name="Or" xml:space="preserve">
     <value>または</value>
