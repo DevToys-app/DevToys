@@ -6,7 +6,6 @@ namespace DevToys.Blazor.Components;
 public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
 {
     private readonly object _lock = new();
-    private bool _isLoaded;
     private bool _oldIsActuallyEnabled;
     private bool _oldReadOnlyState;
 
@@ -20,8 +19,6 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
 
     [Parameter]
     public Func<MonacoEditorDiff, StandaloneDiffEditorConstructionOptions>? ConstructionOptions { get; set; }
-
-    private bool ShowLoading { get; set; }
 
     protected override void OnInitialized()
     {
@@ -38,8 +35,6 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
         {
             Guard.IsNull(OriginalEditor);
             Guard.IsNull(ModifiedEditor);
-
-            InvokeAsync(DisplayLoadingIfSlowLoadingAsync).Forget();
 
             // Get desired options
             StandaloneDiffEditorConstructionOptions options = ConstructionOptions?.Invoke(this) ?? new();
@@ -133,8 +128,6 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
         base.OnEditorLoaded();
         lock (_lock)
         {
-            _isLoaded = true;
-            ShowLoading = false;
             StateHasChanged();
         }
     }
@@ -162,26 +155,5 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
     {
         Guard.IsNotNull(_themeListener);
         return _themeListener.ActualAppTheme == ApplicationTheme.Dark ? BuiltinTheme.VsDark : BuiltinTheme.Vs;
-    }
-
-    private async Task DisplayLoadingIfSlowLoadingAsync()
-    {
-        // Let's not show the progress ring during the first 100ms. We know customers tends to perceive anything
-        // faster than 100ms as "instant", so no need to bother the user with a very shortly displayed progress ring
-        // if we succeed to load within 100ms.
-        // https://psychology.stackexchange.com/questions/1664/what-is-the-threshold-where-actions-are-perceived-as-instant
-
-        const int Delay = 100;
-
-        await Task.Delay(Delay);
-
-        lock (_lock)
-        {
-            if (!_isLoaded)
-            {
-                ShowLoading = true;
-                StateHasChanged();
-            }
-        }
     }
 }
