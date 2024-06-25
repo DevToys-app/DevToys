@@ -198,19 +198,19 @@
     <value>언어</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>선택된 언어를 적용하려면 앱을 재시작해야 합니다</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>밝은</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>줄 번호</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>텍스트 편집기의 줄 번호를 표시합니다.</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>줄 번호 표시</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>로그 열기</value>
@@ -225,10 +225,10 @@
     <value>Replace text when pasting</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>공백 문자 표시</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>공백 문자 표시</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>설정</value>

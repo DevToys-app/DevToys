@@ -134,7 +134,7 @@
     <value>離線優先的形式</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>DevToys 的功能隨著擴充功能而增強，為你的工具箱增添更多功能。雖然我們確保核心應用程式的完整性，但重要的是要知道我們無法控制第三方擴充功能對您的電腦和資料所進行的操作。因此，我們鼓勵您在安裝擴充功能時要謹慎行事。要監視 DevToys 或任何擴充功能的網路活動，可以使用 Wireshark、Little Snitch 或 Fiddler 等工具來追蹤傳入和傳出的連線。</value>
+    <value>DevToys 的功能隨著擴充功能而增強，為您的工具箱增添更多功能。雖然我們確保核心應用程式的完整性，但重要的是要知道我們無法控制第三方擴充功能對您的電腦和資料所進行的操作。因此，我們鼓勵您在安裝擴充功能時要謹慎行事。要監視 DevToys 或任何擴充功能的網路活動，可以使用 Wireshark、Little Snitch 或 Fiddler 等工具來追蹤傳入和傳出的連線。</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
     <value>信任但要驗證</value>

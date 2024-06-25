@@ -155,15 +155,15 @@
     <value>Beheer extensies</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Extensies van derden kunnen de functionaliteit van bestaande tools wijzigen en zonder toestemming toegang tot je computer krijgen. Dit kan je gegevens aan het internet blootstellen of ongewenste software op je apparaat installeren. We raden u sterk aan om voorzichtig te zijn en alleen extensies te installeren die u vertrouwt. DevToys auteurs zijn niet verantwoordelijk voor schade of verliezen veroorzaakt door extensies.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>Ik begrijp het</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
     <value>Terms and Conditions</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Waarschuwing</value>
   </data>
 </root>

@@ -151,7 +151,7 @@
     <value>ダーク</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>システム設定を使用する</value>
+    <value>システムの言語に合わせる</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>DevToys をカスタマイズする</value>
@@ -270,7 +270,7 @@
     <value>サードパーティ ライセンス</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>システムの言語に合わせる</value>
+    <value>システム設定を使用する</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version {0}</value>

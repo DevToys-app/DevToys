@@ -127,7 +127,7 @@
     <value>Die Erweiterung '{0}' ist bereits installiert. Wenn du versuchst, eine Erweiterung zu aktualisieren, die bereits installiert ist, deinstalliere bitte zuerst die ältere Version.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Diese Erweiterung kann nicht installiert werden</value>
+    <value>Diese Erweiterung konnte nicht installiert werden</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
@@ -143,7 +143,7 @@
     <value>Eine Erweiterung für DevToys erstellen</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
     <value>Bitte schließe alle DevToys-Fenster und starte die Anwendung neu, um die Änderungen zu übernehmen.</value>
@@ -155,7 +155,7 @@
     <value>Erweiterungen verwalten</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Erweiterungen von Drittanbietern können die Funktionalität vorhandener Werkzeuge verändern und ohne deiner Zustimmung auf deinen Computer zugreifen. Dies kann dazu führen, dass deine Daten im Internet veröffentlicht werden oder unerwünschte Software auf deinem Gerät installiert wird. Wir empfehlen dir dringend, Vorsicht walten zu lassen und nur Erweiterungen zu installieren, denen du vertraust. Die DevToys-Autoren sind nicht verantwortlich für Schäden oder Verluste, die durch Erweiterungen verursacht werden. </value>
+    <value>Erweiterungen von Drittanbietern können die Funktionalität vorhandener Werkzeuge verändern und ohne deiner Zustimmung auf deinen Computer zugreifen. Dies kann dazu führen, dass deine Daten im Internet veröffentlicht werden oder unerwünschte Software auf deinem Gerät installiert wird. Wir empfehlen dir dringend, Vorsicht walten zu lassen und nur Erweiterungen zu installieren, denen du vertraust. Die DevToys-Autoren sind nicht verantwortlich für Schäden oder Verluste, die durch Erweiterungen verursacht werden.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
     <value>Ich verstehe</value>
