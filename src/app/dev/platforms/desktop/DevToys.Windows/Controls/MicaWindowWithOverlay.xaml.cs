@@ -397,13 +397,14 @@ public abstract partial class MicaWindowWithOverlay : Window
             uint gradientColor = 0xFF202020;
             if (_themeListener.ActualAppTheme == ApplicationTheme.Light)
             {
-                gradientColor = 0xFFFFFFFF;
+                gradientColor = 0xFFF3F3F3;
             }
 
             // Effect for Windows 10
             var accentPolicy = new AccentPolicy
             {
-                AccentState = AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND,
+                AccentState = AccentState.ACCENT_ENABLE_GRADIENT,
+                AccentFlags = AccentFlag.ACCENT_ENABLE_BORDER | AccentFlag.ACCENT_ENABLE_GRADIENT_COLOR,
                 GradientColor = gradientColor
             };
 
