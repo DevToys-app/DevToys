@@ -1,4 +1,5 @@
 using DevToys.Api;
+using DevToys.Blazor;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.Services;
 using DevToys.Core;
@@ -13,6 +14,12 @@ namespace DevToys.Linux;
 
 internal class MainWindow
 {
+#if DEBUG
+    private const bool EnableDeveloperTools = true;
+#else
+    private const bool EnableDeveloperTools = false;
+#endif
+
 #pragma warning disable IDE0044 // Add readonly modifier
     [Import]
     private IThemeListener _themeListener = default!;
@@ -40,27 +47,14 @@ internal class MainWindow
         Guard.IsNotNull(_titleBarInfoProvider);
         _titleBarInfoProvider.PropertyChanged += TitleBarInfoProvider_PropertyChanged;
 
-        _blazorGtkWebView = new BlazorWebView(serviceProvider);
-        _blazorGtkWebView.OnContextMenu += BlazorGtkWebViewOnContextMenu;
+        _blazorGtkWebView = new BlazorWebView(serviceProvider, EnableDeveloperTools);
         _blazorGtkWebView.BlazorWebViewInitialized += OnBlazorWebViewInitialized;
-
-        // Make web view transparent
-        _blazorGtkWebView.SetBackgroundColor(new Gdk.RGBA { Red = 0, Blue = 0, Green = 0, Alpha = 0 });
-
-        // Allow opening developer tools
-        Settings webViewSettings = _blazorGtkWebView.GetSettings();
-#if DEBUG
-        webViewSettings.EnableDeveloperExtras = true;
-#endif
-        webViewSettings.JavascriptCanAccessClipboard = true;
-        webViewSettings.EnableBackForwardNavigationGestures = false;
-        _blazorGtkWebView.SetSettings(webViewSettings);
 
         // Create and open main window.
         _window = Gtk.ApplicationWindow.New(application);
         _window.Title = _titleBarInfoProvider.TitleWithToolName ?? string.Empty;
         _window.SetDefaultSize(1280, 800);
-        _window.SetChild(_blazorGtkWebView);
+        _window.SetChild(_blazorGtkWebView.View);
 
         var windowService = (WindowService)serviceProvider.GetService<IWindowService>()!;
         ((ThemeListener)_themeListener).SetMainWindow(_window, windowService);
@@ -68,17 +62,11 @@ internal class MainWindow
         ((FileStorage)_fileStorage).MainWindow = _window;
         ((FontProvider)_fontProvider).MainWindow = _window;
 
-        _window.Show();
-    }
+        // Navigate to our Blazor webpage.
+        _blazorGtkWebView.RootComponents.Add(new RootComponent { Selector = "#app", ComponentType = typeof(Main) });
+        _blazorGtkWebView.HostPage = "wwwroot/index.html";
 
-    private bool BlazorGtkWebViewOnContextMenu(WebView sender, WebView.ContextMenuSignalArgs args)
-    {
-        // Returning true to prevent the context menu from opening.
-#if DEBUG
-        return false;
-#else
-        return true;
-#endif
+        _window.Show();
     }
 
     private void OnBlazorWebViewInitialized(object? sender, EventArgs args)

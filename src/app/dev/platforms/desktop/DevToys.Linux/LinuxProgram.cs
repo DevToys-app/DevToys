@@ -102,10 +102,6 @@ internal partial class LinuxProgram
     {
         _serviceCollection.AddBlazorWebView();
 
-        _serviceCollection.AddSingleton(
-            new BlazorWebViewOptions() { RootComponent = typeof(DevToys.Blazor.Main) }
-        );
-
         _serviceCollection.AddLogging((ILoggingBuilder builder) =>
         {
 #if DEBUG
