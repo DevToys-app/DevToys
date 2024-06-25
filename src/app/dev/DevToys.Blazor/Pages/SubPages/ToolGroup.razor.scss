@@ -3,7 +3,7 @@
         background-position: 0px 196px; // The height of the hero image
     }
     100% {
-        background-position: 0px 150px;
+        background-position: 0px 175px;
     }
 }
 
@@ -12,7 +12,7 @@
         background-position: 0px 196px; // The height of the hero image
     }
     100% {
-        background-position: 0px 150px;
+        background-position: 0px 175px;
     }
 }
 
@@ -44,8 +44,8 @@
         transform: rotateX(15deg) rotateZ(-15deg) skewX(15deg);
         transform-style: preserve-3d;
         // Animation
-        -webkit-animation: hero-bg-scrolling 2s;
-        animation: hero-bg-scrolling 2s;
+        -webkit-animation: hero-bg-scrolling 1s;
+        animation: hero-bg-scrolling 1s;
         -webkit-animation-timing-function: cubic-bezier(.7,1,.8,1);
         animation-timing-function: cubic-bezier(.7,1,.8,1);
         -webkit-animation-fill-mode: forwards;
