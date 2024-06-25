@@ -89,7 +89,7 @@ public class CultureHelperGenerator : ISourceGenerator
             string filePath = resxFiles[i].Path.Trim();
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
             string cultureName = fileNameWithoutExtension.Split(new[] { '.' }, System.StringSplitOptions.RemoveEmptyEntries).Last();
-            if (cultureName.Length == 2 || (cultureName.Length == 5 && cultureName.Contains("-")))
+            if (cultureName.Length == 2 || (cultureName.Length >= 5 && cultureName.Length <= 7 && cultureName.Contains("-")))
             {
                 cultures.Add(cultureName);
             }
