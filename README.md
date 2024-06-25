@@ -9,11 +9,9 @@
 </p>
 <p align="center">
   <a title="Crowdin" target="_blank" href="https://crowdin.com/project/devtoys">
-    <img src="https://badges.crowdin.net/devtoys/localized.svg">
-  </a>
+    <img src="https://badges.crowdin.net/devtoys/localized.svg"></a>
   <a style="text-decoration:none" href="https://devtoys.app" target="_blank">
-    <img src="https://img.shields.io/badge/Website-devtoys.app-blue" alt="Website" />
-  </a>
+    <img src="https://img.shields.io/badge/Website-devtoys.app-blue" alt="Website" /></a>
 </p>
 
 ## Introduction
