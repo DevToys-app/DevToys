@@ -143,6 +143,6 @@
     <value>我明白並同意</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>歡迎來到 DevToys！</value>
+    <value>歡迎來到 DevToys!</value>
   </data>
 </root>
