@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "devtoys": "file:src/app/dev/DevToys.Blazor"
+  }
+}
