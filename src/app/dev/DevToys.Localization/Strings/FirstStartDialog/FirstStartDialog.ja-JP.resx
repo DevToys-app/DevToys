@@ -134,13 +134,13 @@
     <value>オフラインファーストの理念</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>DevToys は拡張機能によってあなたのツールボックスが更に強化されます。
+    <value>拡張機能はあなたの DevToys ツールボックスを更に強化します。
 DevToys はコア アプリの整合性を保証しますが、サードパーティ製の拡張機能が利用者のコンピューターとデータをどのように扱うかはコントロール出来ません。
-拡張機能をインストールする際には以上のリスクを理解する必要があります。
+そのため、拡張機能をインストールする際には以上のリスクを理解する必要があります。
 DevToys や拡張機能のネットワーク アクティビティを監視するには、Wireshark、Little Snitch、Fiddler といったツールを使用して、送受信接続を追跡することができます。</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>信用しても信頼しない</value>
+    <value>信用しても検証してください</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
     <value>上記を理解し、同意します。</value>
