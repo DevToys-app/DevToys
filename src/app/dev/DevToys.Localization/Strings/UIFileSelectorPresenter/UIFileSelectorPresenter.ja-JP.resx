@@ -136,7 +136,7 @@
     <value>ここに {0} ファイルをドラッグ &amp; ドロップ</value>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>{0} が利用できます。</value>
+    <value>{0} ファイルのみ利用できます。</value>
   </data>
   <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
     <value>{0} 個のファイルを選択中</value>
