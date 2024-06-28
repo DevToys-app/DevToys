@@ -216,13 +216,13 @@
     <value>로그 열기</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>붙여넣을 때 텍스트 덮어쓰기</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>붙여넣기 단추를 누를 때 텍스트 편집기에 있는 내용을 유지하는 대신 기존 텍스트를 삭제합니다.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>붙여넣을 때 텍스트 덮어쓰기</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>공백 문자 표시</value>
