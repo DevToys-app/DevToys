@@ -121,7 +121,7 @@
     <value>파일 '{0}'은 존재하지 않습니다.</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>잘못된 파일 경로입니다. 파일의 확장자는 다음 중 하나여야 합니다. {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
     <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
