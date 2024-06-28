@@ -124,7 +124,7 @@
     <value>잘못된 파일 경로입니다. 파일의 확장자는 다음 중 하나여야 합니다. {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>읽어야 할 파일의 상대 경로 혹은 절대 경로를 입력해 주십시오. (혹은 Enter 키를 눌러 취소하십시오)</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
     <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
