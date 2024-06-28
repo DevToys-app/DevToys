@@ -164,10 +164,10 @@
     <value>편집</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>줄바꿈 문자</value>
+    <value>줄 바꿈 문자</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>입력한 줄바꿈 문자와 동일(자동 적용)</value>
+    <value>입력한 줄 바꿈 문자와 동일(자동 적용)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
     <value>캐리지 리턴과 라인 피드(\r\n) (윈도우 방식)</value>
@@ -234,7 +234,7 @@
     <value>설정</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>똑똑한 클립보드</value>
+    <value>스마트 감지기</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
     <value>클립보드 내용에 가장 적합한 도구를 자동으로 감지</value>
@@ -276,9 +276,9 @@
     <value>버전 {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>자동 줄바꿈</value>
+    <value>자동 줄 바꿈</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>줄 바꿈</value>
+    <value>자동 줄 바꿈</value>
   </data>
 </root>
