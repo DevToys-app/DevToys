@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>제품 정보</value>
+    <value>정보</value>
   </data>
   <data name="AccessibleName" xml:space="preserve">
     <value>설정</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>모양</value>
+    <value>화면 표시</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>앱 테마</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>표시할 앱 테마 선택</value>
+    <value>사용할 테마 선택</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
     <value>동작</value>
@@ -142,72 +142,72 @@
     <value>DevToy 시작 시 자동으로 업데이트 확인</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>공간 압축</value>
+    <value>좁게 보기</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>UI 요소 간의 공간 감소</value>
+    <value>사용자 인터페이스 요소 사이의 간격을 줄임</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>어두운</value>
+    <value>어두운 테마</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>시스템과 동일</value>
+    <value>시스템 설정 사용</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>DevToy 모양과 느낌을 사용자 정의</value>
+    <value>DevToys의 인터페이스를 변경</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>DevToysMac 개발을 시작하기 위한 {0}</value>
+    <value>DevToysMac 개발을 시작한 {0}</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
     <value>편집</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>줄 끝의 문자</value>
+    <value>줄바꿈 문자</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>입력과 동일한 줄 끝(자동)</value>
+    <value>입력한 줄바꿈 문자와 동일(자동 적용)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>캐리지 리턴 포함 개행 사용(\r\n) (윈도우용)</value>
+    <value>캐리지 리턴과 라인 피드(\r\n) (윈도우 방식)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>일반 개행 (\n) (Unix)</value>
+    <value>라인 피드(\n) (유닉스 방식)</value>
   </data>
   <data name="Font" xml:space="preserve">
     <value>글꼴</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>DevToys 의 번역을 도와주세요!</value>
+    <value>DevToys를 번역해 주세요!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>현재 줄 강조</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>선택한 줄을 잘 보일 만한 배경색으로 바꿉니다.</value>
+    <value>선택한 줄이 더 잘 보이도록 배경색을 변경</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>현재 줄 강조</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>앱 아이콘을 디자인한 {0}</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
     <value>언어</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>선택된 언어를 적용하려면 앱을 재시작해야 합니다</value>
+    <value>언어를 변경한 뒤에는 앱을 다시 시작해야 함</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>밝은</value>
+    <value>밝은 테마</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
     <value>줄 번호</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>텍스트 편집기의 줄 번호를 표시합니다.</value>
+    <value>텍스트 편집기에 줄번호를 표시</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
     <value>줄 번호 표시</value>
@@ -216,10 +216,10 @@
     <value>로그 열기</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>붙여넣을 때 텍스트 덮어쓰기</value>
+    <value>붙여 넣을 때 텍스트 덮어쓰기</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>붙여넣기 단추를 누를 때 텍스트 편집기에 있는 내용을 유지하는 대신 기존 텍스트를 삭제합니다.</value>
+    <value>내용이 있는 텍스트 편집기에서 붙여넣기 단추를 누르면 이어 붙이는 대신 기존 텍스트를 삭제합니다.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>붙여넣을 때 텍스트 덮어쓰기</value>
@@ -234,16 +234,16 @@
     <value>설정</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>똑똑한 클립보드</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>클립보드 내용에 가장 적합한 도구를 자동으로 감지</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>클립보드 내용에 적합한 도구를 선택하면 자동으로 내용을 붙여 넣음</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>도움 주신 분</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>텍스트 편집기</value>
@@ -276,7 +276,7 @@
     <value>버전 {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>자동 줄바꿈</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>줄 바꿈</value>
