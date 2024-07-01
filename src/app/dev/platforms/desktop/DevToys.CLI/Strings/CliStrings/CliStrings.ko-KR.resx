@@ -133,6 +133,6 @@
     <value>읽을 폴더의 상대경로 혹은 절대경로를 입력하세요. (취소하려면 Enter 키를 누르세요)</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>작성할 파일의 상대경로 혹은 절대경로를 입력하세요. (취소하려면 Enter 키를 누르세요)</value>
   </data>
 </root>
