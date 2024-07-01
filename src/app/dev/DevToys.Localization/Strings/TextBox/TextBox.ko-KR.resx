@@ -127,10 +127,10 @@
     <value>잘라내기</value>
   </data>
   <data name="Decrease" xml:space="preserve">
-    <value>Decrease</value>
+    <value>감소</value>
   </data>
   <data name="Increase" xml:space="preserve">
-    <value>Increase</value>
+    <value>증가</value>
   </data>
   <data name="Paste" xml:space="preserve">
     <value>붙여넣기</value>
