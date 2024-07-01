@@ -148,16 +148,16 @@
     <value>検索</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>ここをクリックして検索</value>
+    <value>クリックして検索</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>結果が見つかりませんでした</value>
+    <value>検索結果がありません</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>ナビゲーションの切り替え</value>
+    <value>ナビゲーションビューの表示の切り替え</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
-    <value>アップデートあり</value>
+    <value>アップデートが利用可能です</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

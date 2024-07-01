@@ -142,19 +142,19 @@
     <value>최근</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>도구를 검색하려면 입력...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>검색</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>클릭해서 찾기</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>검색 결과 없음</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Toggle Navigation</value>
+    <value>메뉴 보기/감추기</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
     <value>업데이트 사용 가능</value>

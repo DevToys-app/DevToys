@@ -127,7 +127,7 @@
     <value>展開</value>
   </data>
   <data name="LoadFileButtonText" xml:space="preserve">
-    <value>ファイルを開く</value>
+    <value>テキスト文書を開く</value>
   </data>
   <data name="MoreButtonToolTip" xml:space="preserve">
     <value>その他...</value>
