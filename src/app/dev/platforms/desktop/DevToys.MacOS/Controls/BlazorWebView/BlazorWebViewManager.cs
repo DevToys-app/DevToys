@@ -196,7 +196,7 @@ public partial class BlazorWebViewManager : WebViewManager
             else
             {
                 // Invoke the UrlLoading event to allow overriding the default link handling behavior
-                var callbackArgs = UrlLoadingEventArgs.CreateWithDefaultLoadingStrategy(uri, BlazorWkWebView.AppOriginUri);
+                var callbackArgs = UrlLoadingEventArgs.CreateWithDefaultLoadingStrategy(uri, BlazorWkWebView.AppOriginUri.Value);
                 _webView.OnUrlLoading(callbackArgs);
 
                 strategy = callbackArgs.UrlLoadingStrategy;
@@ -228,7 +228,7 @@ public partial class BlazorWebViewManager : WebViewManager
         {
             // We need to intercept the redirects to the app scheme because Safari will block them.
             // We will handle these redirects through the Navigation Manager.
-            if (_currentUri?.Host != BlazorWkWebView.AppHostAddress)
+            if (_currentUri?.Host != BlazorWkWebView.AppHostAddress.Value)
             {
                 return;
             }

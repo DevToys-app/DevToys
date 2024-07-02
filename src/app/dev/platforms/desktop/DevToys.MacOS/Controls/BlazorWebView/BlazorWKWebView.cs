@@ -12,8 +12,11 @@ internal sealed partial class BlazorWkWebView : IDisposable
 {
     private const string DevToysInteropName = "devtoyswebinterop";
     private const string Scheme = "app";
-    internal const string AppHostAddress = "0.0.0.0";
-    internal static readonly Uri AppOriginUri = new($"{Scheme}://{AppHostAddress}/");
+
+    // On MacOS 15.0, "0.0.0.0" doesn't work somehow. Instead, let's use localhost.
+    // See https://github.com/DevToys-app/DevToys/issues/1279 and https://github.com/dotnet/maui/issues/23390
+    internal static readonly Lazy<string> AppHostAddress = new(() => OperatingSystem.IsMacOSVersionAtLeast(15, 0) ? "localhost" : "0.0.0.0");
+    internal static readonly Lazy<Uri> AppOriginUri = new(() => new Uri($"{Scheme}://{AppHostAddress.Value}/"));
 
     private const string BlazorInitScript
         = $$"""
@@ -157,7 +160,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
             // Initialize some basic properties of the WebView
             AllowsBackForwardNavigationGestures = false,
             AllowsLinkPreview = false,
-            AllowsMagnification = false,
+            AllowsMagnification = true,
             AutoresizesSubviews = true
         };
 
@@ -230,7 +233,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
         IFileProvider fileProvider = CreateFileProvider(contentRootDir);
 
         _webViewManager = new BlazorWebViewManager(
-            AppOriginUri,
+            AppOriginUri.Value,
             this,
             _serviceProvider,
             fileProvider,
@@ -292,7 +295,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
                 throw new ArgumentNullException(nameof(message));
             }
 
-            _messageReceivedAction(AppOriginUri, ((NSString)message.Body).ToString());
+            _messageReceivedAction(AppOriginUri.Value, ((NSString)message.Body).ToString());
         }
     }
 
@@ -343,7 +346,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
 
         private byte[] GetResponseBytes(string? url, out string contentType, out int statusCode)
         {
-            bool allowFallbackOnHostPage = IsUriBaseOfPage(AppOriginUri, url);
+            bool allowFallbackOnHostPage = IsUriBaseOfPage(AppOriginUri.Value, url);
             url = RemovePossibleQueryString(url);
 
             if (_blazorWebView._webViewManager!.TryGetResponseContentInternal(
