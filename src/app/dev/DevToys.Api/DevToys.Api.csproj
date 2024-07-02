@@ -15,7 +15,6 @@
     <PackageTags>devtoys-app</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <DevelopmentDependency>true</DevelopmentDependency>
     <PackageIcon>Icon-Windows-Linux.png</PackageIcon>
   </PropertyGroup>
 
