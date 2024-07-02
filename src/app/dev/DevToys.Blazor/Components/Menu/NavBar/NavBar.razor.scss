@@ -36,6 +36,7 @@ $sidebar-top-bar-height: 48px;
     .nav-bar-header {
         grid-area: header;
         z-index: calc($sidebar-expanded-overlay-zindex + 1);
+        background-color: var(--navigation-view-flyout-background-color);
     }
 
     nav {
