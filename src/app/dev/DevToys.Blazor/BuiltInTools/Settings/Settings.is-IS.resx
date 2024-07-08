@@ -133,152 +133,152 @@
     <value>Velja hvaða þema forrits á að sýna</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Hegðanir</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Athuga með uppfærslu</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Athuga sjálfkrafa með uppfærslur þegar DevToys ræsist</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>Þétt bil</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>Minnka bil á milli UI eininga</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Dökkt</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as the system</value>
+    <value>Sama og kerfið</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Sérsníða útlit og tilfinngu DevToys</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>{0} fyrir að byrja DevToysMac þróun</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>Ritvinna</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>Lokastafur línu</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>Sami lokastafur og inntak (sjálfkrafa)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+    <value>Vagnsskil og línuskil (\r\n) (Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
+    <value>Línuskil (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Letur</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Hjálpaðu okkur að þýða DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>Auðkenna núverandi línu</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Breyta bakgrunnslit núverandi línu svo hún sé sýnilegri</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Highlight the current line</value>
+    <value>Auðkenna núverandi línu</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>{0} fyrir að hanna tákn forritsins</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Tungumál</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>Endurræsa þarf forritið þegar valið er annað tungumál</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Ljóst</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Línunúmer</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Sýna línunúmer í textaritlinum</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>Sýna línunúmer</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Opna skráningar</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Skipta út texta við límingu</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Þegar ýtt er á Líma takkann, hreinsa textann fyrst í stað þess að bæta textanum við núverandi efni textaritils.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Skipta út texta við límingu</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Sýna hvít bil</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Sýna hvít bil</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Stillingar</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Snjallgreining</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Greina sjálfkrafa besta tólið miðað við efni klippiborðs</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Líma sjálfkrafa efni klippiborðs þegar valið er tól sem mælt er með</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>Sérstakar þakkir til</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Textaritill</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Forskoðun</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Gagnlegir hlekkir</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Leyfi</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Friðhelgisstefna</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Tilkynna vandamál</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Frumkóði</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Leyfi þriðja aðila</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Nota kerfisstillingar</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Útgáfa {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Orðskrið</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>Orðskrið</value>
   </data>
 </root>
