@@ -117,34 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ClearButtonText" xml:space="preserve">
-    <value>クリア</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Stjórna viðbótum í DevToys</value>
   </data>
-  <data name="CopyButtonText" xml:space="preserve">
-    <value>コピー</value>
+  <data name="Description" xml:space="preserve">
+    <value>Bæta við og sjórna viðbótum frá þriðja aðila í DevToys</value>
   </data>
-  <data name="ExtendButtonToolTip" xml:space="preserve">
-    <value>展開</value>
+  <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
+    <value>Viðbótin '{0}' er nú þegar uppsett. Ef þú ert að reyna að uppfæra viðbót sem er nú þegar uppsett, vinsamlegast fjarlægðu eldri útgáfuna fyrst.</value>
   </data>
-  <data name="LoadFileButtonText" xml:space="preserve">
-    <value>テキスト文書を開く</value>
+  <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
+    <value>Ekki hægt að setja upp þessa viðbót</value>
   </data>
-  <data name="MoreButtonToolTip" xml:space="preserve">
-    <value>その他...</value>
+  <data name="ExtensionTitleInList" xml:space="preserve">
+    <value>{0} - {1}</value>
+    <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
-  <data name="NoToolSuggested" xml:space="preserve">
-    <value>提案できるツールはありません</value>
+  <data name="FindMoreExtension" xml:space="preserve">
+    <value>Finna fleiri viðbætur á netinu</value>
   </data>
-  <data name="PasteButtonText" xml:space="preserve">
-    <value>貼り付け</value>
+  <data name="InstallExtension" xml:space="preserve">
+    <value>Setja upp viðbót</value>
   </data>
-  <data name="SaveAsButtonText" xml:space="preserve">
-    <value>名前を付けて保存</value>
+  <data name="LearnDevelopExtension" xml:space="preserve">
+    <value>Búa til viðbót fyrir DevToys</value>
   </data>
-  <data name="ShrinkButtonToolTip" xml:space="preserve">
-    <value>表示を戻す</value>
+  <data name="OKButtonText" xml:space="preserve">
+    <value>OK</value>
   </data>
-  <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>他のツールで開く</value>
+  <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
+    <value>Vinsamlegast lokaðu öllum DevToys gluggum og endurræstu forritið til að vista breytingarnar.</value>
+  </data>
+  <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
+    <value>Endurræsing er nauðsynleg svo breytingarnar taki gildi</value>
+  </data>
+  <data name="ShortDisplayTitle" xml:space="preserve">
+    <value>Stjórna viðbótum</value>
+  </data>
+  <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
+    <value>Viðbætur frá þriðja aðila geta breytt virkni núverandi tóla og tengst vélinni þinni án þíns samþykkis. Þetta getur afhjúpað gögnin þín fyrir internetinu eða sett upp óæskilegan hugbúnað á vélinni þinni. Við mælum eindregið með að þú farir varlega og setjir eingöngu upp viðbætur sem þú treystir. Höfundar DevToys bera ekki ábyrgð á skaða eða tjóni vegna viðbóta.</value>
+  </data>
+  <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
+    <value>Ég skil</value>
+  </data>
+  <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
+    <value>Skilmálar og skilyrði</value>
+  </data>
+  <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
+    <value>Viðvörun</value>
   </data>
 </root>

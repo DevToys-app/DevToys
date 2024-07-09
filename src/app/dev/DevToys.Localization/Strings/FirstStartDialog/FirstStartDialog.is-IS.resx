@@ -117,34 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ClearButtonText" xml:space="preserve">
-    <value>クリア</value>
+  <data name="AppDescription" xml:space="preserve">
+    <value>DevToys er þitt helsta verkfærabox fyrir þróunaraðila, stútfullt með samansafni af fríum opnum hugbúnaðartólum. Hugsaðu um það sem Svissneskan vasahníf sniðinn að því að sjá um leiðinlegu daglegu verkefnin sem hægja á þér.
+Hér er það sem þú þarft að vita:</value>
   </data>
-  <data name="CopyButtonText" xml:space="preserve">
-    <value>コピー</value>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Athuga með uppfærslur þegar DevToys ræsist</value>
   </data>
-  <data name="ExtendButtonToolTip" xml:space="preserve">
-    <value>展開</value>
+  <data name="Continue" xml:space="preserve">
+    <value>Áfram</value>
   </data>
-  <data name="LoadFileButtonText" xml:space="preserve">
-    <value>テキスト文書を開く</value>
+  <data name="OfflineFirstDescription" xml:space="preserve">
+    <value>DevToys starfar með utankerfis hugarfari. Við söfnum lágmarks nafnlausum gögnum staðbundið í bilanaleitarskyni. Við hlöðum ekki upp skráningum á internetið. Ef þú lendir í villu og velur að tilkynna hana getum við beðið þig að deila skráningunum með okkur. Með þínu samþykki tengjumst við internetinu til að athuga með uppfærslur, tryggjandi að þú hafir aðgang að nýjustu eiginleikum og öryggis bætingum.</value>
   </data>
-  <data name="MoreButtonToolTip" xml:space="preserve">
-    <value>その他...</value>
+  <data name="OfflineFirstTitle" xml:space="preserve">
+    <value>Utankerfis Hugmyndafræði</value>
   </data>
-  <data name="NoToolSuggested" xml:space="preserve">
-    <value>提案できるツールはありません</value>
+  <data name="TrustButVerifyDescription" xml:space="preserve">
+    <value>Styrkur DevToys eykst með viðbótum, með meiri styrk í verkfæraboxið þitt. Þótt við tryggjum öryggi kjarna forritsins er mikilvægt að vita að við höfum enga stjórn hvað viðbætur frá þriðja aðila gera við vélina og gögnin þín. Þessvegna viljum við ítreka að þú farir varlega í að setja upp viðbætur. Til að fylgjast með netnotkun DevToys, eða annarra viðbóta, geta tól eins og Wireshark, Little Snitch eða Fiddler verið notuð til að fylgjast með tengingum inn og út.</value>
   </data>
-  <data name="PasteButtonText" xml:space="preserve">
-    <value>貼り付け</value>
+  <data name="TrustButVerifyTitle" xml:space="preserve">
+    <value>Treysta en Sannreyna</value>
   </data>
-  <data name="SaveAsButtonText" xml:space="preserve">
-    <value>名前を付けて保存</value>
+  <data name="UnderstandAndAgree" xml:space="preserve">
+    <value>Ég skil og samþykki</value>
   </data>
-  <data name="ShrinkButtonToolTip" xml:space="preserve">
-    <value>表示を戻す</value>
-  </data>
-  <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>他のツールで開く</value>
+  <data name="Welcome" xml:space="preserve">
+    <value>Velkomin til DevToys!</value>
   </data>
 </root>

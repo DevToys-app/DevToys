@@ -117,53 +117,168 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Um</value>
+  </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>DevToys 拡張機能の管理</value>
+    <value>Stillingar</value>
+  </data>
+  <data name="Appearance" xml:space="preserve">
+    <value>Útlit</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Þema forrits</value>
+  </data>
+  <data name="AppThemeDescription" xml:space="preserve">
+    <value>Velja hvaða þema forrits á að sýna</value>
+  </data>
+  <data name="Behaviors" xml:space="preserve">
+    <value>Hegðanir</value>
+  </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Athuga með uppfærslu</value>
+  </data>
+  <data name="CheckForUpdateDescription" xml:space="preserve">
+    <value>Athuga sjálfkrafa með uppfærslur þegar DevToys ræsist</value>
+  </data>
+  <data name="CompactMode" xml:space="preserve">
+    <value>Þétt bil</value>
+  </data>
+  <data name="CompactModeDescription" xml:space="preserve">
+    <value>Minnka bil á milli UI eininga</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dökkt</value>
+  </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Sama og kerfið</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>サードパーティ製の DevToys 拡張機能の追加と管理</value>
+    <value>Sérsníða útlit og tilfinngu DevToys</value>
   </data>
-  <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>拡張機能 '{0}' は既にインストールされています。インストール済みの拡張機能を更新する場合、先に古いバージョンをアンインストールしてください。</value>
+  <data name="DevToysMac" xml:space="preserve">
+    <value>{0} fyrir að byrja DevToysMac þróun</value>
+    <comment>{0} will be replaced by a name</comment>
   </data>
-  <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>この拡張機能をインストールできません</value>
+  <data name="Editing" xml:space="preserve">
+    <value>Ritvinna</value>
   </data>
-  <data name="ExtensionTitleInList" xml:space="preserve">
-    <value>{0} - {1}</value>
-    <comment>Example: "DevToys.Tools - 1.0.0"</comment>
+  <data name="EndOfLinePreference" xml:space="preserve">
+    <value>Lokastafur línu</value>
   </data>
-  <data name="FindMoreExtension" xml:space="preserve">
-    <value>オンラインで他の拡張機能を検索する</value>
+  <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
+    <value>Sami lokastafur og inntak (sjálfkrafa)</value>
   </data>
-  <data name="InstallExtension" xml:space="preserve">
-    <value>拡張機能をインストール</value>
+  <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
+    <value>Vagnsskil og línuskil (\r\n) (Windows)</value>
   </data>
-  <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>DevToys 用の拡張機能を作成</value>
+  <data name="EndOfLinePreferenceLF" xml:space="preserve">
+    <value>Línuskil (\n) (Unix)</value>
   </data>
-  <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+  <data name="Font" xml:space="preserve">
+    <value>Letur</value>
   </data>
-  <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>変更を適用するには、すべての DevToys のウィンドウを閉じて再起動してください。</value>
+  <data name="HelpTranslating" xml:space="preserve">
+    <value>Hjálpaðu okkur að þýða DevToys!</value>
   </data>
-  <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>変更した内容は再起動後に適用されます。</value>
+  <data name="HighlightCurrentLine" xml:space="preserve">
+    <value>Auðkenna núverandi línu</value>
+  </data>
+  <data name="HighlightCurrentLineDescription" xml:space="preserve">
+    <value>Breyta bakgrunnslit núverandi línu svo hún sé sýnilegri</value>
+  </data>
+  <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
+    <value>Auðkenna núverandi línu</value>
+  </data>
+  <data name="IconDesigner" xml:space="preserve">
+    <value>{0} fyrir að hanna tákn forritsins</value>
+    <comment>{0} will be replaced by a name</comment>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Tungumál</value>
+  </data>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>Endurræsa þarf forritið þegar valið er annað tungumál</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Ljóst</value>
+  </data>
+  <data name="LineNumbers" xml:space="preserve">
+    <value>Línunúmer</value>
+  </data>
+  <data name="LineNumbersDescription" xml:space="preserve">
+    <value>Sýna línunúmer í textaritlinum</value>
+  </data>
+  <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
+    <value>Sýna línunúmer</value>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>Opna skráningar</value>
+  </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>Skipta út texta við límingu</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>Þegar ýtt er á Líma takkann, hreinsa textann fyrst í stað þess að bæta textanum við núverandi efni textaritils.</value>
+  </data>
+  <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
+    <value>Skipta út texta við límingu</value>
+  </data>
+  <data name="RenderWhitespace" xml:space="preserve">
+    <value>Sýna hvít bil</value>
+  </data>
+  <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
+    <value>Sýna hvít bil</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>拡張機能を管理</value>
+    <value>Stillingar</value>
   </data>
-  <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>サードパーティ製の拡張機能は、既存のツールの機能を変更、または、許可なくデバイスにアクセスする可能性があります。 これにより、データがインターネットに公開されたり、デバイスに不要なソフトウェアがインストールされる可能性があります。これらのリスクに注意し、信頼できる拡張機能のみをインストールすることを強くお勧めします。 DevToys の作者は、拡張機能によって生じたいかなる損害や損失に対して責任を負いません。</value>
+  <data name="SmartDetection" xml:space="preserve">
+    <value>Snjallgreining</value>
   </data>
-  <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>内容を読み、リスクを理解しました</value>
+  <data name="SmartDetectionDescription" xml:space="preserve">
+    <value>Greina sjálfkrafa besta tólið miðað við efni klippiborðs</value>
   </data>
-  <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>利用規約</value>
+  <data name="SmartDetectionPaste" xml:space="preserve">
+    <value>Líma sjálfkrafa efni klippiborðs þegar valið er tól sem mælt er með</value>
   </data>
-  <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>警告</value>
+  <data name="SpecialThanks" xml:space="preserve">
+    <value>Sérstakar þakkir til</value>
+  </data>
+  <data name="TextEditor" xml:space="preserve">
+    <value>Textaritill</value>
+  </data>
+  <data name="TextEditorPreview" xml:space="preserve">
+    <value>Forskoðun</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Gagnlegir hlekkir</value>
+  </data>
+  <data name="UsefulLinksLicense" xml:space="preserve">
+    <value>Leyfi</value>
+  </data>
+  <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
+    <value>Friðhelgisstefna</value>
+  </data>
+  <data name="UsefulLinksReportProblem" xml:space="preserve">
+    <value>Tilkynna vandamál</value>
+  </data>
+  <data name="UsefulLinksSourceCode" xml:space="preserve">
+    <value>Frumkóði</value>
+  </data>
+  <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
+    <value>Leyfi þriðja aðila</value>
+  </data>
+  <data name="UseSystemSettings" xml:space="preserve">
+    <value>Nota kerfisstillingar</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Útgáfa {0}</value>
+  </data>
+  <data name="WordWrap" xml:space="preserve">
+    <value>Orðskrið</value>
+  </data>
+  <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
+    <value>Orðskrið</value>
   </data>
 </root>

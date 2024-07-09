@@ -121,7 +121,7 @@
     <value>OK</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>DevToys Ver.{0} の新着情報</value>
+    <value>DevToys v{0} の新機能</value>
     <comment>{0} is the app's version number</comment>
   </data>
 </root>

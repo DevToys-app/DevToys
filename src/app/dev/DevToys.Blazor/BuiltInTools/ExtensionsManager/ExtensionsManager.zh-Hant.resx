@@ -143,7 +143,7 @@
     <value>為 DevToys 建立擴充功能</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>好的</value>
+    <value>確定</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
     <value>請關閉所有 DevToys 視窗並重新啟動應用程式以套用修改。</value>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value/>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Add and manage third-party extensions in DevToys</value>
@@ -137,7 +137,7 @@
     <value>Find more extensions online</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value/>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
     <value>Create an extension for DevToys</value>

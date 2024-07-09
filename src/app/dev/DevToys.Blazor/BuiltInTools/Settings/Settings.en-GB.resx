@@ -136,7 +136,7 @@
     <value>Behaviours</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value/>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
     <value>Automatically check for updates when DevToys starts</value>

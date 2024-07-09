@@ -124,15 +124,15 @@
     <value>パスまたはファイル名が無効です。ファイルは、次のいずれかの拡張子が利用できます：{0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>読み込むファイルのパス (Enter でキャンセル)：</value>
+    <value>読み込むファイルの相対または絶対パスを入力してください (または Enter キーでキャンセル)：</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>読み込むファイルのパス (カンマで複数指定、Enter でキャンセル)：</value>
+    <value>読み込むファイルの相対または絶対パスをカンマ区切りで入力してください (または Enter キーでキャンセル)：</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>フォルダのパス (Enter でキャンセル)：</value>
+    <value>読み込むフォルダの相対または絶対パスを入力してください (または Enter キーでキャンセル)：</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>ファイルの保存先のパス (Enter でキャンセル)：</value>
+    <value>書き込むファイルの相対または絶対パスを入力してください (または Enter キーでキャンセル)：</value>
   </data>
 </root>

@@ -121,18 +121,18 @@
     <value>檔案「{0}」不存在。</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>無效的檔案路徑。該檔案應具有以下副檔名之一：{0}</value>
+    <value>無效的檔案路徑。該檔案應具有以下副檔名之一: {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>請輸入要讀取檔案的相對或絕對路徑（或按 Enter 取消）：</value>
+    <value>請輸入要讀取檔案的相對或絕對路徑 (或按 Enter 取消):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>請輸入一個或多個要讀取檔案的相對或絕對路徑，以逗號分隔（或按 Enter 取消）：</value>
+    <value>請輸入一個或多個要讀取檔案的相對或絕對路徑，以逗號分隔 (或按 Enter 取消):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>請輸入資料夾相對或絕對路徑（或按 Enter 取消）：</value>
+    <value>請輸入資料夾相對或絕對路徑 (或按 Enter 取消):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>請輸入要寫入檔案的相對或絕對路徑（或按 Enter 取消）：</value>
+    <value>請輸入要寫入檔案的相對或絕對路徑 (或按 Enter 取消):</value>
   </data>
 </root>

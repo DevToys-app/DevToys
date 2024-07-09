@@ -167,7 +167,7 @@
     <value>行尾字元</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>與輸入一致的行尾（自動）</value>
+    <value>與輸入一致的行尾 (自動)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
     <value>回到行首並換行 (\r\n) (Windows)</value>
@@ -188,7 +188,7 @@
     <value>變更目前所在行的背景顏色以使其更加明顯</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>突出顯示目前行</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
     <value>由 {0} 設計應用程式圖示</value>
