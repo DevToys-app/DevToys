@@ -98,6 +98,11 @@
                         <Grid Margin="-1">
                             <AdornerDecorator>
                                 <Grid Margin="{TemplateBinding MarginMaximized}">
+                                    <Border
+                                        x:Name="WindowTopBorder"
+                                        VerticalAlignment="Top"
+                                        Height="48"/>
+
                                     <ContentPresenter />
 
                                     <controls:OverlayControl
