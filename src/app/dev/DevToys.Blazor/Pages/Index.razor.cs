@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using DevToys.Blazor.BuiltInTools.ExtensionsManager;
 using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
 using DevToys.Blazor.Pages.Dialogs;
@@ -8,6 +9,7 @@ using DevToys.Core;
 using DevToys.Core.Settings;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
+using DevToys.Core.Web;
 using DevToys.Localization.Strings.ToolGroupPage;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -50,6 +52,9 @@ public partial class Index : MefComponentBase
     [Import]
     internal CommandLineLauncherService CommandLineLauncherService { get; set; } = default!;
 
+    [Import]
+    internal IWebClientService WebClientService { get; set; } = default!;
+
     [Inject]
     internal ContextMenuService ContextMenuService { get; set; } = default!;
 
@@ -76,6 +81,7 @@ public partial class Index : MefComponentBase
         UIDialogService.IsDialogOpenedChanged += DialogService_IsDialogOpenedChanged;
         ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
         ViewModel.SelectedMenuItem ??= ViewModel.HeaderAndBodyToolViewItems[0];
+        ViewModel.CheckForExtensionUpdateRequested += ViewModel_CheckForExtensionUpdateRequested;
         ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
         WindowService.WindowActivated += WindowService_WindowActivated;
@@ -85,11 +91,13 @@ public partial class Index : MefComponentBase
 
         TitleBarInfoProvider.TitleBarMarginRight = 40;
         WindowHasFocus = true;
+
+        ViewModel.Startup();
     }
 
     private void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(ViewModel.UpdateAvailable))
+        if (e.PropertyName == nameof(ViewModel.UpdateAvailable) || e.PropertyName == nameof(ViewModel.UpdateAvailableForExtension))
         {
             InvokeAsync(StateHasChanged);
         }
@@ -106,6 +114,11 @@ public partial class Index : MefComponentBase
         // of re-using the one currently displayed.
         IsTransitioning = true;
         StateHasChanged();
+    }
+
+    private async void ViewModel_CheckForExtensionUpdateRequested(object? sender, EventArgs e)
+    {
+        ViewModel.UpdateAvailableForExtension = await ExtensionInstallationManager.CheckForAnyUpdateAsync(WebClientService);
     }
 
     private void ContextMenuService_IsContextMenuOpenedChanged(object? sender, EventArgs e)
@@ -223,6 +236,13 @@ public partial class Index : MefComponentBase
     private void OnUpdateAvailableButtonClick()
     {
         OSHelper.OpenFileInShell("https://github.com/DevToys-app/DevToys/releases");
+    }
+
+    private void OnUpdateAvailableForExtensionButtonClick()
+    {
+        GuiToolInstance? extensionManagerTool = GuiToolProvider.GetToolFromInternalName(ExtensionsManagerGuiTool.ExtensionManagerToolName);
+        Guard.IsNotNull(extensionManagerTool);
+        ViewModel.SelectedMenuItem = ViewModel.GetBestMenuItemToSelect(extensionManagerTool);
     }
 
     private async Task<bool> ShowFirstStartAndOrWhatsNewDialogsAsync()

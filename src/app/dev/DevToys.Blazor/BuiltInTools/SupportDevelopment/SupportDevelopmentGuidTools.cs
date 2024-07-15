@@ -16,7 +16,7 @@ namespace DevToys.Blazor.BuiltInTools.SupportDevelopment;
 [NotFavorable]
 [NotSearchable]
 [NoCompactOverlaySupport]
-[Order(Before = ExtensionsManagerGuiTool.ExtensionmanagerToolName)]
+[Order(Before = ExtensionsManagerGuiTool.ExtensionManagerToolName)]
 internal sealed class SupportDevelopmentGuidTools : IGuiTool
 {
     // TODO: Finish this tool.
