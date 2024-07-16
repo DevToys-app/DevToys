@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllToolsAccessibleName" xml:space="preserve">
-    <value>All tools</value>
+    <value>Alla verktyg</value>
   </data>
   <data name="AllToolsDisplayTitle" xml:space="preserve">
-    <value>All tools</value>
+    <value>Alla verktyg</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
@@ -130,7 +130,7 @@
     <value>Favorite tools</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Favoriter</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
     <value>Keep on top</value>
@@ -145,13 +145,13 @@
     <value>Type to search for tools...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>Sök</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>Klicka för att söka</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Inga resultat hittades</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
     <value>Toggle Navigation</value>
