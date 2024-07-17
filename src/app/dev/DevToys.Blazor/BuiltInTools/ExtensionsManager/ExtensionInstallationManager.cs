@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
+using DevToys.Core.Web;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using NuGet.Packaging;
 
 namespace DevToys.Blazor.BuiltInTools.ExtensionsManager;
@@ -115,6 +117,60 @@ public static class ExtensionInstallationManager
         }
 
         return new(AlreadyInstalled: false, nuspecReader, extensionInstallationPath);
+    }
+
+    internal static async Task<bool> CheckForAnyUpdateAsync(IWebClientService webClientService)
+    {
+
+        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+
+        var updateCheckTasks = new List<Task<bool>>();
+
+        for (int i = 0; i < ExtensionInstallationFolders.Length; i++)
+        {
+            if (Directory.Exists(ExtensionInstallationFolders[i]))
+            {
+                IEnumerable<string> nuspecFiles
+                    = Directory.EnumerateFiles(ExtensionInstallationFolders[i], "*.nuspec", SearchOption.AllDirectories);
+
+                foreach (string nuspecFile in nuspecFiles)
+                {
+                    var nuspec = new NuspecReader(nuspecFile);
+                    updateCheckTasks.Add(CheckForUpdateAsync(webClientService, nuspec));
+                }
+            }
+        }
+
+        await Task.WhenAll(updateCheckTasks);
+
+        return updateCheckTasks.Any(t => t.Result);
+    }
+
+    internal static async Task<bool> CheckForUpdateAsync(IWebClientService webClientService, NuspecReader nuspec)
+    {
+        const string NuGetOrgVersionUrl = "https://api.nuget.org/v3-flatcontainer/{0}/index.json";
+
+        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+
+        string url = string.Format(NuGetOrgVersionUrl, nuspec.GetId());
+
+        string? response = await webClientService.SafeGetStringAsync(new Uri(url), CancellationToken.None);
+        if (response is not null)
+        {
+            var jObject = JObject.Parse(response);
+            if (jObject is not null)
+            {
+                IEnumerable<string?>? versions = jObject["versions"]?.Values<string>();
+                string? latestVersion = versions?.LastOrDefault();
+
+                if (!string.Equals(latestVersion, nuspec.GetVersion().OriginalVersion, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private static IEnumerable<string> GetPathToExclude()

@@ -174,6 +174,21 @@
         </NavBarItemTitleTemplate>
 
         <Footer>
+            @if (ViewModel.UpdateAvailableForExtension)
+            {
+                <Button Appearance="ButtonAppearance.Hyperlink"
+                        Class="sidebar-footer-button"
+                        @onclick="OnUpdateAvailableForExtensionButtonClick">
+                    @if (_navBar.IsCollapsedMode)
+                    {
+                        <FontIcon Glyph="@('\uF150')" Height="16" Width="16" />
+                    }
+                    else
+                    {
+                        <TextBlock Text="@MainWindow.UpdateAvailableForExtension" NoWrap="true" />
+                    }
+                </Button>
+            }
             @if (ViewModel.UpdateAvailable)
             {
                 <Button Appearance="ButtonAppearance.Hyperlink"

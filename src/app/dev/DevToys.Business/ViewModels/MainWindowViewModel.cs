@@ -51,17 +51,17 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         _webClientService = webClientService;
         _versionService = versionService;
         Messenger.Register<MainWindowViewModel, ChangeSelectedMenuItemMessage>(this, OnChangeSelectedMenuItemMessageReceived);
-
-        if (_settingsProvider.GetSetting(PredefinedSettings.CheckForUpdate))
-        {
-            CheckForUpdateAsync().ForgetSafely();
-        }
     }
 
     /// <summary>
     /// Raised when the <see cref="SelectedMenuItem"/> property changed.
     /// </summary>
     internal event EventHandler<EventArgs>? SelectedMenuItemChanged;
+
+    /// <summary>
+    /// Raised when the app should check for extension updates.
+    /// </summary>
+    internal event EventHandler<EventArgs>? CheckForExtensionUpdateRequested;
 
     /// <summary>
     /// Gets a hierarchical list containing all the tools available, ordered, to display in the top and body menu.
@@ -167,6 +167,23 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     /// </summary>
     [ObservableProperty]
     private bool _updateAvailable = false;
+
+    /// <summary>
+    /// Gets or sets whether an update for an extension is available online.
+    /// </summary>
+    [ObservableProperty]
+    private bool _updateAvailableForExtension = false;
+
+    /// <summary>
+    /// Perform the startup tasks.
+    /// </summary>
+    internal void Startup()
+    {
+        if (_settingsProvider.GetSetting(PredefinedSettings.CheckForUpdate))
+        {
+            CheckForUpdateAsync().ForgetSafely();
+        }
+    }
 
     /// <summary>
     /// Navigates back to the previous <see cref="SelectedMenuItem"/>.
@@ -275,38 +292,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         }
     }
 
-    /// <summary>
-    /// Command invoked when the search box's text changed.
-    /// </summary>
-    [RelayCommand]
-    private void SearchBoxTextChanged()
-    {
-        _guiToolProvider.SearchTools(SearchQuery, SearchResults);
-    }
-
-    /// <summary>
-    /// Command invoked when the user press Enter in the search box or explicitly select an item in the search result list.
-    /// </summary>
-    /// <param name="chosenSuggestion">Equals to the selected item in the search result list, or null if nothing is selected by the user and or if there's no result at all.</param>
-    [RelayCommand]
-    private void SearchBoxQuerySubmitted(object? chosenSuggestion)
-    {
-        var selectedSearchResultItem = chosenSuggestion as GuiToolViewItem;
-        if (selectedSearchResultItem is null && SearchResults.Count > 0)
-        {
-            selectedSearchResultItem = SearchResults[0];
-        }
-
-        if (selectedSearchResultItem is null || selectedSearchResultItem == GuiToolProvider.NoResultFoundItem)
-        {
-            return;
-        }
-
-        // Select the actual menu item in the navigation view. This will trigger the navigation.
-        SelectedMenuItem = GetBestMenuItemToSelect(selectedSearchResultItem);
-    }
-
-    private INotifyPropertyChanged GetBestMenuItemToSelect(object currentSelectedMenuItem)
+    internal INotifyPropertyChanged GetBestMenuItemToSelect(object currentSelectedMenuItem)
     {
         Guard.IsNotEmpty((IReadOnlyList<INotifyPropertyChanged>)HeaderAndBodyToolViewItems);
         Guard.IsNotNull(currentSelectedMenuItem);
@@ -340,6 +326,37 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         return firstItem;
     }
 
+    /// <summary>
+    /// Command invoked when the search box's text changed.
+    /// </summary>
+    [RelayCommand]
+    private void SearchBoxTextChanged()
+    {
+        _guiToolProvider.SearchTools(SearchQuery, SearchResults);
+    }
+
+    /// <summary>
+    /// Command invoked when the user press Enter in the search box or explicitly select an item in the search result list.
+    /// </summary>
+    /// <param name="chosenSuggestion">Equals to the selected item in the search result list, or null if nothing is selected by the user and or if there's no result at all.</param>
+    [RelayCommand]
+    private void SearchBoxQuerySubmitted(object? chosenSuggestion)
+    {
+        var selectedSearchResultItem = chosenSuggestion as GuiToolViewItem;
+        if (selectedSearchResultItem is null && SearchResults.Count > 0)
+        {
+            selectedSearchResultItem = SearchResults[0];
+        }
+
+        if (selectedSearchResultItem is null || selectedSearchResultItem == GuiToolProvider.NoResultFoundItem)
+        {
+            return;
+        }
+
+        // Select the actual menu item in the navigation view. This will trigger the navigation.
+        SelectedMenuItem = GetBestMenuItemToSelect(selectedSearchResultItem);
+    }
+
     private void OnChangeSelectedMenuItemMessageReceived(MainWindowViewModel vm, ChangeSelectedMenuItemMessage message)
     {
         // Select the actual menu item in the navigation view. This will trigger the navigation.
@@ -358,6 +375,8 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         using CancellationTokenSource cancellationTokenSource = new();
         cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
         CancellationToken token = cancellationTokenSource.Token;
+
+        CheckForExtensionUpdateRequested?.Invoke(this, EventArgs.Empty);
 
         UpdateAvailable = await AppHelper.CheckForUpdateAsync(_webClientService, _versionService, token);
     }

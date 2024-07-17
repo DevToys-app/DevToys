@@ -1,13 +1,16 @@
 ﻿using System.Collections.Immutable;
+using DevToys.Api;
 using DevToys.Blazor.BuiltInTools.Settings;
 using DevToys.Core;
+using DevToys.Core.Settings;
+using DevToys.Core.Web;
 using NuGet.Packaging;
 using NuGet.Packaging.Core;
 
 namespace DevToys.Blazor.BuiltInTools.ExtensionsManager;
 
 [Export(typeof(IGuiTool))]
-[Name(ExtensionmanagerToolName)]
+[Name(ExtensionManagerToolName)]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = '\uE9E8',
@@ -26,7 +29,7 @@ namespace DevToys.Blazor.BuiltInTools.ExtensionsManager;
 [TargetPlatform(Platform.MacOS)]
 internal sealed class ExtensionsManagerGuiTool : IGuiTool
 {
-    internal const string ExtensionmanagerToolName = "Extensions Manager";
+    internal const string ExtensionManagerToolName = "Extensions Manager";
 
     private enum GridRows
     {
@@ -52,6 +55,12 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
 #pragma warning disable IDE0044 // Add readonly modifier
     [Import]
     private IFileStorage _fileStorage = default!;
+
+    [Import]
+    private IWebClientService _webClientService = default!;
+
+    [Import]
+    private ISettingsProvider _settingsProvider = default!;
 #pragma warning restore IDE0044 // Add readonly modifier
 
     public UIToolView View
@@ -169,6 +178,11 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
         _extensionList.Items.RemoveValue(extensionInstallationPath);
     }
 
+    private void OnUpdateExtensionButtonClick(NuspecReader nuspec)
+    {
+        OSHelper.OpenFileInShell(string.Format("https://www.nuget.org/packages/{0}", nuspec.GetId()));
+    }
+
     private async Task LoadExtensionListAsync()
     {
         _extensionList.Items.Clear();
@@ -229,6 +243,26 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
                 .Icon("FluentSystemIcons", '\uE47B')
                 .OnClick(() => OnUninstallExtensionButtonClick(extensionInstallationPath));
         actionBuilder.Add(uninstallButton);
+        IUIStack actionStack = Stack();
+
+        if (_settingsProvider.GetSetting(PredefinedSettings.CheckForUpdate))
+        {
+            Task.Run(async () =>
+            {
+                bool updateAvailable = await ExtensionInstallationManager.CheckForUpdateAsync(_webClientService, nuspec);
+                if (updateAvailable)
+                {
+                    // Add update button.
+                    IUIButton updateButton
+                        = Button()
+                            .Icon("FluentSystemIcons", '\uF150')
+                            .HyperlinkAppearance()
+                            .OnClick(() => OnUpdateExtensionButtonClick(nuspec));
+                    actionBuilder.Insert(0, updateButton);
+                    actionStack.WithChildren(actionBuilder.ToArray());
+                }
+            }).ForgetSafely();
+        }
 
         // Create the item.
         return Item(
@@ -242,7 +276,7 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
                         .MediumSpacing()
                         .WithChildren(
                             Label().Text(SizeWithUnit(size)),
-                            Stack()
+                            actionStack
                                 .Horizontal()
                                 .SmallSpacing()
                                 .WithChildren(actionBuilder.ToArray()))),
