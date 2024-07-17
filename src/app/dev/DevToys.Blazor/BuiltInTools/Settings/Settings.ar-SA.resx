@@ -136,10 +136,10 @@
     <value>السلوكيات</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>تحقق من وجود تحديث</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>التحقق تلقائياً من وجود تحديثات عند بدء تشغيل DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>تباعد مدمج</value>
@@ -213,7 +213,7 @@
     <value>أظهر أرقام الصف</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>فتح السجلات</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>غيّر النص عند اللصق</value>
@@ -252,22 +252,22 @@
     <value>معاينة</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>روابط مفيدة</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>الترخيص</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>سياسة الخصوصية</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>الإبلاغ عن مشكلة</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>مصدر الشيفرة</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>تراخيص الطرف الثالث</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>أستخدم إعدادات النظام</value>
