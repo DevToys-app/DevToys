@@ -241,7 +241,7 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help us translating DevToys!.
+        ///   Looks up a localized string similar to Help us translate DevToys!.
         /// </summary>
         internal static string HelpTranslating {
             get {
