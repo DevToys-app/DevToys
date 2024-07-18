@@ -179,7 +179,7 @@
     <value>글꼴</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>DevToys를 번역해 주세요!</value>
+    <value>Help us translate DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>현재 줄 강조</value>
