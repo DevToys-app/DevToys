@@ -209,21 +209,29 @@ public partial class MainWindow : MicaWindowWithOverlay
         double DPI_SCALE = dpiHelper.LogicalToDeviceUnitsScalingFactorX;
         var windowInteropHelper = new WindowInteropHelper(this);
         var screen = Screen.FromHandle(windowInteropHelper.Handle);
+        Guard.IsNotNull(screen);
 
         SixLabors.ImageSharp.Rectangle? bounds = _settingsProvider.GetSetting(PredefinedSettings.MainWindowBounds);
+        bool isWindowVisibleOnScreen
+            = bounds is not null
+            && screen.WorkingArea.Contains(
+                new Rectangle(
+                    bounds.Value.X,
+                    bounds.Value.Y,
+                    bounds.Value.Width,
+                    bounds.Value.Height));
 
-        if (bounds is null)
+        if (!isWindowVisibleOnScreen || bounds is null)
         {
             int width = (int)(Math.Max(screen.WorkingArea.Width - 400, 1200) / DPI_SCALE);
             int height = (int)(Math.Max(screen.WorkingArea.Height - 200, 600) / DPI_SCALE);
 
             // Center the window on the screen.
-            bounds
-                = new(
-                    x: (int)(((screen.WorkingArea.Width / DPI_SCALE) - width) / 2),
-                    y: (int)(((screen.WorkingArea.Height / DPI_SCALE) - height) / 2),
-                    width,
-                    height);
+            bounds = new(
+                x: (int)(((screen.WorkingArea.Width / DPI_SCALE) - width) / 2),
+                y: (int)(((screen.WorkingArea.Height / DPI_SCALE) - height) / 2),
+                width,
+                height);
         }
 
         Left = bounds.Value.X;
