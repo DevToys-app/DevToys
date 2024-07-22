@@ -1,501 +1,6 @@
 var devtoys = (function (exports) {
     'use strict';
 
-    class DOM {
-        static setFocus(element) {
-            element.focus();
-            if (document.activeElement != element) {
-                // We failed to give focus to the given element. Let's find the first child element that can
-                // accept the focus and let's try to give it.
-                const focusableChildrenElements = DOM.getFocusableElements(element);
-                if (focusableChildrenElements.length > 0) {
-                    focusableChildrenElements[0].focus();
-                    return document.activeElement == element;
-                }
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
-        static getFocusableElements(element) {
-            return element.querySelectorAll("a[href]:not([tabindex='-1'])," +
-                "area[href]:not([tabindex='-1'])," +
-                "button:not([disabled]):not([tabindex='-1'])," +
-                "input:not([disabled]):not([tabindex='-1']):not([type='hidden'])," +
-                "select:not([disabled]):not([tabindex='-1'])," +
-                "textarea:not([disabled]):not([tabindex='-1'])," +
-                "iframe:not([tabindex='-1'])," +
-                "details:not([tabindex='-1'])," +
-                "[tabindex]:not([tabindex='-1'])," +
-                "[contentEditable=true]:not([tabindex='-1']");
-        }
-        static addFontToDocument(fontDefinition) {
-            const css = document.createElement("style");
-            css.innerHTML = fontDefinition;
-            document.head.appendChild(css);
-        }
-        static registerDocumentEventService(dotNetObjRef) {
-            document.documentEventService = dotNetObjRef;
-        }
-        static subscribeDocumentEvent(eventName) {
-            document.addEventListener(eventName, DOM.documentEventListener);
-        }
-        static unsubscribeDocumentEvent(eventName) {
-            document.removeEventListener(eventName, DOM.documentEventListener);
-        }
-        static documentEventListener(e) {
-            const eventJson = DOM.stringifyEvent(e);
-            const dotNetObjRef = document.documentEventService;
-            const eventName = e.type;
-            dotNetObjRef.invokeMethodAsync("EventCallback", eventName, eventJson);
-        }
-        static stringifyEvent(e) {
-            const obj = {};
-            for (const k in e) {
-                obj[k] = e[k];
-            }
-            return JSON.stringify(obj, (k, v) => {
-                if (v instanceof Node)
-                    return "Node";
-                if (v instanceof Window)
-                    return "Window";
-                return v;
-            }, " ");
-        }
-    }
-
-    class PopoverInfo {
-    }
-    class PopoverPosition {
-    }
-    class Popover {
-        static callback(id, mutationsList, observer) {
-            for (const mutation of mutationsList) {
-                if (mutation.type === "attributes") {
-                    const target = mutation.target;
-                    if (mutation.attributeName == "class") {
-                        if (target.classList.contains("popover-overflow-flip-onopen") && target.classList.contains("popover-open") == false) {
-                            target.popoverFliped = null;
-                            target.removeAttribute("data-popover-flip");
-                        }
-                        Popover.placePopoverByNode(target);
-                    }
-                    else if (mutation.attributeName == "data-ticks") {
-                        const parent = target.parentElement;
-                        const tickValues = [];
-                        for (let i = 0; i < parent.children.length; i++) {
-                            const childNode = parent.children[i];
-                            const tickValue = parseInt(childNode.getAttribute("data-ticks"));
-                            if (tickValue == 0) {
-                                continue;
-                            }
-                            if (tickValues.indexOf(tickValue) >= 0) {
-                                continue;
-                            }
-                            tickValues.push(tickValue);
-                        }
-                        if (tickValues.length == 0) {
-                            continue;
-                        }
-                        const sortedTickValues = tickValues.sort((x, y) => x - y);
-                        for (let i = 0; i < parent.children.length; i++) {
-                            const childNode = parent.children[i];
-                            const tickValue = parseInt(childNode.getAttribute("data-ticks"));
-                            if (tickValue == 0) {
-                                continue;
-                            }
-                            if (childNode.skipZIndex == true) {
-                                continue;
-                            }
-                            childNode.style["z-index"] = "calc(var(--popover-zindex) + " + (sortedTickValues.indexOf(tickValue) + 3).toString() + ")";
-                        }
-                    }
-                }
-            }
-        }
-        static initialize(containerClass, flipMargin) {
-            const mainContent = document.getElementsByClassName(containerClass);
-            if (mainContent.length == 0) {
-                return;
-            }
-            if (flipMargin) {
-                Popover.flipMargin = flipMargin;
-            }
-            Popover.mainContainerClass = containerClass;
-            const mainContentFirstItem = mainContent[0];
-            if (!mainContentFirstItem.PopoverMark) {
-                mainContentFirstItem.PopoverMark = "popovered";
-                if (Popover.contentObserver != null) {
-                    Popover.contentObserver.disconnect();
-                    Popover.contentObserver = null;
-                }
-                Popover.contentObserver = new ResizeObserver(entries => {
-                    Popover.placePopoverByClassSelector();
-                });
-                Popover.contentObserver.observe(mainContent[0]);
-            }
-        }
-        static connect(id) {
-            Popover.initialize(Popover.mainContainerClass);
-            const popoverNode = document.getElementById("popover-" + id);
-            const popoverContentNode = document.getElementById("popovercontent-" + id);
-            if (popoverNode && popoverNode.parentNode && popoverContentNode) {
-                Popover.placePopover(popoverNode);
-                const config = { attributeFilter: ["class", "data-ticks"] };
-                const mutationObserver = new MutationObserver(this.callback.bind(this, id));
-                mutationObserver.observe(popoverContentNode, config);
-                const resizeObserver = new ResizeObserver(entries => {
-                    for (const entry of entries) {
-                        const target = entry.target;
-                        for (let i = 0; i < target.childNodes.length; i++) {
-                            const childNode = target.childNodes[i];
-                            if (childNode.id && childNode.id.startsWith("popover-")) {
-                                Popover.placePopover(childNode);
-                            }
-                        }
-                    }
-                });
-                resizeObserver.observe(popoverNode.parentNode);
-                const contentNodeObserver = new ResizeObserver(entries => {
-                    for (const entry of entries) {
-                        const target = entry.target;
-                        Popover.placePopoverByNode(target);
-                    }
-                });
-                contentNodeObserver.observe(popoverContentNode);
-                const popoverInfo = new PopoverInfo();
-                popoverInfo.mutationObserver = mutationObserver;
-                popoverInfo.resizeObserver = resizeObserver;
-                popoverInfo.contentNodeObserver = contentNodeObserver;
-                Popover.map[id] = popoverInfo;
-            }
-        }
-        static disconnect(id) {
-            if (Popover.map[id]) {
-                const popoverInfo = Popover.map[id];
-                popoverInfo.mutationObserver.disconnect();
-                popoverInfo.resizeObserver.disconnect();
-                popoverInfo.contentNodeObserver.disconnect();
-                delete Popover.map[id];
-            }
-        }
-        static dispose() {
-            for (const i in Popover.map) {
-                Popover.disconnect(i);
-            }
-            if (Popover.contentObserver != null) {
-                Popover.contentObserver.disconnect();
-                Popover.contentObserver = null;
-            }
-        }
-        static getAllObservedContainers() {
-            const result = [];
-            for (const i in this.map) {
-                result.push(i);
-            }
-            return result;
-        }
-        static calculatePopoverPosition(classList, boundingRect, selfRect) {
-            let top = 0;
-            let left = 0;
-            if (classList.indexOf("popover-anchor-top-left") >= 0) {
-                left = boundingRect.left;
-                top = boundingRect.top;
-            }
-            else if (classList.indexOf("popover-anchor-top-center") >= 0) {
-                left = boundingRect.left + boundingRect.width / 2;
-                top = boundingRect.top;
-            }
-            else if (classList.indexOf("popover-anchor-top-right") >= 0) {
-                left = boundingRect.left + boundingRect.width;
-                top = boundingRect.top;
-            }
-            else if (classList.indexOf("popover-anchor-center-left") >= 0) {
-                left = boundingRect.left;
-                top = boundingRect.top + boundingRect.height / 2;
-            }
-            else if (classList.indexOf("popover-anchor-center-center") >= 0) {
-                left = boundingRect.left + boundingRect.width / 2;
-                top = boundingRect.top + boundingRect.height / 2;
-            }
-            else if (classList.indexOf("popover-anchor-center-right") >= 0) {
-                left = boundingRect.left + boundingRect.width;
-                top = boundingRect.top + boundingRect.height / 2;
-            }
-            else if (classList.indexOf("popover-anchor-bottom-left") >= 0) {
-                left = boundingRect.left;
-                top = boundingRect.top + boundingRect.height;
-            }
-            else if (classList.indexOf("popover-anchor-bottom-center") >= 0) {
-                left = boundingRect.left + boundingRect.width / 2;
-                top = boundingRect.top + boundingRect.height;
-            }
-            else if (classList.indexOf("popover-anchor-bottom-right") >= 0) {
-                left = boundingRect.left + boundingRect.width;
-                top = boundingRect.top + boundingRect.height;
-            }
-            let offsetX = 0;
-            let offsetY = 0;
-            if (classList.indexOf("popover-top-left") >= 0) {
-                offsetX = 0;
-                offsetY = 0;
-            }
-            else if (classList.indexOf("popover-top-center") >= 0) {
-                offsetX = -selfRect.width / 2;
-                offsetY = 0;
-            }
-            else if (classList.indexOf("popover-top-right") >= 0) {
-                offsetX = -selfRect.width;
-                offsetY = 0;
-            }
-            else if (classList.indexOf("popover-center-left") >= 0) {
-                offsetX = 0;
-                offsetY = -selfRect.height / 2;
-            }
-            else if (classList.indexOf("popover-center-center") >= 0) {
-                offsetX = -selfRect.width / 2;
-                offsetY = -selfRect.height / 2;
-            }
-            else if (classList.indexOf("popover-center-right") >= 0) {
-                offsetX = -selfRect.width;
-                offsetY = -selfRect.height / 2;
-            }
-            else if (classList.indexOf("popover-bottom-left") >= 0) {
-                offsetX = 0;
-                offsetY = -selfRect.height;
-            }
-            else if (classList.indexOf("popover-bottom-center") >= 0) {
-                offsetX = -selfRect.width / 2;
-                offsetY = -selfRect.height;
-            }
-            else if (classList.indexOf("popover-bottom-right") >= 0) {
-                offsetX = -selfRect.width;
-                offsetY = -selfRect.height;
-            }
-            const result = new PopoverPosition();
-            result.top = top;
-            result.left = left;
-            result.offsetX = offsetX;
-            result.offsetY = offsetY;
-            return result;
-        }
-        static getPositionForFlippedPopver(inputClassListArray, selector, boundingRect, selfRect) {
-            const classList = [];
-            for (let i = 0; i < inputClassListArray.length; i++) {
-                const item = inputClassListArray[i];
-                const replacments = Popover.flipClassReplacements[selector][item];
-                if (replacments) {
-                    classList.push(replacments);
-                }
-                else {
-                    classList.push(item);
-                }
-            }
-            return Popover.calculatePopoverPosition(classList, boundingRect, selfRect);
-        }
-        static placePopover(popoverNode, classSelector) {
-            if (popoverNode && popoverNode.parentNode) {
-                const id = popoverNode.id.substring(8);
-                const popoverContentNode = document.getElementById("popovercontent-" + id);
-                if (!popoverContentNode) {
-                    return;
-                }
-                if (popoverContentNode.classList.contains("popover-open") == false) {
-                    return;
-                }
-                if (classSelector) {
-                    if (popoverContentNode.classList.contains(classSelector) == false) {
-                        return;
-                    }
-                }
-                const boundingRect = popoverNode.parentNode.getBoundingClientRect();
-                if (popoverContentNode.classList.contains("popover-relative-width")) {
-                    popoverContentNode.style["max-width"] = (boundingRect.width) + "px";
-                }
-                const selfRect = popoverContentNode.getBoundingClientRect();
-                const classList = popoverContentNode.classList;
-                const classListArray = Array.from(popoverContentNode.classList);
-                const position = Popover.calculatePopoverPosition(classListArray, boundingRect, selfRect);
-                let left = position.left;
-                let top = position.top;
-                let offsetX = position.offsetX;
-                let offsetY = position.offsetY;
-                if (classList.contains("popover-overflow-flip-onopen") || classList.contains("popover-overflow-flip-always")) {
-                    const graceMargin = Popover.flipMargin;
-                    const deltaToLeft = left + offsetX;
-                    const deltaToRight = window.innerWidth - left - selfRect.width;
-                    const deltaTop = top - selfRect.height;
-                    const spaceToTop = top;
-                    const deltaBottom = window.innerHeight - top - selfRect.height;
-                    const popoverContentNodeAny = popoverContentNode;
-                    let selector = popoverContentNodeAny.popoverFliped;
-                    if (!selector) {
-                        if (classList.contains("popover-top-left")) {
-                            if (deltaBottom < graceMargin && deltaToRight < graceMargin && spaceToTop >= selfRect.height && deltaToLeft >= selfRect.width) {
-                                selector = "top-and-left";
-                            }
-                            else if (deltaBottom < graceMargin && spaceToTop >= selfRect.height) {
-                                selector = "top";
-                            }
-                            else if (deltaToRight < graceMargin && deltaToLeft >= selfRect.width) {
-                                selector = "left";
-                            }
-                        }
-                        else if (classList.contains("popover-top-center")) {
-                            if (deltaBottom < graceMargin && spaceToTop >= selfRect.height) {
-                                selector = "top";
-                            }
-                        }
-                        else if (classList.contains("popover-top-right")) {
-                            if (deltaBottom < graceMargin && deltaToLeft < graceMargin && spaceToTop >= selfRect.height && deltaToRight >= selfRect.width) {
-                                selector = "top-and-right";
-                            }
-                            else if (deltaBottom < graceMargin && spaceToTop >= selfRect.height) {
-                                selector = "top";
-                            }
-                            else if (deltaToLeft < graceMargin && deltaToRight >= selfRect.width) {
-                                selector = "right";
-                            }
-                        }
-                        else if (classList.contains("popover-center-left")) {
-                            if (deltaToRight < graceMargin && deltaToLeft >= selfRect.width) {
-                                selector = "left";
-                            }
-                        }
-                        else if (classList.contains("popover-center-right")) {
-                            if (deltaToLeft < graceMargin && deltaToRight >= selfRect.width) {
-                                selector = "right";
-                            }
-                        }
-                        else if (classList.contains("popover-bottom-left")) {
-                            if (deltaTop < graceMargin && deltaToRight < graceMargin && deltaBottom >= 0 && deltaToLeft >= selfRect.width) {
-                                selector = "bottom-and-left";
-                            }
-                            else if (deltaTop < graceMargin && deltaBottom >= 0) {
-                                selector = "bottom";
-                            }
-                            else if (deltaToRight < graceMargin && deltaToLeft >= selfRect.width) {
-                                selector = "left";
-                            }
-                        }
-                        else if (classList.contains("popover-bottom-center")) {
-                            if (deltaTop < graceMargin && deltaBottom >= 0) {
-                                selector = "bottom";
-                            }
-                        }
-                        else if (classList.contains("popover-bottom-right")) {
-                            if (deltaTop < graceMargin && deltaToLeft < graceMargin && deltaBottom >= 0 && deltaToRight >= selfRect.width) {
-                                selector = "bottom-and-right";
-                            }
-                            else if (deltaTop < graceMargin && deltaBottom >= 0) {
-                                selector = "bottom";
-                            }
-                            else if (deltaToLeft < graceMargin && deltaToRight >= selfRect.width) {
-                                selector = "right";
-                            }
-                        }
-                    }
-                    if (selector && selector != "none") {
-                        const newPosition = Popover.getPositionForFlippedPopver(classListArray, selector, boundingRect, selfRect);
-                        left = newPosition.left;
-                        top = newPosition.top;
-                        offsetX = newPosition.offsetX;
-                        offsetY = newPosition.offsetY;
-                        popoverContentNode.setAttribute("data-popover-flip", "flipped");
-                    }
-                    else {
-                        popoverContentNode.removeAttribute("data-popover-flip");
-                    }
-                    if (classList.contains("popover-overflow-flip-onopen")) {
-                        const popoverContentNodeAny = popoverContentNode;
-                        if (!popoverContentNodeAny.popoverFliped) {
-                            popoverContentNodeAny.popoverFliped = selector || "none";
-                        }
-                    }
-                }
-                if (popoverContentNode.classList.contains("popover-fixed")) ;
-                else if (window.getComputedStyle(popoverNode).position == "fixed") {
-                    popoverContentNode.style["position"] = "fixed";
-                }
-                else {
-                    offsetX += window.scrollX;
-                    offsetY += window.scrollY;
-                }
-                popoverContentNode.style["left"] = (left + offsetX) + "px";
-                popoverContentNode.style["top"] = (top + offsetY) + "px";
-                if (window.getComputedStyle(popoverNode).getPropertyValue("z-index") != "auto") {
-                    popoverContentNode.style["z-index"] = window.getComputedStyle(popoverNode).getPropertyValue("z-index");
-                    popoverContentNode.skipZIndex = true;
-                }
-            }
-        }
-        static placePopoverByClassSelector(classSelector = null) {
-            const items = Popover.getAllObservedContainers();
-            for (let i = 0; i < items.length; i++) {
-                const popoverNode = document.getElementById("popover-" + items[i]);
-                Popover.placePopover(popoverNode, classSelector);
-            }
-        }
-        static placePopoverByNode(target) {
-            const id = target.id.substring(15);
-            const popoverNode = document.getElementById("popover-" + id);
-            Popover.placePopover(popoverNode);
-        }
-    }
-    Popover.flipClassReplacements = {
-        "top": {
-            "popover-top-left": "popover-bottom-left",
-            "popover-top-center": "popover-bottom-center",
-            "popover-anchor-bottom-center": "popover-anchor-top-center",
-            "popover-top-right": "popover-bottom-right",
-        },
-        "left": {
-            "popover-top-left": "popover-top-right",
-            "popover-center-left": "popover-center-right",
-            "popover-anchor-center-right": "popover-anchor-center-left",
-            "popover-bottom-left": "popover-bottom-right",
-        },
-        "right": {
-            "popover-top-right": "popover-top-left",
-            "popover-center-right": "popover-center-left",
-            "popover-anchor-center-left": "popover-anchor-center-right",
-            "popover-bottom-right": "popover-bottom-left",
-        },
-        "bottom": {
-            "popover-bottom-left": "popover-top-left",
-            "popover-bottom-center": "popover-top-center",
-            "popover-anchor-top-center": "popover-anchor-bottom-center",
-            "popover-bottom-right": "popover-top-right",
-        },
-        "top-and-left": {
-            "popover-top-left": "popover-bottom-right",
-        },
-        "top-and-right": {
-            "popover-top-right": "popover-bottom-left",
-        },
-        "bottom-and-left": {
-            "popover-bottom-left": "popover-top-right",
-        },
-        "bottom-and-right": {
-            "popover-bottom-right": "popover-top-left",
-        },
-    };
-    Popover.flipMargin = 0;
-    Popover.map = {};
-    Popover.contentObserver = null;
-    Popover.mainContainerClass = null;
-    // constructor
-    (() => {
-        window.addEventListener("scroll", () => {
-            Popover.placePopoverByClassSelector("popover-fixed");
-            Popover.placePopoverByClassSelector("popover-overflow-flip-always");
-        });
-        window.addEventListener("resize", () => {
-            Popover.placePopoverByClassSelector();
-        });
-    })();
-
     // eslint-disable-next-line @typescript-eslint/triple-slash-reference
     ///<reference path="../../node_modules/monaco-editor/monaco.d.ts" />
     var __awaiter$1 = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -612,6 +117,26 @@ var devtoys = (function (exports) {
                 };
             }
             return editor.getValue(options);
+        }
+        static cut(id) {
+            const editorHolder = this.getEditorHolder(id);
+            editorHolder.editor.trigger('source', 'editor.action.clipboardCutAction', null);
+        }
+        static copy(id) {
+            const editorHolder = this.getEditorHolder(id);
+            editorHolder.editor.trigger('source', 'editor.action.clipboardCopyAction', null);
+        }
+        static paste(id) {
+            const editorHolder = this.getEditorHolder(id);
+            editorHolder.editor.trigger('source', 'editor.action.clipboardPasteAction', null);
+        }
+        static selectAll(id) {
+            const editorHolder = this.getEditorHolder(id);
+            if (!editorHolder.isDiffEditor) {
+                const textModel = editorHolder.editor.getModel();
+                const range = textModel.getFullModelRange();
+                editorHolder.editor.setSelection(range);
+            }
         }
         static colorize(text, languageId, options) {
             return __awaiter$1(this, void 0, void 0, function* () {
@@ -1319,6 +844,594 @@ var devtoys = (function (exports) {
             model.dispose();
         }
     };
+
+    class DOM {
+        static setFocus(element) {
+            element.focus();
+            if (document.activeElement != element) {
+                // We failed to give focus to the given element. Let's find the first child element that can
+                // accept the focus and let's try to give it.
+                const focusableChildrenElements = DOM.getFocusableElements(element);
+                if (focusableChildrenElements.length > 0) {
+                    focusableChildrenElements[0].focus();
+                    return document.activeElement == element;
+                }
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        static getFocusableElements(element) {
+            return element.querySelectorAll("a[href]:not([tabindex='-1'])," +
+                "area[href]:not([tabindex='-1'])," +
+                "button:not([disabled]):not([tabindex='-1'])," +
+                "input:not([disabled]):not([tabindex='-1']):not([type='hidden'])," +
+                "select:not([disabled]):not([tabindex='-1'])," +
+                "textarea:not([disabled]):not([tabindex='-1'])," +
+                "iframe:not([tabindex='-1'])," +
+                "details:not([tabindex='-1'])," +
+                "[tabindex]:not([tabindex='-1'])," +
+                "[contentEditable=true]:not([tabindex='-1']");
+        }
+        static cutFromCurrentFocusedElement() {
+            // Get the currently focused element
+            const focusedElement = document.activeElement;
+            // Check if the focused element is an input or textarea
+            if (focusedElement && (focusedElement.tagName.toLowerCase() === 'input')) {
+                // Cast the element to HTMLInputElement
+                const inputElement = focusedElement;
+                // Get the current selection
+                const startPos = inputElement.selectionStart;
+                const endPos = inputElement.selectionEnd;
+                // Copy the selected text to the clipboard
+                const selectedText = inputElement.value.substring(startPos, endPos);
+                navigator.clipboard.writeText(selectedText);
+                // Remove the selected text from the input element
+                inputElement.value = inputElement.value.substring(0, startPos) + inputElement.value.substring(endPos);
+                // Move the caret to the start of the removed text
+                inputElement.selectionStart = inputElement.selectionEnd = startPos;
+            }
+            else if (focusedElement.tagName.toLowerCase() == 'textarea') {
+                const monacoEditorId = DOM.getIdOfMonacoInstanceFromTextarea(focusedElement);
+                MonacoEditor.cut(monacoEditorId);
+            }
+        }
+        static copyFromCurrentFocusedElement() {
+            // Get the currently focused element
+            const focusedElement = document.activeElement;
+            // Check if the focused element is an input or textarea
+            if (focusedElement && (focusedElement.tagName.toLowerCase() === 'input')) {
+                // Cast the element to HTMLInputElement
+                const inputElement = focusedElement;
+                // Get the current selection
+                const startPos = inputElement.selectionStart;
+                const endPos = inputElement.selectionEnd;
+                // Copy the selected text to the clipboard
+                const selectedText = inputElement.value.substring(startPos, endPos);
+                navigator.clipboard.writeText(selectedText);
+            }
+            else if (focusedElement.tagName.toLowerCase() == 'textarea') {
+                const monacoEditorId = DOM.getIdOfMonacoInstanceFromTextarea(focusedElement);
+                MonacoEditor.copy(monacoEditorId);
+            }
+        }
+        static pasteInCurrentFocusedElement(clipboardData) {
+            // Get the currently focused element
+            const focusedElement = document.activeElement;
+            // Check if the focused element is an input or textarea
+            if (focusedElement && (focusedElement.tagName.toLowerCase() === 'input')) {
+                // Cast the element to HTMLInputElement
+                const inputElement = focusedElement;
+                // Get the current caret position
+                const startPos = inputElement.selectionStart;
+                const endPos = inputElement.selectionEnd;
+                // Insert the clipboard data at the caret position
+                inputElement.value = inputElement.value.substring(0, startPos) + clipboardData + inputElement.value.substring(endPos);
+                // Move the caret to the end of the inserted data
+                inputElement.selectionStart = inputElement.selectionEnd = startPos + clipboardData.length;
+            }
+            else if (focusedElement.tagName.toLowerCase() == 'textarea') {
+                const monacoEditorId = DOM.getIdOfMonacoInstanceFromTextarea(focusedElement);
+                MonacoEditor.paste(monacoEditorId);
+            }
+        }
+        static selectAllInCurrentFocusedElement() {
+            // Get the currently focused element
+            const focusedElement = document.activeElement;
+            // Check if the focused element is an input or textarea
+            if (focusedElement && (focusedElement.tagName.toLowerCase() === 'input')) {
+                // Cast the element to HTMLInputElement
+                const inputElement = focusedElement;
+                // Select all text in the input element
+                inputElement.select();
+            }
+            else if (focusedElement.tagName.toLowerCase() == 'textarea') {
+                const monacoEditorId = DOM.getIdOfMonacoInstanceFromTextarea(focusedElement);
+                MonacoEditor.selectAll(monacoEditorId);
+            }
+        }
+        static addFontToDocument(fontDefinition) {
+            const css = document.createElement("style");
+            css.innerHTML = fontDefinition;
+            document.head.appendChild(css);
+        }
+        static registerDocumentEventService(dotNetObjRef) {
+            document.documentEventService = dotNetObjRef;
+        }
+        static subscribeDocumentEvent(eventName) {
+            document.addEventListener(eventName, DOM.documentEventListener);
+        }
+        static unsubscribeDocumentEvent(eventName) {
+            document.removeEventListener(eventName, DOM.documentEventListener);
+        }
+        static getIdOfMonacoInstanceFromTextarea(textarea) {
+            // Start with the parent of the textarea
+            let parent = textarea.parentElement;
+            // Traverse up the DOM tree
+            while (parent) {
+                // Check if the parent has the class "monaco-editor-standalone-instance"
+                if (parent.classList.contains('monaco-editor-standalone-instance')) {
+                    // Return the id of the parent
+                    return parent.id;
+                }
+                // Move up to the next parent
+                parent = parent.parentElement;
+            }
+            // If no parent with the class "monaco-editor-standalone-instance" is found, return null
+            return null;
+        }
+        static documentEventListener(e) {
+            const eventJson = DOM.stringifyEvent(e);
+            const dotNetObjRef = document.documentEventService;
+            const eventName = e.type;
+            dotNetObjRef.invokeMethodAsync("EventCallback", eventName, eventJson);
+        }
+        static stringifyEvent(e) {
+            const obj = {};
+            for (const k in e) {
+                obj[k] = e[k];
+            }
+            return JSON.stringify(obj, (k, v) => {
+                if (v instanceof Node)
+                    return "Node";
+                if (v instanceof Window)
+                    return "Window";
+                return v;
+            }, " ");
+        }
+    }
+
+    class PopoverInfo {
+    }
+    class PopoverPosition {
+    }
+    class Popover {
+        static callback(id, mutationsList, observer) {
+            for (const mutation of mutationsList) {
+                if (mutation.type === "attributes") {
+                    const target = mutation.target;
+                    if (mutation.attributeName == "class") {
+                        if (target.classList.contains("popover-overflow-flip-onopen") && target.classList.contains("popover-open") == false) {
+                            target.popoverFliped = null;
+                            target.removeAttribute("data-popover-flip");
+                        }
+                        Popover.placePopoverByNode(target);
+                    }
+                    else if (mutation.attributeName == "data-ticks") {
+                        const parent = target.parentElement;
+                        const tickValues = [];
+                        for (let i = 0; i < parent.children.length; i++) {
+                            const childNode = parent.children[i];
+                            const tickValue = parseInt(childNode.getAttribute("data-ticks"));
+                            if (tickValue == 0) {
+                                continue;
+                            }
+                            if (tickValues.indexOf(tickValue) >= 0) {
+                                continue;
+                            }
+                            tickValues.push(tickValue);
+                        }
+                        if (tickValues.length == 0) {
+                            continue;
+                        }
+                        const sortedTickValues = tickValues.sort((x, y) => x - y);
+                        for (let i = 0; i < parent.children.length; i++) {
+                            const childNode = parent.children[i];
+                            const tickValue = parseInt(childNode.getAttribute("data-ticks"));
+                            if (tickValue == 0) {
+                                continue;
+                            }
+                            if (childNode.skipZIndex == true) {
+                                continue;
+                            }
+                            childNode.style["z-index"] = "calc(var(--popover-zindex) + " + (sortedTickValues.indexOf(tickValue) + 3).toString() + ")";
+                        }
+                    }
+                }
+            }
+        }
+        static initialize(containerClass, flipMargin) {
+            const mainContent = document.getElementsByClassName(containerClass);
+            if (mainContent.length == 0) {
+                return;
+            }
+            if (flipMargin) {
+                Popover.flipMargin = flipMargin;
+            }
+            Popover.mainContainerClass = containerClass;
+            const mainContentFirstItem = mainContent[0];
+            if (!mainContentFirstItem.PopoverMark) {
+                mainContentFirstItem.PopoverMark = "popovered";
+                if (Popover.contentObserver != null) {
+                    Popover.contentObserver.disconnect();
+                    Popover.contentObserver = null;
+                }
+                Popover.contentObserver = new ResizeObserver(entries => {
+                    Popover.placePopoverByClassSelector();
+                });
+                Popover.contentObserver.observe(mainContent[0]);
+            }
+        }
+        static connect(id) {
+            Popover.initialize(Popover.mainContainerClass);
+            const popoverNode = document.getElementById("popover-" + id);
+            const popoverContentNode = document.getElementById("popovercontent-" + id);
+            if (popoverNode && popoverNode.parentNode && popoverContentNode) {
+                Popover.placePopover(popoverNode);
+                const config = { attributeFilter: ["class", "data-ticks"] };
+                const mutationObserver = new MutationObserver(this.callback.bind(this, id));
+                mutationObserver.observe(popoverContentNode, config);
+                const resizeObserver = new ResizeObserver(entries => {
+                    for (const entry of entries) {
+                        const target = entry.target;
+                        for (let i = 0; i < target.childNodes.length; i++) {
+                            const childNode = target.childNodes[i];
+                            if (childNode.id && childNode.id.startsWith("popover-")) {
+                                Popover.placePopover(childNode);
+                            }
+                        }
+                    }
+                });
+                resizeObserver.observe(popoverNode.parentNode);
+                const contentNodeObserver = new ResizeObserver(entries => {
+                    for (const entry of entries) {
+                        const target = entry.target;
+                        Popover.placePopoverByNode(target);
+                    }
+                });
+                contentNodeObserver.observe(popoverContentNode);
+                const popoverInfo = new PopoverInfo();
+                popoverInfo.mutationObserver = mutationObserver;
+                popoverInfo.resizeObserver = resizeObserver;
+                popoverInfo.contentNodeObserver = contentNodeObserver;
+                Popover.map[id] = popoverInfo;
+            }
+        }
+        static disconnect(id) {
+            if (Popover.map[id]) {
+                const popoverInfo = Popover.map[id];
+                popoverInfo.mutationObserver.disconnect();
+                popoverInfo.resizeObserver.disconnect();
+                popoverInfo.contentNodeObserver.disconnect();
+                delete Popover.map[id];
+            }
+        }
+        static dispose() {
+            for (const i in Popover.map) {
+                Popover.disconnect(i);
+            }
+            if (Popover.contentObserver != null) {
+                Popover.contentObserver.disconnect();
+                Popover.contentObserver = null;
+            }
+        }
+        static getAllObservedContainers() {
+            const result = [];
+            for (const i in this.map) {
+                result.push(i);
+            }
+            return result;
+        }
+        static calculatePopoverPosition(classList, boundingRect, selfRect) {
+            let top = 0;
+            let left = 0;
+            if (classList.indexOf("popover-anchor-top-left") >= 0) {
+                left = boundingRect.left;
+                top = boundingRect.top;
+            }
+            else if (classList.indexOf("popover-anchor-top-center") >= 0) {
+                left = boundingRect.left + boundingRect.width / 2;
+                top = boundingRect.top;
+            }
+            else if (classList.indexOf("popover-anchor-top-right") >= 0) {
+                left = boundingRect.left + boundingRect.width;
+                top = boundingRect.top;
+            }
+            else if (classList.indexOf("popover-anchor-center-left") >= 0) {
+                left = boundingRect.left;
+                top = boundingRect.top + boundingRect.height / 2;
+            }
+            else if (classList.indexOf("popover-anchor-center-center") >= 0) {
+                left = boundingRect.left + boundingRect.width / 2;
+                top = boundingRect.top + boundingRect.height / 2;
+            }
+            else if (classList.indexOf("popover-anchor-center-right") >= 0) {
+                left = boundingRect.left + boundingRect.width;
+                top = boundingRect.top + boundingRect.height / 2;
+            }
+            else if (classList.indexOf("popover-anchor-bottom-left") >= 0) {
+                left = boundingRect.left;
+                top = boundingRect.top + boundingRect.height;
+            }
+            else if (classList.indexOf("popover-anchor-bottom-center") >= 0) {
+                left = boundingRect.left + boundingRect.width / 2;
+                top = boundingRect.top + boundingRect.height;
+            }
+            else if (classList.indexOf("popover-anchor-bottom-right") >= 0) {
+                left = boundingRect.left + boundingRect.width;
+                top = boundingRect.top + boundingRect.height;
+            }
+            let offsetX = 0;
+            let offsetY = 0;
+            if (classList.indexOf("popover-top-left") >= 0) {
+                offsetX = 0;
+                offsetY = 0;
+            }
+            else if (classList.indexOf("popover-top-center") >= 0) {
+                offsetX = -selfRect.width / 2;
+                offsetY = 0;
+            }
+            else if (classList.indexOf("popover-top-right") >= 0) {
+                offsetX = -selfRect.width;
+                offsetY = 0;
+            }
+            else if (classList.indexOf("popover-center-left") >= 0) {
+                offsetX = 0;
+                offsetY = -selfRect.height / 2;
+            }
+            else if (classList.indexOf("popover-center-center") >= 0) {
+                offsetX = -selfRect.width / 2;
+                offsetY = -selfRect.height / 2;
+            }
+            else if (classList.indexOf("popover-center-right") >= 0) {
+                offsetX = -selfRect.width;
+                offsetY = -selfRect.height / 2;
+            }
+            else if (classList.indexOf("popover-bottom-left") >= 0) {
+                offsetX = 0;
+                offsetY = -selfRect.height;
+            }
+            else if (classList.indexOf("popover-bottom-center") >= 0) {
+                offsetX = -selfRect.width / 2;
+                offsetY = -selfRect.height;
+            }
+            else if (classList.indexOf("popover-bottom-right") >= 0) {
+                offsetX = -selfRect.width;
+                offsetY = -selfRect.height;
+            }
+            const result = new PopoverPosition();
+            result.top = top;
+            result.left = left;
+            result.offsetX = offsetX;
+            result.offsetY = offsetY;
+            return result;
+        }
+        static getPositionForFlippedPopver(inputClassListArray, selector, boundingRect, selfRect) {
+            const classList = [];
+            for (let i = 0; i < inputClassListArray.length; i++) {
+                const item = inputClassListArray[i];
+                const replacments = Popover.flipClassReplacements[selector][item];
+                if (replacments) {
+                    classList.push(replacments);
+                }
+                else {
+                    classList.push(item);
+                }
+            }
+            return Popover.calculatePopoverPosition(classList, boundingRect, selfRect);
+        }
+        static placePopover(popoverNode, classSelector) {
+            if (popoverNode && popoverNode.parentNode) {
+                const id = popoverNode.id.substring(8);
+                const popoverContentNode = document.getElementById("popovercontent-" + id);
+                if (!popoverContentNode) {
+                    return;
+                }
+                if (popoverContentNode.classList.contains("popover-open") == false) {
+                    return;
+                }
+                if (classSelector) {
+                    if (popoverContentNode.classList.contains(classSelector) == false) {
+                        return;
+                    }
+                }
+                const boundingRect = popoverNode.parentNode.getBoundingClientRect();
+                if (popoverContentNode.classList.contains("popover-relative-width")) {
+                    popoverContentNode.style["max-width"] = (boundingRect.width) + "px";
+                }
+                const selfRect = popoverContentNode.getBoundingClientRect();
+                const classList = popoverContentNode.classList;
+                const classListArray = Array.from(popoverContentNode.classList);
+                const position = Popover.calculatePopoverPosition(classListArray, boundingRect, selfRect);
+                let left = position.left;
+                let top = position.top;
+                let offsetX = position.offsetX;
+                let offsetY = position.offsetY;
+                if (classList.contains("popover-overflow-flip-onopen") || classList.contains("popover-overflow-flip-always")) {
+                    const graceMargin = Popover.flipMargin;
+                    const deltaToLeft = left + offsetX;
+                    const deltaToRight = window.innerWidth - left - selfRect.width;
+                    const deltaTop = top - selfRect.height;
+                    const spaceToTop = top;
+                    const deltaBottom = window.innerHeight - top - selfRect.height;
+                    const popoverContentNodeAny = popoverContentNode;
+                    let selector = popoverContentNodeAny.popoverFliped;
+                    if (!selector) {
+                        if (classList.contains("popover-top-left")) {
+                            if (deltaBottom < graceMargin && deltaToRight < graceMargin && spaceToTop >= selfRect.height && deltaToLeft >= selfRect.width) {
+                                selector = "top-and-left";
+                            }
+                            else if (deltaBottom < graceMargin && spaceToTop >= selfRect.height) {
+                                selector = "top";
+                            }
+                            else if (deltaToRight < graceMargin && deltaToLeft >= selfRect.width) {
+                                selector = "left";
+                            }
+                        }
+                        else if (classList.contains("popover-top-center")) {
+                            if (deltaBottom < graceMargin && spaceToTop >= selfRect.height) {
+                                selector = "top";
+                            }
+                        }
+                        else if (classList.contains("popover-top-right")) {
+                            if (deltaBottom < graceMargin && deltaToLeft < graceMargin && spaceToTop >= selfRect.height && deltaToRight >= selfRect.width) {
+                                selector = "top-and-right";
+                            }
+                            else if (deltaBottom < graceMargin && spaceToTop >= selfRect.height) {
+                                selector = "top";
+                            }
+                            else if (deltaToLeft < graceMargin && deltaToRight >= selfRect.width) {
+                                selector = "right";
+                            }
+                        }
+                        else if (classList.contains("popover-center-left")) {
+                            if (deltaToRight < graceMargin && deltaToLeft >= selfRect.width) {
+                                selector = "left";
+                            }
+                        }
+                        else if (classList.contains("popover-center-right")) {
+                            if (deltaToLeft < graceMargin && deltaToRight >= selfRect.width) {
+                                selector = "right";
+                            }
+                        }
+                        else if (classList.contains("popover-bottom-left")) {
+                            if (deltaTop < graceMargin && deltaToRight < graceMargin && deltaBottom >= 0 && deltaToLeft >= selfRect.width) {
+                                selector = "bottom-and-left";
+                            }
+                            else if (deltaTop < graceMargin && deltaBottom >= 0) {
+                                selector = "bottom";
+                            }
+                            else if (deltaToRight < graceMargin && deltaToLeft >= selfRect.width) {
+                                selector = "left";
+                            }
+                        }
+                        else if (classList.contains("popover-bottom-center")) {
+                            if (deltaTop < graceMargin && deltaBottom >= 0) {
+                                selector = "bottom";
+                            }
+                        }
+                        else if (classList.contains("popover-bottom-right")) {
+                            if (deltaTop < graceMargin && deltaToLeft < graceMargin && deltaBottom >= 0 && deltaToRight >= selfRect.width) {
+                                selector = "bottom-and-right";
+                            }
+                            else if (deltaTop < graceMargin && deltaBottom >= 0) {
+                                selector = "bottom";
+                            }
+                            else if (deltaToLeft < graceMargin && deltaToRight >= selfRect.width) {
+                                selector = "right";
+                            }
+                        }
+                    }
+                    if (selector && selector != "none") {
+                        const newPosition = Popover.getPositionForFlippedPopver(classListArray, selector, boundingRect, selfRect);
+                        left = newPosition.left;
+                        top = newPosition.top;
+                        offsetX = newPosition.offsetX;
+                        offsetY = newPosition.offsetY;
+                        popoverContentNode.setAttribute("data-popover-flip", "flipped");
+                    }
+                    else {
+                        popoverContentNode.removeAttribute("data-popover-flip");
+                    }
+                    if (classList.contains("popover-overflow-flip-onopen")) {
+                        const popoverContentNodeAny = popoverContentNode;
+                        if (!popoverContentNodeAny.popoverFliped) {
+                            popoverContentNodeAny.popoverFliped = selector || "none";
+                        }
+                    }
+                }
+                if (popoverContentNode.classList.contains("popover-fixed")) ;
+                else if (window.getComputedStyle(popoverNode).position == "fixed") {
+                    popoverContentNode.style["position"] = "fixed";
+                }
+                else {
+                    offsetX += window.scrollX;
+                    offsetY += window.scrollY;
+                }
+                popoverContentNode.style["left"] = (left + offsetX) + "px";
+                popoverContentNode.style["top"] = (top + offsetY) + "px";
+                if (window.getComputedStyle(popoverNode).getPropertyValue("z-index") != "auto") {
+                    popoverContentNode.style["z-index"] = window.getComputedStyle(popoverNode).getPropertyValue("z-index");
+                    popoverContentNode.skipZIndex = true;
+                }
+            }
+        }
+        static placePopoverByClassSelector(classSelector = null) {
+            const items = Popover.getAllObservedContainers();
+            for (let i = 0; i < items.length; i++) {
+                const popoverNode = document.getElementById("popover-" + items[i]);
+                Popover.placePopover(popoverNode, classSelector);
+            }
+        }
+        static placePopoverByNode(target) {
+            const id = target.id.substring(15);
+            const popoverNode = document.getElementById("popover-" + id);
+            Popover.placePopover(popoverNode);
+        }
+    }
+    Popover.flipClassReplacements = {
+        "top": {
+            "popover-top-left": "popover-bottom-left",
+            "popover-top-center": "popover-bottom-center",
+            "popover-anchor-bottom-center": "popover-anchor-top-center",
+            "popover-top-right": "popover-bottom-right",
+        },
+        "left": {
+            "popover-top-left": "popover-top-right",
+            "popover-center-left": "popover-center-right",
+            "popover-anchor-center-right": "popover-anchor-center-left",
+            "popover-bottom-left": "popover-bottom-right",
+        },
+        "right": {
+            "popover-top-right": "popover-top-left",
+            "popover-center-right": "popover-center-left",
+            "popover-anchor-center-left": "popover-anchor-center-right",
+            "popover-bottom-right": "popover-bottom-left",
+        },
+        "bottom": {
+            "popover-bottom-left": "popover-top-left",
+            "popover-bottom-center": "popover-top-center",
+            "popover-anchor-top-center": "popover-anchor-bottom-center",
+            "popover-bottom-right": "popover-top-right",
+        },
+        "top-and-left": {
+            "popover-top-left": "popover-bottom-right",
+        },
+        "top-and-right": {
+            "popover-top-right": "popover-bottom-left",
+        },
+        "bottom-and-left": {
+            "popover-bottom-left": "popover-top-right",
+        },
+        "bottom-and-right": {
+            "popover-bottom-right": "popover-top-left",
+        },
+    };
+    Popover.flipMargin = 0;
+    Popover.map = {};
+    Popover.contentObserver = null;
+    Popover.mainContainerClass = null;
+    // constructor
+    (() => {
+        window.addEventListener("scroll", () => {
+            Popover.placePopoverByClassSelector("popover-fixed");
+            Popover.placePopoverByClassSelector("popover-overflow-flip-always");
+        });
+        window.addEventListener("resize", () => {
+            Popover.placePopoverByClassSelector();
+        });
+    })();
 
     // eslint-disable-next-line @typescript-eslint/triple-slash-reference
     ///<reference path="../../node_modules/monaco-editor/monaco.d.ts" />

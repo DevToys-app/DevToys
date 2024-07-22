@@ -208,6 +208,14 @@ internal sealed partial class BlazorWkWebView : IDisposable
         // Register a "app" url scheme to handle Blazor resources
         config.SetUrlSchemeHandler(new AppSchemeHandler(this), urlScheme: Scheme);
 
+        // Enable clipboard access to JavaScript
+        config.Preferences.SetValueForKey(
+            NSObject.FromObject(true),
+            new NSString("javaScriptCanAccessClipboard"));
+        config.Preferences.SetValueForKey(
+            NSObject.FromObject(true),
+            new NSString("DOMPasteAllowed"));
+
         // Legacy Developer Extras setting.
         config.Preferences.SetValueForKey(
             NSObject.FromObject(enableDeveloperTools),

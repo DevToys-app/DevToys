@@ -83,6 +83,21 @@
     <BundleResource Include="Assets.xcassets\AppIcon.appiconset\Contents.json"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Strings\AppMenuBar\AppMenuBar.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppMenuBar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Strings\AppMenuBar\AppMenuBar.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppMenuBar.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
   <Target Name="_SkipCodesignVerify" BeforeTargets="_CodesignVerify" AfterTargets="_CodesignAppBundle">
     <PropertyGroup>
       <_RequireCodeSigning>false</_RequireCodeSigning>
