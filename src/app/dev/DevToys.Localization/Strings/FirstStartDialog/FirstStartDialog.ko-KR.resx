@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys는 개발자를 위한 무료 오픈소스 도구 모음으로 가득한 툴박스입니다. 개발 속도를 늦추는 귀찮은 일상 작업을 처리하기 위해 맞춤 제작된 스위스 군용 칼이라고 생각하세요.
-알아두어야 할 사항은 다음과 같습니다:</value>
+    <value>DevToys는 개발자를 위한 무료 오픈소스 도구 모음으로 가득한 도구 상자입니다. 개발 속도를 늦추는 성가신 일상 작업을 처리하기 위해 맞춤 제작된 스위스 군용 칼이라고 생각하세요.
+알아야 할 사항은 다음과 같습니다:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
     <value>DevToy 시작 시 업데이트 확인</value>
@@ -134,15 +134,15 @@
     <value>오프라인 우선 원칙</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>DevToys의 힘은 툴박스에 더 많은 확장 프로그램을 설치함에 따라 증가합니다. 우리는 앱의 핵심기능의 무결성은 보장하지만, 타사 확장 프로그램이 사용자의 컴퓨터와 데이터에 대해 수행하는 작업을 제어할 수 없다는 점을 알아두셔야만 합니다. 그러므로 확장 프로그램을 설치할 때 주의를 기울이시기 바랍니다. DevToys 또는 확장 프로그램의 네트워크 활동을 모니터링하기 위해 Wireshark, Little Snitch 또는 Fiddler와 같은 도구를 사용하여 수신 및 발신 연결을 추적할 수 있습니다.</value>
+    <value>DevToys의 힘은 확장 프로그램과 함께 성장하여 도구 상자에 더 많은 기능을 추가합니다. 핵심 앱의 무결성은 보장하지만, 타사 확장 프로그램이 사용자의 컴퓨터와 데이터에 대해 수행하는 작업을 제어할 수 없다는 점을 알아두는 것이 중요합니다. 따라서 확장 프로그램을 설치할 때 주의를 기울이시기 바랍니다. DevToys 또는 확장 프로그램의 네트워크 활동을 모니터링하기 위해 Wireshark, Little Snitch 또는 Fiddler와 같은 도구를 사용하여 수신 및 발신 연결을 추적할 수 있습니다.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>신뢰하되 검증하세요</value>
+    <value>신뢰하지만 검증</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
     <value>이를 이해하고 동의합니다.</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>DevToys에 오신것을 환영합니다!</value>
+    <value>DevToys에 오신 것을 환영합니다!</value>
   </data>
 </root>
