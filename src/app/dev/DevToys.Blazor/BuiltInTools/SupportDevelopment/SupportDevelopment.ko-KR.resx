@@ -121,9 +121,9 @@
     <value>DevToys 개발 지원</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>DevToys 개선에 도움을 줄 수 있는 방법 알아보기</value>
+    <value>DevToy 개선에 도움이 되는 방법 보기</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>개발 지원하기</value>
+    <value>개발 지원</value>
   </data>
 </root>
