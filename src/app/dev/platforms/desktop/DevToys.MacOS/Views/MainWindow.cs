@@ -24,6 +24,7 @@ internal sealed class MainWindow : NSWindow
     private readonly TitleBarInfoProvider _titleBarInfoProvider;
     private readonly ISettingsProvider _settingsProvider;
     private readonly CommandLineLauncherService _commandLineLauncherService;
+    private readonly IClipboard _clipboard;
 
     private BlazorWkWebView? _webView;
     private bool _isInitialized;
@@ -42,6 +43,7 @@ internal sealed class MainWindow : NSWindow
         _settingsProvider = AppDelegate.MefComposer.Provider.Import<ISettingsProvider>();
         _commandLineLauncherService = AppDelegate.MefComposer.Provider.Import<CommandLineLauncherService>();
         _titleBarInfoProvider = AppDelegate.MefComposer.Provider.Import<TitleBarInfoProvider>();
+        _clipboard = AppDelegate.MefComposer.Provider.Import<IClipboard>();
         _titleBarInfoProvider.PropertyChanged += TitleBarInfoProvider_PropertyChanged;
 
         Title = _titleBarInfoProvider.TitleWithToolName ?? string.Empty;
@@ -77,6 +79,54 @@ internal sealed class MainWindow : NSWindow
         // Make this window the main window of the app.
         MakeMainWindow();
         OrderFront(null);
+    }
+
+    internal async Task CutInWebViewAsync()
+    {
+        if (_webView is not null)
+        {
+            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            {
+                await _webView.View.EvaluateJavaScriptAsync("devtoys.DOM.cutFromCurrentFocusedElement()");
+            });
+        }
+    }
+
+    internal async Task CopyInWebViewAsync()
+    {
+        if (_webView is not null)
+        {
+            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            {
+                await _webView.View.EvaluateJavaScriptAsync("devtoys.DOM.copyFromCurrentFocusedElement()");
+            });
+        }
+    }
+
+    internal async Task PasteInWebViewAsync()
+    {
+        string? clipboardData = await _clipboard.GetClipboardTextAsync();
+        if (!string.IsNullOrEmpty(clipboardData) && _webView is not null)
+        {
+            string encodedClipboardData = System.Web.HttpUtility.JavaScriptStringEncode(clipboardData);
+            string script = $"devtoys.DOM.pasteInCurrentFocusedElement('{encodedClipboardData}')";
+
+            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            {
+                await _webView.View.EvaluateJavaScriptAsync(script);
+            });
+        }
+    }
+
+    internal async Task SelectAllInWebViewAsync()
+    {
+        if (_webView is not null)
+        {
+            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            {
+                await _webView.View.EvaluateJavaScriptAsync("devtoys.DOM.selectAllInCurrentFocusedElement()");
+            });
+        }
     }
 
     private void InitializeView()

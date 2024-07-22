@@ -117,6 +117,26 @@ class MonacoEditor {
         }
         return editor.getValue(options);
     }
+    static cut(id) {
+        const editorHolder = this.getEditorHolder(id);
+        editorHolder.editor.trigger('source', 'editor.action.clipboardCutAction', null);
+    }
+    static copy(id) {
+        const editorHolder = this.getEditorHolder(id);
+        editorHolder.editor.trigger('source', 'editor.action.clipboardCopyAction', null);
+    }
+    static paste(id) {
+        const editorHolder = this.getEditorHolder(id);
+        editorHolder.editor.trigger('source', 'editor.action.clipboardPasteAction', null);
+    }
+    static selectAll(id) {
+        const editorHolder = this.getEditorHolder(id);
+        if (!editorHolder.isDiffEditor) {
+            const textModel = editorHolder.editor.getModel();
+            const range = textModel.getFullModelRange();
+            editorHolder.editor.setSelection(range);
+        }
+    }
     static colorize(text, languageId, options) {
         return __awaiter(this, void 0, void 0, function* () {
             const promise = monaco.editor.colorize(text, languageId, options);

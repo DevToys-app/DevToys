@@ -152,6 +152,30 @@ class MonacoEditor {
         return editor.getValue(options);
     }
 
+    public static cut(id: string): void {
+        const editorHolder = this.getEditorHolder(id);
+        editorHolder.editor.trigger('source','editor.action.clipboardCutAction', null);
+    }
+
+    public static copy(id: string): void {
+        const editorHolder = this.getEditorHolder(id);
+        editorHolder.editor.trigger('source','editor.action.clipboardCopyAction', null);
+    }
+
+    public static paste(id: string): void {
+        const editorHolder = this.getEditorHolder(id);
+        editorHolder.editor.trigger('source','editor.action.clipboardPasteAction', null);
+    }
+
+    public static selectAll(id: string): void {
+        const editorHolder = this.getEditorHolder(id);
+        if (!editorHolder.isDiffEditor) {
+            const textModel = editorHolder.editor.getModel() as monaco.editor.ITextModel;
+            const range = textModel.getFullModelRange()
+            editorHolder.editor.setSelection(range);
+        }
+    }
+    
     public static async colorize(text: string, languageId: string, options: monaco.editor.IColorizerOptions): Promise<string> {
         const promise = monaco.editor.colorize(text, languageId, options);
         return await promise;
