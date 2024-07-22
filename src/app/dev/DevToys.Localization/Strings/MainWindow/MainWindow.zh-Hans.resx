@@ -159,6 +159,9 @@
   <data name="UpdateAvailable" xml:space="preserve">
     <value>有可用更新</value>
   </data>
+  <data name="UpdateAvailableForExtension" xml:space="preserve">
+    <value>有可用的扩展更新</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>

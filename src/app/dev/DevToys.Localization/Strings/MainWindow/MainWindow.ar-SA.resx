@@ -157,7 +157,10 @@
     <value>حوِّل الملاحة</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
-    <value>Update available</value>
+    <value>التحديث متوفر</value>
+  </data>
+  <data name="UpdateAvailableForExtension" xml:space="preserve">
+    <value>تحديثات الامتدادات متوفرة</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

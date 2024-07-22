@@ -159,6 +159,9 @@
   <data name="UpdateAvailable" xml:space="preserve">
     <value>Dostępna Aktualizacja</value>
   </data>
+  <data name="UpdateAvailableForExtension" xml:space="preserve">
+    <value>Aktualizacja dla rozszerzenia (-ń) jest dostępna</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>
