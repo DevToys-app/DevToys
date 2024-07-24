@@ -128,21 +128,21 @@
     <value>გაგრძელება</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys მუშაობს ქსელ-გარეშე მიდგომით. ჩვენ ვაგროვებთ მინიმალურ ანონიმიზირებულ მონაცემებს აგილობრივად მხარდაჭერის მიზნებისთვის. ჩვენ არ ვაგზავნით თქვენ ჟურნალებს ინტერნეტით. თუ შეგხვდებათ პრობლემა და გადაწყვეტთ იგი დაასმინოთ, შეიძLება გთხოვოთ გავიზიაროთ ჟურნალები. თქვენი თანხმობით, ჩვენ დავუკავშირდებით ინტერნეტს განახლებების შესამოწმებლად, რათა დავრწმუნდეთ, რომ გაქვთ წვდომა ბოლო ფუნქციებზე და უსაფრთხოების გაუმჯობესებაზე.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>ქსელ-გარეშე ფილოსოფია</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>DevToys სიძლიერე იზრდება გაფართოებებით, რაც გიმატებთ მეტ ძალას თქვენს ხელსაწყოთა კოლოფში. იმის მიუხედავად, რომ ჩვენ ვრწმუნდებით მთავარი აპის კოდის სისწორეში, მნიშვნელოვანია, იცოდეთ, რომ ჩვენ არ გვაქვს კონტროლი მესამე მხარეს გაფართოების ქმედებებზე თქვენს კომპიუტერზე და მონაცემებზე. შესაბამისად, გთხოვთ, გამოიყენოთ სიფრთხილე გაფართოებების დაყენებისას. DevToys-ს ან ნებისმიერი გაფართოების ქსლურ აქტივობაზე დასაკვირვებლად, შეგიძლიათ გამოიყენოთ Wireshartk, Little Snitch ან Fiddler შემომავალი და გამავალი კავშირების გასაკონტროლებლად.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>ენდეთ, მაგრამ შეამოწმეთ</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>მესმის და ვეთანხმები</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>კეთილი იყოს თქვენი მობრძანება DevToys-ში!</value>
   </data>
 </root>
