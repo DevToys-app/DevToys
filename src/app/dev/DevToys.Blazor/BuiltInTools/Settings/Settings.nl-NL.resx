@@ -142,10 +142,10 @@
     <value>Automatisch controleren op updates wanneer DevToys start</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>Compacte afstand</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>Verklein de ruimte tussen UI-elementen</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Donker</value>
@@ -179,13 +179,13 @@
     <value>Font</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translate DevToys!</value>
+    <value>Help ons DevToys te vertalen!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>Huidige regel markeren</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Verander de achtergrondkleur van de huidige regel zodat deze beter zichtbaar is</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>Higlight the current line</value>
@@ -195,22 +195,22 @@
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Taal</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>De app moet opnieuw worden opgestart als een andere taal wordt geselecteerd</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Licht</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Regelnummers</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Regelnummers in de teksteditor weergeven</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show line numbers</value>
+    <value>Regelnummers weergeven</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Open logs</value>
@@ -231,7 +231,7 @@
     <value>Show whitespace</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Instellingen</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Smart detection</value>
