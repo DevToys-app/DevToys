@@ -270,15 +270,15 @@
     <value>მესამე პირების ლიცენზიები</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>სისტემური პარამეტრების გამოყენება</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>ვერსია {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>სიტყოს გადატანა</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>სიტყვების გადატანა</value>
   </data>
 </root>
