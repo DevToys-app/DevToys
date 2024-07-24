@@ -124,27 +124,27 @@
     <value>საქაღალდეების გადახედვა</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>გადმოიტანეთ და ჩააგდეთ ნებისმიერი ფაილი</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>გადმოიტანეთ და ჩააგდეთ ნებისმიერი ფაილი</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>გადმოიტანეთ და ჩააგდეთ {0} ფაილი</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>გადმოიტანეთ და ჩააგდეთ ნებისმიერი {0} ფაილი</value>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>მხოლოდ {0} ფაილი შეიძლება იყოს გამოყენებული.</value>
   </data>
   <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
-    <value>{0} files have been selected.</value>
+    <value>{0} ფაილი იქნა არჩეული.</value>
   </data>
   <data name="Or" xml:space="preserve">
-    <value>or</value>
+    <value>ან</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>ჩასმა</value>
   </data>
 </root>
