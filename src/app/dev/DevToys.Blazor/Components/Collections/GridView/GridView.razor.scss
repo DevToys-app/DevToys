@@ -42,6 +42,10 @@
                 border-color: var(--grid-view-item-stroke);
                 border-radius: var(--control-corner-radius);
                 list-style-type: none;
+              
+                .grid-view-item-hover-filter {
+                  cursor: pointer;
+                }
 
                 .grid-view-item-hover-filter:hover {
                     background-color: var(--grid-view-item-background-hover);
