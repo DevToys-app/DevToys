@@ -124,7 +124,7 @@
     <value>Configuració</value>
   </data>
   <data name="Appearance" xml:space="preserve">
-    <value>Apariència</value>
+    <value>Aparença</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>Tema de l'aplicació</value>
@@ -188,7 +188,7 @@
     <value>Modifica el color de fins de la línia actual per fer-la més visible</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Higlight the current line</value>
+    <value>Ressalta la línia actual</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
     <value>{0} pel disseny de la icona de l'aplicació</value>
@@ -213,7 +213,7 @@
     <value>Mostra els números de línia</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Obre els logs</value>
+    <value>Obre el registre de logs</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Substitueix el text en enganxar</value>
