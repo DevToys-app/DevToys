@@ -89,3 +89,14 @@
         opacity: 1;
     }
 }
+
+// Use less animations
+div[data-uselessanimations] {
+    .dialog {
+        animation: none;
+
+        &-overlay {
+            animation: none;
+        }
+    }
+}

@@ -145,3 +145,13 @@ div[data-compactmode] {
         padding: 8px 16px;
     }
 }
+
+// Use less animations
+div[data-uselessanimations] {
+    .hero {
+        &::before {
+            animation: none;
+            -webkit-animation: none;
+        }
+    }
+}

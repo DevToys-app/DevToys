@@ -141,3 +141,14 @@ div[data-compactmode] {
         }
     }
 }
+
+// Use less animations
+div[data-uselessanimations] {
+    .nav-bar-root {
+        nav {
+            &.transition {
+                @include transition( left 0s linear, width 0s linear, max-width 0s linear, box-shadow 0s linear);
+            }
+        }
+    }
+}
