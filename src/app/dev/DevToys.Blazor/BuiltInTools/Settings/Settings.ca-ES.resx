@@ -216,13 +216,13 @@
     <value>Obre els logs</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Substituir text en enganxar</value>
+    <value>Substitueix el text en enganxar</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
     <value>En fer clic al botó Enganxa, esborra el text abans d'enganxar en lloc d'afegir-lo al contingut existent de l'editor de text.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Substituir text en enganxar</value>
+    <value>Substitueix el text en enganxar</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Renderitza espais en blanc</value>
