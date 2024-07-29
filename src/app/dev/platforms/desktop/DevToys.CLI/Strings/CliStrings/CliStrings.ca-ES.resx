@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FileNotFound" xml:space="preserve">
-    <value>The file '{0}' doesn't exist.</value>
+    <value>El fitxer '{0}' no existeix.</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>Ruta de fitxer no vàlida. El fitxer ha de tenir una de les següents extensions: {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>Si us plau, escriu una ruta relativa o absoluta al fitxer a llegir (o prem Enter per cancel·lar):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>Si us plau, escriu una o diverses rutes relatives o absolutes als fitxers a llegir, separats per una coma (o prem Enter per cancel·lar):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>Si us plau, escriu una ruta relativa o absoluta a la carpeta (o prem Enter per cancel·lar):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>Si us plau, escriu una ruta relativa o absoluta al fitxer a escriure (o prem Enter per cancel·lar):</value>
   </data>
 </root>
