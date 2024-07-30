@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FileNotFound" xml:space="preserve">
-    <value>The file '{0}' doesn't exist.</value>
+    <value>ფაილი '{0}' არ არსებობს.</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>არასწორი ფაილისი გზა. ფაილს უნდა ჰქონდეს ერთერთი შემდეგი გაფართოებებიდან: {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>გთხოვთ, შეიყვანოთ შეფარდებითი ან აბსოლუტური ფაილის გზა მის წასაკითხად (ან დააჭირეთ Enter-ს გასაუქმებლად):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>გთხოვთ, შეიყვანოთ ერთი ან ბევრი შეფარდებითი ან აბსოლუტური ფაილის გზა მის/მათ წასაკითხად, დაყოფილი მძიმეების მიერ (ან დააჭირეთ Enter-ს გასაუქმებლად):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>გთხოვთ, შეიყვანოთ შეფარდებითი ან აბსოლუტური საქაღალდის გზა (ან დააჭირეთ Enter-ს გასაუქმებლად):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>გთხოვთ, შეიყვანოთ შეფარდებითი ან აბსოლუტური ფაილის გზა მის ჩასაწერად (ან დააჭირეთ Enter-ს გასაუქმებლად):</value>
   </data>
 </root>

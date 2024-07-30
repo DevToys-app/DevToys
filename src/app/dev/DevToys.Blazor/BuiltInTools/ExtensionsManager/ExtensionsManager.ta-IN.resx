@@ -118,50 +118,50 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>DevToys இல் நீட்டிப்புகளை நிர்வகிக்க</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manage third-party extensions in DevToys</value>
+    <value>DevToys இல் மூன்றாம் தரப்பு நீட்டிப்புகளை செர்கா அல்லாது நிர்வகிக்க</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>'{0}' நீட்டிப்பு ஏற்கனவே நிறுவப்பட்டுள்ளது. ஏற்கனவே நிறுவப்பட்ட நீட்டிப்பைப் புதுப்பிக்க முயற்சிக்கிறீர்கள் என்றால், முதலில் பழைய பதிப்பை நீக்கவும்.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>இந்த நீட்டிப்பை நிறுவ முடியவில்லை</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>இணையதளத்தில் கூடுதல் நீட்டிப்புகளைக் கண்டறிய</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>நீட்டிப்பை நிறுவவும்</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>DevToysக்கான நீட்டிப்பை உருவாக்க</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
     <value>சரி</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>மாற்றங்களைப் பயன்படுத்த அனைத்து DevToys சாளரங்களையும் மூடிவிட்டு, கணினி பயன்பாட்டை மறுதொடக்கம் செய்யவும்.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>மாற்றங்கள் நடைமுறைக்கு வர கணினி மறுதொடக்கம் தேவை</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>நீட்டிப்புகளை நிர்வகிக்க</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>மூன்றாம் தரப்பு நீட்டிப்புகள்(extensions) உங்கல் கருவிகளின் செயல்பாட்டை மாற்றியமைக்கலாம் மற்றும் உங்கள் அனுமதியின்றி உங்கள் கணினியை அணுகலாம். இச்செயல் உங்கள் தகவல்கலை இணையத்தில் வெளிப்படுத்தலாம் அல்லது உங்கள் சாதனத்தில் தேவையற்ற மென்பொருளை நிறுவலாம். ஆதலால் எச்சரிக்கையுடன் செயல்பட்டு, நீங்கள் நம்பும் நீட்டிப்புகளை மட்டும் நிறுவ நாங்கள் பரிந்துரைக்கிறோம். நீட்டிப்புகளால் ஏற்படும் சேதங்கள் அல்லது இழப்புகளுக்கு DevToys ஆசிரியர்கள் பொறுப்பல்ல.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>எனக்கு புரியுது</value>
+    <value>எனக்கு புரிகிறது</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>விதிமுறைகள் மற்றும் நிபந்தனைகள்</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
     <value>எச்சரிக்கை</value>

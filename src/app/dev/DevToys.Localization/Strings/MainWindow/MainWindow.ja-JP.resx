@@ -160,7 +160,7 @@
     <value>アップデートが利用可能です</value>
   </data>
   <data name="UpdateAvailableForExtension" xml:space="preserve">
-    <value>Update for extension(s) available</value>
+    <value>拡張機能の更新</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

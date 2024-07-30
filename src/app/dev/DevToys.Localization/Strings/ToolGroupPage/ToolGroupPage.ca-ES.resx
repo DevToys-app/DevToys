@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NotFindingTool" xml:space="preserve">
-    <value>Not finding what you're looking for?</value>
+    <value>No trobes el que estàs buscant?</value>
   </data>
   <data name="NotFindingToolOpenFeatureRequest" xml:space="preserve">
-    <value>Open a feature request on GitHub</value>
+    <value>Obre una sol·licitud de funcionalitat a GitHub</value>
   </data>
   <data name="NotFindingToolSuggestIdea" xml:space="preserve">
-    <value>Suggest an idea</value>
+    <value>Suggereix una idea</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
-    <value>Open in a new window</value>
+    <value>Obre en una nova finestra</value>
   </data>
   <data name="WelcomeTo" xml:space="preserve">
-    <value>Welcome to</value>
+    <value>Benvingut a</value>
   </data>
 </root>
