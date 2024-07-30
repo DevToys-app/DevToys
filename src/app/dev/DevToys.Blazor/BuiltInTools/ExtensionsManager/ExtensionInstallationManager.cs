@@ -152,7 +152,7 @@ public static class ExtensionInstallationManager
 
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
 
-        string url = string.Format(NuGetOrgVersionUrl, nuspec.GetId());
+        string url = string.Format(NuGetOrgVersionUrl, nuspec.GetId().ToLowerInvariant());
 
         string? response = await webClientService.SafeGetStringAsync(new Uri(url), CancellationToken.None);
         if (response is not null)
@@ -165,11 +165,13 @@ public static class ExtensionInstallationManager
 
                 if (!string.Equals(latestVersion, nuspec.GetVersion().OriginalVersion, StringComparison.OrdinalIgnoreCase))
                 {
+                    logger.LogInformation("An update for {extensionName} is available", nuspec.GetId());
                     return true;
                 }
             }
         }
 
+        logger.LogInformation("Extension {extensionName} is up to date", nuspec.GetId());
         return false;
     }
 
