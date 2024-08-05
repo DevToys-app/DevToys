@@ -133,7 +133,7 @@
     <value>Elije con que tema mostrar la aplicación</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Comportamiento</value>
+    <value>Comportamientos</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
     <value>Buscar actualizaciones</value>
@@ -142,7 +142,7 @@
     <value>Buscar actualizaciones automáticamente al iniciar DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Tema compacto</value>
+    <value>Espaciado compacto</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
     <value>Disminuir el espacio entre elementos de la interfaz</value>
@@ -167,7 +167,7 @@
     <value>Carácter de final de línea</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Mismo fin de línea que el origen(automático)</value>
+    <value>Mismo fin de línea que el origen (automático)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
     <value>Devolución de transporte y alimentación de línea (\r\n) (Windows)</value>
