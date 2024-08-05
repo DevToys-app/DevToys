@@ -170,10 +170,10 @@
     <value>Mismo fin de línea que el origen (automático)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Devolución de transporte y alimentación de línea (\r\n) (Windows)</value>
+    <value>Retorno de carro y salto de línea (\r\n) (Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Alimento de línea (\n) (Unix)</value>
+    <value>Salto de línea (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
     <value>Fuente</value>
@@ -198,13 +198,13 @@
     <value>Idioma</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>Es necesario reiniciar la aplicación para usar otro lenguaje</value>
+    <value>Es necesario reiniciar la aplicación para usar otro idioma</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>Claro</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Número de línea</value>
+    <value>Números de línea</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
     <value>Mostrar los números de línea en el editor de texto</value>
