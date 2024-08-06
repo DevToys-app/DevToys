@@ -133,7 +133,7 @@
     <value>Elije con que tema mostrar la aplicación</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Comportamiento</value>
+    <value>Comportamientos</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
     <value>Buscar actualizaciones</value>
@@ -142,7 +142,7 @@
     <value>Buscar actualizaciones automáticamente al iniciar DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Tema compacto</value>
+    <value>Espaciado compacto</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
     <value>Disminuir el espacio entre elementos de la interfaz</value>
@@ -167,19 +167,19 @@
     <value>Carácter de final de línea</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Mismo fin de línea que el origen(automático)</value>
+    <value>Mismo fin de línea que el origen (automático)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Devolución de transporte y alimentación de línea (\r\n) (Windows)</value>
+    <value>Retorno de carro y salto de línea (\r\n) (Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Alimento de línea (\n) (Unix)</value>
+    <value>Salto de línea (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
     <value>Fuente</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translate DevToys!</value>
+    <value>¡Ayúdanos a traducir DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Resaltar la línea actual</value>
@@ -198,13 +198,13 @@
     <value>Idioma</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>Es necesario reiniciar la aplicación para usar otro lenguaje</value>
+    <value>Es necesario reiniciar la aplicación para usar otro idioma</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>Claro</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Número de línea</value>
+    <value>Números de línea</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
     <value>Mostrar los números de línea en el editor de texto</value>
