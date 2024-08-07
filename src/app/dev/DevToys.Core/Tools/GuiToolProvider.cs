@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Reflection;
+using System.Resources;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization;
@@ -625,7 +627,21 @@ public sealed partial class GuiToolProvider
         {
             if (string.Equals(item.Metadata.InternalComponentName, guiToolMetadata.ResourceManagerAssemblyIdentifier, StringComparison.Ordinal))
             {
-                return item.Value.GetType().Assembly;
+                Assembly assembly = item.Value.GetType().Assembly;
+
+                var resourceManager = new ResourceManager(guiToolMetadata.ResourceManagerBaseName, assembly);
+                try
+                {
+                    resourceManager.GetString(guiToolMetadata.ShortDisplayTitleResourceName);
+                }
+                catch (MissingManifestResourceException)
+                {
+                    // The resource manager is not valid. Let's try to find another one.
+                    // This can happen in case if the internal component name is conflicting between multiple extensions.
+                    continue;
+                }
+
+                return assembly;
             }
         }
 
