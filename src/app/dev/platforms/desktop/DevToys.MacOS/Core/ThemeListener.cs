@@ -48,6 +48,8 @@ internal sealed class ThemeListener : IThemeListener, IDisposable
 
     public bool UserIsCompactModePreference => _settingsProvider.GetSetting(PredefinedSettings.CompactMode);
 
+    public bool UseLessAnimations => true;
+
     public event EventHandler? ThemeChanged;
 
     public void Dispose()

@@ -16,6 +16,15 @@
     animation-timing-function: ease-out;
 }
 
+// Use less animations
+div[data-uselessanimations] {
+    .entrance-theme-transition {
+        animation-name: entrance-theme-transition-key-frames;
+        animation-duration: 0s;
+        animation-timing-function: linear;
+    }
+}
+
 @mixin transition($transition...) {
     @if length($transition) == 0 {
         $transition: all 0.2s ease-in-out !default;

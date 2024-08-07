@@ -32,6 +32,9 @@ public partial class MainLayout : LayoutComponentBase
     public bool UserIsCompactModePreference { get; set; }
 
     [Parameter]
+    public bool UseLessAnimations { get; set; }
+
+    [Parameter]
     public string Class { get; set; } = default!;
 
     protected override void OnInitialized()
@@ -104,6 +107,8 @@ public partial class MainLayout : LayoutComponentBase
         ThemeName = themeName;
         IsCompactMode = _themeListener.IsCompactMode;
         UserIsCompactModePreference = _themeListener.UserIsCompactModePreference;
+        UseLessAnimations = _themeListener.UseLessAnimations;
+
         InvokeAsync(() =>
         {
             StateHasChanged();

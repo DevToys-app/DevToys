@@ -36,6 +36,11 @@ public interface IThemeListener
     bool UserIsCompactModePreference { get; }
 
     /// <summary>
+    /// Gets a value indicating whether the app should use less animations.
+    /// </summary>
+    bool UseLessAnimations { get; }
+
+    /// <summary>
     /// Raised when the theme has changed.
     /// </summary>
     event EventHandler? ThemeChanged;

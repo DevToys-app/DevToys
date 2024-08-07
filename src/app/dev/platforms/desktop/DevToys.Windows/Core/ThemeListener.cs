@@ -43,6 +43,8 @@ internal sealed class ThemeListener : IThemeListener
 
     public bool UserIsCompactModePreference => _settingsProvider.GetSetting(PredefinedSettings.CompactMode);
 
+    public bool UseLessAnimations => !SystemParameters.ClientAreaAnimation;
+
     public event EventHandler? ThemeChanged;
 
     public void ApplyDesiredColorTheme()
