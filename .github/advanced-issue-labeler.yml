@@ -1,0 +1,19 @@
+policy:
+  - template: ["bug_report.yml"]
+    section:
+      - id: ["platforms"]
+        block-list: []
+        label:
+          - name: platforms:Windows
+            keys: ["Windows"]
+          - name: platforms:macOS
+            keys: ["macOS"]
+          - name: platforms:Linux
+            keys: ["Linux"]
+      - id: ["app-kind"]
+        block-list: []
+        label:
+          - name: app-kind:GUI
+            keys: ["DevToys (app with GUI)"]
+          - name: app-kind:CLI
+            keys: ["DevToys CLI"]
