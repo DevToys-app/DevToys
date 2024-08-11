@@ -127,50 +127,50 @@
     <value>Aparência</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Tema</value>
+    <value>Tema do aplicativo</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Selecione qual tema será exibido</value>
+    <value>Selecione qual tema do aplicativo deverá ser exibido</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Comportamento</value>
+    <value>Comportamentos</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
     <value>Verificar atualizações</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Verificar automaticamente por atualizações quando o DevToys iniciar</value>
+    <value>Verificar automaticamente se há atualizações ao iniciar o DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Espaçamento compacto</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Diminuir espaço entre elementos da interface</value>
+    <value>Diminuir o espaço entre os elementos da UI</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Escuro</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Usar configurações do sistema</value>
+    <value>Igual ao sistema</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Personalizar o visual do DevToys</value>
+    <value>Personalizar a aparência do DevToys</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} por iniciar o desenvolvimento do DevToysMac</value>
+    <value>{0} para iniciar o desenvolvimento do DevToysMac</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Edição</value>
+    <value>Editando</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>Caractere de final de linha</value>
+    <value>Caractere de fim de linha</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Mesmo fim de linha que a origem (automático)</value>
+    <value>Mesmo fim de linha da entrada (automático)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Retorno de carro (CR) e nova linha (LF) (\r\n) (Windows)</value>
+    <value>Retorno de carro e nova linha (\r\n) (Apenas Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
     <value>Nova linha (LF) (\n) (Unix)</value>
@@ -179,16 +179,16 @@
     <value>Fonte</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Nos ajude a traduzir o DevToys!</value>
+    <value>Ajude a traduzir o DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Realçar linha atual</value>
+    <value>Destacar linha atual</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
     <value>Mudar a cor de fundo da linha atual para torná-la mais visível</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
-    <value>Realçar a linha atual</value>
+    <value>Destacar a linha atual</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
     <value>{0} por criar o ícone do aplicativo</value>
@@ -198,19 +198,19 @@
     <value>Idioma</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>O aplicativo precisa ser reiniciado ao mudar de idioma</value>
+    <value>O aplicativo precisa ser reiniciado ao selecionar outro idioma</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>Claro</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Número de linhas</value>
+    <value>Números de linha</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Mostrar número de linhas no editor de texto</value>
+    <value>Exibir números de linha no editor de texto</value>
   </data>
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
-    <value>Mostrar número de linhas</value>
+    <value>Mostrar números de linha</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Abrir logs</value>
@@ -219,7 +219,7 @@
     <value>Substituir texto ao colar</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>Ao clicar no botão Colar, limpar o texto antes de colar em vez de adicionar ao conteúdo existente no editor de texto.</value>
+    <value>Ao clicar em Colar, limpe o texto antes de colar, em vez de adiciona-lo ao conteúdo existente do editor de texto.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>Substituir texto ao colar</value>
@@ -237,10 +237,10 @@
     <value>Detecção inteligente</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automaticamente detectar a melhor ferramenta baseada no conteúdo da área de transferência</value>
+    <value>Detectar automaticamente a melhor ferramenta com base no conteúdo da área de transferência</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automaticamente colar o conteúdo da área de transferência quando selecionar a ferramenta recomendada</value>
+    <value>Colar automaticamente o conteúdo da área de transferência ao selecionar uma ferramenta recomendada</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Agradecimentos especiais a</value>
@@ -249,7 +249,7 @@
     <value>Editor de texto</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Prévia</value>
+    <value>Visualizar</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
     <value>Links úteis</value>
@@ -258,13 +258,13 @@
     <value>Licença</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Política de privacidade</value>
+    <value>Política de Privacidade</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Relatar um problema</value>
+    <value>Reportar um problema</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Código-fonte</value>
+    <value>Código fonte</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
     <value>Licenças de terceiros</value>
@@ -276,7 +276,7 @@
     <value>Versão {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Quebra de linha</value>
+    <value>Quebrar linha automaticamente</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
     <value>Quebra de linha</value>
