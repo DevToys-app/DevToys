@@ -136,7 +136,7 @@
     <value>Manter no topo</value>
   </data>
   <data name="PictureInPictureExpand" xml:space="preserve">
-    <value>Retornar à visão completa</value>
+    <value>Voltar para a tela cheia</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
     <value>Recentes</value>
@@ -160,7 +160,7 @@
     <value>Atualização disponível</value>
   </data>
   <data name="UpdateAvailableForExtension" xml:space="preserve">
-    <value>Atualização de extensão disponível</value>
+    <value>Atualização para extensão(ões) disponível</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
