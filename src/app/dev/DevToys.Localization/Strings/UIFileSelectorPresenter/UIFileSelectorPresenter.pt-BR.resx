@@ -139,7 +139,7 @@
     <value>Apenas arquivo(s) {0} pode(m) ser usado(s).</value>
   </data>
   <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
-    <value>Arquivos {0} foram selecionados.</value>
+    <value>{0} arquivos foram selecionados.</value>
   </data>
   <data name="Or" xml:space="preserve">
     <value>ou</value>
