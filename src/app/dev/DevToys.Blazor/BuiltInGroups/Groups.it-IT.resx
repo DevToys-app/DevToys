@@ -118,34 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConvertersGroupAccessibleName" xml:space="preserve">
-    <value>Converters</value>
+    <value>Convertitori</value>
   </data>
   <data name="ConvertersGroupDisplayTitle" xml:space="preserve">
-    <value>Converters</value>
+    <value>Convertitori</value>
   </data>
   <data name="EncodersDecodersGroupAccessibleName" xml:space="preserve">
-    <value>Encoders and decoders</value>
+    <value>Codificatori e decodificatori</value>
   </data>
   <data name="EncodersDecodersGroupDisplayTitle" xml:space="preserve">
-    <value>Encoders / Decoders</value>
+    <value>Codificatori / Decodificatori</value>
   </data>
   <data name="FormattersGroupAccessibleName" xml:space="preserve">
-    <value>Formatters</value>
+    <value>Formattatori</value>
   </data>
   <data name="FormattersGroupDisplayTitle" xml:space="preserve">
-    <value>Formatters</value>
+    <value>Formattatori</value>
   </data>
   <data name="GeneratorsGroupAccessibleName" xml:space="preserve">
-    <value>Generators</value>
+    <value>Generatori</value>
   </data>
   <data name="GeneratorsGroupDisplayTitle" xml:space="preserve">
-    <value>Generators</value>
+    <value>Generatori</value>
   </data>
   <data name="GraphicGroupAccessibleName" xml:space="preserve">
-    <value>Graphic</value>
+    <value>Grafica</value>
   </data>
   <data name="GraphicGroupDisplayTitle" xml:space="preserve">
-    <value>Graphic</value>
+    <value>Grafica</value>
   </data>
   <data name="TestersGroupAccessibleName" xml:space="preserve">
     <value>Testers</value>
@@ -154,9 +154,9 @@
     <value>Testers</value>
   </data>
   <data name="TextGroupAccessibleName" xml:space="preserve">
-    <value>Text</value>
+    <value>Testo</value>
   </data>
   <data name="TextGroupDisplayTitle" xml:space="preserve">
-    <value>Text</value>
+    <value>Testo</value>
   </data>
 </root>
