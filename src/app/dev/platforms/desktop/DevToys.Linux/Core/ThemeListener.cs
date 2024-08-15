@@ -1,5 +1,4 @@
-﻿using Adw;
-using DevToys.Api;
+﻿using DevToys.Api;
 using DevToys.Core.Settings;
 using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
@@ -13,7 +12,7 @@ internal sealed class ThemeListener : IThemeListener
 {
     private readonly ISettingsProvider _settingsProvider;
     private readonly Gtk.Settings _gtkSettings;
-    private readonly StyleManager _adwStyleManager;
+    //private readonly StyleManager _adwStyleManager;
 
     private Gtk.Window? _mainWindow;
     private bool _ignoreOperatingSystemSettingChanged;
@@ -25,7 +24,7 @@ internal sealed class ThemeListener : IThemeListener
         _settingsProvider = settingsProvider;
         _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
 
-        _adwStyleManager = StyleManager.GetDefault();
+        //_adwStyleManager = StyleManager.GetDefault();
 
         // Listen for operating system settings.
         _gtkSettings = Gtk.Settings.GetDefault()!;
@@ -68,12 +67,12 @@ internal sealed class ThemeListener : IThemeListener
             if (theme == AvailableApplicationTheme.Dark)
             {
                 ActualAppTheme = ApplicationTheme.Dark;
-                _adwStyleManager.ColorScheme = ColorScheme.ForceDark;
+                //_adwStyleManager.ColorScheme = ColorScheme.ForceDark;
             }
             else
             {
                 ActualAppTheme = ApplicationTheme.Light;
-                _adwStyleManager.ColorScheme = ColorScheme.ForceLight;
+                //_adwStyleManager.ColorScheme = ColorScheme.ForceLight;
             }
 
             _ignoreOperatingSystemSettingChanged = false;
@@ -142,7 +141,10 @@ internal sealed class ThemeListener : IThemeListener
 
     private void UpdateSystemSettingsAndApplyTheme()
     {
-        IsHighContrast = _adwStyleManager.HighContrast;
+        IsHighContrast
+            = _gtkSettings.GtkThemeName is not null
+              && _gtkSettings.GtkThemeName.Contains("high", StringComparison.OrdinalIgnoreCase)
+              && _gtkSettings.GtkThemeName.Contains("contrast", StringComparison.OrdinalIgnoreCase);
         CurrentSystemTheme = GetCurrentSystemTheme();
 
         ApplyDesiredColorTheme();
@@ -150,6 +152,8 @@ internal sealed class ThemeListener : IThemeListener
 
     private AvailableApplicationTheme GetCurrentSystemTheme()
     {
-        return _gtkSettings.GtkApplicationPreferDarkTheme ? AvailableApplicationTheme.Dark : AvailableApplicationTheme.Light;
+        return _gtkSettings.GtkApplicationPreferDarkTheme || (_gtkSettings.GtkThemeName?.Contains("Dark", StringComparison.OrdinalIgnoreCase) ?? false)
+            ? AvailableApplicationTheme.Dark
+            : AvailableApplicationTheme.Light;
     }
 }
