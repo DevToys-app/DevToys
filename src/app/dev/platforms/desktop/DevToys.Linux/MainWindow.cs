@@ -40,7 +40,7 @@ internal class MainWindow
     private readonly BlazorWebView _blazorGtkWebView;
     private readonly Gtk.Window _window;
 
-    internal MainWindow(IServiceProvider serviceProvider, Adw.Application application)
+    internal MainWindow(IServiceProvider serviceProvider, Gtk.Application application)
     {
         serviceProvider.GetService<IMefProvider>()!.SatisfyImports(this);
         Guard.IsNotNull(_themeListener);

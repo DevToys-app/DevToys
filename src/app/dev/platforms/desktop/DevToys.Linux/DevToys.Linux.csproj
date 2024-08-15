@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GirCore.Adw-1" />
     <PackageReference Include="GirCore.Gtk-4.0" />
     <PackageReference Include="GirCore.WebKit-6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebView" />

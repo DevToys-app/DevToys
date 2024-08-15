@@ -31,7 +31,7 @@ internal partial class LinuxProgram
 
     internal LinuxProgram()
     {
-        Application = Adw.Application.New(null, Gio.ApplicationFlags.NonUnique);
+        Application = Gtk.Application.New(null, Gio.ApplicationFlags.NonUnique);
 
         GLib.Functions.SetPrgname("DevToys");
         // Set the human-readable application name for app bar and task list.
@@ -41,7 +41,7 @@ internal partial class LinuxProgram
         Application.OnShutdown += OnApplicationShutdown;
     }
 
-    internal Adw.Application Application { get; }
+    internal Gtk.Application Application { get; }
 
     private void OnApplicationActivate(object sender, object e)
     {
@@ -81,7 +81,7 @@ internal partial class LinuxProgram
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
         // Create and open main window.
-        _mainWindow = new MainWindow(serviceProvider, (Adw.Application)sender);
+        _mainWindow = new MainWindow(serviceProvider, (Gtk.Application)sender);
     }
 
     private void OnApplicationShutdown(object sender, object e)
