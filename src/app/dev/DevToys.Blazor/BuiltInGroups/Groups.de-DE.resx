@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConvertersGroupAccessibleName" xml:space="preserve">
-    <value>Konvertierer</value>
+    <value>Konverter</value>
   </data>
   <data name="ConvertersGroupDisplayTitle" xml:space="preserve">
-    <value>Konvertierer</value>
+    <value>Konverter</value>
   </data>
   <data name="EncodersDecodersGroupAccessibleName" xml:space="preserve">
     <value>Kodierer und Dekodierer</value>
