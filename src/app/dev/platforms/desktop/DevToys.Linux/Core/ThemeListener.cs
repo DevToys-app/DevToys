@@ -2,14 +2,18 @@
 using DevToys.Core.Settings;
 using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
+using Gio;
+using GLib;
+using Microsoft.Extensions.Logging;
 using Object = GObject.Object;
 using static GObject.Object;
 
 namespace DevToys.Linux.Core;
 
 [Export(typeof(IThemeListener))]
-internal sealed class ThemeListener : IThemeListener
+internal sealed partial class ThemeListener : IThemeListener
 {
+    private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
     private readonly Gtk.Settings _gtkSettings;
 
@@ -19,6 +23,8 @@ internal sealed class ThemeListener : IThemeListener
     [ImportingConstructor]
     public ThemeListener(ISettingsProvider settingsProvider)
     {
+        _logger = this.Log();
+
         // Listen for app settings
         _settingsProvider = settingsProvider;
         _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
@@ -147,8 +153,44 @@ internal sealed class ThemeListener : IThemeListener
 
     private AvailableApplicationTheme GetCurrentSystemTheme()
     {
-        return _gtkSettings.GtkApplicationPreferDarkTheme || (_gtkSettings.GtkThemeName?.Contains("Dark", StringComparison.OrdinalIgnoreCase) ?? false)
-            ? AvailableApplicationTheme.Dark
-            : AvailableApplicationTheme.Light;
+        try
+        {
+            var bus = DBusConnection.Get(BusType.Session);
+            using var parameters = Variant.NewTuple([
+                Variant.NewString("org.freedesktop.appearance"), Variant.NewString("color-scheme")
+            ]);
+
+            using Variant ret = bus.CallSync(
+                busName: "org.freedesktop.portal.Desktop",
+                objectPath: "/org/freedesktop/portal/desktop",
+                interfaceName: "org.freedesktop.portal.Settings",
+                methodName: "Read",
+                parameters: parameters,
+                replyType: VariantType.New("(v)"),
+                flags: DBusCallFlags.None,
+                timeoutMsec: 2000,
+                cancellable: null
+            );
+
+            uint userThemePreference = ret.GetChildValue(0).GetVariant().GetVariant().GetUint32();
+
+            return userThemePreference switch
+            {
+                1 => AvailableApplicationTheme.Dark,
+                2 => AvailableApplicationTheme.Light,
+                _ => _gtkSettings.GtkApplicationPreferDarkTheme ||
+                     (_gtkSettings.GtkThemeName?.Contains("Dark", StringComparison.OrdinalIgnoreCase) ?? false)
+                    ? AvailableApplicationTheme.Dark
+                    : AvailableApplicationTheme.Light
+            };
+        }
+        catch (Exception ex)
+        {
+            LogGetLinuxThemeFailed(ex);
+            return AvailableApplicationTheme.Light;
+        }
     }
+
+    [LoggerMessage(0, LogLevel.Error, "Failed to detect Linux theme.")]
+    partial void LogGetLinuxThemeFailed(Exception ex);
 }

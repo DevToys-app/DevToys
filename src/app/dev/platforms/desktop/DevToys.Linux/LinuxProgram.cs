@@ -31,6 +31,7 @@ internal partial class LinuxProgram
 
     internal LinuxProgram()
     {
+        Gio.Module.Initialize();
         Application = Gtk.Application.New(null, Gio.ApplicationFlags.NonUnique);
 
         GLib.Functions.SetPrgname("DevToys");
