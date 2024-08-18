@@ -137,33 +137,33 @@
     <value>Пронађите још проширења онлајн</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Преузми екстензију</value>
+    <value>Преузмите проширење</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Направи екстензију за DevToys</value>
+    <value>Направи проширење за ДевТојс</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>Молимо Вас да затворите све ДевТојс прозоре и поново покренете програм да би сте применили промене.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>Поново покретанје је неопходно како би промене биле примењене</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>Управљајте проширењима</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>Проширења треће стране могу променити функционалност неких већ постојећих алата и могу приступити Вашем рачунару без ваше дозволе. Ово може да изложи ваше податке на интернет или да преузме нежељени софтвер на Ваш уређај. Препоручујемо вам да будете опрезни и да преузимате само проширења у која верујете. Аутори ДевТојс-а нису одговорни за било коју штету или губитке начињени проширењима.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>Разумем</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>Одредбе и услови</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>Упозорење</value>
   </data>
 </root>
