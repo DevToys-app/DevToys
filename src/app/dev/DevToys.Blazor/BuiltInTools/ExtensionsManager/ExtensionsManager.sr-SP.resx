@@ -118,29 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>Управљајте проширењима у ДевТојс-у</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manage third-party extensions in DevToys</value>
+    <value>Додајте и управљајте проширењима треће стране у DevToys-у</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>Проширење {0} је већ преузета. Ако покушавате да је ажурирате екстензију која је већ преузета, молимо Вас прво обришите стару верзију прво.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>Није могуће преузети ово проширење</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>Пронађите још проширења онлајн</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>Преузми екстензију</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>Направи екстензију за DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
     <value>OK</value>
