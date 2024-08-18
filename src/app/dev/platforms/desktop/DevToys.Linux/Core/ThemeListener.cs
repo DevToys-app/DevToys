@@ -70,10 +70,12 @@ internal sealed partial class ThemeListener : IThemeListener
             if (theme == AvailableApplicationTheme.Dark)
             {
                 ActualAppTheme = ApplicationTheme.Dark;
+                _gtkSettings.GtkApplicationPreferDarkTheme = true;
             }
             else
             {
                 ActualAppTheme = ApplicationTheme.Light;
+                _gtkSettings.GtkApplicationPreferDarkTheme = false;
             }
 
             _ignoreOperatingSystemSettingChanged = false;
@@ -178,16 +180,20 @@ internal sealed partial class ThemeListener : IThemeListener
             {
                 1 => AvailableApplicationTheme.Dark,
                 2 => AvailableApplicationTheme.Light,
-                _ => _gtkSettings.GtkApplicationPreferDarkTheme ||
-                     (_gtkSettings.GtkThemeName?.Contains("Dark", StringComparison.OrdinalIgnoreCase) ?? false)
-                    ? AvailableApplicationTheme.Dark
-                    : AvailableApplicationTheme.Light
+                _ => FallBack()
             };
         }
         catch (Exception ex)
         {
             LogGetLinuxThemeFailed(ex);
-            return AvailableApplicationTheme.Light;
+            return FallBack();
+        }
+
+        AvailableApplicationTheme FallBack()
+        {
+            return _gtkSettings.GtkThemeName?.Contains("Dark", StringComparison.OrdinalIgnoreCase) ?? false
+                ? AvailableApplicationTheme.Dark
+                : AvailableApplicationTheme.Light;
         }
     }
 
