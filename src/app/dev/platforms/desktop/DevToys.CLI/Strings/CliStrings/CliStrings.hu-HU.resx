@@ -124,15 +124,15 @@
     <value>Érvénytelen elérési útvonal. A fájlnak a következő kiterjesztések egyikével kell rendelkeznie: {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>Kérjük, adja meg a fájl relatív vagy abszolút elérési útvonalát (vagy nyomjon Enter billentyűt a megszakításhoz):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>Kérjük, írjon be egy vagy több relatív vagy abszolút elérési útvonalat, vesszővel elválasztva (vagy nyomja meg az Enter billentyűt a megszakításhoz):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>Kérjük, adja meg a mappa relatív vagy abszolút elérési útvonalát (vagy nyomjon Enter billentyűt a megszakításhoz):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Kérjük, adja meg a fájl relatív vagy abszolút elérési útvonalát (vagy nyomjon Enter-t a megszakításhoz):</value>
+    <value>Kérjük, adja meg a fájl relatív vagy abszolút elérési útvonalát (vagy nyomjon Enter billentyűt a megszakításhoz):</value>
   </data>
 </root>
