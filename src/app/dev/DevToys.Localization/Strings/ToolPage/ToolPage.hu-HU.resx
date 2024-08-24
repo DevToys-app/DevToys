@@ -124,6 +124,6 @@
     <value>OK</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Törlés a kedvencek közül</value>
   </data>
 </root>
