@@ -191,7 +191,7 @@
     <value>Higlight the current line</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>{0} az app ikon dizájnért</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
@@ -273,7 +273,7 @@
     <value>Use system settings</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Verzió {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>Wrap word</value>
