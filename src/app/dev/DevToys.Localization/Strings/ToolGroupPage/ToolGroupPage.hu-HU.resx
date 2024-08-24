@@ -121,7 +121,7 @@
     <value>Not finding what you're looking for?</value>
   </data>
   <data name="NotFindingToolOpenFeatureRequest" xml:space="preserve">
-    <value>Open a feature request on GitHub</value>
+    <value>Új funkció kérése a GitHub-on</value>
   </data>
   <data name="NotFindingToolSuggestIdea" xml:space="preserve">
     <value>Suggest an idea</value>
