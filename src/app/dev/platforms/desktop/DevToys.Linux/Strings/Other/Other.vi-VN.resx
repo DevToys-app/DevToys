@@ -122,7 +122,7 @@
     <comment>This text is used in open file dialog and goes like "All PNG, JPG, GIF"</comment>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Open file</value>
+    <value>Mở file</value>
     <comment/>
   </data>
   <data name="Open" xml:space="preserve">
@@ -142,11 +142,11 @@
     <comment/>
   </data>
   <data name="SaveFile" xml:space="preserve">
-    <value>Save file</value>
+    <value>Lưu tập tin</value>
     <comment/>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Lưu</value>
     <comment/>
   </data>
   <data name="OpenFolder" xml:space="preserve">
