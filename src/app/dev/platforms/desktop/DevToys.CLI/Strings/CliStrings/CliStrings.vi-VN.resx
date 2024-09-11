@@ -133,6 +133,6 @@
     <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>Vui lòng nhập đường dẫn tương đối hoặc đường dẫn tuyệt đối của tập tin cần ghi (hoặc nhấn Enter để bỏ qua):</value>
   </data>
 </root>
