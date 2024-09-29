@@ -136,10 +136,10 @@
     <value>Поведінка</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for update</value>
+    <value>Перевірити оновлення</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Автоматично перевіряти наявність оновлень при запуску DevToys</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Компактні відступи</value>
@@ -179,7 +179,7 @@
     <value>Шрифт</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translate DevToys!</value>
+    <value>Допоможіть нам перекласти DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Виділяти поточний рядок</value>
@@ -213,7 +213,7 @@
     <value>Показувати номери рядків</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Відкрити журнали</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Заміна тексту під час вставки</value>
@@ -252,22 +252,22 @@
     <value>Попередній перегляд</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Корисні посилання</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
-    <value>License</value>
+    <value>Ліцензія</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Політика конфіденційності</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Повідомити про проблему</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Вихідний код</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Ліцензії третіх сторін</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Як у системі</value>
