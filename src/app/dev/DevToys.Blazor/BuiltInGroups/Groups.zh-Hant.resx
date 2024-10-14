@@ -136,10 +136,10 @@
     <value>格式化工具</value>
   </data>
   <data name="GeneratorsGroupAccessibleName" xml:space="preserve">
-    <value>Generators</value>
+    <value>產生器</value>
   </data>
   <data name="GeneratorsGroupDisplayTitle" xml:space="preserve">
-    <value>Generators</value>
+    <value>產生器</value>
   </data>
   <data name="GraphicGroupAccessibleName" xml:space="preserve">
     <value>圖形</value>

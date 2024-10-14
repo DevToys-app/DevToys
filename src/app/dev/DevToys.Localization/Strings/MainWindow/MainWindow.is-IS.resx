@@ -160,7 +160,7 @@
     <value>Uppfærsla tiltæk</value>
   </data>
   <data name="UpdateAvailableForExtension" xml:space="preserve">
-    <value>Update for extension(s) available</value>
+    <value>Uppfærsla fyrir viðbót(bætur) tiltækar</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

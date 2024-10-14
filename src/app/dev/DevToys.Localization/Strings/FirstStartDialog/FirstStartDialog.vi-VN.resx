@@ -143,6 +143,6 @@ Here’s what you need to know:</value>
     <value>I understand and agree</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>Chào mừng đến với DevToys!</value>
   </data>
 </root>
