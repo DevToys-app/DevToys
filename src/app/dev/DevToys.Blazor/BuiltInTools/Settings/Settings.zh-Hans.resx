@@ -167,13 +167,13 @@
     <value>行尾字符</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>与输入一致的行尾(自动)</value>
+    <value>与输入一致的行尾 (自动)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>回车和换行(\r\n)(Windows)</value>
+    <value>回车和换行(\r\n) (Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>回车（\n）（Unix）</value>
+    <value>回车 (\n) (Unix)</value>
   </data>
   <data name="Font" xml:space="preserve">
     <value>字体</value>
@@ -182,7 +182,7 @@
     <value>帮助我们翻译 DevToys！</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>突出显示当前行</value>
+    <value>高亮显示当前行</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
     <value>改变当前行的背景颜色，使其更加明显</value>

@@ -133,19 +133,19 @@
     <value>Välj vilket apptema som ska visas</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Beteenden</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
     <value>Sök efter uppdatering</value>
   </data>
   <data name="CheckForUpdateDescription" xml:space="preserve">
-    <value>Automatically check for updates when DevToys starts</value>
+    <value>Sök automatiskt efter uppdateringar när DevToys startar</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>Kompakt layout</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
-    <value>Decrease space between UI elements</value>
+    <value>Minska mellanrummet mellan UI-element</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Mörkt</value>
@@ -154,51 +154,51 @@
     <value>Samma som systemet</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Anpassa DevToys utseende och känsla</value>
   </data>
   <data name="DevToysMac" xml:space="preserve">
-    <value>{0} for starting DevToysMac development</value>
+    <value>{0} för att starta DevToysMac-utvecklingen</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Editing" xml:space="preserve">
-    <value>Editing</value>
+    <value>Redigering</value>
   </data>
   <data name="EndOfLinePreference" xml:space="preserve">
-    <value>End Of Line character</value>
+    <value>Tecken för radbrytning</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>Samma radbrytning som vid indata (automatisk)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+    <value>Windows style: både Carriage Return och Line Feed (CR+LF, \r\n)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
-    <value>Line Feed (\n) (Unix)</value>
+    <value>Unix style, endast Line Feed (LF, \n)</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Typsnitt</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translate DevToys!</value>
+    <value>Hjälp oss att översätta DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Markera nuvarande rad</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Ändra bakgrundsfärgen på den aktuella raden så den är mer synlig</value>
   </data>
   <data name="HighlightCurrentLineStateDescriptionWhenOn" xml:space="preserve">
     <value>Higlight the current line</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>{0} för design av app-ikonen</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Språk</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>Appen måste startas om när man väljer ett annat språk</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>Ljust</value>
@@ -213,19 +213,19 @@
     <value>Visa radnummer</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Öppna loggar</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Ersätt text när du klistrar in</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>När du klickar på knappen Klistra in, rensa texten innan du klistrar in i stället för att lägga till det befintliga innehållet i textredigeraren.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Ersätt text när du klistrar in</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Rendera whitespace</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
     <value>Visa blanksteg</value>
@@ -234,13 +234,13 @@
     <value>Inställningar</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Smart detektering</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Identifiera automatiskt det bästa verktyget baserat på urklippets innehåll</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Klistra in urklipp automatiskt när du väljer ett rekommenderat verktyg</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Ett särskilt tack till</value>
@@ -249,7 +249,7 @@
     <value>Textredigerare</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Förhandsgranskning</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
     <value>Användbara länkar</value>
@@ -258,7 +258,7 @@
     <value>Licens</value>
   </data>
   <data name="UsefulLinksPrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Integritetspolicy</value>
   </data>
   <data name="UsefulLinksReportProblem" xml:space="preserve">
     <value>Rapportera ett problem</value>
