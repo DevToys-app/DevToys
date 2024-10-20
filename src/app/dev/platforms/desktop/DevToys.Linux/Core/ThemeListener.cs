@@ -180,7 +180,7 @@ internal sealed partial class ThemeListener : IThemeListener
             {
                 1 => AvailableApplicationTheme.Dark,
                 2 => AvailableApplicationTheme.Light,
-                _ => FallBack()
+                _ => AvailableApplicationTheme.Light
             };
         }
         catch (Exception ex)
