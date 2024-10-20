@@ -362,15 +362,21 @@ public sealed partial class GuiToolProvider
 
         if (weightedToolList.Count > 0)
         {
-            var descOrderedWeightedToolList = weightedToolList.OrderByDescending(i => i.weight).ToList(); // Order by weight.
-            int thirdQuarterItemIndex = Math.Min((int)(0.25 * descOrderedWeightedToolList.Count), descOrderedWeightedToolList.Count - 1); // Get the 3/4 item index in the list.
-            double thirdQuarterWeight = descOrderedWeightedToolList[thirdQuarterItemIndex].weight; // Get the 3/4 item weight.
+            // Order by weight.
+            var descOrderedWeightedToolList
+                = weightedToolList.OrderByDescending(i => i.weight)
+                .ToList();
+
+            // Calculate the dynamic threshold.
+            // We will only keep the tools that have a weight of at least 45% of the max weight.
+            double maxWeight = descOrderedWeightedToolList.First().weight;
+            double threshold = maxWeight * 0.45;
 
             searchResultListToUpdate
                 .AddRange(
                     descOrderedWeightedToolList
                         .Take(5) // Take the 5 first items.
-                        .TakeWhile(i => i.weight >= thirdQuarterWeight) // Take items with a weight greater or equal to the 3/4 item weight. This is to avoid showing too many items with a low weight.
+                        .TakeWhile(i => i.weight >= threshold)
                         .Select(i => i.tool));
         }
 
