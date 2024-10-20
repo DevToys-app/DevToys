@@ -93,9 +93,9 @@
                 <ControlTemplate TargetType="{x:Type controls:MicaWindowWithOverlay}">
                     <Border
                         x:Name="WindowBorder"
-                        BorderThickness="2"
+                        BorderThickness="3"
                         CornerRadius="0">
-                        <Grid Margin="-1">
+                        <Grid Margin="1">
                             <AdornerDecorator>
                                 <Grid Margin="{TemplateBinding MarginMaximized}">
                                     <Border
