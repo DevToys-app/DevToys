@@ -109,8 +109,8 @@ public class GuiToolProviderTests : MefBasedTest
     [InlineData("")]
     [InlineData("BOO", "NoSearchResults")]
     [InlineData("XML", "MockTool3-XMLFormatter", "MockTool4-XMLValidator")]
-    [InlineData("XML Validator", "MockTool4-XMLValidator")]
-    [InlineData("XML Valid", "MockTool4-XMLValidator")]
+    [InlineData("XML Validator", "MockTool4-XMLValidator", "MockTool3-XMLFormatter")]
+    [InlineData("XML Valid", "MockTool4-XMLValidator", "MockTool3-XMLFormatter")]
     public void ToolSearch(string searchQuery, params string[] toolNames)
     {
         GuiToolProvider guiToolProvider = MefProvider.Import<GuiToolProvider>();
