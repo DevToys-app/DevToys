@@ -4,14 +4,30 @@ $sidebar-hidden-width: 0px;
 $sidebar-collapsed-width: 49px;
 $sidebar-expanded-width: 320px;
 $sidebar-expanded-overlay-zindex: 10000;
-$sidebar-top-bar-height: 48px;
+
+:root {
+  --sidebar-top-bar-height-hard: 48px;
+  --sidebar-top-bar-height: var(--sidebar-top-bar-height-hard);
+  --sidebar-margin-top: 0px;
+}
+
+div[data-theme='macos-dark-theme'], div[data-theme='macos-light-theme'] {
+  --sidebar-top-bar-height: 0px;
+  --sidebar-margin-top: var(--sidebar-top-bar-height-hard);
+}
+
+div[data-compactmode] {
+  div[data-theme='macos-dark-theme'], div[data-theme='macos-light-theme'] {
+    --sidebar-top-bar-height: var(--sidebar-top-bar-height-hard);
+  }
+}
 
 .nav-bar-root {
     pointer-events: auto;
     height: 100%;
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-rows: $sidebar-top-bar-height calc(100vh - $sidebar-top-bar-height);
+    grid-template-rows: var(--sidebar-top-bar-height) calc(100vh - var(--sidebar-top-bar-height));
     gap: 0px 0px;
     grid-template-areas:
         "header header"
@@ -35,13 +51,16 @@ $sidebar-top-bar-height: 48px;
 
     .nav-bar-header {
         grid-area: header;
+        height: var(--sidebar-top-bar-height-hard);
         z-index: calc($sidebar-expanded-overlay-zindex + 1);
+        pointer-events: none;
     }
 
     nav {
         grid-area: sidebar;
         width: $sidebar-expanded-width;
         max-width: $sidebar-expanded-width;
+        margin-top: var(--sidebar-margin-top);
         overflow: hidden;
         display: grid;
         grid-template-columns: 1fr;
@@ -71,7 +90,7 @@ $sidebar-top-bar-height: 48px;
         &.expanded-overlay {
             z-index: $sidebar-expanded-overlay-zindex;
             position: absolute;
-            padding-top: $sidebar-top-bar-height;
+            padding-top: var(--sidebar-top-bar-height);
             height: 100%;
             width: $sidebar-expanded-width;
             max-width: $sidebar-expanded-width;

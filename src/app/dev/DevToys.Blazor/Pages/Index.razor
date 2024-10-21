@@ -106,6 +106,7 @@
                         IsEnabled="@compactOverlayModeAllowed"
                         IsVisible="@WindowService.IsCompactOverlayModeSupportedByPlatform"
                         ToolTip="@(WindowService.IsCompactOverlayMode ? MainWindow.PictureInPictureExpand : MainWindow.PictureInPictureContract)"
+                        Class="compact-overlay-button"
                         @onclick="@OnToggleCompactOverlayModeButtonClick">
                     <FontIcon Glyph="@(WindowService.IsCompactOverlayMode ? '\uF42C' : '\uF364')"
                               Rotation="@(WindowService.IsCompactOverlayMode ? -90 : 180)"/>

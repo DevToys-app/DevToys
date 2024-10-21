@@ -1,7 +1,11 @@
 .tool-page {
     &-content {
-        padding: 40px;
+        padding: var(--tool-page-padding);
         height: inherit;
+
+        .tool-page-top-right-toolbar {
+            margin-right: var(--tool-page-top-right-toolbar-margin-right);
+        }
     }
 }
 

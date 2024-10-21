@@ -15,9 +15,20 @@
     }
 }
 
+div[data-theme='macos-dark-theme'], div[data-theme='macos-light-theme'] {
+    .compact-overlay-button {
+        margin-top: 16px;
+    }
+}
 
 // Compact mode
 div[data-compactmode] {
+    div[data-theme='macos-dark-theme'], div[data-theme='macos-light-theme'] {
+        .compact-overlay-button {
+            margin-top: 8px;
+        }
+    }
+
     .sidebar-footer-button {
         min-block-size: 32px !important;
         padding-block: 4px 6px !important;
