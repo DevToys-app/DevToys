@@ -65,7 +65,7 @@
 }
 
 .tool-group-grid-view {
-    padding: 40px;
+    padding: var(--tool-page-padding);
     transform: translateZ(0);
 
     .tool-group-grid-view-item {
