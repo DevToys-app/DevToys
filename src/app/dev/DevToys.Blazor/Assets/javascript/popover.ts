@@ -459,7 +459,7 @@ class Popover {
             }
 
             popoverContentNode.style["left"] = (left + offsetX) + "px";
-            popoverContentNode.style["top"] = (top + offsetY) + "px";
+            popoverContentNode.style["top"] = Math.max(top + offsetY, 32) + "px";
 
             if (window.getComputedStyle(popoverNode).getPropertyValue("z-index") != "auto") {
                 popoverContentNode.style["z-index"] = window.getComputedStyle(popoverNode).getPropertyValue("z-index");
