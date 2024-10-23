@@ -93,22 +93,18 @@
                 <ControlTemplate TargetType="{x:Type controls:MicaWindowWithOverlay}">
                     <Border
                         x:Name="WindowBorder"
-                        BorderThickness="2"
+                        BorderThickness="5"
                         CornerRadius="0">
                         <Grid Margin="-1">
                             <AdornerDecorator>
                                 <Grid Margin="{TemplateBinding MarginMaximized}">
-                                    <Border
-                                        x:Name="WindowTopBorder"
-                                        VerticalAlignment="Top"
-                                        Height="48"/>
-
                                     <ContentPresenter />
 
                                     <controls:OverlayControl
                                         x:Name="TitleBar"
                                         VerticalAlignment="Top"
-                                        Height="32">
+                                        Height="32"
+                                        Margin="-5,-5,-5,0">
                                         <Grid
                                             VerticalAlignment="Top"
                                             Height="32">

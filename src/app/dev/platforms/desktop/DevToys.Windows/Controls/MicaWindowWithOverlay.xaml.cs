@@ -11,7 +11,6 @@ using DevToys.Api;
 using DevToys.Windows.Core;
 using DevToys.Windows.Core.Helpers;
 using DevToys.Windows.Native;
-using Microsoft.Win32;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Dwm;
@@ -34,7 +33,6 @@ public abstract partial class MicaWindowWithOverlay : Window
     private Button? _maximizeButton;
     private Button? _minimizeButton;
     private StackPanel? _windowStateButtonsStackPanel;
-    private Border? _windowTopBorder;
     private bool _isMouseButtonDownOnDraggableTitleBarArea;
     private Point _mouseDownPositionOnDraggableTitleBarArea;
 
@@ -125,7 +123,6 @@ public abstract partial class MicaWindowWithOverlay : Window
         _maximizeButton = (Button)Template.FindName("MaximizeButton", this);
         var draggableTitleBarArea = (Border)Template.FindName("DraggableTitleBarArea", this);
         var overlayControl = (OverlayControl)Template.FindName("TitleBar", this);
-        _windowTopBorder = (Border)Template.FindName("WindowTopBorder", this);
 
         _windowStateButtonsStackPanel.SizeChanged += WindowStateButtonsStackPanel_SizeChanged;
         closeButton.Click += CloseButton_Click;
@@ -485,16 +482,6 @@ public abstract partial class MicaWindowWithOverlay : Window
         dictionaries.Remove(resourceDictionaryToRemove);
         dictionaries.Add(resourceDictionary);
         UpdateLayout();
-
-        Guard.IsNotNull(_windowTopBorder);
-        if (IsAccentColorOnTitleBarEnabled())
-        {
-            _windowTopBorder.Background = SystemParameters.WindowGlassBrush;
-        }
-        else
-        {
-            _windowTopBorder.Background = null;
-        }
     }
 
     private nint ShowSnapLayout(nint lParam, ref bool handled)
@@ -570,24 +557,6 @@ public abstract partial class MicaWindowWithOverlay : Window
         else
         {
             NativeMethods.EnableMinimizeAndMaximizeCapabilities(windowHandle);
-        }
-    }
-
-    public static bool IsAccentColorOnTitleBarEnabled()
-    {
-        const string key = @"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\DWM";
-        const string name = "ColorPrevalence";
-
-        object? value = Registry.GetValue(key, name, null);
-        if (value is null)
-        {
-            // Key doesn't exist, assume default (OFF)
-            return false;
-        }
-        else
-        {
-            // If the key value is 1, the setting is ON. Otherwise, it's OFF.
-            return ((int)value == 1);
         }
     }
 }
