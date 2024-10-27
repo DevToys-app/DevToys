@@ -1,7 +1,7 @@
 ﻿namespace DevToys.Api;
 
 /// <summary>
-/// A component that represents a empty card and <see cref="IUIElement"/> for the option value.
+/// A component that represents an empty card and <see cref="IUIElement"/> for the option value.
 /// </summary>
 public interface IUICard : IUIElement
 {
@@ -12,7 +12,7 @@ public interface IUICard : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}")]
-internal class UICard : UIElement, IUICard
+internal class UICard : UIElementWithChildren, IUICard
 {
     internal UICard(string? id, IUIElement uiElement)
         : base(id)
@@ -22,6 +22,11 @@ internal class UICard : UIElement, IUICard
     }
 
     public IUIElement UIElement { get; }
+
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        yield return UIElement;
+    }
 }
 
 public static partial class GUI

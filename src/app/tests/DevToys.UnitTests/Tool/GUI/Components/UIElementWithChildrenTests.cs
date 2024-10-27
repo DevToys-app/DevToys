@@ -72,4 +72,18 @@ public class UIElementWithChildrenTests
         );
         Assert.Equal(child1.Object, element.GetChildElementById("child"));
     }
+
+    [Fact]
+    public void GetChildElementById_ReturnsChild_WhenChildIsCard()
+    {
+        var child = new Mock<IUIElement>();
+        child.Setup(c => c.Id).Returns("child-id");
+
+        var card = new UICard("card-id", child.Object);
+
+        var element = new TestUIElement("parent", new List<IUIElement> { card });
+
+        Assert.Equal(card, element.GetChildElementById("card-id"));
+        Assert.Equal(child.Object, element.GetChildElementById("child-id"));
+    }
 }
