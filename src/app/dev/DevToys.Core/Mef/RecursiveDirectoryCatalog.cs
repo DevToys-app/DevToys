@@ -124,6 +124,8 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
         {
             AssemblyCount++;
 
+            // Create an isolation context for the plugin.
+            // This allows to load dependencies version that the plugin asks, even if DevToys uses a different version of that same dependency.
             _assemblyIsolation ??= new AssemblyIsolation(filePath);
 
             Assembly assembly = _assemblyIsolation.LoadFromAssemblyPath(filePath);

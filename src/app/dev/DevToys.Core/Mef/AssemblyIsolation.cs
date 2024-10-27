@@ -3,6 +3,7 @@ using System.Runtime.Loader;
 
 namespace DevToys.Core.Mef;
 
+// See https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext
 internal sealed class AssemblyIsolation : AssemblyLoadContext
 {
     private readonly AssemblyDependencyResolver _resolver;
