@@ -129,6 +129,14 @@ internal sealed class SettingsGuiTool : IGuiTool
                                 _settingsProvider,
                                 PredefinedSettings.CheckForUpdate),
 
+                        Setting("recenttools-setting")
+                            .Icon("FluentSystemIcons", '\uED83')
+                            .Title(Settings.RecentTools)
+                            .Description(Settings.RecentToolsDescription)
+                            .Handle(
+                                _settingsProvider,
+                                PredefinedSettings.ShowMostRecentTools),
+
                         SettingGroup("smart-detection-settings")
                             .Icon("FluentSystemIcons", '\uF4D5')
                             .Title(Settings.SmartDetection)

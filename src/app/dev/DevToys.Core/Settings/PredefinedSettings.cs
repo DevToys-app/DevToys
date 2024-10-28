@@ -95,6 +95,14 @@ public static class PredefinedSettings
             defaultValue: string.Empty);
 
     /// <summary>
+    /// Whether the most recent tools should be displayed.
+    /// </summary>
+    public static readonly SettingDefinition<bool> ShowMostRecentTools
+        = new(
+            name: nameof(ShowMostRecentTools),
+            defaultValue: true);
+
+    /// <summary>
     /// Whether the app should automatically check for updates.
     /// </summary>
     public static readonly SettingDefinition<bool> CheckForUpdate

@@ -376,6 +376,24 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show most recent used tools.
+        /// </summary>
+        internal static string RecentTools {
+            get {
+                return ResourceManager.GetString("RecentTools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display the last 3 used tools in the menu. The change will take effect after restarting the app..
+        /// </summary>
+        internal static string RecentToolsDescription {
+            get {
+                return ResourceManager.GetString("RecentToolsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Render white space.
         /// </summary>
         internal static string RenderWhitespace {
