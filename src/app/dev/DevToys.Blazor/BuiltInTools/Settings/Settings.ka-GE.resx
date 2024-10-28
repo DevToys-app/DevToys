@@ -224,6 +224,12 @@
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>ტექსტის ჩანაცვლება ჩასმისას</value>
   </data>
+  <data name="RecentTools" xml:space="preserve">
+    <value>Show most recent used tools</value>
+  </data>
+  <data name="RecentToolsDescription" xml:space="preserve">
+    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+  </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>ცარიელი ადგილის ჩვენება</value>
   </data>
