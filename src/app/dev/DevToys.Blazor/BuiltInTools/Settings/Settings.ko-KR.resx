@@ -225,10 +225,10 @@
     <value>붙여넣을 때 텍스트 덮어쓰기</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>가장 최근에 사용한 도구 표시</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>메뉴에 마지막으로 사용한 도구 3개를 표시합니다. 변경 내용은 앱을 다시 시작한 후 적용됩니다.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>공백 문자 표시</value>
