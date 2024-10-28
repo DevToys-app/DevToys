@@ -158,23 +158,26 @@ public sealed partial class GuiToolProvider
     /// </summary>
     public IEnumerable<GuiToolInstance> GetMostRecentUsedTools()
     {
-        GuiToolInstance? recentTool1 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool1));
-        GuiToolInstance? recentTool2 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool2));
-        GuiToolInstance? recentTool3 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool3));
-
-        if (recentTool1 is not null)
+        if (_settingsProvider.GetSetting(PredefinedSettings.ShowMostRecentTools))
         {
-            yield return recentTool1;
-        }
+            GuiToolInstance? recentTool1 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool1));
+            GuiToolInstance? recentTool2 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool2));
+            GuiToolInstance? recentTool3 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool3));
 
-        if (recentTool2 is not null)
-        {
-            yield return recentTool2;
-        }
+            if (recentTool1 is not null)
+            {
+                yield return recentTool1;
+            }
 
-        if (recentTool3 is not null)
-        {
-            yield return recentTool3;
+            if (recentTool2 is not null)
+            {
+                yield return recentTool2;
+            }
+
+            if (recentTool3 is not null)
+            {
+                yield return recentTool3;
+            }
         }
     }
 
