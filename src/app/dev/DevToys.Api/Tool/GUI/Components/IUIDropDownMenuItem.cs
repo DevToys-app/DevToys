@@ -52,7 +52,7 @@ public interface IUIDropDownMenuItem
 }
 
 [DebuggerDisplay($"Text = {{{nameof(Text)}}}")]
-internal sealed class UIDropDownMenuItem : ViewModelBase, IUIDropDownMenuItem
+internal class UIDropDownMenuItem : ViewModelBase, IUIDropDownMenuItem
 {
     private bool _isEnabled = true;
     private string? _text;

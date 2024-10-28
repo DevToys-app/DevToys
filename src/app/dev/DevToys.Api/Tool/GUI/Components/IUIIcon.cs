@@ -37,7 +37,7 @@ public interface IUIIcon : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Glyph = {{{nameof(Glyph)}}}")]
-internal sealed class UIIcon : UIElement, IUIIcon
+internal class UIIcon : UIElement, IUIIcon
 {
     private string _fontName;
     private char _glyph;

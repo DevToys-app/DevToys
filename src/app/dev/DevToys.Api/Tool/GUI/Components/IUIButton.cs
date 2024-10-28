@@ -57,7 +57,7 @@ public interface IUIButton : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
-internal sealed class UIButton : UIElement, IUIButton
+internal class UIButton : UIElement, IUIButton
 {
     private bool _isAccent;
     private bool _isHyperlink;
