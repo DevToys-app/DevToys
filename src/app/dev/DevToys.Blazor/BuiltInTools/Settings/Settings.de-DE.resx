@@ -225,10 +225,10 @@
     <value>Text beim Einfügen ersetzen</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Zuletzt benutzte Werkzeuge anzeigen</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Zeigt die letzten 3 benutzten Werkzeuge im Menü an. Die Änderung wird nach einem Neustart der App wirksam.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Leerraum rendern</value>
