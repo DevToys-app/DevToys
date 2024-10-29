@@ -179,7 +179,7 @@
     <value>خط النص</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translate DevToys!</value>
+    <value>ساعدنا في تَرْجَمَة DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>عَلِّن صف الحالي</value>
@@ -225,10 +225,10 @@
     <value>غيّر النص عند اللصق</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>أظهر أحدث الأدوات المستخدمة</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>إظهر أحدث ثلاث أدوات مستخدمة في القائمة. سيصبح التغيير ساري المفعول بعد إعادة تشغيل التطبيق.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>جَبِّس فضاء أبيض</value>
