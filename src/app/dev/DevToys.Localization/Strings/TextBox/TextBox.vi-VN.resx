@@ -127,13 +127,13 @@
     <value>Cut</value>
   </data>
   <data name="Decrease" xml:space="preserve">
-    <value>Decrease</value>
+    <value>Giảm</value>
   </data>
   <data name="Increase" xml:space="preserve">
-    <value>Increase</value>
+    <value>Tăng</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Dán</value>
   </data>
   <data name="RevealPassword" xml:space="preserve">
     <value>Hiển thị mật khẩu</value>
