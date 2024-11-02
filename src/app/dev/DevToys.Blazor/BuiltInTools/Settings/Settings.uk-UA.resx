@@ -225,10 +225,10 @@
     <value>Замінювати текст під час вставки</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Показати останні використані інструменти</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Показати останні 3 використані інструменти в меню. Зміна набуде чинності після перезапуску програми.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Відображення пробілів</value>
