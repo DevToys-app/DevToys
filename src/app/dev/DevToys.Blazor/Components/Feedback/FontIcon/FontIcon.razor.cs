@@ -20,7 +20,7 @@ public partial class FontIcon : StyledComponentBase
     }
 
     [Parameter]
-    public char Glyph { get; set; }
+    public int Glyph { get; set; }
 
     [Parameter]
     public string FontFamily { get; set; } = "FluentSystemIcons";

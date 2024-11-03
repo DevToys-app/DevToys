@@ -11,7 +11,7 @@
     @if (!string.IsNullOrWhiteSpace(UIDropDownButton.IconFontName) && UIDropDownButton.IconGlyph != '\0')
     {
         <StackPanel Orientiation="UIOrientation.Horizontal" Spacing="4">
-            <FontIcon Glyph="@UIDropDownButton.IconGlyph"
+            <FontIcon Glyph="@(UIDropDownButton is IUIUtf32IconProvider provider ? provider.Utf32IconGlyph : UIDropDownButton.IconGlyph)"
                       FontFamily="@UIDropDownButton.IconFontName"
                       Height="16"
                       Width="16" />

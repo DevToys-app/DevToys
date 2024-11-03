@@ -23,7 +23,7 @@
                style="@StyleValue"
                @ref=Element
                @attributes="AdditionalAttributes"
-               data-glyph='@Glyph'
+               data-glyph='@(char.ConvertFromUtf32(Glyph))'
                aria-hidden="true"
                role="presentation">
             </i>

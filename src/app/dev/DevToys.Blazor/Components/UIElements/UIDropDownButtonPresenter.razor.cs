@@ -37,7 +37,7 @@ public partial class UIDropDownButtonPresenter : ComponentBase, IDisposable
                 {
                     UIDropDownMenuItem = item,
                     IconFontFamily = item.IconFontName ?? string.Empty,
-                    IconGlyph = item.IconGlyph,
+                    IconGlyph = item is IUIUtf32IconProvider provider ? provider.Utf32IconGlyph : item.IconGlyph,
                     Text = item.Text,
                     IsEnabled = item.IsEnabled,
                     OnClick = onClickEventCallback,

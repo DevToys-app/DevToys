@@ -47,7 +47,7 @@ public interface IUIDropDownButton : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
-internal sealed class UIDropDownButton : UIElement, IUIDropDownButton
+internal class UIDropDownButton : UIElement, IUIDropDownButton
 {
     private IUIDropDownMenuItem[]? _menuItems;
     private string? _text;

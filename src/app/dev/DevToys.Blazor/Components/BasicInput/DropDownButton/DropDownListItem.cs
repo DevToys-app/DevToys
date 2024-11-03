@@ -4,7 +4,7 @@ public class DropDownListItem
 {
     internal string? Text { get; set; }
 
-    internal char IconGlyph { get; set; }
+    internal int IconGlyph { get; set; }
 
     internal string IconFontFamily { get; set; } = "FluentSystemIcons";
 
