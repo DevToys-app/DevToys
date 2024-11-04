@@ -225,10 +225,10 @@
     <value>Заменить текст при вставке</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Показать последние использованные инструменты</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Показывать последние 3 использованных инструмента в меню. Изменения вступят в силу после перезапуска приложения.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Отображение пространства отступа</value>
