@@ -142,25 +142,25 @@
     <value>Recents</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>Gõ để tìm kiếm công cụ...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>Tìm kiếm</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>Nhấp để tìm</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Không tìm thấy kết quả nào</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Toggle Navigation</value>
+    <value>Bật/tắt điều hướng</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
-    <value>Update available</value>
+    <value>Bản cập nhật có sẵn</value>
   </data>
   <data name="UpdateAvailableForExtension" xml:space="preserve">
-    <value>Update for extension(s) available</value>
+    <value>Đã có bản cập nhật phần mở rộng</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

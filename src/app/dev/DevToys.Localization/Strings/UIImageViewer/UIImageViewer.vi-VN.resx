@@ -124,7 +124,7 @@
     <value>Save as</value>
   </data>
   <data name="UnknownImage" xml:space="preserve">
-    <value>Unknown image</value>
+    <value>Ảnh không tồn tại</value>
   </data>
   <data name="ViewButtonText" xml:space="preserve">
     <value>Xem</value>

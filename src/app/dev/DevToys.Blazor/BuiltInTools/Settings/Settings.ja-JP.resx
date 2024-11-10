@@ -224,6 +224,12 @@
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>貼り付け時の整形</value>
   </data>
+  <data name="RecentTools" xml:space="preserve">
+    <value>最近使用したツールを表示</value>
+  </data>
+  <data name="RecentToolsDescription" xml:space="preserve">
+    <value>最後に使用した3つのツールをメニューに表示します。アプリの再起動後に有効になります。</value>
+  </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>空白文字を表示</value>
   </data>

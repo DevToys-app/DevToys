@@ -224,6 +224,12 @@
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>Nahradit text při vložení</value>
   </data>
+  <data name="RecentTools" xml:space="preserve">
+    <value>Zobrazit naposledy použité nástroje</value>
+  </data>
+  <data name="RecentToolsDescription" xml:space="preserve">
+    <value>Zobrazí 3 naposledy použité nástroje v menu. Změna se projeví po restartování aplikace.</value>
+  </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Vykreslit bílé znaky</value>
   </data>

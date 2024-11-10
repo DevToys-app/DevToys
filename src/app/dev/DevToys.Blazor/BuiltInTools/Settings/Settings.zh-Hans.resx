@@ -224,6 +224,12 @@
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>粘贴时替换文本</value>
   </data>
+  <data name="RecentTools" xml:space="preserve">
+    <value>显示最近使用的工具</value>
+  </data>
+  <data name="RecentToolsDescription" xml:space="preserve">
+    <value>在菜单中显示最近使用的 3 个工具。更改将在重启应用程序后生效。</value>
+  </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>显示空白字符</value>
   </data>

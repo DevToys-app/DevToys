@@ -224,6 +224,12 @@
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
     <value>Sostituisci il testo incollando</value>
   </data>
+  <data name="RecentTools" xml:space="preserve">
+    <value>Mostra gli strumenti utilizzati più recenti</value>
+  </data>
+  <data name="RecentToolsDescription" xml:space="preserve">
+    <value>Mostra gli ultimi 3 strumenti usati nel menu. La modifica avrà effetto dopo aver riavviato l'app.</value>
+  </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Visualizza spazi bianchi</value>
   </data>

@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Duyệt các tệp tin</value>
   </data>
   <data name="BrowserFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Duyệt các thư mục</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Kéo &amp; thả tệp bất kì vào đây</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Kéo &amp; thả các tệp bất kì vào đây</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
     <value>Drag &amp; drop a {0} file here</value>

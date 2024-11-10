@@ -143,7 +143,7 @@
     <value>Tạo một tiện ích mở rộng cho DevToys</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+    <value>Đồng ý</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
     <value>Đóng tất cả cửa sổ DevToys và khởi động lại ứng dụng để các thay đổi được áp dụng.</value>
