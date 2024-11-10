@@ -2,16 +2,22 @@ CAREFUL, This file will be parsed at build time and run time. Make sure to keep 
 Changelog in Debian have to keep a strict format that we're applying here. It consist in starting each line
 with two spaces following by a star and a space. The current file should respect this format.
 ---
-  * Added ISO 8601 support to Date Converter tool.
-  * Improved layout in Date Converter tool.
-  * Improved performances of the Lorem Ipsum Generator tool.
-  * Improved performances on Linux and macOS when expanding/collapsing menu bar items.
-  * On Windows, improved the default location of the window after disconnecting a monitor.
-  * On Windows, DevToys now respects the user choice of wishing less animations. This can be turned on in `Windows Settings, Accessibility, Visual Effects, Animation effects`.
-  * On Linux and macOS, reduced the amount of animation, for a smoother experience.
-  * On Windows, fixed an issue where the icon in Microsoft Store app was not properly displayed.
-  * On macOS, fixed an issue where `Cmd+C`, `Cmd+V` and `Cmd+X` was not working.
-  * Fixed an issue where extensions were not properly checking for update.
-  * Fixed an issue where conflicting extensions were breaking localized text.
+  * Added an option to disable recent tools.
+  * Added table detection to Smart Detection for Markdown Preview.
+  * Added a Now button to Date Converter.
+  * Added support of UTF-32 glyph in icons in DevToys SDK.
+  * Improved the overall search accuracy
+  * Improved search keywords for Hash / Checksum Generator.
+  * Extensions are now isolation, allowing conflicting dependencies.
+  * On Linux, removed a dependency on `libadwaita`.
+  * On Linux, fixed a bug where the theme was not properly applied.
+  * On Windows, improved the window resizable area.
+  * On macOS, removed the large forehead to fit better with Apple UI guidance.
+  * Fixed crash in Date Converter.
+  * Fixed crash when Password Generator.
+  * Fixed crash in JWT Encoder / Decoder.
+  * Fixed an issue where context menu and drop down list may be out of reach.
+  * Fixed sizing issue with image display in various tools.
+  * Updated some dependencies that contained vulnerabilities.
   * Various translation improvement. Thank you to all your help at translating DevToys!
-  * New extensions available through Extension Manager: `Text Delimiter`, `Semver Calculator`, `ULID Generator`, `Simple Sequence Executor`. There are now a total of 12 extensions available for DevToys!
+  * New extensions available through Extension Manager: `JSONSchema Validator`, `Progressive JPEG Converter`, `Fluent Icon Finder`, `JSON to PHP Converter`, `MongoDB Object ID Generator`, `Base64 GUID Encoder / Decoder`, `XPath Tester`, and more. There are now a total of 22 extensions available for DevToys!
