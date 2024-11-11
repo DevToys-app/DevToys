@@ -14,7 +14,6 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
 {
     private readonly ILogger _logger;
     private readonly string _path;
-    private AssemblyIsolation? _assemblyIsolation;
     private AggregateCatalog? _aggregateCatalog;
 
     /// <summary>
@@ -123,13 +122,7 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
         try
         {
             AssemblyCount++;
-
-            // Create an isolation context for the plugin.
-            // This allows to load dependencies version that the plugin asks, even if DevToys uses a different version of that same dependency.
-            _assemblyIsolation ??= new AssemblyIsolation(filePath);
-
-            Assembly assembly = _assemblyIsolation.LoadFromAssemblyPath(filePath);
-            var asmCat = new AssemblyCatalog(assembly);
+            var asmCat = new AssemblyCatalog(filePath);
 
             // Force MEF to load the plugin and figure out if there are any exports
             // good assemblies will not throw the RTLE exception and can be added to the catalog
