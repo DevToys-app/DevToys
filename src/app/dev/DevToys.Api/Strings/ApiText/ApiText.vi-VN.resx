@@ -121,6 +121,6 @@
     <value>Tắt</value>
   </data>
   <data name="SwitchOnDefaultText" xml:space="preserve">
-    <value/>
+    <value>Bật</value>
   </data>
 </root>
