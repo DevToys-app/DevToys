@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Interop;
+using DevToys.Windows.Native;
+using Windows.Win32.Foundation;
 
 namespace DevToys.Windows.Controls;
 
@@ -17,6 +19,9 @@ public partial class OverlayWindow : Window
         nint windowHandle = new WindowInteropHelper(this).Handle;
         var hwndSource = HwndSource.FromHwnd(windowHandle);
         hwndSource.AddHook(new HwndSourceHook(WndProc));
+
+        // Hide window from Alt+Tab.
+        NativeMethods.HideFromAltTab(new HWND(windowHandle));
 
         base.OnSourceInitialized(e);
     }
