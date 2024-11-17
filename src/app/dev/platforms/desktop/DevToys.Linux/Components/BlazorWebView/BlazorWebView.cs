@@ -21,7 +21,7 @@ internal sealed partial class BlazorWebView : IDisposable
 {
     private const string DevToysInteropName = "devtoyswebinterop";
     private const string Scheme = "app";
-    internal const string AppHostAddress = "0.0.0.0";
+    internal const string AppHostAddress = "localhost";
     internal static readonly Uri AppOriginUri = new($"{Scheme}://{AppHostAddress}/");
 
     private const string BlazorInitScript
