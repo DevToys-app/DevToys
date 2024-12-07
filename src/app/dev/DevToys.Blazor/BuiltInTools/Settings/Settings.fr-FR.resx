@@ -225,10 +225,10 @@
     <value>Remplacer le texte lors du collage</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Afficher les outils les plus récemment utilisés</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Afficher les 3 derniers outils utilisés dans le menu. Le changement se fera après un redémarrage de l'application.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Afficher les espaces blanc</value>
