@@ -179,7 +179,7 @@
     <value>Skrifttype</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translate DevToys!</value>
+    <value>Hjælp os med at oversætte DevToys!</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Vælg den nuværende linje</value>
@@ -225,10 +225,10 @@
     <value>Erstat tekst ved indsætning</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Vis senest anvendte værktøjer</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Vis de 3 sidst anvendte værktøjer i menuen. Ændringen træder i kraft efter genstart af programmet.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Gengive af hvidt mellemrumstegn</value>
