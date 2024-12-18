@@ -225,10 +225,10 @@
     <value>Substituir texto ao colar</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Mostrar ferramentas usadas recentemente</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Mostrar as últimas 3 ferramentas usadas no menu. A mudança terá efeito após reiniciar o aplicativo.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Renderizar espaço em branco</value>
