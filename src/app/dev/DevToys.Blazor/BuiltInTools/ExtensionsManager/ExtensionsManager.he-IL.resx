@@ -155,15 +155,15 @@
     <value>ניהול תוספים</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>תוספים חיצוניים יכולים לשנות כלים קיימים ולקבל גישה למחשב שלך ללא אישור. זה עלול לחשוף את המידע הפרטי שלך לאינטרנט, או להתקין תוכנות לא רצויות על המחשב. אנא התקינו תוספים חיצוניים ממקורות בטוחים בלבד. מפתחי DevToys לא אחראים לנזקים שעלולים להיגרם על ידי תוספים.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>הבנתי</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>תנאי שימוש</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>אזהרה</value>
   </data>
 </root>
