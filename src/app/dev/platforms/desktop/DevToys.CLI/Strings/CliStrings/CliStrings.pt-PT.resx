@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FileNotFound" xml:space="preserve">
-    <value>The file '{0}' doesn't exist.</value>
+    <value>O ficheiro '{0}' não existe.</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>Caminho de ficheiro inválido. O ficheiro deve ter uma das seguintes extensões: {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>Por favor escreva um caminho relativo ou absoluto do ficheiro para ler (ou pressione Enter para cancelar):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
     <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
