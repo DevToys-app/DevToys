@@ -136,10 +136,10 @@
     <value>Pemformatan</value>
   </data>
   <data name="GeneratorsGroupAccessibleName" xml:space="preserve">
-    <value>Generators</value>
+    <value>Generator</value>
   </data>
   <data name="GeneratorsGroupDisplayTitle" xml:space="preserve">
-    <value>Generators</value>
+    <value>Generator</value>
   </data>
   <data name="GraphicGroupAccessibleName" xml:space="preserve">
     <value>Grafik</value>

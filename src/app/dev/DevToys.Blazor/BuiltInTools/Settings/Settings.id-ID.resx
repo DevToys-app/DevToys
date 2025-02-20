@@ -142,7 +142,7 @@
     <value>Periksa pembaruan secara otomatis saat DevToys dimulai</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>Compact spacing</value>
+    <value>Jarak padat</value>
   </data>
   <data name="CompactModeDescription" xml:space="preserve">
     <value>Kurangi ruang antar elemen UI</value>
@@ -167,10 +167,10 @@
     <value>Akhir karakter baris</value>
   </data>
   <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
-    <value>Same end of line as input (automatic)</value>
+    <value>Akhir baris sama seperti input (otomatis)</value>
   </data>
   <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
-    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+    <value>Carriage Return dan Line Feed(\r\n) (Windows)</value>
   </data>
   <data name="EndOfLinePreferenceLF" xml:space="preserve">
     <value>Umpan Baris (\n) (Unix)</value>
@@ -225,10 +225,10 @@
     <value>Ganti teks saat menyalin</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Tampilkan alat yang terakhir digunakan</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Menu akan menampilkan 3 alat yang terakhir digunakan. Restart aplikasi untuk perubahan.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Render spasi putih</value>

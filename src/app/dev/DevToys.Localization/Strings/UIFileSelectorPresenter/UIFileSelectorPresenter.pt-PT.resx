@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Procurar ficheiros</value>
   </data>
   <data name="BrowserFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Procurar pastas</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Arrasta &amp; larga qualquer ficheiro aqui</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
     <value>Drag &amp; drop any files here</value>

@@ -225,10 +225,10 @@
     <value>貼上時取代文字</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>顯示最近使用過的工具</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>在選單中顯示最近期的 3 個使用過的工具。這個變更將會在重新啟動應用程式後生效。</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>轉譯空格</value>
