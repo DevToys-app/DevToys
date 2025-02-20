@@ -213,7 +213,7 @@
     <value>Mostrar números de líneas</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Abrir registro</value>
+    <value>Abrir registros</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
     <value>Reemplazar texto al pegar</value>
@@ -225,10 +225,10 @@
     <value>Reemplazar texto al pegar</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Mostrar las herramientas más recientes utilizadas</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Mostrar las 3 últimas herramientas usadas en el menú. El cambio tendrá efecto después de reiniciar la aplicación.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Renderizar espacio en blanco</value>
@@ -258,7 +258,7 @@
     <value>Vista previa</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Links útiles</value>
+    <value>Enlaces útiles</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
     <value>Licencia</value>
