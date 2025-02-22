@@ -128,7 +128,7 @@ Esto es lo que necesitas saber:</value>
     <value>Siguiente</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys opera con una primera mentalidad fuera de línea. Recopilamos datos anónimos mínimos localmente para solucionar problemas. No subimos registros a Internet. Si encuentra un error y decide reportarlo, podemos pedirle que comparta los registros con nosotros. Con su consentimiento, nos conectaremos a Internet para comprobar si hay actualizaciones, asegurándote de tener acceso a las últimas características y mejoras de seguridad.</value>
+    <value>DevToys opera con una mentalidad 'offline-first'. Recopilamos datos anónimos mínimos localmente para solucionar problemas. No subimos registros a Internet. Si encuentras un error y decides reportarlo, podemos pedirte que compartas los registros con nosotros. Con tu consentimiento, nos conectaremos a Internet para comprobar si hay actualizaciones, asegurándonos de que tienes acceso a las últimas características y mejoras de seguridad.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>Filosofía Offline primero</value>
