@@ -130,9 +130,9 @@
     <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>Por favor, insira um caminho relativo ou absoluto correspondente a uma pasta (ou pressione Enter para cancelar):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>Por favor, digite um caminho relativo ou absoluto do arquivo para escrever neste (ou pressione Enter para cancelar):</value>
   </data>
 </root>
