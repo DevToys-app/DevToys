@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllToolsAccessibleName" xml:space="preserve">
-    <value>All tools</value>
+    <value>כל הכלים</value>
   </data>
   <data name="AllToolsDisplayTitle" xml:space="preserve">
     <value>כל הכלים</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>חזרה</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorite tools</value>
+    <value>כלים מועדפים</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
+    <value>מועדפים</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
     <value>Keep on top</value>
@@ -139,7 +139,7 @@
     <value>Back to full view</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
-    <value>Recents</value>
+    <value>לאחרונה</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Type to search for tools...</value>
@@ -148,16 +148,16 @@
     <value>חיפוש</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>לחץ כדי לחפש</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>לא נמצאו תוצאות</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
-    <value>Toggle Navigation</value>
+    <value>הפעלה/כיבוי ניווט</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
-    <value>Update available</value>
+    <value>יש עדכון זמין</value>
   </data>
   <data name="UpdateAvailableForExtension" xml:space="preserve">
     <value>Update for extension(s) available</value>
