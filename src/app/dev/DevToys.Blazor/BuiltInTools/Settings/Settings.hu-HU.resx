@@ -225,10 +225,10 @@
     <value>Szöveg kicserélése beillesztéskor</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Most használt eszközök mutatása</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Az utoljára használt 3 eszköz megjelenítése a menüben. A módosítás az alkalmazás újraindítása után lép hatályba.</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Szóköz mutatása</value>
