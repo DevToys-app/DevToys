@@ -130,7 +130,7 @@
     <value>Favorite tools</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Favorieten</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
     <value>Keep on top</value>
@@ -145,22 +145,22 @@
     <value>Type to search for tools...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
-    <value>Search</value>
+    <value>Zoeken</value>
   </data>
   <data name="SearchButtonTootip" xml:space="preserve">
-    <value>Click to search</value>
+    <value>Klik om te zoeken</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Geen resultaten gevonden</value>
   </data>
   <data name="ToggleNavigation" xml:space="preserve">
     <value>Toggle Navigation</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
-    <value>Update available</value>
+    <value>Update beschikbaar</value>
   </data>
   <data name="UpdateAvailableForExtension" xml:space="preserve">
-    <value>Update for extension(s) available</value>
+    <value>Update voor extensie(s) beschikbaar</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
