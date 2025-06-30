@@ -133,16 +133,16 @@
     <value>מועדפים</value>
   </data>
   <data name="PictureInPictureContract" xml:space="preserve">
-    <value>Keep on top</value>
+    <value>השאר תמיד מעל</value>
   </data>
   <data name="PictureInPictureExpand" xml:space="preserve">
-    <value>Back to full view</value>
+    <value>חזור לתצוגה מלאה</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
     <value>לאחרונה</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>הקלד לחיפוש כלים...</value>
   </data>
   <data name="SearchButtonAccessibleName" xml:space="preserve">
     <value>חיפוש</value>
@@ -160,7 +160,7 @@
     <value>יש עדכון זמין</value>
   </data>
   <data name="UpdateAvailableForExtension" xml:space="preserve">
-    <value>Update for extension(s) available</value>
+    <value>קיים עידכון להרחבה(ות)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
