@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ClearButtonText" xml:space="preserve">
-    <value>Clear</value>
+    <value>נקה</value>
   </data>
   <data name="CopyButtonText" xml:space="preserve">
     <value>העתק</value>
   </data>
   <data name="ExtendButtonToolTip" xml:space="preserve">
-    <value>Extend</value>
+    <value>הרחב</value>
   </data>
   <data name="LoadFileButtonText" xml:space="preserve">
-    <value>Open a text document</value>
+    <value>פתח מסמך טקסט</value>
   </data>
   <data name="MoreButtonToolTip" xml:space="preserve">
-    <value>More...</value>
+    <value>עוד...</value>
   </data>
   <data name="NoToolSuggested" xml:space="preserve">
-    <value>No tool to suggest</value>
+    <value>אין כלי להציע</value>
   </data>
   <data name="PasteButtonText" xml:space="preserve">
     <value>הדבק</value>
@@ -142,9 +142,9 @@
     <value>שמור בשם...</value>
   </data>
   <data name="ShrinkButtonToolTip" xml:space="preserve">
-    <value>Shrink</value>
+    <value>כווץ</value>
   </data>
   <data name="SmartDetectionTooltip" xml:space="preserve">
-    <value>Transfer to another tool</value>
+    <value>העבר לכלי אחר</value>
   </data>
 </root>
