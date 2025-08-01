@@ -118,50 +118,50 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Manage extensions in DevToys</value>
+    <value>مدیریت افزونه‌ها در DevToys</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Add and manage third-party extensions in DevToys</value>
+    <value>افزودن و مدیریت افزونه‌های شخص ثالث در DevToys</value>
   </data>
   <data name="ExtensionAlreadyInstalledDescription" xml:space="preserve">
-    <value>The extension '{0}' is already installed. If you are trying to update an extension that is already installed, please uninstall the older version first.</value>
+    <value>افزونه '{0}' نصب شده است. اگر می‌خواهید افزونه‌ای را به‌روزرسانی کنید، لطفاً ابتدا نسخه‌ی قبلی آن را حذف کنید.</value>
   </data>
   <data name="ExtensionAlreadyInstalledTitle" xml:space="preserve">
-    <value>Unable to install this extension</value>
+    <value>نصب این افزونه امکان‌پذیر نیست</value>
   </data>
   <data name="ExtensionTitleInList" xml:space="preserve">
     <value>{0} - {1}</value>
     <comment>Example: "DevToys.Tools - 1.0.0"</comment>
   </data>
   <data name="FindMoreExtension" xml:space="preserve">
-    <value>Find more extensions online</value>
+    <value>افزونه‌های بیشتری را آنلاین پیدا کنید</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value>Install an extension</value>
+    <value>یک افزونه نصب کنید</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
-    <value>Create an extension for DevToys</value>
+    <value>یک افزونه برای DevToys بسازید</value>
   </data>
   <data name="OKButtonText" xml:space="preserve">
-    <value>OK</value>
+    <value>باشه</value>
   </data>
   <data name="RestartRequiredInfoBarDescription" xml:space="preserve">
-    <value>Please close all DevToys windows and restart the app to apply the modifications.</value>
+    <value>لطفاً همه پنجره‌های DevToys را ببندید و برنامه را دوباره اجرا کنید تا تغییرات اعمال شوند.</value>
   </data>
   <data name="RestartRequiredInfoBarTitle" xml:space="preserve">
-    <value>Restart is require for changes to take effect</value>
+    <value>برای اعمال تغییرات، راه‌اندازی مجدد لازم است</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Manage extensions</value>
+    <value>مدیریت افزونه ها</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageDescription" xml:space="preserve">
-    <value>Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions.</value>
+    <value>افزونه‌های شخص ثالث ممکن است عملکرد ابزارهای موجود را تغییر دهند و بدون اجازه شما به رایانه‌تان دسترسی پیدا کنند. این موضوع می‌تواند منجر به افشای اطلاعات شما در اینترنت یا نصب نرم‌افزارهای ناخواسته روی دستگاه‌تان شود. به‌شدت توصیه می‌کنیم تنها افزونه‌هایی را نصب کنید که به آن‌ها اطمینان دارید. تیم DevToys هیچ‌گونه مسئولیتی در قبال خسارت‌ها یا زیان‌های ناشی از استفاده از افزونه‌ها نمی‌پذیرد.</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageIUnderstand" xml:space="preserve">
-    <value>I understand</value>
+    <value>فهمیدم</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTermsConditions" xml:space="preserve">
-    <value>Terms and Conditions</value>
+    <value>شرایط و ضوابط</value>
   </data>
   <data name="WarningThirdPartyExtensionUsageTitle" xml:space="preserve">
     <value>هشدار</value>
