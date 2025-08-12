@@ -191,7 +191,7 @@
     <value>Higlight the current line</value>
   </data>
   <data name="IconDesigner" xml:space="preserve">
-    <value>{0} for designing the app icon</value>
+    <value>voor het ontwerpen van het app icoon</value>
     <comment>{0} will be replaced by a name</comment>
   </data>
   <data name="Language" xml:space="preserve">
@@ -222,7 +222,7 @@
     <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Tekst vervangen bij plakken</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
     <value>Show most recent used tools</value>
