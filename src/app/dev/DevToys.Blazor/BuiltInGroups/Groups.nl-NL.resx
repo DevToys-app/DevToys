@@ -124,7 +124,7 @@
     <value>Converters</value>
   </data>
   <data name="EncodersDecodersGroupAccessibleName" xml:space="preserve">
-    <value>Encoders and decoders</value>
+    <value>Encoders en decoders</value>
   </data>
   <data name="EncodersDecodersGroupDisplayTitle" xml:space="preserve">
     <value>Encoders / Decoders</value>
@@ -136,13 +136,13 @@
     <value>Formatters</value>
   </data>
   <data name="GeneratorsGroupAccessibleName" xml:space="preserve">
-    <value>Generators</value>
+    <value>Generatoren</value>
   </data>
   <data name="GeneratorsGroupDisplayTitle" xml:space="preserve">
-    <value>Generators</value>
+    <value>Generatoren</value>
   </data>
   <data name="GraphicGroupAccessibleName" xml:space="preserve">
-    <value>Graphic</value>
+    <value>Grafiek</value>
   </data>
   <data name="GraphicGroupDisplayTitle" xml:space="preserve">
     <value>Grafiek</value>
@@ -154,9 +154,9 @@
     <value>Testers</value>
   </data>
   <data name="TextGroupAccessibleName" xml:space="preserve">
-    <value>Text</value>
+    <value>Tekst</value>
   </data>
   <data name="TextGroupDisplayTitle" xml:space="preserve">
-    <value>Text</value>
+    <value>Tekst</value>
   </data>
 </root>
