@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys este trusa preferată de instrumente a dezvoltatori, plină cu o colecție de instrumente gratuite și open-source. Gândește-te la ea ca la un briceag elvețian, conceput pentru a aborda acele sarcini zilnice enervante care te încetinesc. Iată ce trebuie să știi:</value>
+    <value>DevToys este setul tău de instrumente pentru dezvoltatori, plină cu o colecție de instrumente gratuite și open-source. Gândește-te la ea ca la un briceag elvețian, conceput pentru a aborda acele sarcini zilnice enervante care te încetinesc. Iată ce trebuie să știi:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Verificați dacă există actualizări atunci când DevToys pornește</value>
+    <value>Verificare automată a actualizărilor la pornirea DevToys</value>
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Continuă</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys operează cu o mentalitate axată pe offline. Colectăm local un minim de date anonimizate în scopuri de depanare. Nu încărcăm log-uri pe internet. Dacă întâmpinați o eroare și alegeți să o raportați, vă putem solicita să partajați log-urile cu noi. Cu consimțământul dumneavoastră, ne vom conecta la internet pentru a verifica actualizările, asigurându-vă că aveți acces la cele mai recente funcții și îmbunătățiri de securitate.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
     <value>Filosofie de development offline</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>Puterea DevToys crește odată cu extensiile, adăugând mai multe funcționalități la setul tău de instrumente. Deși asigurăm integritatea aplicației principale, este important să știi că nu avem control asupra a ceea ce fac extensiile terțe cu computerul și datele tale. Prin urmare, te încurajăm să fii precaut atunci când instalezi extensii. Pentru a monitoriza activitatea de rețea a DevToys sau a oricărei extensii, se pot utiliza instrumente precum Wireshark, Little Snitch sau Fiddler pentru a urmări conexiunile de intrare și de ieșire.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Ai incredere dar verifica</value>
+    <value>Ai încredere dar verifică</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
     <value>Înțeleg și sunt de acord</value>
