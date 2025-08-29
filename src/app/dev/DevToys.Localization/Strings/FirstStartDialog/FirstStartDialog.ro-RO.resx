@@ -118,8 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys is your go-to toolbox for developers, packed with a collection of free and open-source tools. Think of it as a Swiss Army knife tailored to tackle those pesky daily tasks that slow you down.
-Here’s what you need to know:</value>
+    <value>DevToys este trusa preferată de instrumente a dezvoltatori, plină cu o colecție de instrumente gratuite și open-source. Gândește-te la ea ca la un briceag elvețian, conceput pentru a aborda acele sarcini zilnice enervante care te încetinesc. Iată ce trebuie să știi:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
     <value>Verificați dacă există actualizări atunci când DevToys pornește</value>
@@ -131,7 +130,7 @@ Here’s what you need to know:</value>
     <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Filozofie offline in primul rand</value>
+    <value>Filosofie de development offline</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
     <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
