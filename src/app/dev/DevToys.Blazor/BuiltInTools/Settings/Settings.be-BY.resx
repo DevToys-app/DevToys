@@ -252,10 +252,10 @@
     <value>Special thanks to</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Тэкставы рэдактар</value>
   </data>
   <data name="TextEditorPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Папярэдні прагляд</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
     <value>Useful links</value>
@@ -276,7 +276,7 @@
     <value>Third party licenses</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Выкарыстоўваць налады сістэмы</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Версія {0}</value>
