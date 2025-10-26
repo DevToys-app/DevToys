@@ -222,34 +222,34 @@
     <value>Пры націску кнопкі «Уставіць» ачысціць тэкст перад устаўкай замест дадавання да ўжо існуючага змесціва.</value>
   </data>
   <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Замяняць тэкст пры ўстаўцы</value>
   </data>
   <data name="RecentTools" xml:space="preserve">
-    <value>Show most recent used tools</value>
+    <value>Адлюстраванне самых апошніх скарыстаных прылад</value>
   </data>
   <data name="RecentToolsDescription" xml:space="preserve">
-    <value>Display the last 3 used tools in the menu. The change will take effect after restarting the app.</value>
+    <value>Адлюструйце ў меню 3 апошнія скарыстаныя прылады. Змены набудуць моц пасля перазапісаў</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Візуалізацыя пустой прасторы</value>
   </data>
   <data name="RenderWhitespaceStateDescriptionWhenOn" xml:space="preserve">
-    <value>Show whitespace</value>
+    <value>Паказваць прабелы</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>Налады</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Разумнае выяўленне</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Аўтаматычна вызначаць найлепшы інструмент на падставе змесціва буфера абмену.</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Аўтаматычна ўстаўляць змесціва буфера абмену пры выбары рэкамендаванага інструмента.</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special thanks to</value>
+    <value>Асаблівая падзяка</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>Тэкставы рэдактар</value>
@@ -258,7 +258,7 @@
     <value>Папярэдні прагляд</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Карысныя спасылкі</value>
   </data>
   <data name="UsefulLinksLicense" xml:space="preserve">
     <value>Ліцэнзія</value>
@@ -270,10 +270,10 @@
     <value>Паведаміць аб праблеме</value>
   </data>
   <data name="UsefulLinksSourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Выточны код</value>
   </data>
   <data name="UsefulLinksThirdPartyLicenses" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Ліцэнзіі старонніх бакоў</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Выкарыстоўваць налады сістэмы</value>
@@ -282,9 +282,9 @@
     <value>Версія {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Перанос слоў</value>
   </data>
   <data name="WordWrapStateDescriptionWhenOn" xml:space="preserve">
-    <value>Word wrap</value>
+    <value>Перанос па словах</value>
   </data>
 </root>
