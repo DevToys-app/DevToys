@@ -41,10 +41,10 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 30
     steps:
-      - name: Set to use Xcode 15.1
+      - name: Set to use Xcode 26.1.1
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.1'
+          xcode-version: '26.1.1'
       - uses: actions/checkout@v3
       - name: 'Cache: .nuke/temp, ~/.nuget/packages'
         uses: actions/cache@v3
