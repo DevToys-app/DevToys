@@ -31,6 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>DevToys.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- TypeScript -->
     <ConfigFiles Include="tsconfig.json" />
     <Content Update="tsconfig.json" PublishFolderType="None" />
