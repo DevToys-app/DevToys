@@ -21,7 +21,7 @@ public class ExtensionInstallationManagerTests
             LoggingExtensions.LoggerFactory ??= LoggerFactory.Create(builder => { });
 
             Directory.CreateDirectory(packageDirectory);
-            string filePath = "TestData\\cve-invalid-package.nupkg";
+            string filePath = Path.Combine("TestData", "cve-invalid-package.nupkg");
             ExtensionInstallationManager.PreferredExtensionInstallationFolder = packageDirectory;
             ExtensionInstallationManager.ExtensionInstallationFolders = [packageDirectory];
             SandboxedFileReader fileReader = GetSandboxedFileReaderFromFilePath(filePath);
@@ -50,7 +50,7 @@ public class ExtensionInstallationManagerTests
             LoggingExtensions.LoggerFactory ??= LoggerFactory.Create(builder => { });
             Directory.CreateDirectory(packageDirectory);
 
-            string filePath = "TestData\\valid-package.nupkg";
+            string filePath = Path.Combine("TestData", "valid-package.nupkg");
             ExtensionInstallationManager.PreferredExtensionInstallationFolder = packageDirectory;
             ExtensionInstallationManager.ExtensionInstallationFolders = [packageDirectory];
             SandboxedFileReader fileReader = GetSandboxedFileReaderFromFilePath(filePath);
