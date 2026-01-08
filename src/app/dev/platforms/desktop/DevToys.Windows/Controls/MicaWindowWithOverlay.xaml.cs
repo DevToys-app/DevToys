@@ -51,25 +51,25 @@ public abstract partial class MicaWindowWithOverlay : Window
         Loaded += MicaWindowWithOverlay_Loaded;
     }
 
-    internal static readonly DependencyProperty TitleBarMarginLeftProperty
+    public static readonly DependencyProperty TitleBarMarginLeftProperty
         = DependencyProperty.Register(
             nameof(TitleBarMarginLeft),
             typeof(GridLength),
             typeof(MicaWindowWithOverlay));
 
-    internal GridLength TitleBarMarginLeft
+    public GridLength TitleBarMarginLeft
     {
         get => (GridLength)GetValue(TitleBarMarginLeftProperty);
         set => SetValue(TitleBarMarginLeftProperty, value);
     }
 
-    internal static readonly DependencyProperty TitleBarMarginRightProperty
+    public static readonly DependencyProperty TitleBarMarginRightProperty
         = DependencyProperty.Register(
             nameof(TitleBarMarginRight),
             typeof(GridLength),
             typeof(MicaWindowWithOverlay));
 
-    internal GridLength TitleBarMarginRight
+    public GridLength TitleBarMarginRight
     {
         get => (GridLength)GetValue(TitleBarMarginRightProperty);
         set => SetValue(TitleBarMarginRightProperty, value);
@@ -87,13 +87,13 @@ public abstract partial class MicaWindowWithOverlay : Window
         set => SetValue(TitleBarWindowStateButtonsWidthProperty, value);
     }
 
-    internal static readonly DependencyProperty MarginMaximizedProperty
+    public static readonly DependencyProperty MarginMaximizedProperty
         = DependencyProperty.Register(
             nameof(MarginMaximized),
             typeof(Thickness),
             typeof(MicaWindowWithOverlay));
 
-    internal Thickness? MarginMaximized
+    public Thickness? MarginMaximized
     {
         get => (Thickness)GetValue(MarginMaximizedProperty);
         set => SetValue(MarginMaximizedProperty, value);
