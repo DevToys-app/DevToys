@@ -160,7 +160,7 @@
     <value>Actualización disponible</value>
   </data>
   <data name="UpdateAvailableForExtension" xml:space="preserve">
-    <value>Actualización de extension(es) disponibles</value>
+    <value>Actualización de extensión(es) disponibles</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

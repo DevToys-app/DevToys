@@ -124,10 +124,10 @@
     <value>Alla verktyg</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Tillbaka</value>
   </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorite tools</value>
+    <value>Favoritverktyg</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
     <value>Favoriter</value>
@@ -157,7 +157,7 @@
     <value>Toggle Navigation</value>
   </data>
   <data name="UpdateAvailable" xml:space="preserve">
-    <value>Update available</value>
+    <value>Uppdatering tillgänglig</value>
   </data>
   <data name="UpdateAvailableForExtension" xml:space="preserve">
     <value>Update for extension(s) available</value>

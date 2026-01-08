@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FileNotFound" xml:space="preserve">
-    <value>The file '{0}' doesn't exist.</value>
+    <value>הקובץ '{0}' לא קיים</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file path. The file should have one of the following extensions: {0}</value>
+    <value>נתיב קובץ לא תקין. לקובץ צריך להיות אחת הסיומות הבאות: {0}</value>
   </data>
   <data name="PromptOpenFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to read (or press Enter to cancel):</value>
+    <value>אנא הקלד נתיב קובץ יחסי או מוחלט לקריאה (או הקשר Enter לביטול):</value>
   </data>
   <data name="PromptOpenFiles" xml:space="preserve">
-    <value>Please type one or many relative or absolute file paths to read, separated by a comma (or press Enter to cancel):</value>
+    <value>אנא הקלד אחד או יותר נתיב\י קובץ יחסיים או מוחלטים לקריאה, מופרדים ע"י פסיק (או הקש Enter לביטול):</value>
   </data>
   <data name="PromptOpenFolder" xml:space="preserve">
-    <value>Please type a relative or absolute folder path (or press Enter to cancel):</value>
+    <value>אנא הקלד נתיב תיקיה יחסי או מוחלט (או הקש Enter לביטול):</value>
   </data>
   <data name="PromptSaveFile" xml:space="preserve">
-    <value>Please type a relative or absolute file path to write in (or press Enter to cancel):</value>
+    <value>אנא הקלד נתיב קובץ יחסי או מוחלט לכתיבה (או הקש Enter לביטול):</value>
   </data>
 </root>

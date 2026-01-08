@@ -118,31 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>DevToys is your go-to toolbox for developers, packed with a collection of free and open-source tools. Think of it as a Swiss Army knife tailored to tackle those pesky daily tasks that slow you down.
-Here’s what you need to know:</value>
+    <value>DevToys הוא ארגז הכלים המוכר שלך, ארוז עם אוסף של כלים חינמיים וקוד-פתוח. תחשוב על זה כאולר שוויצרי שתוכנן בדיוק להתמודד עם אותן משימות יומיומיות מעצבנות שמאטות אותך.
+הנה מה שאתה צריך לדעת:</value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
-    <value>Check for updates when DevToys starts</value>
+    <value>בדוק לעידכונים כאשר DevToys מופעל</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Continue</value>
+    <value>המשך</value>
   </data>
   <data name="OfflineFirstDescription" xml:space="preserve">
-    <value>DevToys operates with an offline-first mindset. We collect minimal anonymized data locally for troubleshooting purposes. We don’t upload logs to the internet. If you encounter a bug and choose to report it, we may ask you to share the logs with us. With your consent, we will connect to the internet to check for updates, ensuring you have access to the latest features and security enhancements.</value>
+    <value>DevToys פועלת בגישה של לשאוף לעבוד אופליין. אנו אוספים באופן מקומי מידע אנונימי מינימלי למטרות פתרון תקלות. אנו לא מעלים לוגים לאינטרנט. אם אתה נתקל בבאג ובוחר לדווח עליו, אנו עשויים לבקש ממך לשתף את הלוגים איתנו. עם הסכמתך, נתחבר לאינטרנט לבדוק אם קיימים עידכונים, על מנת לוודא שיש לך גישה לפיצ'רים ולשיפורי האבטחה העדכניים ביותר.</value>
   </data>
   <data name="OfflineFirstTitle" xml:space="preserve">
-    <value>Offline First Philosophy</value>
+    <value>גישת "אופליין ככל הניתן"</value>
   </data>
   <data name="TrustButVerifyDescription" xml:space="preserve">
-    <value>The power of DevToys grows with extensions, adding more power to your toolbox. While we ensure the core app’s integrity, it is important to know that we have no control over what third-party extensions do with your computer and data. Therefore, we encourage you to practice caution when installing extensions. To monitor DevToys or any extension’s network activity, tools like Wireshark, Little Snitch, or Fiddler can be utilized to track incoming and outgoing connections.</value>
+    <value>הכוח של DevToys גדל עם הרחבות, שמוסיפות עוד עוצמה לארגז הכלים שלך. בעוד אנו מבטיחים את התקינות של יישומי הבסיס, זה חשוב לדעת שאין לנו שליטה על מה שהרחבות צד שלישי עושות עם המחשב והמידע שלך. לכן, אנו ממליצים לך לפעול בזהירות עם התקנת תוספים. על מנת לנטר את פעילות הרשת של DevToys או כל הרחבה, כלים כמו WireShark, Little Snitch או Fiddler יכולים לסייע לעקוב אחר חיבורים נכנסים ויוצאים.</value>
   </data>
   <data name="TrustButVerifyTitle" xml:space="preserve">
-    <value>Trust but Verify</value>
+    <value>סמוך אבל אמת</value>
   </data>
   <data name="UnderstandAndAgree" xml:space="preserve">
-    <value>I understand and agree</value>
+    <value>אני מבין ומסכים</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to DevToys!</value>
+    <value>ברוכים הבאים ל DevToys!</value>
   </data>
 </root>

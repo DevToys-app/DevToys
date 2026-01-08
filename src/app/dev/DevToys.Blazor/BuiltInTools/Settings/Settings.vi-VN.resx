@@ -133,7 +133,7 @@
     <value>Chọn chủ đề ứng dụng để hiển thị</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value/>
+    <value></value>
   </data>
   <data name="CheckForUpdate" xml:space="preserve">
     <value>Kiểm tra bản cập nhật</value>
