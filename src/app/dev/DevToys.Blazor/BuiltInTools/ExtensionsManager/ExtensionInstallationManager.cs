@@ -98,7 +98,7 @@ public static class ExtensionInstallationManager
             if (Directory.Exists(potentialExtensionInstallationPath))
             {
                 // Extension is already installed.
-                return new(AlreadyInstalled: true, nuspecReader, ExtensionInstallationPath: string.Empty);
+                return new(true, nuspecReader, string.Empty);
             }
         }
 
@@ -112,11 +112,22 @@ public static class ExtensionInstallationManager
         {
             if (!pathToExclude.Any(path => packagedFile.Contains(path, StringComparison.CurrentCultureIgnoreCase)))
             {
-                reader.ExtractFile(packagedFile, Path.Combine(extensionInstallationPath, packagedFile), null);
+                // Security: Prevent path traversal vulnerability (CWE-22 & CWE-23).
+                string fullTargetPath = Path.GetFullPath(Path.Combine(extensionInstallationPath, packagedFile));
+                string fullPluginPath = Path.GetFullPath(extensionInstallationPath);
+
+                if (!fullTargetPath.StartsWith(fullPluginPath + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
+                {
+                    Directory.Delete(extensionInstallationPath, true);
+                    logger.LogCritical("Security violation: Extension '{packagedFile}' contains path traversal sequence", nuspecReader.GetId());
+                    return new(nuspecReader, $"Security violation: Extension '{nuspecReader.GetId()}' contains path traversal sequence");
+                }
+
+                reader.ExtractFile(packagedFile, fullTargetPath, null);
             }
         }
 
-        return new(AlreadyInstalled: false, nuspecReader, extensionInstallationPath);
+        return new(false, nuspecReader, extensionInstallationPath);
     }
 
     internal static async Task<bool> CheckForAnyUpdateAsync(IWebClientService webClientService)
