@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-Any version above v2.* may receive security patches. 
+Any v2.* version may receive security patches. 
 
 ## Reporting a Vulnerability
 We strongly encourage responsible disclosure. If you discover a security issue in DevToys or any of its official components:
