@@ -87,7 +87,8 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 
 ### Prerequisites
 1. Make sure your machine has GTK4 and WebKitGTK installed. Distro like Ubuntu generally have it pre-installed.
-1. [**Visual Studio Code**](https://code.visualstudio.com/) with [**C# Dev Kit**](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), or [**JetBrains Rider**](https://www.jetbrains.com/rider/).
+1. We recommend building via [**Visual Studio Code**](https://code.visualstudio.com/) with [**C# Dev Kit**](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), or [**JetBrains Rider**](https://www.jetbrains.com/rider/).
+    - See [Building from CLI](#building-from-cli) for headless building
 1. **.NET SDK**. This is required to build the app itself.
     * [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/8.0) (**version 8.0 (SDK 8.0.100)** or later).
     * Unless GTK has been installed through `snap`, we recommend to avoid installing .NET from `snap`.
@@ -116,6 +117,22 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 #### If you are using Visual Studio Code:
 1. Open the repository in Visual Studio Code to edit the code.
 1. In `Run and Debug`, select `DevToys Linux` or `DevToys CLI` and press Start.
+
+### Building from CLI
+The workflow is mostly similar:
+1. Clone the repository
+1. Set up environment as above, ensuring `init.sh` is run correctly
+1. Build the project using
+```
+$ ./build.sh --configuration Release
+```
+1. [Optional] For Also building Default tools: 
+    1. Clone [DevToys.Tools](https://github.com/DevToys-app/DevToys.Tools)
+    1. Set up According to [The documentation](https://github.com/DevToys-app/DevToys.Tools/blob/main/CONTRIBUTING.md)
+    1. Run `build.sh --configuration Release` to compile
+    1. Pack up the extension with `dotnet pack src/DevToys.Tools/DevToys.Tools.csproj`
+    1. In DevToys, go to Extension Manager, then "Install an Extension"
+    1. Find the `.nupkg` in `bin/Release/AnyCPU/DevToys.Tools/DevToys.Tools.0.0.0-preview.0.nupkg`
 
 # How to Build and Run DevToys and DevToys CLI with default tools from source:
 
