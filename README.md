@@ -1,3 +1,24 @@
+Updates:
+
+
+- docker-compose.yml file for the GUI version with improved configuration!
+
+__________________________________________________________________________________________________________________________________________________________
+
+Instructions:
+
+Due to this app being only for Debian based distros, I decided to create two containers so it can be used in Fedora with Podman. One Dockerfile (inside the dockerfile_cli folder) is for the CLI version, while the Dockerfile (inside the dockerfile_gui folder) is for the GUI version.
+Both files require the .deb binary that can be downloaded from
+
+``` https://devtoys.app/download ```
+
+which is the official website of DevToys and feautres both formats.
+
+Make sure to give them the proper permissions and also to put the proper .deb file inside the folder so it can be copied and executed. Enjoy!
+
+
+
+
 <p align="center">
   <img width="128" align="center" src="/assets/logo/Windows-Linux/Stable/Icon-Windows-Linux.png">
 </p>
@@ -13,6 +34,10 @@
   <a style="text-decoration:none" href="https://devtoys.app" target="_blank">
     <img src="https://img.shields.io/badge/Website-devtoys.app-blue" alt="Website" /></a>
 </p>
+
+
+
+
 
 ## Introduction
 
@@ -69,3 +94,5 @@ See [LICENSE](LICENSE.md)
 ### DevToysMac developer
 
 [ObuchiYuki](https://twitter.com/obuchi_yuki)
+
+
