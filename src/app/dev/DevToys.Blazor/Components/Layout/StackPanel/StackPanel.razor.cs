@@ -11,6 +11,7 @@ public partial class StackPanel : StyledComponentBase
         .AddStyle("column-gap", Spacing.ToPx())
         .AddStyle("row-gap", Spacing.ToPx())
         .AddStyle("flex-wrap", "wrap", () => Wrap)
+        .AddStyle("height", "inherit", () => UseMaxHeight)
         .AddStyle(Style)
         .Build();
 
@@ -31,6 +32,12 @@ public partial class StackPanel : StyledComponentBase
     /// </summary>
     [Parameter]
     public int Spacing { get; set; } = 4;
+
+    /// <summary>
+    /// Gets or sets if the stack need to use the full available height.
+    /// </summary>
+    [Parameter]
+    public bool UseMaxHeight { get; set; } = false;
 
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.

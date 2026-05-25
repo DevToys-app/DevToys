@@ -118,45 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConvertersGroupAccessibleName" xml:space="preserve">
-    <value>Converters</value>
+    <value>Канвэртары</value>
   </data>
   <data name="ConvertersGroupDisplayTitle" xml:space="preserve">
-    <value>Converters</value>
+    <value>Канвэртары</value>
   </data>
   <data name="EncodersDecodersGroupAccessibleName" xml:space="preserve">
-    <value>Encoders and decoders</value>
+    <value>Шыфравальшчыкі і расшыфроўшчыкі</value>
   </data>
   <data name="EncodersDecodersGroupDisplayTitle" xml:space="preserve">
-    <value>Encoders / Decoders</value>
+    <value>Шыфравальшчыкі / расшыфроўшчыкі</value>
   </data>
   <data name="FormattersGroupAccessibleName" xml:space="preserve">
-    <value>Formatters</value>
+    <value>Фарматары</value>
   </data>
   <data name="FormattersGroupDisplayTitle" xml:space="preserve">
-    <value>Formatters</value>
+    <value>Фарматары</value>
   </data>
   <data name="GeneratorsGroupAccessibleName" xml:space="preserve">
-    <value>Generators</value>
+    <value>Генератары</value>
   </data>
   <data name="GeneratorsGroupDisplayTitle" xml:space="preserve">
-    <value>Generators</value>
+    <value>Генератары</value>
   </data>
   <data name="GraphicGroupAccessibleName" xml:space="preserve">
-    <value>Graphic</value>
+    <value>Графіка</value>
   </data>
   <data name="GraphicGroupDisplayTitle" xml:space="preserve">
-    <value>Graphic</value>
+    <value>Графіка</value>
   </data>
   <data name="TestersGroupAccessibleName" xml:space="preserve">
-    <value>Testers</value>
+    <value>Тэсцеры</value>
   </data>
   <data name="TestersGroupDisplayTitle" xml:space="preserve">
-    <value>Testers</value>
+    <value>Тэсцеры</value>
   </data>
   <data name="TextGroupAccessibleName" xml:space="preserve">
-    <value>Text</value>
+    <value>Тэкст</value>
   </data>
   <data name="TextGroupDisplayTitle" xml:space="preserve">
-    <value>Text</value>
+    <value>Тэкст</value>
   </data>
 </root>

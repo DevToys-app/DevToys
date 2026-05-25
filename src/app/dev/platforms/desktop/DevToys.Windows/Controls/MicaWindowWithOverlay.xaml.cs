@@ -51,62 +51,62 @@ public abstract partial class MicaWindowWithOverlay : Window
         Loaded += MicaWindowWithOverlay_Loaded;
     }
 
-    internal static readonly DependencyProperty TitleBarMarginLeftProperty
+    public static readonly DependencyProperty TitleBarMarginLeftProperty
         = DependencyProperty.Register(
             nameof(TitleBarMarginLeft),
             typeof(GridLength),
             typeof(MicaWindowWithOverlay));
 
-    internal GridLength TitleBarMarginLeft
+    public GridLength TitleBarMarginLeft
     {
         get => (GridLength)GetValue(TitleBarMarginLeftProperty);
         set => SetValue(TitleBarMarginLeftProperty, value);
     }
 
-    internal static readonly DependencyProperty TitleBarMarginRightProperty
+    public static readonly DependencyProperty TitleBarMarginRightProperty
         = DependencyProperty.Register(
             nameof(TitleBarMarginRight),
             typeof(GridLength),
             typeof(MicaWindowWithOverlay));
 
-    internal GridLength TitleBarMarginRight
+    public GridLength TitleBarMarginRight
     {
         get => (GridLength)GetValue(TitleBarMarginRightProperty);
         set => SetValue(TitleBarMarginRightProperty, value);
     }
 
-    internal static readonly DependencyProperty TitleBarWindowStateButtonsWidthProperty
+    public static readonly DependencyProperty TitleBarWindowStateButtonsWidthProperty
         = DependencyProperty.Register(
             nameof(TitleBarWindowStateButtonsWidth),
             typeof(int),
             typeof(MicaWindowWithOverlay));
 
-    internal int TitleBarWindowStateButtonsWidth
+    public int TitleBarWindowStateButtonsWidth
     {
         get => (int)GetValue(TitleBarWindowStateButtonsWidthProperty);
         set => SetValue(TitleBarWindowStateButtonsWidthProperty, value);
     }
 
-    internal static readonly DependencyProperty MarginMaximizedProperty
+    public static readonly DependencyProperty MarginMaximizedProperty
         = DependencyProperty.Register(
             nameof(MarginMaximized),
             typeof(Thickness),
             typeof(MicaWindowWithOverlay));
 
-    internal Thickness? MarginMaximized
+    public Thickness? MarginMaximized
     {
         get => (Thickness)GetValue(MarginMaximizedProperty);
         set => SetValue(MarginMaximizedProperty, value);
     }
 
-    internal static readonly DependencyProperty ForbidMinimizeAndMaximizeProperty
+    public static readonly DependencyProperty ForbidMinimizeAndMaximizeProperty
         = DependencyProperty.Register(
             nameof(ForbidMinimizeAndMaximize),
             typeof(bool),
             typeof(MicaWindowWithOverlay),
             new PropertyMetadata(OnForbidMinimizeAndMaximizePropertyChangedCallback));
 
-    internal bool ForbidMinimizeAndMaximize
+    public bool ForbidMinimizeAndMaximize
     {
         get => (bool)GetValue(ForbidMinimizeAndMaximizeProperty);
         set => SetValue(ForbidMinimizeAndMaximizeProperty, value);

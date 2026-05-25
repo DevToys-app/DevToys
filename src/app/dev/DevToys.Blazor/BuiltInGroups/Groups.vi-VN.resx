@@ -124,16 +124,16 @@
     <value>Công cụ chuyển đổi</value>
   </data>
   <data name="EncodersDecodersGroupAccessibleName" xml:space="preserve">
-    <value>Encoders and decoders</value>
+    <value>Bộ Mã hóa / Giải mã</value>
   </data>
   <data name="EncodersDecodersGroupDisplayTitle" xml:space="preserve">
     <value>Encoders / Decoders</value>
   </data>
   <data name="FormattersGroupAccessibleName" xml:space="preserve">
-    <value>Formatters</value>
+    <value>Bộ định dạng</value>
   </data>
   <data name="FormattersGroupDisplayTitle" xml:space="preserve">
-    <value>Formatters</value>
+    <value>Bộ định dạng</value>
   </data>
   <data name="GeneratorsGroupAccessibleName" xml:space="preserve">
     <value>Generators</value>
@@ -142,10 +142,10 @@
     <value>Generators</value>
   </data>
   <data name="GraphicGroupAccessibleName" xml:space="preserve">
-    <value>Graphic</value>
+    <value>Đồ họa</value>
   </data>
   <data name="GraphicGroupDisplayTitle" xml:space="preserve">
-    <value>Graphic</value>
+    <value>Đồ họa</value>
   </data>
   <data name="TestersGroupAccessibleName" xml:space="preserve">
     <value>Testers</value>
@@ -154,9 +154,9 @@
     <value>Testers</value>
   </data>
   <data name="TextGroupAccessibleName" xml:space="preserve">
-    <value>Text</value>
+    <value>Văn bản</value>
   </data>
   <data name="TextGroupDisplayTitle" xml:space="preserve">
-    <value>Text</value>
+    <value>Văn bản</value>
   </data>
 </root>

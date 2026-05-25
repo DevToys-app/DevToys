@@ -6,6 +6,11 @@
 public interface IUIStack : IUIElementWithChildren
 {
     /// <summary>
+    /// Gets whether this element should use the full height available.
+    /// </summary>
+    bool UseMaxHeight { get; }
+
+    /// <summary>
     /// Gets a value that indicates the dimension by which child elements are stacked.
     /// Default is <see cref="UIOrientation.Horizontal"/>.
     /// </summary>
@@ -36,11 +41,17 @@ public interface IUIStack : IUIElementWithChildren
     /// Raised when <see cref="Children"/> is changed.
     /// </summary>
     event EventHandler? ChildrenChanged;
+
+    /// <summary>
+    /// Raised when <see cref="UseMaxHeight"/> is changed.
+    /// </summary>
+    event EventHandler? HeightChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Orientation = {{{nameof(Orientation)}}}")]
 internal sealed class UIStack : UIElementWithChildren, IUIStack
 {
+    private bool _useMaxHeight = false;
     private UIOrientation _orientation = UIOrientation.Horizontal;
     private UISpacing _spacing = UISpacing.Small;
     private IUIElement[]? _children;
@@ -82,11 +93,20 @@ internal sealed class UIStack : UIElementWithChildren, IUIStack
         internal set => SetPropertyValue(ref _children, value, ChildrenChanged);
     }
 
+    public bool UseMaxHeight
+    {
+        get => _useMaxHeight;
+        internal set => SetPropertyValue(ref _useMaxHeight, value, HeightChanged);
+
+    }
+
     public event EventHandler? OrientationChanged;
 
     public event EventHandler? SpacingChanged;
 
     public event EventHandler? ChildrenChanged;
+
+    public event EventHandler? HeightChanged;
 }
 
 public static partial class GUI
@@ -168,6 +188,15 @@ public static partial class GUI
     public static IUIStack LargeSpacing(this IUIStack element)
     {
         ((UIStack)element).Spacing = UISpacing.Large;
+        return element;
+    }
+
+    /// <summary>
+    /// Sets a large spacing between children.
+    /// </summary>
+    public static IUIStack UseMaxHeight(this IUIStack element)
+    {
+        ((UIStack)element).UseMaxHeight = true;
         return element;
     }
 }

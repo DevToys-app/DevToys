@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConvertersGroupAccessibleName" xml:space="preserve">
-    <value>Dönüştürücüler</value>
+    <value>Çeviriciler</value>
   </data>
   <data name="ConvertersGroupDisplayTitle" xml:space="preserve">
-    <value>Dönüştürücüler</value>
+    <value>Çeviriciler</value>
   </data>
   <data name="EncodersDecodersGroupAccessibleName" xml:space="preserve">
-    <value>Encoders and decoders</value>
+    <value>Kodlayıcılar ve çözücüler</value>
   </data>
   <data name="EncodersDecodersGroupDisplayTitle" xml:space="preserve">
-    <value>Encoders / Decoders</value>
+    <value>Kodlayıcılar / Kod Çözücüler</value>
   </data>
   <data name="FormattersGroupAccessibleName" xml:space="preserve">
     <value>Biçimlendiriciler</value>
@@ -136,10 +136,10 @@
     <value>Biçimlendiriciler</value>
   </data>
   <data name="GeneratorsGroupAccessibleName" xml:space="preserve">
-    <value>Generators</value>
+    <value>Oluşturucular</value>
   </data>
   <data name="GeneratorsGroupDisplayTitle" xml:space="preserve">
-    <value>Generators</value>
+    <value>Oluşturucu</value>
   </data>
   <data name="GraphicGroupAccessibleName" xml:space="preserve">
     <value>Grafik</value>

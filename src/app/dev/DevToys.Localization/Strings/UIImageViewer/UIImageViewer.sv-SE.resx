@@ -124,9 +124,9 @@
     <value>Spara som</value>
   </data>
   <data name="UnknownImage" xml:space="preserve">
-    <value>Unknown image</value>
+    <value>Okänd bild</value>
   </data>
   <data name="ViewButtonText" xml:space="preserve">
-    <value>View</value>
+    <value>Visa</value>
   </data>
 </root>

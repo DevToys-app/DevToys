@@ -124,10 +124,10 @@
     <value>Конвертеры</value>
   </data>
   <data name="EncodersDecodersGroupAccessibleName" xml:space="preserve">
-    <value>Кодер и декодер</value>
+    <value>Кодеры и декодеры</value>
   </data>
   <data name="EncodersDecodersGroupDisplayTitle" xml:space="preserve">
-    <value>Кодер и декодер</value>
+    <value>Кодеры/Декодеры</value>
   </data>
   <data name="FormattersGroupAccessibleName" xml:space="preserve">
     <value>Форматирование</value>

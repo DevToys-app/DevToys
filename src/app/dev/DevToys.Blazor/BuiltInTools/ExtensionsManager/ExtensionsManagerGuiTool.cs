@@ -157,6 +157,12 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
         for (int i = 0; i < nugetPackages.Length; i++)
         {
             ExtensionInstallationResult result = await ExtensionInstallationManager.InstallExtensionAsync(nugetPackages[i]);
+            if (!result.HasSucceeded)
+            {
+                // Extension is not installed.
+                await ShowExtensionErrorMessageBoxAsync(result.NuspecReader.GetId());
+                return;
+            }
 
             if (result.AlreadyInstalled)
             {
@@ -352,6 +358,32 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
                         .Text(string.Format(ExtensionsManager.ExtensionAlreadyInstalledDescription, extensionTitle))),
 
             Button("extension-already-exist-dialog-ok-button")
+                .AlignHorizontally(UIHorizontalAlignment.Right)
+                .Text(ExtensionsManager.OKButtonText)
+                .OnClick(OnCloseDialogButtonClick),
+            isDismissible: true);
+
+        void OnCloseDialogButtonClick()
+        {
+            _view.Value.CurrentOpenedDialog?.Close();
+        }
+    }
+
+    private async Task ShowExtensionErrorMessageBoxAsync(string extensionTitle)
+    {
+        await _view.Value.OpenDialogAsync(
+            Stack()
+                .Vertical()
+
+                .WithChildren(
+                    Label()
+                        .Style(UILabelStyle.Subtitle)
+                        .Text(ExtensionsManager.ExtensionAlreadyInstalledTitle),
+                    Label()
+                        .Style(UILabelStyle.Body)
+                        .Text(string.Format(ExtensionsManager.SecurityPathTraversalErrorMessage, extensionTitle))),
+
+            Button("extension-error-dialog-ok-button")
                 .AlignHorizontally(UIHorizontalAlignment.Right)
                 .Text(ExtensionsManager.OKButtonText)
                 .OnClick(OnCloseDialogButtonClick),
