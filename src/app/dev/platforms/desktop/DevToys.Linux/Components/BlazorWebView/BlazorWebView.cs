@@ -1,5 +1,6 @@
 using System.Collections.Specialized;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using DevToys.Api;
 using DevToys.Blazor.Core;
 using Gdk;
@@ -352,18 +353,31 @@ internal sealed partial class BlazorWebView : IDisposable
                 return;
             }
 
-            using var ms = new MemoryStream();
-            ms.Write(responseBytes.AsSpan());
-            nint streamPtr = MemoryInputStream.NewFromData(ref ms.GetBuffer()[0], (uint)ms.Length, _ => { });
+            // g_memory_input_stream_new_from_data() does NOT copy the buffer: it keeps the raw
+            // pointer and reads from it asynchronously (after this method returns), calling the
+            // destroy notify only once WebKitGTK is done with the stream. The previous code handed
+            // it a pointer into a managed, unpinned MemoryStream buffer together with a no-op
+            // destroy notify, so the GC was free to move, collect or reuse that memory before/while
+            // WebKitGTK read it. The result was corrupted responses (zeroed bytes, and bytes from
+            // other concurrent requests bleeding in), which broke script parsing in JavaScriptCore
+            // ("SyntaxError: Invalid character: '\\0'", garbled assets) and left the `devtoys` global
+            // undefined. Pin the response buffer for the whole lifetime of the stream and release it
+            // from the destroy notify.
+            // A non-empty backing array is required so `ref buffer[0]` is valid even for an empty
+            // body; the exposed length stays responseBytes.Length.
+            byte[] buffer = responseBytes.Length == 0 ? new byte[1] : responseBytes;
+            GCHandle responseHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+            nint streamPtr = MemoryInputStream.NewFromData(
+                ref buffer[0], (uint)responseBytes.Length, _ => responseHandle.Free());
             using var inputStream = new InputStream(streamPtr, false);
 
             var headers = MessageHeaders.New(MessageHeadersType.Response);
-            headers.SetContentLength(ms.Length);
+            headers.SetContentLength(responseBytes.Length);
 
             // Disable local caching. This will prevent user scripts from executing correctly.
             headers.Append("Cache-Control", "no-cache, max-age=0, must-revalidate, no-store");
 
-            var response = URISchemeResponse.New(inputStream, ms.Length);
+            var response = URISchemeResponse.New(inputStream, responseBytes.Length);
             response.SetHttpHeaders(headers);
             response.SetContentType(contentType);
             response.SetStatus((uint)statusCode, statusMessage);
@@ -398,7 +412,7 @@ internal sealed partial class BlazorWebView : IDisposable
 
             statusCode = 404;
             contentType = string.Empty;
-            return [];
+            return Array.Empty<byte>();
         }
 
         private static string RemovePossibleQueryString(string? url)

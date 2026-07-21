@@ -4,6 +4,12 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: read
 
 jobs:
   windows-latest:
@@ -55,3 +61,19 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
       - name: 'Restore, Build and Test'
         run: ./build.cmd RunTests
+
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs:
+      - windows-latest
+      - ubuntu-latest
+      - macos-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    steps:
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
