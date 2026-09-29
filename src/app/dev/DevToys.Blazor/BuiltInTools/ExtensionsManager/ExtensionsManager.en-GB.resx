@@ -137,7 +137,7 @@
     <value>Find more extensions online</value>
   </data>
   <data name="InstallExtension" xml:space="preserve">
-    <value></value>
+    <value>Install an extension</value>
   </data>
   <data name="LearnDevelopExtension" xml:space="preserve">
     <value>Create an extension for DevToys</value>
