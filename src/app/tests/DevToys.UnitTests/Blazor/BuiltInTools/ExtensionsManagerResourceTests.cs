@@ -19,7 +19,7 @@ public class ExtensionsManagerResourceTests
 
         try
         {
-            ExtensionsManager.Culture = new CultureInfo("en-GB");
+            ExtensionsManager.Culture = CultureInfo.GetCultureInfo("en-GB");
 
             // Act
             string text = ExtensionsManager.InstallExtension;
@@ -42,7 +42,7 @@ public class ExtensionsManagerResourceTests
 
         try
         {
-            ExtensionsManager.Culture = new CultureInfo("en-GB");
+            ExtensionsManager.Culture = CultureInfo.GetCultureInfo("en-GB");
 
             // Act
             string enGbText = ExtensionsManager.InstallExtension;
@@ -52,6 +52,9 @@ public class ExtensionsManagerResourceTests
             string neutralText = ExtensionsManager.InstallExtension;
 
             // Assert
+            enGbText.Should().NotBeNullOrWhiteSpace(
+                "the 'Install Extension' button label must be visible for en-GB users (issue #1651).");
+
             enGbText.Should().Be(neutralText,
                 "en-GB English is not expected to differ from the neutral resource for this label.");
         }
