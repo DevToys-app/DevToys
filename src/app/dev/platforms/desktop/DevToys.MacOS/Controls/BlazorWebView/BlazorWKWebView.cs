@@ -354,8 +354,8 @@ internal sealed partial class BlazorWkWebView : IDisposable
 
         private byte[] GetResponseBytes(string? url, out string contentType, out int statusCode)
         {
+            url = RemovePossibleQueryStringAndFragment(url);
             bool allowFallbackOnHostPage = IsUriBaseOfPage(AppOriginUri.Value, url);
-            url = RemovePossibleQueryString(url);
 
             if (_blazorWebView._webViewManager!.TryGetResponseContentInternal(
                     url,
@@ -386,17 +386,19 @@ internal sealed partial class BlazorWkWebView : IDisposable
         {
         }
 
-        private static string RemovePossibleQueryString(string? url)
+        private static string RemovePossibleQueryStringAndFragment(string? url)
         {
             if (string.IsNullOrEmpty(url))
             {
                 return string.Empty;
             }
 
-            int indexOfQueryString = url.IndexOf('?', StringComparison.Ordinal);
-            return indexOfQueryString == -1
+            // Requests reach this handler with their fragment intact, which an HTTP request would never carry.
+            // Monaco relies on it to label its web workers (workerMain.js#editorWorkerService).
+            int indexOfQueryStringOrFragment = url.IndexOfAny(['?', '#']);
+            return indexOfQueryStringOrFragment == -1
                 ? url
-                : url.Substring(0, indexOfQueryString);
+                : url[..indexOfQueryStringOrFragment];
         }
 
         private static bool IsUriBaseOfPage(Uri baseUri, string? uriString)
