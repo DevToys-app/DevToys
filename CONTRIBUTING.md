@@ -78,9 +78,9 @@ You can contribute to DevToys app by:
 #### Special note for `DevToys.MacOS`
 Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to access the Safari developer tools with macOS to debug the HTML/CSS/JS of the Blazor app, you might need to follow the following instructions:
 1. Open desktop Safari.
-2. Select the Safari > Preferences > Advanced > Show features for web developers in the menu bar checkbox.
-3. Run the `DevToys.MacOS` app in macOS.
-4. Return to Safari. On the main menu, select Develop > {REMOTE INSPECTION TARGET} > 0.0.0.0, where the {REMOTE INSPECTION TARGET} placeholder is either the devices's plain name (for example, MacBook Pro) or the device's serial number (for example XMVM7VFF10). If multiple entries for 0.0.0.0 are present, select the entry that highlights the BlazorWebView. The BlazorWebView is highlighted in blue in macOS when the correct 0.0.0.0 entry is selected.
+2. Select the Safari > Settings (named Preferences before Safari 17) > Advanced > Show features for web developers in the menu bar checkbox.
+3. Run the `DevToys.MacOS` app in macOS, in the `Debug` configuration. The Web Inspector is only enabled in `Debug`.
+4. Return to Safari. On the main menu, select Develop > {REMOTE INSPECTION TARGET} > {HOST}, where the {REMOTE INSPECTION TARGET} placeholder is either the devices's plain name (for example, MacBook Pro) or the device's serial number (for example XMVM7VFF10), and {HOST} is `localhost` (on macOS 15.0 and later or `0.0.0.0` on earlier versions). If multiple entries for {HOST} are present, select the entry that highlights the BlazorWebView. The BlazorWebView is highlighted in blue in macOS when the correct {HOST} entry is selected.
 5. The Web Inspector window appears for the BlazorWebView.
 
 ## From Linux
@@ -120,6 +120,37 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 # How to Build and Run DevToys and DevToys CLI with default tools from source:
 
 See [DevToys.Tools's CONTRIBUTING.md](https://github.com/DevToys-app/DevToys.Tools/blob/main/CONTRIBUTING.md) file.
+
+## Running with the default tools
+
+The default tools live in the [DevToys.Tools](https://github.com/DevToys-app/DevToys.Tools) repository and are loaded as an extension. Point the `EXTRAPLUGIN` environment variable at the extension's build output to load it without installing it, leaving any DevToys installation on the machine untouched.
+
+These steps assume both repositories sit side by side:
+
+```
+<your workspace>/
+  DevToys/         <- this repository
+  DevToys.Tools/
+```
+
+1. Clone and build the extension:
+    ```
+    cd <your workspace>
+    git clone https://github.com/DevToys-app/DevToys.Tools
+    cd DevToys.Tools
+    dotnet build src/DevToys.Tools/DevToys.Tools.csproj -c Debug
+    ```
+1. Launch the build you made from this repository, with `EXTRAPLUGIN` set to the folder containing `DevToys.Tools.dll`. On macOS:
+    ```
+    cd <your workspace>/DevToys
+    EXTRAPLUGIN="<your workspace>/DevToys.Tools/bin/Debug/AnyCPU/DevToys.Tools/net8.0" \
+      ./bin/Debug/AnyCPU/DevToys.MacOS/net8.0-macos/osx-arm64/DevToys.app/Contents/MacOS/DevToys
+    ```
+    On Windows and Linux, set the variable in the environment the app starts from, or in your IDE's run configuration, then start the app as described in **Build, Run & Debug** above.
+
+If the tool list is still empty, check that `EXTRAPLUGIN` is an absolute path to the folder containing `DevToys.Tools.dll`. A path that does not exist is silently ignored.
+
+To debug the extension itself rather than the shell, use the `DevToys GUI` launch profile in the `DevToys.Tools` repository. It sets `EXTRAPLUGIN` for you and launches the executable named by `DevToysGuiDebugEntryPoint`, which you can point at the build you made here.
 
 # Internationalization and localization
 
