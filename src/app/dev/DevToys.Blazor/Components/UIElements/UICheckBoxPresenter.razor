@@ -1,0 +1,12 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<CheckBox id="@UICheckBox.Id"
+          IsVisible="@UICheckBox.IsVisible"
+          IsEnabled="@UICheckBox.IsEnabled"
+          HorizontalAlignment="@UICheckBox.HorizontalAlignment"
+          VerticalAlignment="@UICheckBox.VerticalAlignment"
+          Text="@UICheckBox.Text"
+          IsChecked="@UICheckBox.IsChecked"
+          IsCheckedChanged="@OnCheckedChanged" />
