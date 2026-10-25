@@ -28,6 +28,12 @@ public partial class UIDataGridPresenter : StyledComponentBase, IDisposable
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
+        OnSelectedIndexChanged();
+    }
+
+    private void OnSelectedIndexChanged()
+    {
+        // Keep the SDK selection in sync with the bound index
         if (_selectedIndex != SelectedIndex)
         {
             if (UIDataGrid.CanSelectRow)
@@ -61,6 +67,8 @@ public partial class UIDataGridPresenter : StyledComponentBase, IDisposable
             SelectedIndex = -1;
             UIDataGrid.Select(-1);
         }
+
+        _selectedIndex = SelectedIndex;
     }
 
     private void UIDataGrid_IsVisibleChanged(object? sender, EventArgs e)

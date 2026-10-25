@@ -68,6 +68,7 @@
                       HorizontalAlignment="UIHorizontalAlignment.Stretch"
                       VerticalAlignment="UIVerticalAlignment.Stretch"
                       @bind-SelectedIndex="@SelectedIndex"
+                      @bind-SelectedIndex:after="@OnSelectedIndexChanged"
                       Columns="@UIDataGrid.Columns"
                       Rows="@UIDataGrid.Rows"
                       Context="element"
