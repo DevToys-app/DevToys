@@ -50,8 +50,17 @@ public sealed class FileLoggerProvider : ILoggerProvider
         catch (TaskCanceledException) { }
         catch (AggregateException ex) when (ex.InnerExceptions.Count == 1 && ex.InnerExceptions[0] is TaskCanceledException) { }
 
-        _textWriter.Value.Dispose();
-        _fileStream.Value.Dispose();
+        // The log file may never have been opened (no write access to the log folder,
+        // or the file is held by another instance). Reading Value would rethrow that error.
+        if (_textWriter.IsValueCreated)
+        {
+            _textWriter.Value.Dispose();
+        }
+
+        if (_fileStream.IsValueCreated)
+        {
+            _fileStream.Value.Dispose();
+        }
     }
 
     internal void WriteEntry(string message)
@@ -90,6 +99,9 @@ public sealed class FileLoggerProvider : ILoggerProvider
         }
         catch
         {
+            // Nothing drains the queue anymore. Stop accepting entries, otherwise
+            // WriteEntry blocks once the queue is full.
+            _entryQueue.CompleteAdding();
 #if DEBUG
             System.Diagnostics.Debugger.Launch();
 #endif
