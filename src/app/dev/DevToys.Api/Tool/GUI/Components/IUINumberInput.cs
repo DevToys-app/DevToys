@@ -1,4 +1,6 @@
-﻿namespace DevToys.Api;
+﻿using System.Globalization;
+
+namespace DevToys.Api;
 
 /// <summary>
 /// A component that can be used to display or edit numbers on a single line.
@@ -80,7 +82,7 @@ internal class UINumberInput : UISingleLineTextInput, IUINumberInput
     {
         get
         {
-            if (double.TryParse(Text, out double value))
+            if (double.TryParse(Text, NumberStyles.Float, CultureInfo.InvariantCulture, out double value))
             {
                 return Math.Min(Math.Max(value, Min), Max);
             }
@@ -160,7 +162,7 @@ public static partial class GUI
     public static IUINumberInput Value(this IUINumberInput element, double value)
     {
         double safeValue = Math.Min(Math.Max(value, element.Min), element.Max);
-        element.Text(safeValue.ToString());
+        element.Text(safeValue.ToString(CultureInfo.InvariantCulture));
         return element;
     }
 
